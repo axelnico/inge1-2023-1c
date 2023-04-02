@@ -102,7 +102,7 @@ substractFrom: aNumber
 	^aNumber previous -  self previous! !
 
 
-!II class methodsFor: '--** private fileout/in **--' stamp: 'NB 4/2/2023 15:21:18'!
+!II class methodsFor: '--** private fileout/in **--' stamp: 'sm 4/2/2023 18:43:42'!
 initializeCollaboratorsFromFile
 	"Auto generated method for loading purposes - Do not modify it"
 
@@ -123,7 +123,7 @@ II subclass: #III
 III class
 	instanceVariableNames: ''!
 
-!III class methodsFor: '--** private fileout/in **--' stamp: 'NB 4/2/2023 15:21:18'!
+!III class methodsFor: '--** private fileout/in **--' stamp: 'sm 4/2/2023 18:43:42'!
 initializeCollaboratorsFromFile
 	"Auto generated method for loading purposes - Do not modify it"
 
@@ -144,7 +144,7 @@ II subclass: #IIII
 IIII class
 	instanceVariableNames: ''!
 
-!IIII class methodsFor: '--** private fileout/in **--' stamp: 'NB 4/2/2023 15:21:18'!
+!IIII class methodsFor: '--** private fileout/in **--' stamp: 'sm 4/2/2023 18:43:42'!
 initializeCollaboratorsFromFile
 	"Auto generated method for loading purposes - Do not modify it"
 
@@ -165,7 +165,7 @@ II subclass: #IIIII
 IIIII class
 	instanceVariableNames: ''!
 
-!IIIII class methodsFor: '--** private fileout/in **--' stamp: 'NB 4/2/2023 15:21:18'!
+!IIIII class methodsFor: '--** private fileout/in **--' stamp: 'sm 4/2/2023 18:43:42'!
 initializeCollaboratorsFromFile
 	"Auto generated method for loading purposes - Do not modify it"
 
@@ -186,15 +186,81 @@ II subclass: #IIIIII
 IIIIII class
 	instanceVariableNames: ''!
 
-!IIIIII class methodsFor: '--** private fileout/in **--' stamp: 'NB 4/2/2023 15:21:18'!
+!IIIIII class methodsFor: '--** private fileout/in **--' stamp: 'sm 4/2/2023 18:43:42'!
+initializeCollaboratorsFromFile
+	"Auto generated method for loading purposes - Do not modify it"
+
+	next := IIIIIII.
+	previous := IIIII.! !
+
+
+!classDefinition: #IIIIIII category: 'Natural Numbers'!
+II subclass: #IIIIIII
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Natural Numbers'!
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'IIIIIII class' category: 'Natural Numbers'!
+IIIIIII class
+	instanceVariableNames: ''!
+
+!IIIIIII class methodsFor: '--** private fileout/in **--' stamp: 'sm 4/2/2023 18:43:42'!
+initializeCollaboratorsFromFile
+	"Auto generated method for loading purposes - Do not modify it"
+
+	next := IIIIIIII.
+	previous := IIIIII.! !
+
+
+!classDefinition: #IIIIIIII category: 'Natural Numbers'!
+II subclass: #IIIIIIII
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Natural Numbers'!
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'IIIIIIII class' category: 'Natural Numbers'!
+IIIIIIII class
+	instanceVariableNames: ''!
+
+!IIIIIIII class methodsFor: '--** private fileout/in **--' stamp: 'sm 4/2/2023 18:43:42'!
+initializeCollaboratorsFromFile
+	"Auto generated method for loading purposes - Do not modify it"
+
+	next := IIIIIIIII.
+	previous := IIIIIII.! !
+
+
+!classDefinition: #IIIIIIIII category: 'Natural Numbers'!
+II subclass: #IIIIIIIII
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Natural Numbers'!
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'IIIIIIIII class' category: 'Natural Numbers'!
+IIIIIIIII class
+	instanceVariableNames: ''!
+
+!IIIIIIIII class methodsFor: '--** private fileout/in **--' stamp: 'sm 4/2/2023 18:43:42'!
 initializeCollaboratorsFromFile
 	"Auto generated method for loading purposes - Do not modify it"
 
 	next := nil.
-	previous := IIIII.! !
+	previous := IIIIIIII.! !
 
 II initializeAfterFileIn!
 III initializeAfterFileIn!
 IIII initializeAfterFileIn!
 IIIII initializeAfterFileIn!
 IIIIII initializeAfterFileIn!
+IIIIIII initializeAfterFileIn!
+IIIIIIII initializeAfterFileIn!
+IIIIIIIII initializeAfterFileIn!
