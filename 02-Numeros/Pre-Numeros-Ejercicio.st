@@ -254,31 +254,39 @@ isZero
 	^value = 0.! !
 
 
-!Entero methodsFor: 'arithmetic operations' stamp: 'NB 4/15/2023 17:53:24'!
+!Entero methodsFor: 'arithmetic operations' stamp: 'SM 4/15/2023 19:52:28'!
 * aMultiplier
-	
-	aMultiplier type = #Entero ifTrue:	
-	[^self class with: value * aMultiplier integerValue].
-	
-	self error: 'Tipo de número no soportado'! !
+	^aMultiplier multiplySelfToTheInteger: self.! !
 
-!Entero methodsFor: 'arithmetic operations' stamp: 'NB 4/15/2023 17:53:31'!
+!Entero methodsFor: 'arithmetic operations' stamp: 'SM 4/15/2023 20:00:05'!
 + anAdder 
-	
-	anAdder type = #Entero ifTrue:
-		[ ^self class with: value + anAdder integerValue ].
-	
-	self error: 'Tipo de número no soportado'! !
+	^anAdder addSelfToTheInteger: self.! !
 
 !Entero methodsFor: 'arithmetic operations' stamp: 'NB 4/15/2023 18:00:41'!
 // aDivisor 
 	
 	^self class with: value // aDivisor integerValue.! !
 
+!Entero methodsFor: 'arithmetic operations' stamp: 'SM 4/15/2023 20:03:53'!
+addSelfToAFraccion: aFraccionToBeAdden
+	^self error: 'Tipo de número no soportado'.! !
+
+!Entero methodsFor: 'arithmetic operations' stamp: 'SM 4/15/2023 19:58:26'!
+addSelfToTheInteger:anAdder
+		^self class with: value + anAdder integerValue.! !
+
 !Entero methodsFor: 'arithmetic operations' stamp: 'NB 4/15/2023 18:01:59'!
 greatestCommonDivisorWith: anEntero 
 	
 	^self class with: (value gcd: anEntero integerValue).! !
+
+!Entero methodsFor: 'arithmetic operations' stamp: 'SM 4/15/2023 20:06:06'!
+multiplySelfToTheFraccion: aFraccion
+	^self error: 'Tipo de número no soportado'! !
+
+!Entero methodsFor: 'arithmetic operations' stamp: 'SM 4/15/2023 19:49:24'!
+multiplySelfToTheInteger: ainteger	
+	^self class with: value * ainteger	 integerValue.! !
 
 !Entero methodsFor: 'arithmetic operations' stamp: 'NB 4/15/2023 17:57:29'!
 negated
@@ -341,27 +349,35 @@ isZero
 	^false.! !
 
 
-!Fraccion methodsFor: 'arithmetic operations' stamp: 'NB 4/15/2023 17:53:39'!
-* aMultiplier
-
-	aMultiplier type = #Fraccion ifTrue:
-
-	[^self class with: (numerator * aMultiplier numerator) over: (denominator * aMultiplier denominator)].
+!Fraccion methodsFor: 'arithmetic operations' stamp: 'SM 4/15/2023 19:54:57'!
+* aMultiplier	^aMultiplier multiplySelfToTheFraccion: self.
 	
-	self error: 'Tipo de número no soportado'.! !
+	! !
 
-!Fraccion methodsFor: 'arithmetic operations' stamp: 'NB 4/15/2023 17:53:45'!
+!Fraccion methodsFor: 'arithmetic operations' stamp: 'SM 4/15/2023 20:05:28'!
 + anAdder
+	^anAdder addSelfToAFraccion: self.
+! !
 
-	anAdder type = #Fraccion ifTrue:
-		[ | newNumerator newDenominator |
-		
-		newNumerator := (numerator * anAdder denominator) + (denominator * anAdder numerator).
-		newDenominator := denominator * anAdder denominator.
-		
-		^ self class with: newNumerator over: newDenominator ].
-	
+!Fraccion methodsFor: 'arithmetic operations' stamp: 'SM 4/15/2023 20:03:16'!
+addSelfToAFraccion: aFraccionToBeAdden
+		| newNumerator newDenominator |
+		newNumerator := 
+			(numerator * aFraccionToBeAdden denominator) + (denominator * aFraccionToBeAdden numerator).
+		newDenominator := denominator * aFraccionToBeAdden denominator.
+		^ self class with: newNumerator over: newDenominator.! !
+
+!Fraccion methodsFor: 'arithmetic operations' stamp: 'SM 4/15/2023 19:59:09'!
+addSelfToTheInteger:anInteger
 	self error: 'Tipo de número no soportado'! !
+
+!Fraccion methodsFor: 'arithmetic operations' stamp: 'SM 4/15/2023 19:51:05'!
+multiplySelfToTheFraccion: aFraccion
+	^self class with: (numerator * aFraccion numerator) over: (denominator * aFraccion denominator)! !
+
+!Fraccion methodsFor: 'arithmetic operations' stamp: 'SM 4/15/2023 20:04:07'!
+multiplySelfToTheInteger: aFraccion
+	^self error: 'Tipo de número no soportado'! !
 
 !Fraccion methodsFor: 'arithmetic operations' stamp: 'NB 4/15/2023 17:59:29'!
 negated
