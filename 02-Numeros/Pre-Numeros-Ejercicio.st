@@ -131,7 +131,7 @@ setUp
 
 !classDefinition: #Numero category: 'Numero-Exercise'!
 Object subclass: #Numero
-	instanceVariableNames: 'type value numerator denominator'
+	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Numero-Exercise'!
@@ -152,16 +152,6 @@ negated
 	
 	self subclassResponsibility .! !
 
-!Numero methodsFor: 'arithmetic operations' stamp: 'NB 4/15/2023 18:03:33'!
-printOn: aStream
-	
-	self subclassResponsibility .! !
-
-!Numero methodsFor: 'arithmetic operations' stamp: 'NR 9/8/2019 21:55:04'!
-type
-	
-	^type! !
-
 
 !Numero methodsFor: 'testing' stamp: 'NB 4/15/2023 17:33:42'!
 isNegative
@@ -178,40 +168,6 @@ isZero
 
 	self subclassResponsibility .! !
 
-
-!Numero methodsFor: 'accessing' stamp: 'NR 9/8/2019 20:59:46'!
-denominator
-
-	^denominator! !
-
-!Numero methodsFor: 'accessing' stamp: 'NR 9/8/2019 20:33:53'!
-integerValue
-
-	"Usamos integerValue en vez de value para que no haya problemas con el mensaje value implementado en Object - Hernan"
-	
-	^value! !
-
-!Numero methodsFor: 'accessing' stamp: 'NR 9/8/2019 20:59:52'!
-numerator
-
-	^numerator! !
-
-
-!Numero methodsFor: 'comparing' stamp: 'NR 9/8/2019 21:50:26'!
-= anObject
-
-	^(anObject isKindOf: self class) and: [ type = anObject type and: 
-		[ type = #Entero ifTrue: [ value = anObject integerValue] 
-		ifFalse: [ type = #Fraccion ifTrue:
-			[ (numerator * anObject denominator) = (denominator * anObject numerator) ]]]]! !
-
-!Numero methodsFor: 'comparing' stamp: 'NR 9/8/2019 22:00:49'!
-hash
-	type = #Entero ifTrue:
-		[ ^value hash ].
-	type = #Fraccion ifTrue:
-		[ ^(numerator hash / denominator hash) hash ].! !
-
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
 !classDefinition: 'Numero class' category: 'Numero-Exercise'!
@@ -226,15 +182,13 @@ canNotDivideByZeroErrorDescription
 
 !classDefinition: #Entero category: 'Numero-Exercise'!
 Numero subclass: #Entero
-	instanceVariableNames: ''
+	instanceVariableNames: 'value'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Numero-Exercise'!
 
-!Entero methodsFor: 'initialization' stamp: 'NB 4/15/2023 17:28:11'!
+!Entero methodsFor: 'initialization' stamp: 'NB 4/16/2023 13:12:39'!
 initializeWith: aValue
-	
-	type := #Entero.
 	value := aValue! !
 
 
@@ -252,6 +206,19 @@ isOne
 isZero
 
 	^value = 0.! !
+
+
+!Entero methodsFor: 'comparing' stamp: 'NB 4/16/2023 12:59:09'!
+= anObject
+
+	^(anObject isKindOf: self class) and: [ value = anObject integerValue]
+		! !
+
+!Entero methodsFor: 'comparing' stamp: 'NB 4/16/2023 13:01:38'!
+hash
+
+	^value hash.
+		! !
 
 
 !Entero methodsFor: 'arithmetic operations' stamp: 'SM 4/15/2023 19:52:28'!
@@ -299,6 +266,14 @@ printOn: aStream
 	aStream print: value.
 	! !
 
+
+!Entero methodsFor: 'accessing' stamp: 'NB 4/16/2023 13:13:44'!
+integerValue
+
+	"Usamos integerValue en vez de value para que no haya problemas con el mensaje value implementado en Object - Hernan"
+	
+	^value! !
+
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
 !classDefinition: 'Entero class' category: 'Numero-Exercise'!
@@ -316,19 +291,18 @@ with: aValue
 
 !classDefinition: #Fraccion category: 'Numero-Exercise'!
 Numero subclass: #Fraccion
-	instanceVariableNames: ''
+	instanceVariableNames: 'numerator denominator'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Numero-Exercise'!
 
-!Fraccion methodsFor: 'initialization' stamp: 'NB 4/15/2023 17:28:45'!
+!Fraccion methodsFor: 'initialization' stamp: 'NB 4/16/2023 13:12:49'!
 initializeWith: aNumerator over: aDenominator
 
 	"Estas precondiciones estan por si se comenten errores en la implementacion - Hernan"
 	aNumerator isZero ifTrue: [ self error: 'una fraccion no puede ser cero' ].
 	aDenominator isOne ifTrue: [ self error: 'una fraccion no puede tener denominador 1 porque sino es un entero' ].
 	
-	type:=#Fraccion.
 	numerator := aNumerator.
 	denominator := aDenominator ! !
 
@@ -391,6 +365,28 @@ printOn: aStream
 			print: numerator;
 			nextPut: $/;
 			print: denominator.! !
+
+
+!Fraccion methodsFor: 'accessing' stamp: 'NB 4/16/2023 13:14:17'!
+denominator
+
+	^denominator.! !
+
+!Fraccion methodsFor: 'accessing' stamp: 'NB 4/16/2023 13:14:27'!
+numerator
+
+	^numerator.! !
+
+
+!Fraccion methodsFor: 'comparing' stamp: 'NB 4/16/2023 13:00:42'!
+= anObject
+
+	^(anObject isKindOf: self class) and: [ (numerator * anObject denominator) = (denominator * anObject numerator)]! !
+
+!Fraccion methodsFor: 'comparing' stamp: 'NB 4/16/2023 13:01:58'!
+hash
+	
+	^(numerator hash / denominator hash) hash.! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
