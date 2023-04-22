@@ -237,16 +237,6 @@ isBase
 
 	self subclassResponsibility ! !
 
-!StackElement methodsFor: 'as yet unclassified' stamp: 'NB 4/22/2023 00:59:26'!
-pop 
-
-	self subclassResponsibility ! !
-
-!StackElement methodsFor: 'as yet unclassified' stamp: 'NB 4/22/2023 00:55:54'!
-top 
-
-	self subclassResponsibility ! !
-
 
 !classDefinition: #StackBaseElement category: 'Stack-Exercise'!
 StackElement subclass: #StackBaseElement
@@ -274,16 +264,6 @@ elementBelow
 isBase
 
 	^true! !
-
-!StackBaseElement methodsFor: 'as yet unclassified' stamp: 'NB 4/22/2023 00:58:55'!
-pop
-
-	self error: OOStack stackEmptyErrorDescription.! !
-
-!StackBaseElement methodsFor: 'as yet unclassified' stamp: 'NB 4/22/2023 00:59:04'!
-top
-
-	self error: OOStack stackEmptyErrorDescription.! !
 
 
 !classDefinition: #StackPointerElement category: 'Stack-Exercise'!
@@ -319,16 +299,6 @@ initializeWith: anObjectPointedByAStack elementBelow: anObjectBelowPointedElemen
 isBase
 
 	^false! !
-
-!StackPointerElement methodsFor: 'as yet unclassified' stamp: 'NB 4/22/2023 01:23:17'!
-pop
-
-	^self! !
-
-!StackPointerElement methodsFor: 'as yet unclassified' stamp: 'NB 4/22/2023 01:23:41'!
-top
-
-	^value ! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
