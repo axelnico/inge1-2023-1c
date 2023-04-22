@@ -144,6 +144,80 @@ TestCase subclass: #SentenceFinderByPrefixTest
 	poolDictionaries: ''
 	category: 'Stack-Exercise'!
 
+!SentenceFinderByPrefixTest methodsFor: 'as yet unclassified' stamp: 'AM 4/22/2023 16:38:40'!
+test01PrefixExistOnlyOnce
+
+	| buscador pila result |
+	pila := OOStack new.
+	pila push: 'winter is coming'.
+	pila push: 'winning is everything'.
+	pila push: 'The winds of Winter'.
+	pila push: 'Winter is here'.
+	buscador := SentenceFinderByPrefix for: 'Wint' in: pila.
+	result := buscador findPrefixes.
+	self assert: result includes: 'Winter is here'.
+	self assert: result size equals: 1.! !
+
+!SentenceFinderByPrefixTest methodsFor: 'as yet unclassified' stamp: 'AM 4/22/2023 16:39:16'!
+test02PrefixExistTwice
+
+	| buscador pila result |
+	pila := OOStack new.
+	pila push: 'winter is coming'.
+	pila push: 'winning is everything'.
+	pila push: 'The winds of Winter'.
+	pila push: 'Winter is here'.
+	buscador := SentenceFinderByPrefix for: 'win' in: pila.
+	result := buscador findPrefixes.
+	self assert: result includes: 'winter is coming'.
+	self assert: result includes: 'winning is everything'.
+	self assert: result size equals: 2.! !
+
+!SentenceFinderByPrefixTest methodsFor: 'as yet unclassified' stamp: 'AM 4/22/2023 16:40:01'!
+test03PrefixDosentExist
+
+	| buscador pila result |
+	pila := OOStack new.
+	pila push: 'winter is coming'.
+	pila push: 'winning is everything'.
+	pila push: 'The winds of Winter'.
+	pila push: 'Winter is here'.
+	buscador := SentenceFinderByPrefix for: 'dog' in: pila.
+	result := buscador findPrefixes.
+	self assert: result isEmpty.! !
+
+!SentenceFinderByPrefixTest methodsFor: 'as yet unclassified' stamp: 'AM 4/22/2023 16:40:14'!
+test04FindPrefixOnEmptyStack
+
+	| buscador pila result |
+	pila := OOStack new.
+	buscador := SentenceFinderByPrefix for: 'dog' in: pila.
+	result := buscador findPrefixes.
+	self assert: result isEmpty.! !
+
+!SentenceFinderByPrefixTest methodsFor: 'as yet unclassified' stamp: 'AM 4/22/2023 16:40:32'!
+test05FindPrefixDontModifiesStack
+
+	| buscador pila |
+	pila := OOStack new.
+	pila push: 'winning is everything'.
+	pila push: 'The winds of Winter'.
+	buscador := SentenceFinderByPrefix for: 'dog' in: pila.
+	buscador findPrefixes.
+	self assert: pila pop equals: 'The winds of Winter'.
+	self assert: pila pop equals: 'winning is everything'.
+	self assert: pila isEmpty.! !
+
+!SentenceFinderByPrefixTest methodsFor: 'as yet unclassified' stamp: 'AM 4/22/2023 16:40:46'!
+test06FindPrefixIsCaseSensitive
+
+	| buscador pila result|
+	pila := OOStack new.
+	pila push: 'The winds of Winter'.
+	buscador := SentenceFinderByPrefix for: 'the' in: pila.
+	result := buscador findPrefixes.
+	self assert: result isEmpty.! !
+
 
 !classDefinition: #OOStack category: 'Stack-Exercise'!
 Object subclass: #OOStack
@@ -199,15 +273,49 @@ stackEmptyErrorDescription
 
 !classDefinition: #SentenceFinderByPrefix category: 'Stack-Exercise'!
 Object subclass: #SentenceFinderByPrefix
-	instanceVariableNames: ''
+	instanceVariableNames: 'values prefix stack'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Stack-Exercise'!
 
-!SentenceFinderByPrefix methodsFor: 'as yet unclassified' stamp: 'NB 4/22/2023 01:45:04'!
-prefixes: aStringPrefix inStack: anOOStackWithSentences
-
+!SentenceFinderByPrefix methodsFor: 'as yet unclassified' stamp: 'AM 4/22/2023 16:35:38'!
+findPrefixes
+	values:= OrderedCollection new.
+	^ self prefixes: prefix inStack: stack.
 	! !
+
+!SentenceFinderByPrefix methodsFor: 'as yet unclassified' stamp: 'AM 4/22/2023 16:24:04'!
+findThePrefix: aStringPrefix onTheStack: anOOStackWithSentences
+	values removeAll.
+	^ self prefixes: prefix inStack: stack.
+	! !
+
+!SentenceFinderByPrefix methodsFor: 'as yet unclassified' stamp: 'AM 4/22/2023 16:25:59'!
+initializeWith: aprefix and: aStack
+	prefix :=aprefix.
+	stack := aStack.! !
+
+!SentenceFinderByPrefix methodsFor: 'as yet unclassified' stamp: 'AM 4/22/2023 15:58:31'!
+prefixes: aStringPrefix inStack: anOOStackWithSentences
+	
+	|aux 	|
+	anOOStackWithSentences isEmpty ifFalse: [
+	aux :=anOOStackWithSentences pop.
+	(aux is: aStringPrefix substringAt: 1) ifTrue: [values add: aux] .
+	self prefixes: aStringPrefix inStack: anOOStackWithSentences.
+	anOOStackWithSentences push: aux. ].
+			
+	^values.! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'SentenceFinderByPrefix class' category: 'Stack-Exercise'!
+SentenceFinderByPrefix class
+	instanceVariableNames: ''!
+
+!SentenceFinderByPrefix class methodsFor: 'as yet unclassified' stamp: 'AM 4/22/2023 16:37:45'!
+for: aPrefix in: aStack
+	^self new initializeWith: aPrefix and: aStack.! !
 
 
 !classDefinition: #StackElement category: 'Stack-Exercise'!
