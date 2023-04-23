@@ -248,12 +248,12 @@ isEmpty
 	^currentElementAtTheTop isBase.! !
 
 
-!OOStack methodsFor: 'accessing' stamp: 'NB 4/22/2023 01:35:48'!
+!OOStack methodsFor: 'inspecting' stamp: 'NB 4/22/2023 01:35:48'!
 size
 
 	^currentElementAtTheTop count.! !
 
-!OOStack methodsFor: 'accessing' stamp: 'NB 4/22/2023 01:35:52'!
+!OOStack methodsFor: 'inspecting' stamp: 'NB 4/22/2023 01:35:52'!
 top
 
 	^currentElementAtTheTop element.! !
