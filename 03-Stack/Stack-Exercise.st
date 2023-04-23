@@ -139,84 +139,88 @@ test10CanNotTopWhenThereAreNoObjectsInTheStack
 
 !classDefinition: #SentenceFinderByPrefixTest category: 'Stack-Exercise'!
 TestCase subclass: #SentenceFinderByPrefixTest
-	instanceVariableNames: ''
+	instanceVariableNames: 'stack sentenceFinder'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Stack-Exercise'!
 
-!SentenceFinderByPrefixTest methodsFor: 'as yet unclassified' stamp: 'AM 4/22/2023 16:38:40'!
-test01PrefixExistOnlyOnce
+!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'NB 4/23/2023 16:48:43'!
+setUp
 
-	| buscador pila result |
-	pila := OOStack new.
-	pila push: 'winter is coming'.
-	pila push: 'winning is everything'.
-	pila push: 'The winds of Winter'.
-	pila push: 'Winter is here'.
-	buscador := SentenceFinderByPrefix for: 'Wint' in: pila.
-	result := buscador findPrefixes.
-	self assert: result includes: 'Winter is here'.
-	self assert: result size equals: 1.! !
+	stack:= OOStack new.
+	sentenceFinder := SentenceFinderByPrefix for: stack.
+	stack push: 'winter is coming'.
+	stack push: 'winning is everything'.
+	stack push: 'The winds of Winter'.
+	stack push: 'Winter is here'.! !
 
-!SentenceFinderByPrefixTest methodsFor: 'as yet unclassified' stamp: 'AM 4/22/2023 16:39:16'!
-test02PrefixExistTwice
+!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'NB 4/23/2023 16:42:03'!
+test01SentenceFinderReturnsOnlyOneSentenceWhenStackContainsOneSentenceWithPrefix
 
-	| buscador pila result |
-	pila := OOStack new.
-	pila push: 'winter is coming'.
-	pila push: 'winning is everything'.
-	pila push: 'The winds of Winter'.
-	pila push: 'Winter is here'.
-	buscador := SentenceFinderByPrefix for: 'win' in: pila.
-	result := buscador findPrefixes.
-	self assert: result includes: 'winter is coming'.
-	self assert: result includes: 'winning is everything'.
-	self assert: result size equals: 2.! !
+	| sentences |
+	sentences := sentenceFinder selectSentencesThatStartWith: 'Wint'.
+	self assert: sentences includes: 'Winter is here'.
+	self assert: sentences size equals: 1.! !
 
-!SentenceFinderByPrefixTest methodsFor: 'as yet unclassified' stamp: 'AM 4/22/2023 16:40:01'!
-test03PrefixDosentExist
+!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'NB 4/23/2023 16:42:21'!
+test02SentenceFinderReturnsOnlyTwoSentencesWhenStackContainsTwoSentencesWithPrefix
 
-	| buscador pila result |
-	pila := OOStack new.
-	pila push: 'winter is coming'.
-	pila push: 'winning is everything'.
-	pila push: 'The winds of Winter'.
-	pila push: 'Winter is here'.
-	buscador := SentenceFinderByPrefix for: 'dog' in: pila.
-	result := buscador findPrefixes.
-	self assert: result isEmpty.! !
+	| sentences |
+	sentences := sentenceFinder selectSentencesThatStartWith: 'win'.
+	self assert: sentences includes: 'winter is coming'.
+	self assert: sentences includes: 'winning is everything'.
+	self assert: sentences size equals: 2.! !
 
-!SentenceFinderByPrefixTest methodsFor: 'as yet unclassified' stamp: 'AM 4/22/2023 16:40:14'!
-test04FindPrefixOnEmptyStack
+!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'NB 4/23/2023 16:42:31'!
+test03SentenceFinderDoesNotReturnSentencesWhenStackDoesNotContainsSentencesWithPrefix
 
-	| buscador pila result |
-	pila := OOStack new.
-	buscador := SentenceFinderByPrefix for: 'dog' in: pila.
-	result := buscador findPrefixes.
-	self assert: result isEmpty.! !
+	| sentences |
+	sentences := sentenceFinder selectSentencesThatStartWith: 'dog'.
+	self assert: sentences isEmpty.! !
 
-!SentenceFinderByPrefixTest methodsFor: 'as yet unclassified' stamp: 'AM 4/22/2023 16:40:32'!
-test05FindPrefixDontModifiesStack
+!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'NB 4/23/2023 16:44:40'!
+test04SentenceFinderDoesNotReturnSentencesWhenStackIsEmpty
 
-	| buscador pila |
-	pila := OOStack new.
-	pila push: 'winning is everything'.
-	pila push: 'The winds of Winter'.
-	buscador := SentenceFinderByPrefix for: 'dog' in: pila.
-	buscador findPrefixes.
-	self assert: pila pop equals: 'The winds of Winter'.
-	self assert: pila pop equals: 'winning is everything'.
-	self assert: pila isEmpty.! !
+	| emptyStack sentenceFinderForEmptyStack sentences |
+	emptyStack := OOStack new.
+	sentenceFinderForEmptyStack := SentenceFinderByPrefix for: emptyStack .
+	sentences := sentenceFinderForEmptyStack selectSentencesThatStartWith: 'dog'.
+	self assert: sentences isEmpty.! !
 
-!SentenceFinderByPrefixTest methodsFor: 'as yet unclassified' stamp: 'AM 4/22/2023 16:40:46'!
-test06FindPrefixIsCaseSensitive
+!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'NB 4/23/2023 16:49:26'!
+test05SentenceFinderDoesNotModifyStack
 
-	| buscador pila result|
-	pila := OOStack new.
-	pila push: 'The winds of Winter'.
-	buscador := SentenceFinderByPrefix for: 'the' in: pila.
-	result := buscador findPrefixes.
-	self assert: result isEmpty.! !
+	| stackForCheckingModification sentenceFinderForStackCheckingModification |
+	
+	stackForCheckingModification := OOStack new.
+	sentenceFinderForStackCheckingModification := SentenceFinderByPrefix for: stackForCheckingModification.
+	stackForCheckingModification push: 'winning is everything'.
+	stackForCheckingModification push: 'The winds of Winter'.
+	sentenceFinderForStackCheckingModification selectSentencesThatStartWith: 'dog'.
+	self assert: stackForCheckingModification pop equals: 'The winds of Winter'.
+	self assert: stackForCheckingModification pop equals: 'winning is everything'.
+	self assert: stackForCheckingModification isEmpty.! !
+
+!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'NB 4/23/2023 16:45:07'!
+test06SentenceFinderIsCaseSensitive
+
+	| sentences|
+	sentences := sentenceFinder selectSentencesThatStartWith: 'the'.
+	self assert: sentences isEmpty.! !
+
+!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'NB 4/23/2023 16:45:20'!
+test07SentenceFinderShouldRaiseErrorIfPrefixIsEmpty
+
+	self should: [sentenceFinder selectSentencesThatStartWith: '']
+		raise: Error
+		withExceptionDo: [ :anError | self assert: anError messageText = SentenceFinderByPrefix prefixEmptyErrorDescription ].! !
+
+!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'NB 4/23/2023 16:45:26'!
+test08SentenceFinderShouldRaiseErrorIfPrefixContainsSpaces
+
+	self should: [sentenceFinder selectSentencesThatStartWith: 'The winds of Winter']
+		raise: Error
+		withExceptionDo: [ :anError | self assert: anError messageText = SentenceFinderByPrefix prefixWithSpacesErrorDescription ].! !
 
 
 !classDefinition: #OOStack category: 'Stack-Exercise'!
@@ -226,38 +230,42 @@ Object subclass: #OOStack
 	poolDictionaries: ''
 	category: 'Stack-Exercise'!
 
-!OOStack methodsFor: 'as yet unclassified' stamp: 'NB 4/22/2023 01:37:02'!
+!OOStack methodsFor: 'adding' stamp: 'NB 4/22/2023 01:35:41'!
+push: anObjectToBeAddedAtTheTop
+
+	currentElementAtTheTop:= StackPointerElement with: anObjectToBeAddedAtTheTop elementBelow: currentElementAtTheTop.! !
+
+
+!OOStack methodsFor: 'initialization' stamp: 'NB 4/22/2023 01:37:02'!
 initialize
 
 	currentElementAtTheTop:= StackBaseElement new.! !
 
-!OOStack methodsFor: 'as yet unclassified' stamp: 'NB 4/22/2023 01:34:48'!
+
+!OOStack methodsFor: 'testing' stamp: 'NB 4/22/2023 01:34:48'!
 isEmpty
 
 	^currentElementAtTheTop isBase.! !
 
-!OOStack methodsFor: 'as yet unclassified' stamp: 'NB 4/22/2023 01:35:24'!
+
+!OOStack methodsFor: 'accessing' stamp: 'NB 4/22/2023 01:35:48'!
+size
+
+	^currentElementAtTheTop count.! !
+
+!OOStack methodsFor: 'accessing' stamp: 'NB 4/22/2023 01:35:52'!
+top
+
+	^currentElementAtTheTop element.! !
+
+
+!OOStack methodsFor: 'removing' stamp: 'NB 4/22/2023 01:35:24'!
 pop
 
 	|elementAtTop|
 	elementAtTop:= currentElementAtTheTop element.
 	currentElementAtTheTop:= currentElementAtTheTop elementBelow.
 	^elementAtTop.! !
-
-!OOStack methodsFor: 'as yet unclassified' stamp: 'NB 4/22/2023 01:35:41'!
-push: anObjectToBeAddedAtTheTop
-
-	currentElementAtTheTop:= StackPointerElement with: anObjectToBeAddedAtTheTop elementBelow: currentElementAtTheTop.! !
-
-!OOStack methodsFor: 'as yet unclassified' stamp: 'NB 4/22/2023 01:35:48'!
-size
-
-	^currentElementAtTheTop count.! !
-
-!OOStack methodsFor: 'as yet unclassified' stamp: 'NB 4/22/2023 01:35:52'!
-top
-
-	^currentElementAtTheTop element.! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
@@ -273,39 +281,44 @@ stackEmptyErrorDescription
 
 !classDefinition: #SentenceFinderByPrefix category: 'Stack-Exercise'!
 Object subclass: #SentenceFinderByPrefix
-	instanceVariableNames: 'values prefix stack'
+	instanceVariableNames: 'sentencesWithPrefix stack'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Stack-Exercise'!
 
-!SentenceFinderByPrefix methodsFor: 'as yet unclassified' stamp: 'AM 4/22/2023 16:35:38'!
-findPrefixes
-	values:= OrderedCollection new.
-	^ self prefixes: prefix inStack: stack.
-	! !
+!SentenceFinderByPrefix methodsFor: 'initialization' stamp: 'NB 4/23/2023 15:39:06'!
+initializeWith: anOOStack
+	stack := anOOStack.! !
 
-!SentenceFinderByPrefix methodsFor: 'as yet unclassified' stamp: 'AM 4/22/2023 16:24:04'!
-findThePrefix: aStringPrefix onTheStack: anOOStackWithSentences
-	values removeAll.
-	^ self prefixes: prefix inStack: stack.
-	! !
 
-!SentenceFinderByPrefix methodsFor: 'as yet unclassified' stamp: 'AM 4/22/2023 16:25:59'!
-initializeWith: aprefix and: aStack
-	prefix :=aprefix.
-	stack := aStack.! !
+!SentenceFinderByPrefix methodsFor: 'private' stamp: 'NB 4/23/2023 16:27:25'!
+assertPrefixIsValid: aStringPrefix
 
-!SentenceFinderByPrefix methodsFor: 'as yet unclassified' stamp: 'AM 4/22/2023 15:58:31'!
+	aStringPrefix isEmpty ifTrue: [self error: self class prefixEmptyErrorDescription].
+	(aStringPrefix includesSubString: ' ') ifTrue: [self error: self class prefixWithSpacesErrorDescription]! !
+
+!SentenceFinderByPrefix methodsFor: 'private' stamp: 'NB 4/23/2023 16:28:01'!
 prefixes: aStringPrefix inStack: anOOStackWithSentences
 	
-	|aux 	|
-	anOOStackWithSentences isEmpty ifFalse: [
-	aux :=anOOStackWithSentences pop.
-	(aux is: aStringPrefix substringAt: 1) ifTrue: [values add: aux] .
-	self prefixes: aStringPrefix inStack: anOOStackWithSentences.
-	anOOStackWithSentences push: aux. ].
-			
-	^values.! !
+	| elementAtTheTop 	|
+	anOOStackWithSentences isEmpty ifFalse:
+	[
+		elementAtTheTop :=anOOStackWithSentences pop.
+		(elementAtTheTop beginsWith: aStringPrefix) ifTrue: [sentencesWithPrefix add: elementAtTheTop] .
+		self prefixes: aStringPrefix inStack: anOOStackWithSentences.
+		anOOStackWithSentences push: elementAtTheTop. 
+	].
+	^sentencesWithPrefix.! !
+
+
+!SentenceFinderByPrefix methodsFor: 'enumerating' stamp: 'NB 4/23/2023 16:27:31'!
+selectSentencesThatStartWith: aStringPrefix
+
+	self assertPrefixIsValid: aStringPrefix.
+	
+	sentencesWithPrefix := OrderedCollection new.
+	^ self prefixes: aStringPrefix inStack: stack.
+	! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
@@ -313,9 +326,19 @@ prefixes: aStringPrefix inStack: anOOStackWithSentences
 SentenceFinderByPrefix class
 	instanceVariableNames: ''!
 
-!SentenceFinderByPrefix class methodsFor: 'as yet unclassified' stamp: 'AM 4/22/2023 16:37:45'!
-for: aPrefix in: aStack
-	^self new initializeWith: aPrefix and: aStack.! !
+!SentenceFinderByPrefix class methodsFor: 'instance creation' stamp: 'NB 4/23/2023 15:40:32'!
+for: anOOStack
+	^self new initializeWith: anOOStack.! !
+
+!SentenceFinderByPrefix class methodsFor: 'instance creation' stamp: 'NB 4/23/2023 16:24:54'!
+prefixEmptyErrorDescription
+	
+	^'Prefix should not be empty'.! !
+
+!SentenceFinderByPrefix class methodsFor: 'instance creation' stamp: 'NB 4/23/2023 16:25:54'!
+prefixWithSpacesErrorDescription
+	
+	^'Prefix should not contain spaces'.! !
 
 
 !classDefinition: #StackElement category: 'Stack-Exercise'!
@@ -325,23 +348,25 @@ Object subclass: #StackElement
 	poolDictionaries: ''
 	category: 'Stack-Exercise'!
 
-!StackElement methodsFor: 'as yet unclassified' stamp: 'NB 4/22/2023 00:47:28'!
-count 
-
-	self subclassResponsibility ! !
-
-!StackElement methodsFor: 'as yet unclassified' stamp: 'NB 4/22/2023 00:55:32'!
+!StackElement methodsFor: 'accessing' stamp: 'NB 4/22/2023 00:55:32'!
 element 
 
 	self subclassResponsibility ! !
 
-!StackElement methodsFor: 'as yet unclassified' stamp: 'NB 4/22/2023 00:59:36'!
+!StackElement methodsFor: 'accessing' stamp: 'NB 4/22/2023 00:59:36'!
 elementBelow 
 
 	self subclassResponsibility ! !
 
-!StackElement methodsFor: 'as yet unclassified' stamp: 'NB 4/22/2023 00:55:37'!
+
+!StackElement methodsFor: 'testing' stamp: 'NB 4/22/2023 00:55:37'!
 isBase 
+
+	self subclassResponsibility ! !
+
+
+!StackElement methodsFor: 'enumerating' stamp: 'NB 4/22/2023 00:47:28'!
+count 
 
 	self subclassResponsibility ! !
 
@@ -353,22 +378,24 @@ StackElement subclass: #StackBaseElement
 	poolDictionaries: ''
 	category: 'Stack-Exercise'!
 
-!StackBaseElement methodsFor: 'as yet unclassified' stamp: 'NB 4/22/2023 00:47:42'!
+!StackBaseElement methodsFor: 'enumerating' stamp: 'NB 4/22/2023 00:47:42'!
 count
 
 	^0.! !
 
-!StackBaseElement methodsFor: 'as yet unclassified' stamp: 'NB 4/22/2023 00:57:37'!
+
+!StackBaseElement methodsFor: 'accessing' stamp: 'NB 4/22/2023 00:57:37'!
 element
 
 	self error: OOStack stackEmptyErrorDescription.! !
 
-!StackBaseElement methodsFor: 'as yet unclassified' stamp: 'NB 4/22/2023 00:58:43'!
+!StackBaseElement methodsFor: 'accessing' stamp: 'NB 4/22/2023 00:58:43'!
 elementBelow
 
 	self error: OOStack stackEmptyErrorDescription.! !
 
-!StackBaseElement methodsFor: 'as yet unclassified' stamp: 'NB 4/22/2023 00:56:34'!
+
+!StackBaseElement methodsFor: 'testing' stamp: 'NB 4/22/2023 00:56:34'!
 isBase
 
 	^true! !
@@ -381,21 +408,6 @@ StackElement subclass: #StackPointerElement
 	poolDictionaries: ''
 	category: 'Stack-Exercise'!
 
-!StackPointerElement methodsFor: 'as yet unclassified' stamp: 'NB 4/22/2023 00:49:25'!
-count
-
-	^1 + elementBelow count.! !
-
-!StackPointerElement methodsFor: 'as yet unclassified' stamp: 'NB 4/22/2023 00:54:13'!
-element
-
-	^value.! !
-
-!StackPointerElement methodsFor: 'as yet unclassified' stamp: 'NB 4/22/2023 01:23:32'!
-elementBelow
-
-	^elementBelow ! !
-
 !StackPointerElement methodsFor: 'as yet unclassified' stamp: 'NB 4/22/2023 01:19:57'!
 initializeWith: anObjectPointedByAStack elementBelow: anObjectBelowPointedElement
 
@@ -403,7 +415,25 @@ initializeWith: anObjectPointedByAStack elementBelow: anObjectBelowPointedElemen
 	elementBelow  := anObjectBelowPointedElement .
 	! !
 
-!StackPointerElement methodsFor: 'as yet unclassified' stamp: 'NB 4/22/2023 00:56:50'!
+
+!StackPointerElement methodsFor: 'enumerating' stamp: 'NB 4/22/2023 00:49:25'!
+count
+
+	^1 + elementBelow count.! !
+
+
+!StackPointerElement methodsFor: 'accessing' stamp: 'NB 4/22/2023 00:54:13'!
+element
+
+	^value.! !
+
+!StackPointerElement methodsFor: 'accessing' stamp: 'NB 4/22/2023 01:23:32'!
+elementBelow
+
+	^elementBelow ! !
+
+
+!StackPointerElement methodsFor: 'testing' stamp: 'NB 4/22/2023 00:56:50'!
 isBase
 
 	^false! !
