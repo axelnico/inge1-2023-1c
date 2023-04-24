@@ -408,7 +408,7 @@ StackElement subclass: #StackPointerElement
 	poolDictionaries: ''
 	category: 'Stack-Exercise'!
 
-!StackPointerElement methodsFor: 'as yet unclassified' stamp: 'NB 4/22/2023 01:19:57'!
+!StackPointerElement methodsFor: 'initialization' stamp: 'NB 4/22/2023 01:19:57'!
 initializeWith: anObjectPointedByAStack elementBelow: anObjectBelowPointedElement
 
 	value:= anObjectPointedByAStack .
