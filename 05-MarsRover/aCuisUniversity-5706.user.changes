@@ -1,0 +1,1942 @@
+
+
+----QUIT----(20 March 2023 11:15:29) CuisUniversity-5706.image priorSource: 4313282!
+
+----STARTUP---- (20 March 2023 11:15:29) as /Users/hernan/Documents/Cuis/5.0-64Bits/Cuis-University-Installer/CuisUniversity-5706.image!
+
+
+----QUIT----(20 March 2023 11:15:30) CuisUniversity-5706.image priorSource: 8712809!
+
+----STARTUP---- (13 May 2023 14:26:54) as C:\Users\Recursiva\Desktop\inge1\windows64\CuisUniversity-5706.image!
+
+
+TestCase subclass: #MarsRoverTests
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRoverClass'!
+
+!classDefinition: #MarsRoverTests category: 'MarsRoverClass' stamp: 'am 5/13/2023 14:28:26'!
+TestCase subclass: #MarsRoverTests
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRoverClass'!
+
+!classDefinition: #MarsRover category: 'MarsRover' stamp: 'am 5/13/2023 14:32:19'!
+Object subclass: #MarsRover
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover'!
+!MarsRoverTests methodsFor: 'no messages' stamp: 'am 5/13/2023 14:32:05'!
+test01
+	|aMarsRover|
+	
+	aMarsRover:= MarsRover startAt: 0@0 facing: #North.
+	
+	self assert: aMarsRover isAt: 0@0 facing: #North.! !
+
+!testRun: #MarsRoverTests #test01 stamp: 'am 5/13/2023 14:32:24'!
+ERROR!
+!Class methodsFor: 'initialization' stamp: 'am 5/13/2023 14:32:57'!
+startAt: aRenameMe1 facing: aRenameMe2 
+	self shouldBeImplemented.! !
+!Class methodsFor: 'initialization' stamp: 'am 5/13/2023 14:33:52' prior: 50603966!
+startAt: aXYPoint facing: aCardinalPiont
+	self shouldBeImplemented.! !
+
+!testRun: #MarsRoverTests #test01 stamp: 'am 5/13/2023 14:33:55'!
+ERROR!
+
+Object subclass: #NameOfSubclass
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRoverClass'!
+
+!classDefinition: #NameOfSubclass category: 'MarsRoverClass' stamp: 'am 5/13/2023 14:34:15'!
+Object subclass: #NameOfSubclass
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRoverClass'!
+
+Object subclass: #MarsRover
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRoverClass'!
+
+!classDefinition: #MarsRover category: 'MarsRoverClass' stamp: 'am 5/13/2023 14:34:35'!
+Object subclass: #MarsRover
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRoverClass'!
+
+!classRemoval: #NameOfSubclass stamp: 'am 5/13/2023 14:34:44'!
+Object subclass: #NameOfSubclass
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRoverClass'!
+!MarsRoverTests methodsFor: 'as yet unclassified' stamp: 'am 5/13/2023 14:35:24' prior: 50603957!
+test01
+	|aMarsRover|
+	
+	aMarsRover:= MarsRover startAt: 0@0 facing: #North.
+	
+	self assert: (aMarsRover isAt: 0@0 facing: #North).! !
+
+!testRun: #MarsRoverTests #test01 stamp: 'am 5/13/2023 14:35:27'!
+ERROR!
+
+!methodRemoval: Class #startAt:facing: stamp: 'am 5/13/2023 14:36:40'!
+startAt: aXYPoint facing: aCardinalPiont
+	self shouldBeImplemented.!
+
+!testRun: #MarsRoverTests #test01 stamp: 'am 5/13/2023 14:36:50'!
+ERROR!
+!MarsRover class methodsFor: 'instance creation' stamp: 'am 5/13/2023 14:37:05'!
+startAt: aPoint facing: aSymbol 
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+	self shouldBeImplemented.
+	^self new initializeStartAt: aPoint facing: aSymbol ! !
+!MarsRover class methodsFor: 'instance creation' stamp: 'am 5/13/2023 14:37:48' prior: 50604024!
+startAt: aXYPoint facing: aCardinalPoint
+	^self new initializeStartAt: aXYPoint facing: aCardinalPoint! !
+
+!testRun: #MarsRoverTests #test01 stamp: 'am 5/13/2023 14:37:56'!
+ERROR!
+
+!classDefinition: #MarsRover category: 'MarsRoverClass' stamp: 'am 5/13/2023 14:38:20'!
+Object subclass: #MarsRover
+	instanceVariableNames: 'xYPoint'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRoverClass'!
+
+!classDefinition: #MarsRover category: 'MarsRoverClass' stamp: 'am 5/13/2023 14:38:20'!
+Object subclass: #MarsRover
+	instanceVariableNames: 'xYPoint cardinalPoint'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRoverClass'!
+!MarsRover methodsFor: 'initilizacion' stamp: 'am 5/13/2023 14:38:20'!
+initializeStartAt: aXYPoint facing: aCardinalPoint 
+	self shouldBeImplemented.
+	xYPoint := aXYPoint.
+	cardinalPoint := aCardinalPoint.! !
+!MarsRover methodsFor: 'initilizacion' stamp: 'am 5/13/2023 14:38:29' prior: 50604056!
+initializeStartAt: aXYPoint facing: aCardinalPoint 
+! !
+
+!testRun: #MarsRoverTests #test01 stamp: 'am 5/13/2023 14:38:32'!
+ERROR!
+!MarsRover methodsFor: 'inspecting' stamp: 'am 5/13/2023 14:38:47'!
+isAt: aRenameMe1 facing: aRenameMe2 
+	self shouldBeImplemented.! !
+!MarsRover methodsFor: 'inspecting' stamp: 'am 5/13/2023 14:38:55' prior: 50604071!
+isAt: aRenameMe1 facing: aRenameMe2 
+	^true.! !
+
+!testRun: #MarsRoverTests #test01 stamp: 'am 5/13/2023 14:38:57'!
+PASSED!
+
+!testRun: #MarsRoverTests #test01 stamp: 'am 5/13/2023 14:38:57'!
+PASSED!
+
+!testRun: #MarsRoverTests #test01 stamp: 'am 5/13/2023 14:39:56'!
+PASSED!
+
+!testRun: #MarsRoverTests #test01 stamp: 'am 5/13/2023 14:39:56'!
+PASSED!
+!MarsRover class methodsFor: 'instance creation' stamp: 'am 5/13/2023 14:40:24' prior: 50604033!
+startAt: aXYPoint facing: aCardinalPoint
+	^self new initializeAt: aXYPoint facing: aCardinalPoint! !
+!MarsRover methodsFor: 'initilizacion' stamp: 'am 5/13/2023 14:40:35'!
+initializeAt: aXYPoint facing: aCardinalPoint 
+! !
+
+!methodRemoval: MarsRover #initializeStartAt:facing: stamp: 'am 5/13/2023 14:41:03'!
+initializeStartAt: aXYPoint facing: aCardinalPoint 
+!
+
+!testRun: #MarsRoverTests #test01 stamp: 'am 5/13/2023 14:41:06'!
+PASSED!
+!MarsRoverTests methodsFor: 'as yet unclassified' stamp: 'am 5/13/2023 14:42:16'!
+test02
+	|aMarsRover|
+	
+	aMarsRover:= MarsRover startAt: 0@0 facing: #North.
+	
+	self assert: (aMarsRover isAt: 0@0 facing: #North).! !
+!MarsRoverTests methodsFor: 'as yet unclassified' stamp: 'am 5/13/2023 14:45:39' prior: 50604107!
+test02
+	|aMarsRover|
+	
+	aMarsRover:= MarsRover startAt: 0@0 facing: #North.
+	aMarsRover reciveComands: ''.
+	
+	self assert: (aMarsRover isAt: 0@0 facing: #North).! !
+
+!testRun: #MarsRoverTests #test02 stamp: 'am 5/13/2023 14:45:44'!
+ERROR!
+!MarsRover methodsFor: 'initilizacion' stamp: 'am 5/13/2023 14:46:03'!
+reciveComands: aRenameMe1 
+	self shouldBeImplemented.! !
+!MarsRover methodsFor: 'initilizacion' stamp: 'am 5/13/2023 14:46:23' prior: 50604125!
+reciveComands: aPackageOfCommands 
+	self shouldBeImplemented.! !
+!MarsRover methodsFor: 'initilizacion' stamp: 'am 5/13/2023 14:46:30' prior: 50604130!
+reciveComands: aPackageOfCommands 
+	! !
+
+!testRun: #MarsRoverTests #test02 stamp: 'am 5/13/2023 14:46:33'!
+PASSED!
+
+!testRun: #MarsRoverTests #test01 stamp: 'am 5/13/2023 14:46:33'!
+PASSED!
+
+!testRun: #MarsRoverTests #test02 stamp: 'am 5/13/2023 14:46:33'!
+PASSED!
+!MarsRoverTests methodsFor: 'as yet unclassified' stamp: 'am 5/13/2023 14:47:18'!
+test03
+	|aMarsRover|
+	
+	aMarsRover:= MarsRover startAt: 0@0 facing: #North.
+	aMarsRover reciveComands: 'f'.
+	
+	self assert: (aMarsRover isAt: 0@0 facing: #North).! !
+
+!methodRemoval: MarsRoverTests #test03 stamp: 'am 5/13/2023 14:47:37'!
+test03
+	|aMarsRover|
+	
+	aMarsRover:= MarsRover startAt: 0@0 facing: #North.
+	aMarsRover reciveComands: 'f'.
+	
+	self assert: (aMarsRover isAt: 0@0 facing: #North).!
+!MarsRoverTests methodsFor: 'as yet unclassified' stamp: 'am 5/13/2023 14:48:01' prior: 50604115!
+test02
+	|aMarsRover|
+	
+	aMarsRover:= MarsRover startAt: 0@0 facing: #North.
+	aMarsRover reciveComands: ''.
+	aMarsRover move.
+	self assert: (aMarsRover isAt: 0@0 facing: #North).! !
+
+!testRun: #MarsRoverTests #test02 stamp: 'am 5/13/2023 14:48:07'!
+ERROR!
+!MarsRover methodsFor: 'move' stamp: 'am 5/13/2023 14:48:31'!
+move
+	self shouldBeImplemented.! !
+!MarsRover methodsFor: 'move' stamp: 'am 5/13/2023 14:48:39' prior: 50604172!
+move
+	! !
+
+!testRun: #MarsRoverTests #test02 stamp: 'am 5/13/2023 14:48:41'!
+PASSED!
+
+!testRun: #MarsRoverTests #test01 stamp: 'am 5/13/2023 14:48:41'!
+PASSED!
+
+!testRun: #MarsRoverTests #test02 stamp: 'am 5/13/2023 14:48:41'!
+PASSED!
+!MarsRoverTests methodsFor: 'as yet unclassified' stamp: 'am 5/13/2023 14:49:30'!
+test03
+	|aMarsRover|
+	
+	aMarsRover:= MarsRover startAt: 0@0 facing: #North.
+	aMarsRover reciveComands: 'f'.
+	aMarsRover move.
+	self assert: (aMarsRover isAt: 1@0 facing: #North).! !
+
+!testRun: #MarsRoverTests #test03 stamp: 'am 5/13/2023 14:49:46'!
+PASSED!
+
+!testRun: #MarsRoverTests #test01 stamp: 'am 5/13/2023 14:49:46'!
+PASSED!
+
+!testRun: #MarsRoverTests #test02 stamp: 'am 5/13/2023 14:49:46'!
+PASSED!
+
+!testRun: #MarsRoverTests #test03 stamp: 'am 5/13/2023 14:49:46'!
+PASSED!
+!MarsRover methodsFor: 'inspecting' stamp: 'am 5/13/2023 14:51:57' prior: 50604076!
+isAt: aXYPoint facing: aCardinalPoint
+	^(aXYPoint=0@0 and: aCardinalPoint= #North).! !
+!MarsRover methodsFor: 'inspecting' stamp: 'am 5/13/2023 14:52:09' prior: 50604204!
+isAt: aXYPoint facing: aCardinalPoint
+	^ aXYPoint=0@0 and: aCardinalPoint= #North.! !
+!MarsRover methodsFor: 'inspecting' stamp: 'am 5/13/2023 14:52:21' prior: 50604210!
+isAt: aXYPoint facing: aCardinalPoint
+	^ aXYPoint=(0@0) and: aCardinalPoint= #North.! !
+!MarsRover methodsFor: 'inspecting' stamp: 'am 5/13/2023 14:52:25' prior: 50604216!
+isAt: aXYPoint facing: aCardinalPoint
+	^ aXYPoint=(0@0) and: aCardinalPoint = #North.! !
+
+!testRun: #MarsRoverTests #test01 stamp: 'am 5/13/2023 14:52:28'!
+PASSED!
+
+!testRun: #MarsRoverTests #test02 stamp: 'am 5/13/2023 14:52:28'!
+PASSED!
+
+!testRun: #MarsRoverTests #test03 stamp: 'am 5/13/2023 14:52:28'!
+FAILURE!
+
+!testRun: #MarsRoverTests #test03 stamp: 'am 5/13/2023 14:52:28'!
+FAILURE!
+
+!testRun: #MarsRoverTests #test01 stamp: 'am 5/13/2023 14:53:51'!
+PASSED!
+
+!testRun: #MarsRoverTests #test02 stamp: 'am 5/13/2023 14:53:51'!
+PASSED!
+
+!testRun: #MarsRoverTests #test03 stamp: 'am 5/13/2023 14:53:51'!
+FAILURE!
+
+!testRun: #MarsRoverTests #test03 stamp: 'am 5/13/2023 14:53:51'!
+FAILURE!
+!MarsRover methodsFor: 'inspecting' stamp: 'am 5/13/2023 14:57:04' prior: 50604222!
+isAt: aXYPoint facing: aCardinalPoint
+	^ (aXYPoint=(0@0) and: aCardinalPoint = #North) or: (aXYPoint=(1@0) and: aCardinalPoint = #North).! !
+
+!testRun: #MarsRoverTests #test01 stamp: 'am 5/13/2023 14:57:05'!
+PASSED!
+
+!testRun: #MarsRoverTests #test02 stamp: 'am 5/13/2023 14:57:05'!
+PASSED!
+
+!testRun: #MarsRoverTests #test03 stamp: 'am 5/13/2023 14:57:05'!
+PASSED!
+!MarsRoverTests methodsFor: 'as yet unclassified' stamp: 'am 5/13/2023 14:59:14'!
+test04
+	|aMarsRover|
+	
+	aMarsRover:= MarsRover startAt: 0@0 facing: #North.
+	aMarsRover reciveComands: 'b'.
+	aMarsRover move.
+	self assert: (aMarsRover isAt: -1@0 facing: #North).! !
+
+!testRun: #MarsRoverTests #test04 stamp: 'am 5/13/2023 14:59:17'!
+FAILURE!
+!MarsRover methodsFor: 'inspecting' stamp: 'am 5/13/2023 14:59:42' prior: 50604247!
+isAt: aXYPoint facing: aCardinalPoint
+	^ (aXYPoint=(0@0) and: aCardinalPoint = #North) or: (aXYPoint=(1@0) and: aCardinalPoint = #North) or: (aXYPoint=(1@0) and: aCardinalPoint = #North).! !
+!MarsRover methodsFor: 'inspecting' stamp: 'am 5/13/2023 15:00:04' prior: 50604272!
+isAt: aXYPoint facing: aCardinalPoint
+	^ (aXYPoint=(0@0) and: aCardinalPoint = #North) or: (aXYPoint=(1@0) and: aCardinalPoint = #North) or: (aXYPoint=(-1@0) and: aCardinalPoint = #North).! !
+
+!testRun: #MarsRoverTests #test01 stamp: 'am 5/13/2023 15:00:06'!
+PASSED!
+
+!testRun: #MarsRoverTests #test02 stamp: 'am 5/13/2023 15:00:06'!
+PASSED!
+
+!testRun: #MarsRoverTests #test03 stamp: 'am 5/13/2023 15:00:06'!
+PASSED!
+
+!testRun: #MarsRoverTests #test04 stamp: 'am 5/13/2023 15:00:06'!
+PASSED!
+
+!classDefinition: #MarsRover category: 'MarsRoverClass' stamp: 'am 5/13/2023 15:02:07'!
+Object subclass: #MarsRover
+	instanceVariableNames: 'xYPoint cardinalPoint xyPosition'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRoverClass'!
+
+!classDefinition: #MarsRover category: 'MarsRoverClass' stamp: 'am 5/13/2023 15:02:08'!
+Object subclass: #MarsRover
+	instanceVariableNames: 'xYPoint cardinalPoint xyPosition facing'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRoverClass'!
+!MarsRover methodsFor: 'initilizacion' stamp: 'am 5/13/2023 15:02:04' prior: 50604096!
+initializeAt: aXYPoint facing: aCardinalPoint 
+	xyPosition:=aXYPoint.
+	facing:=aCardinalPoint.! !
+!MarsRover methodsFor: 'inspecting' stamp: 'am 5/13/2023 15:04:10' prior: 50604281!
+isAt: aXYPoint facing: aCardinalPoint
+	^ xyPosition = aXYPoint and: facing = aCardinalPoint.! !
+
+!testRun: #MarsRoverTests #test01 stamp: 'am 5/13/2023 15:04:16'!
+PASSED!
+
+!testRun: #MarsRoverTests #test02 stamp: 'am 5/13/2023 15:04:16'!
+PASSED!
+
+!testRun: #MarsRoverTests #test03 stamp: 'am 5/13/2023 15:04:16'!
+FAILURE!
+
+!testRun: #MarsRoverTests #test04 stamp: 'am 5/13/2023 15:04:16'!
+FAILURE!
+
+!classDefinition: #MarsRover category: 'MarsRoverClass' stamp: 'am 5/13/2023 15:04:50'!
+Object subclass: #MarsRover
+	instanceVariableNames: 'xYPoint cardinalPoint xyPosition facing moves'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRoverClass'!
+!MarsRover methodsFor: 'initilizacion' stamp: 'am 5/13/2023 15:04:46' prior: 50604135!
+reciveComands: aPackageOfCommands 
+	moves:=aPackageOfCommands ! !
+!MarsRover methodsFor: 'initilizacion' stamp: 'am 5/13/2023 15:04:52' prior: 50604345!
+reciveComands: aPackageOfCommands 
+	moves:=aPackageOfCommands. ! !
+!MarsRover methodsFor: 'move' stamp: 'am 5/13/2023 15:09:24' prior: 50604176!
+move
+	moves = 'f' ifTrue: [xyPosition := 1@0].
+	moves = 'b' ifTrue: [xyPosition := -1@0].! !
+
+!testRun: #MarsRoverTests #test01 stamp: 'am 5/13/2023 15:09:33'!
+PASSED!
+
+!testRun: #MarsRoverTests #test02 stamp: 'am 5/13/2023 15:09:33'!
+PASSED!
+
+!testRun: #MarsRoverTests #test03 stamp: 'am 5/13/2023 15:09:33'!
+PASSED!
+
+!testRun: #MarsRoverTests #test04 stamp: 'am 5/13/2023 15:09:33'!
+PASSED!
+!MarsRoverTests methodsFor: 'as yet unclassified' stamp: 'am 5/13/2023 15:12:55'!
+test05
+	|aMarsRover|
+	
+	aMarsRover:= MarsRover startAt: 1@0 facing: #North.
+	aMarsRover reciveComands: 'b'.
+	aMarsRover move.
+	self assert: (aMarsRover isAt: 0@0 facing: #North).! !
+
+!testRun: #MarsRoverTests #test05 stamp: 'am 5/13/2023 15:12:58'!
+FAILURE!
+!MarsRover methodsFor: 'move' stamp: 'am 5/13/2023 15:15:04' prior: 50604355!
+move
+	moves = 'f' ifTrue: [xyPosition := 1@0].
+	moves = 'b'
+		ifTrue: [
+			xyPosition=0@0 ifTrue: [ xyPosition := -1@0].
+			xyPosition=1@0 ifTrue: [ xyPosition := 0@0].
+		].! !
+
+!testRun: #MarsRoverTests #test01 stamp: 'am 5/13/2023 15:15:06'!
+PASSED!
+
+!testRun: #MarsRoverTests #test02 stamp: 'am 5/13/2023 15:15:06'!
+PASSED!
+
+!testRun: #MarsRoverTests #test03 stamp: 'am 5/13/2023 15:15:06'!
+PASSED!
+
+!testRun: #MarsRoverTests #test04 stamp: 'am 5/13/2023 15:15:06'!
+ERROR!
+
+!testRun: #MarsRoverTests #test05 stamp: 'am 5/13/2023 15:15:06'!
+ERROR!
+
+!testRun: #MarsRoverTests #test04 stamp: 'am 5/13/2023 15:15:19'!
+ERROR!
+!MarsRover methodsFor: 'move' stamp: 'am 5/13/2023 15:15:42' prior: 50604381!
+move
+	moves = 'f' ifTrue: [xyPosition := 1@0].
+	moves = 'b'
+		ifTrue: [
+			xyPosition=(0@0) ifTrue: [ xyPosition := -1@0].
+			xyPosition=(1@0) ifTrue: [ xyPosition := 0@0].
+		].! !
+
+!testRun: #MarsRoverTests #test01 stamp: 'am 5/13/2023 15:15:43'!
+PASSED!
+
+!testRun: #MarsRoverTests #test02 stamp: 'am 5/13/2023 15:15:43'!
+PASSED!
+
+!testRun: #MarsRoverTests #test03 stamp: 'am 5/13/2023 15:15:43'!
+PASSED!
+
+!testRun: #MarsRoverTests #test04 stamp: 'am 5/13/2023 15:15:43'!
+PASSED!
+
+!testRun: #MarsRoverTests #test05 stamp: 'am 5/13/2023 15:15:43'!
+PASSED!
+!MarsRoverTests methodsFor: 'as yet unclassified' stamp: 'am 5/13/2023 15:16:06' prior: 50604370!
+test05
+	|aMarsRover|
+	
+	aMarsRover:= MarsRover startAt: 1@0 facing: #North.
+	aMarsRover reciveComands: 'f'.
+	aMarsRover move.
+	self assert: (aMarsRover isAt: 2@0 facing: #North).! !
+
+!testRun: #MarsRoverTests #test05 stamp: 'am 5/13/2023 15:16:07'!
+FAILURE!
+
+!testRun: #MarsRoverTests #test05 stamp: 'am 5/13/2023 15:16:54'!
+FAILURE!
+!MarsRover methodsFor: 'move' stamp: 'am 5/13/2023 15:18:39' prior: 50604403!
+move
+	moves = 'f' 
+		ifTrue: [
+			xyPosition=(0@0) ifTrue: [ xyPosition := 1@0].
+			xyPosition=(1@0) ifTrue: [ xyPosition := 2@0].
+		].
+	moves = 'b'
+		ifTrue: [
+			xyPosition=(0@0) ifTrue: [ xyPosition := -1@0].
+			xyPosition=(1@0) ifTrue: [ xyPosition := 0@0].
+		].! !
+
+!testRun: #MarsRoverTests #test05 stamp: 'am 5/13/2023 15:18:42'!
+PASSED!
+
+!testRun: #MarsRoverTests #test01 stamp: 'am 5/13/2023 15:18:42'!
+PASSED!
+
+!testRun: #MarsRoverTests #test02 stamp: 'am 5/13/2023 15:18:42'!
+PASSED!
+
+!testRun: #MarsRoverTests #test03 stamp: 'am 5/13/2023 15:18:42'!
+FAILURE!
+
+!testRun: #MarsRoverTests #test04 stamp: 'am 5/13/2023 15:18:42'!
+PASSED!
+
+!testRun: #MarsRoverTests #test05 stamp: 'am 5/13/2023 15:18:42'!
+PASSED!
+
+!testRun: #MarsRoverTests #test03 stamp: 'am 5/13/2023 15:18:42'!
+FAILURE!
+
+!testRun: #MarsRoverTests #test05 stamp: 'am 5/13/2023 15:18:51'!
+PASSED!
+
+!testRun: #MarsRoverTests #test01 stamp: 'am 5/13/2023 15:18:51'!
+PASSED!
+
+!testRun: #MarsRoverTests #test02 stamp: 'am 5/13/2023 15:18:51'!
+PASSED!
+
+!testRun: #MarsRoverTests #test03 stamp: 'am 5/13/2023 15:18:51'!
+FAILURE!
+
+!testRun: #MarsRoverTests #test04 stamp: 'am 5/13/2023 15:18:51'!
+PASSED!
+
+!testRun: #MarsRoverTests #test05 stamp: 'am 5/13/2023 15:18:51'!
+PASSED!
+
+!testRun: #MarsRoverTests #test03 stamp: 'am 5/13/2023 15:18:51'!
+FAILURE!
+!MarsRover methodsFor: 'move' stamp: 'am 5/13/2023 15:19:38' prior: 50604437!
+move
+	moves = 'f' 
+		ifTrue: [
+			xyPosition=(1@0) ifTrue: [ xyPosition := 2@0].
+			xyPosition=(0@0) ifTrue: [ xyPosition := 1@0].
+		].
+	moves = 'b'
+		ifTrue: [
+			xyPosition=(0@0) ifTrue: [ xyPosition := -1@0].
+			xyPosition=(1@0) ifTrue: [ xyPosition := 0@0].
+		].! !
+
+!testRun: #MarsRoverTests #test01 stamp: 'am 5/13/2023 15:19:40'!
+PASSED!
+
+!testRun: #MarsRoverTests #test02 stamp: 'am 5/13/2023 15:19:40'!
+PASSED!
+
+!testRun: #MarsRoverTests #test03 stamp: 'am 5/13/2023 15:19:40'!
+PASSED!
+
+!testRun: #MarsRoverTests #test04 stamp: 'am 5/13/2023 15:19:40'!
+PASSED!
+
+!testRun: #MarsRoverTests #test05 stamp: 'am 5/13/2023 15:19:40'!
+PASSED!
+!MarsRoverTests methodsFor: 'as yet unclassified' stamp: 'am 5/13/2023 15:20:47'!
+test06
+	|aMarsRover|
+	
+	aMarsRover:= MarsRover startAt: 1@0 facing: #North.
+	aMarsRover reciveComands: 'b'.
+	aMarsRover move.
+	self assert: (aMarsRover isAt: 0@0 facing: #North).! !
+
+!testRun: #MarsRoverTests #test06 stamp: 'am 5/13/2023 15:20:48'!
+PASSED!
+
+!testRun: #MarsRoverTests #test01 stamp: 'am 5/13/2023 15:20:48'!
+PASSED!
+
+!testRun: #MarsRoverTests #test02 stamp: 'am 5/13/2023 15:20:48'!
+PASSED!
+
+!testRun: #MarsRoverTests #test03 stamp: 'am 5/13/2023 15:20:48'!
+PASSED!
+
+!testRun: #MarsRoverTests #test04 stamp: 'am 5/13/2023 15:20:48'!
+PASSED!
+
+!testRun: #MarsRoverTests #test05 stamp: 'am 5/13/2023 15:20:48'!
+PASSED!
+
+!testRun: #MarsRoverTests #test06 stamp: 'am 5/13/2023 15:20:48'!
+PASSED!
+!MarsRoverTests methodsFor: 'as yet unclassified' stamp: 'am 5/13/2023 15:21:10'!
+test07
+	|aMarsRover|
+	
+	aMarsRover:= MarsRover startAt: 2@0 facing: #North.
+	aMarsRover reciveComands: 'b'.
+	aMarsRover move.
+	self assert: (aMarsRover isAt: 1@0 facing: #North).! !
+
+!testRun: #MarsRoverTests #test07 stamp: 'am 5/13/2023 15:21:12'!
+FAILURE!
+
+!testRun: #MarsRoverTests #test01 stamp: 'am 5/13/2023 15:22:38'!
+PASSED!
+
+!testRun: #MarsRoverTests #test02 stamp: 'am 5/13/2023 15:22:38'!
+PASSED!
+
+!testRun: #MarsRoverTests #test03 stamp: 'am 5/13/2023 15:22:38'!
+PASSED!
+
+!testRun: #MarsRoverTests #test04 stamp: 'am 5/13/2023 15:22:38'!
+PASSED!
+
+!testRun: #MarsRoverTests #test05 stamp: 'am 5/13/2023 15:22:38'!
+PASSED!
+
+!testRun: #MarsRoverTests #test06 stamp: 'am 5/13/2023 15:22:38'!
+PASSED!
+
+!testRun: #MarsRoverTests #test07 stamp: 'am 5/13/2023 15:22:38'!
+FAILURE!
+
+!testRun: #MarsRoverTests #test07 stamp: 'am 5/13/2023 15:22:38'!
+FAILURE!
+!MarsRover methodsFor: 'move' stamp: 'am 5/13/2023 15:23:04' prior: 50604481!
+move
+	moves = 'f' 
+		ifTrue: [
+			xyPosition=(1@0) ifTrue: [ xyPosition := 2@0].
+			xyPosition=(0@0) ifTrue: [ xyPosition := 1@0].
+		].
+	moves = 'b'
+		ifTrue: [
+			xyPosition=(0@0) ifTrue: [ xyPosition := -1@0].
+			xyPosition=(1@0) ifTrue: [ xyPosition := 0@0].
+			xyPosition=(2@0) ifTrue: [ xyPosition := 1@0].
+		].! !
+
+!testRun: #MarsRoverTests #test01 stamp: 'am 5/13/2023 15:23:09'!
+PASSED!
+
+!testRun: #MarsRoverTests #test02 stamp: 'am 5/13/2023 15:23:09'!
+PASSED!
+
+!testRun: #MarsRoverTests #test03 stamp: 'am 5/13/2023 15:23:09'!
+PASSED!
+
+!testRun: #MarsRoverTests #test04 stamp: 'am 5/13/2023 15:23:09'!
+PASSED!
+
+!testRun: #MarsRoverTests #test05 stamp: 'am 5/13/2023 15:23:09'!
+PASSED!
+
+!testRun: #MarsRoverTests #test06 stamp: 'am 5/13/2023 15:23:09'!
+PASSED!
+
+!testRun: #MarsRoverTests #test07 stamp: 'am 5/13/2023 15:23:09'!
+PASSED!
+!MarsRoverTests methodsFor: 'as yet unclassified' stamp: 'am 5/13/2023 15:23:28'!
+test08
+	|aMarsRover|
+	
+	aMarsRover:= MarsRover startAt: 3@0 facing: #North.
+	aMarsRover reciveComands: 'b'.
+	aMarsRover move.
+	self assert: (aMarsRover isAt: 2@0 facing: #North).! !
+
+!testRun: #MarsRoverTests #test08 stamp: 'am 5/13/2023 15:23:30'!
+FAILURE!
+!MarsRover methodsFor: 'move' stamp: 'am 5/13/2023 15:23:49' prior: 50604559!
+move
+	moves = 'f' 
+		ifTrue: [
+			xyPosition=(1@0) ifTrue: [ xyPosition := 2@0].
+			xyPosition=(0@0) ifTrue: [ xyPosition := 1@0].
+		].
+	moves = 'b'
+		ifTrue: [
+			xyPosition=(0@0) ifTrue: [ xyPosition := -1@0].
+			xyPosition=(1@0) ifTrue: [ xyPosition := 0@0].
+			xyPosition=(2@0) ifTrue: [ xyPosition := 1@0].
+			xyPosition=(3@0) ifTrue: [ xyPosition := 2@0].
+		].! !
+
+!testRun: #MarsRoverTests #test01 stamp: 'am 5/13/2023 15:23:50'!
+PASSED!
+
+!testRun: #MarsRoverTests #test02 stamp: 'am 5/13/2023 15:23:50'!
+PASSED!
+
+!testRun: #MarsRoverTests #test03 stamp: 'am 5/13/2023 15:23:50'!
+PASSED!
+
+!testRun: #MarsRoverTests #test04 stamp: 'am 5/13/2023 15:23:50'!
+PASSED!
+
+!testRun: #MarsRoverTests #test05 stamp: 'am 5/13/2023 15:23:50'!
+PASSED!
+
+!testRun: #MarsRoverTests #test06 stamp: 'am 5/13/2023 15:23:50'!
+PASSED!
+
+!testRun: #MarsRoverTests #test07 stamp: 'am 5/13/2023 15:23:50'!
+PASSED!
+
+!testRun: #MarsRoverTests #test08 stamp: 'am 5/13/2023 15:23:50'!
+PASSED!
+!MarsRover methodsFor: 'move' stamp: 'am 5/13/2023 15:25:10' prior: 50604599!
+move
+	moves = 'f' 
+		ifTrue: [
+			xyPosition=(1@0) ifTrue: [ xyPosition := 2@0].
+			xyPosition=(0@0) ifTrue: [ xyPosition := 1@0].
+		].
+	moves = 'b'
+		ifTrue: [ 
+			xyPosition:= xyPosition - 1@0
+			].! !
+
+!testRun: #MarsRoverTests #test01 stamp: 'am 5/13/2023 15:25:12'!
+PASSED!
+
+!testRun: #MarsRoverTests #test02 stamp: 'am 5/13/2023 15:25:12'!
+PASSED!
+
+!testRun: #MarsRoverTests #test03 stamp: 'am 5/13/2023 15:25:12'!
+PASSED!
+
+!testRun: #MarsRoverTests #test04 stamp: 'am 5/13/2023 15:25:12'!
+ERROR!
+
+!testRun: #MarsRoverTests #test05 stamp: 'am 5/13/2023 15:25:12'!
+PASSED!
+
+!testRun: #MarsRoverTests #test06 stamp: 'am 5/13/2023 15:25:12'!
+ERROR!
+
+!testRun: #MarsRoverTests #test07 stamp: 'am 5/13/2023 15:25:12'!
+ERROR!
+
+!testRun: #MarsRoverTests #test08 stamp: 'am 5/13/2023 15:25:12'!
+ERROR!
+
+!testRun: #MarsRoverTests #test04 stamp: 'am 5/13/2023 15:25:16'!
+ERROR!
+!MarsRover methodsFor: 'move' stamp: 'am 5/13/2023 15:25:28' prior: 50604632!
+move
+	moves = 'f' 
+		ifTrue: [
+			xyPosition=(1@0) ifTrue: [ xyPosition := 2@0].
+			xyPosition=(0@0) ifTrue: [ xyPosition := 1@0].
+		].
+	moves = 'b'
+		ifTrue: [ 
+			xyPosition:= xyPosition - (1@0)
+			].! !
+
+!testRun: #MarsRoverTests #test01 stamp: 'am 5/13/2023 15:25:30'!
+PASSED!
+
+!testRun: #MarsRoverTests #test02 stamp: 'am 5/13/2023 15:25:30'!
+PASSED!
+
+!testRun: #MarsRoverTests #test03 stamp: 'am 5/13/2023 15:25:30'!
+PASSED!
+
+!testRun: #MarsRoverTests #test04 stamp: 'am 5/13/2023 15:25:30'!
+PASSED!
+
+!testRun: #MarsRoverTests #test05 stamp: 'am 5/13/2023 15:25:30'!
+PASSED!
+
+!testRun: #MarsRoverTests #test06 stamp: 'am 5/13/2023 15:25:30'!
+PASSED!
+
+!testRun: #MarsRoverTests #test07 stamp: 'am 5/13/2023 15:25:30'!
+PASSED!
+
+!testRun: #MarsRoverTests #test08 stamp: 'am 5/13/2023 15:25:30'!
+PASSED!
+!MarsRoverTests methodsFor: 'as yet unclassified' stamp: 'am 5/13/2023 15:25:56'!
+test09
+	|aMarsRover|
+	
+	aMarsRover:= MarsRover startAt: 3@0 facing: #North.
+	aMarsRover reciveComands: 'b'.
+	aMarsRover move.
+	self assert: (aMarsRover isAt: 2@0 facing: #North).! !
+!MarsRoverTests methodsFor: 'as yet unclassified' stamp: 'am 5/13/2023 15:26:16' prior: 50604690!
+test09
+	|aMarsRover|
+	
+	aMarsRover:= MarsRover startAt: 2@0 facing: #North.
+	aMarsRover reciveComands: 'f'.
+	aMarsRover move.
+	self assert: (aMarsRover isAt: 3@0 facing: #North).! !
+
+!testRun: #MarsRoverTests #test09 stamp: 'am 5/13/2023 15:26:18'!
+FAILURE!
+!MarsRover methodsFor: 'move' stamp: 'am 5/13/2023 15:26:41' prior: 50604662!
+move
+	moves = 'f' 
+		ifTrue: [
+			xyPosition=(2@0) ifTrue: [ xyPosition := 3@0].
+			xyPosition=(1@0) ifTrue: [ xyPosition := 2@0].
+			xyPosition=(0@0) ifTrue: [ xyPosition := 1@0].
+		].
+	moves = 'b'
+		ifTrue: [ 
+			xyPosition:= xyPosition - (1@0)
+			].! !
+
+!testRun: #MarsRoverTests #test01 stamp: 'am 5/13/2023 15:26:42'!
+PASSED!
+
+!testRun: #MarsRoverTests #test02 stamp: 'am 5/13/2023 15:26:42'!
+PASSED!
+
+!testRun: #MarsRoverTests #test03 stamp: 'am 5/13/2023 15:26:42'!
+PASSED!
+
+!testRun: #MarsRoverTests #test04 stamp: 'am 5/13/2023 15:26:42'!
+PASSED!
+
+!testRun: #MarsRoverTests #test05 stamp: 'am 5/13/2023 15:26:42'!
+PASSED!
+
+!testRun: #MarsRoverTests #test06 stamp: 'am 5/13/2023 15:26:42'!
+PASSED!
+
+!testRun: #MarsRoverTests #test07 stamp: 'am 5/13/2023 15:26:42'!
+PASSED!
+
+!testRun: #MarsRoverTests #test08 stamp: 'am 5/13/2023 15:26:42'!
+PASSED!
+
+!testRun: #MarsRoverTests #test09 stamp: 'am 5/13/2023 15:26:42'!
+PASSED!
+!MarsRover methodsFor: 'move' stamp: 'am 5/13/2023 15:27:14' prior: 50604710!
+move
+	moves = 'f' 
+		ifTrue: [
+			xyPosition := xyPosition + (1@0).
+		].
+	moves = 'b'
+		ifTrue: [ 
+			xyPosition:= xyPosition - (1@0)
+			].! !
+
+!testRun: #MarsRoverTests #test01 stamp: 'am 5/13/2023 15:27:16'!
+PASSED!
+
+!testRun: #MarsRoverTests #test02 stamp: 'am 5/13/2023 15:27:16'!
+PASSED!
+
+!testRun: #MarsRoverTests #test03 stamp: 'am 5/13/2023 15:27:16'!
+PASSED!
+
+!testRun: #MarsRoverTests #test04 stamp: 'am 5/13/2023 15:27:16'!
+PASSED!
+
+!testRun: #MarsRoverTests #test05 stamp: 'am 5/13/2023 15:27:16'!
+PASSED!
+
+!testRun: #MarsRoverTests #test06 stamp: 'am 5/13/2023 15:27:16'!
+PASSED!
+
+!testRun: #MarsRoverTests #test07 stamp: 'am 5/13/2023 15:27:16'!
+PASSED!
+
+!testRun: #MarsRoverTests #test08 stamp: 'am 5/13/2023 15:27:16'!
+PASSED!
+
+!testRun: #MarsRoverTests #test09 stamp: 'am 5/13/2023 15:27:16'!
+PASSED!
+!MarsRover methodsFor: 'move' stamp: 'am 5/13/2023 15:29:54' prior: 50604742!
+move
+	moves = 'f' 
+		ifTrue: [
+			xyPosition := xyPosition + (1@0).
+		].
+	moves = 'b'
+		ifTrue: [ 
+			xyPosition:= xyPosition - (1@0).
+			].! !
+
+!testRun: #MarsRoverTests #test01 stamp: 'am 5/13/2023 15:29:55'!
+PASSED!
+
+!testRun: #MarsRoverTests #test02 stamp: 'am 5/13/2023 15:29:55'!
+PASSED!
+
+!testRun: #MarsRoverTests #test03 stamp: 'am 5/13/2023 15:29:55'!
+PASSED!
+
+!testRun: #MarsRoverTests #test04 stamp: 'am 5/13/2023 15:29:55'!
+PASSED!
+
+!testRun: #MarsRoverTests #test05 stamp: 'am 5/13/2023 15:29:55'!
+PASSED!
+
+!testRun: #MarsRoverTests #test06 stamp: 'am 5/13/2023 15:29:55'!
+PASSED!
+
+!testRun: #MarsRoverTests #test07 stamp: 'am 5/13/2023 15:29:55'!
+PASSED!
+
+!testRun: #MarsRoverTests #test08 stamp: 'am 5/13/2023 15:29:55'!
+PASSED!
+
+!testRun: #MarsRoverTests #test09 stamp: 'am 5/13/2023 15:29:55'!
+PASSED!
+
+!methodRemoval: MarsRoverTests #test07 stamp: 'am 5/13/2023 15:30:49'!
+test07
+	|aMarsRover|
+	
+	aMarsRover:= MarsRover startAt: 2@0 facing: #North.
+	aMarsRover reciveComands: 'b'.
+	aMarsRover move.
+	self assert: (aMarsRover isAt: 1@0 facing: #North).!
+
+!methodRemoval: MarsRoverTests #test08 stamp: 'am 5/13/2023 15:30:52'!
+test08
+	|aMarsRover|
+	
+	aMarsRover:= MarsRover startAt: 3@0 facing: #North.
+	aMarsRover reciveComands: 'b'.
+	aMarsRover move.
+	self assert: (aMarsRover isAt: 2@0 facing: #North).!
+
+!methodRemoval: MarsRoverTests #test09 stamp: 'am 5/13/2023 15:30:53'!
+test09
+	|aMarsRover|
+	
+	aMarsRover:= MarsRover startAt: 2@0 facing: #North.
+	aMarsRover reciveComands: 'f'.
+	aMarsRover move.
+	self assert: (aMarsRover isAt: 3@0 facing: #North).!
+!MarsRoverTests methodsFor: 'as yet unclassified' stamp: 'am 5/13/2023 15:32:15'!
+test01MarsRoverStartAtaPositionAndFacingAcardinalPoint
+	|aMarsRover|
+	
+	aMarsRover:= MarsRover startAt: 0@0 facing: #North.
+	
+	self assert: (aMarsRover isAt: 0@0 facing: #North).! !
+
+!testRun: #MarsRoverTests #test01MarsRoverStartAtaPositionAndFacingAcardinalPoint stamp: 'am 5/13/2023 15:32:18'!
+PASSED!
+
+!testRun: #MarsRoverTests #test01 stamp: 'am 5/13/2023 15:32:18'!
+PASSED!
+
+!testRun: #MarsRoverTests #test01MarsRoverStartAtaPositionAndFacingAcardinalPoint stamp: 'am 5/13/2023 15:32:18'!
+PASSED!
+
+!testRun: #MarsRoverTests #test02 stamp: 'am 5/13/2023 15:32:18'!
+PASSED!
+
+!testRun: #MarsRoverTests #test03 stamp: 'am 5/13/2023 15:32:18'!
+PASSED!
+
+!testRun: #MarsRoverTests #test04 stamp: 'am 5/13/2023 15:32:18'!
+PASSED!
+
+!testRun: #MarsRoverTests #test05 stamp: 'am 5/13/2023 15:32:18'!
+PASSED!
+
+!testRun: #MarsRoverTests #test06 stamp: 'am 5/13/2023 15:32:18'!
+PASSED!
+
+!methodRemoval: MarsRoverTests #test01 stamp: 'am 5/13/2023 15:32:23'!
+test01
+	|aMarsRover|
+	
+	aMarsRover:= MarsRover startAt: 0@0 facing: #North.
+	
+	self assert: (aMarsRover isAt: 0@0 facing: #North).!
+!MarsRoverTests methodsFor: 'as yet unclassified' stamp: 'am 5/13/2023 15:33:27'!
+test02MarsRoverWithEmptyCommandsMoveStayTheSame
+	|aMarsRover|
+	
+	aMarsRover:= MarsRover startAt: 0@0 facing: #North.
+	aMarsRover reciveComands: ''.
+	aMarsRover move.
+	self assert: (aMarsRover isAt: 0@0 facing: #North).! !
+
+!methodRemoval: MarsRoverTests #test02 stamp: 'am 5/13/2023 15:33:31'!
+test02
+	|aMarsRover|
+	
+	aMarsRover:= MarsRover startAt: 0@0 facing: #North.
+	aMarsRover reciveComands: ''.
+	aMarsRover move.
+	self assert: (aMarsRover isAt: 0@0 facing: #North).!
+!MarsRoverTests methodsFor: 'as yet unclassified' stamp: 'am 5/13/2023 15:34:24'!
+test03MarsRoverAtAPositionWithFCommandMoveFowardOnce
+	|aMarsRover|
+	
+	aMarsRover:= MarsRover startAt: 0@0 facing: #North.
+	aMarsRover reciveComands: 'f'.
+	aMarsRover move.
+	self assert: (aMarsRover isAt: 1@0 facing: #North).! !
+
+!methodRemoval: MarsRoverTests #test03 stamp: 'am 5/13/2023 15:34:30'!
+test03
+	|aMarsRover|
+	
+	aMarsRover:= MarsRover startAt: 0@0 facing: #North.
+	aMarsRover reciveComands: 'f'.
+	aMarsRover move.
+	self assert: (aMarsRover isAt: 1@0 facing: #North).!
+!MarsRoverTests methodsFor: 'as yet unclassified' stamp: 'am 5/13/2023 15:34:59'!
+test04MarsRoverAtAPositionWithBCommandMoveBackwardOnce
+	|aMarsRover|
+	
+	aMarsRover:= MarsRover startAt: 0@0 facing: #North.
+	aMarsRover reciveComands: 'b'.
+	aMarsRover move.
+	self assert: (aMarsRover isAt: -1@0 facing: #North).! !
+
+!methodRemoval: MarsRoverTests #test04 stamp: 'am 5/13/2023 15:35:02'!
+test04
+	|aMarsRover|
+	
+	aMarsRover:= MarsRover startAt: 0@0 facing: #North.
+	aMarsRover reciveComands: 'b'.
+	aMarsRover move.
+	self assert: (aMarsRover isAt: -1@0 facing: #North).!
+!MarsRoverTests methodsFor: 'as yet unclassified' stamp: 'am 5/13/2023 15:35:32'!
+test03MarsRoverAtAnyPositionWithFCommandMoveFowardOnce
+	|aMarsRover|
+	
+	aMarsRover:= MarsRover startAt: 1@0 facing: #North.
+	aMarsRover reciveComands: 'f'.
+	aMarsRover move.
+	self assert: (aMarsRover isAt: 2@0 facing: #North).! !
+!MarsRoverTests methodsFor: 'as yet unclassified' stamp: 'am 5/13/2023 15:35:41'!
+test05MarsRoverAtAnyPositionWithFCommandMoveFowardOnce
+	|aMarsRover|
+	
+	aMarsRover:= MarsRover startAt: 1@0 facing: #North.
+	aMarsRover reciveComands: 'f'.
+	aMarsRover move.
+	self assert: (aMarsRover isAt: 2@0 facing: #North).! !
+
+!methodRemoval: MarsRoverTests #test05 stamp: 'am 5/13/2023 15:35:46'!
+test05
+	|aMarsRover|
+	
+	aMarsRover:= MarsRover startAt: 1@0 facing: #North.
+	aMarsRover reciveComands: 'f'.
+	aMarsRover move.
+	self assert: (aMarsRover isAt: 2@0 facing: #North).!
+
+!methodRemoval: MarsRoverTests #test03MarsRoverAtAnyPositionWithFCommandMoveFowardOnce stamp: 'am 5/13/2023 15:35:49'!
+test03MarsRoverAtAnyPositionWithFCommandMoveFowardOnce
+	|aMarsRover|
+	
+	aMarsRover:= MarsRover startAt: 1@0 facing: #North.
+	aMarsRover reciveComands: 'f'.
+	aMarsRover move.
+	self assert: (aMarsRover isAt: 2@0 facing: #North).!
+!MarsRoverTests methodsFor: 'as yet unclassified' stamp: 'am 5/13/2023 15:36:22'!
+test05MarsRoverAtAnyPositionWithBCommandMoveBackwardOnce
+	|aMarsRover|
+	
+	aMarsRover:= MarsRover startAt: 1@0 facing: #North.
+	aMarsRover reciveComands: 'b'.
+	aMarsRover move.
+	self assert: (aMarsRover isAt: 0@0 facing: #North).! !
+!MarsRoverTests methodsFor: 'as yet unclassified' stamp: 'am 5/13/2023 15:36:28'!
+test06MarsRoverAtAnyPositionWithBCommandMoveBackwardOnce
+	|aMarsRover|
+	
+	aMarsRover:= MarsRover startAt: 1@0 facing: #North.
+	aMarsRover reciveComands: 'b'.
+	aMarsRover move.
+	self assert: (aMarsRover isAt: 0@0 facing: #North).! !
+
+!methodRemoval: MarsRoverTests #test06 stamp: 'am 5/13/2023 15:36:32'!
+test06
+	|aMarsRover|
+	
+	aMarsRover:= MarsRover startAt: 1@0 facing: #North.
+	aMarsRover reciveComands: 'b'.
+	aMarsRover move.
+	self assert: (aMarsRover isAt: 0@0 facing: #North).!
+
+!methodRemoval: MarsRoverTests #test05MarsRoverAtAnyPositionWithBCommandMoveBackwardOnce stamp: 'am 5/13/2023 15:36:37'!
+test05MarsRoverAtAnyPositionWithBCommandMoveBackwardOnce
+	|aMarsRover|
+	
+	aMarsRover:= MarsRover startAt: 1@0 facing: #North.
+	aMarsRover reciveComands: 'b'.
+	aMarsRover move.
+	self assert: (aMarsRover isAt: 0@0 facing: #North).!
+!MarsRoverTests methodsFor: 'as yet unclassified' stamp: 'am 5/13/2023 15:37:52'!
+test07MarsRoverAtAnyPositionWithTwoBCommandMoveBackwardTwice
+	|aMarsRover|
+	
+	aMarsRover:= MarsRover startAt: 1@0 facing: #North.
+	aMarsRover reciveComands: 'b'.
+	aMarsRover move.
+	self assert: (aMarsRover isAt: 0@0 facing: #North).! !
+!MarsRoverTests methodsFor: 'as yet unclassified' stamp: 'am 5/13/2023 15:38:09' prior: 50604991!
+test07MarsRoverAtAnyPositionWithTwoBCommandMoveBackwardTwice
+	|aMarsRover|
+	
+	aMarsRover:= MarsRover startAt: 1@0 facing: #North.
+	aMarsRover reciveComands: 'bb'.
+	aMarsRover move.
+	self assert: (aMarsRover isAt: -1@0 facing: #North).! !
+
+!testRun: #MarsRoverTests #test07MarsRoverAtAnyPositionWithTwoBCommandMoveBackwardTwice stamp: 'am 5/13/2023 15:38:15'!
+FAILURE!
+!MarsRover methodsFor: 'move' stamp: 'am 5/13/2023 15:38:46' prior: 50604770!
+move
+	moves = 'f' 
+		ifTrue: [
+			xyPosition := xyPosition + (1@0).
+		].
+	moves = 'b'
+		ifTrue: [ 
+			xyPosition:= xyPosition - (1@0).
+			].
+	moves = 'bb'
+		ifTrue: [ 
+			xyPosition:= xyPosition - (1@0) - (1@0).
+			].! !
+
+!testRun: #MarsRoverTests #test01MarsRoverStartAtaPositionAndFacingAcardinalPoint stamp: 'am 5/13/2023 15:38:52'!
+PASSED!
+
+!testRun: #MarsRoverTests #test02MarsRoverWithEmptyCommandsMoveStayTheSame stamp: 'am 5/13/2023 15:38:52'!
+PASSED!
+
+!testRun: #MarsRoverTests #test03MarsRoverAtAPositionWithFCommandMoveFowardOnce stamp: 'am 5/13/2023 15:38:52'!
+PASSED!
+
+!testRun: #MarsRoverTests #test04MarsRoverAtAPositionWithBCommandMoveBackwardOnce stamp: 'am 5/13/2023 15:38:52'!
+PASSED!
+
+!testRun: #MarsRoverTests #test05MarsRoverAtAnyPositionWithFCommandMoveFowardOnce stamp: 'am 5/13/2023 15:38:52'!
+PASSED!
+
+!testRun: #MarsRoverTests #test06MarsRoverAtAnyPositionWithBCommandMoveBackwardOnce stamp: 'am 5/13/2023 15:38:52'!
+PASSED!
+
+!testRun: #MarsRoverTests #test07MarsRoverAtAnyPositionWithTwoBCommandMoveBackwardTwice stamp: 'am 5/13/2023 15:38:52'!
+PASSED!
+!MarsRoverTests methodsFor: 'as yet unclassified' stamp: 'am 5/13/2023 15:39:29'!
+test08MarsRoverAtAnyPositionWithTwoBCommandMoveBackwardTwice
+	|aMarsRover|
+	
+	aMarsRover:= MarsRover startAt: 1@0 facing: #North.
+	aMarsRover reciveComands: 'bb'.
+	aMarsRover move.
+	self assert: (aMarsRover isAt: -1@0 facing: #North).! !
+!MarsRoverTests methodsFor: 'as yet unclassified' stamp: 'am 5/13/2023 15:39:52'!
+test08MarsRoverAtAnyPositionWithThreeBCommandMoveBackwardThreeTimes
+	|aMarsRover|
+	
+	aMarsRover:= MarsRover startAt: 1@0 facing: #North.
+	aMarsRover reciveComands: 'bb'.
+	aMarsRover move.
+	self assert: (aMarsRover isAt: -1@0 facing: #North).! !
+!MarsRoverTests methodsFor: 'as yet unclassified' stamp: 'am 5/13/2023 15:40:05' prior: 50605063!
+test08MarsRoverAtAnyPositionWithThreeBCommandMoveBackwardThreeTimes
+	|aMarsRover|
+	
+	aMarsRover:= MarsRover startAt: 1@0 facing: #North.
+	aMarsRover reciveComands: 'bbb'.
+	aMarsRover move.
+	self assert: (aMarsRover isAt: -2@0 facing: #North).! !
+
+!testRun: #MarsRoverTests #test08MarsRoverAtAnyPositionWithThreeBCommandMoveBackwardThreeTimes stamp: 'am 5/13/2023 15:40:07'!
+FAILURE!
+!MarsRover methodsFor: 'move' stamp: 'am 5/13/2023 15:40:31' prior: 50605016!
+move
+	moves = 'f' 
+		ifTrue: [
+			xyPosition := xyPosition + (1@0).
+		].
+	moves = 'b'
+		ifTrue: [ 
+			xyPosition:= xyPosition - (1@0).
+			].
+	moves = 'bb'
+		ifTrue: [ 
+			xyPosition:= xyPosition - (1@0) - (1@0).
+			].
+	moves = 'bbb'
+		ifTrue: [ 
+			xyPosition:= xyPosition - (1@0) - (1@0) - (1@0).
+			].! !
+
+!testRun: #MarsRoverTests #test01MarsRoverStartAtaPositionAndFacingAcardinalPoint stamp: 'am 5/13/2023 15:40:33'!
+PASSED!
+
+!testRun: #MarsRoverTests #test02MarsRoverWithEmptyCommandsMoveStayTheSame stamp: 'am 5/13/2023 15:40:33'!
+PASSED!
+
+!testRun: #MarsRoverTests #test03MarsRoverAtAPositionWithFCommandMoveFowardOnce stamp: 'am 5/13/2023 15:40:33'!
+PASSED!
+
+!testRun: #MarsRoverTests #test04MarsRoverAtAPositionWithBCommandMoveBackwardOnce stamp: 'am 5/13/2023 15:40:33'!
+PASSED!
+
+!testRun: #MarsRoverTests #test05MarsRoverAtAnyPositionWithFCommandMoveFowardOnce stamp: 'am 5/13/2023 15:40:33'!
+PASSED!
+
+!testRun: #MarsRoverTests #test06MarsRoverAtAnyPositionWithBCommandMoveBackwardOnce stamp: 'am 5/13/2023 15:40:33'!
+PASSED!
+
+!testRun: #MarsRoverTests #test07MarsRoverAtAnyPositionWithTwoBCommandMoveBackwardTwice stamp: 'am 5/13/2023 15:40:33'!
+PASSED!
+
+!testRun: #MarsRoverTests #test08MarsRoverAtAnyPositionWithThreeBCommandMoveBackwardThreeTimes stamp: 'am 5/13/2023 15:40:33'!
+PASSED!
+
+!testRun: #MarsRoverTests #test08MarsRoverAtAnyPositionWithTwoBCommandMoveBackwardTwice stamp: 'am 5/13/2023 15:40:33'!
+PASSED!
+!MarsRover methodsFor: 'move' stamp: 'am 5/13/2023 15:45:29' prior: 50605089!
+move
+	moves = 'f' 
+		ifTrue: [
+			xyPosition := xyPosition + (1@0).
+		] ifFalse: [
+			moves = 'b'
+				ifTrue: [ 
+					xyPosition:= xyPosition - (1@0).
+					] ifFalse: [
+						moves = 'bb'
+							ifTrue: [ 
+								xyPosition:= xyPosition - (1@0) - (1@0).
+								] ifFalse: [
+									moves = 'bbb'
+										ifTrue: [ 
+											xyPosition:= xyPosition - (1@0) - (1@0) - (1@0).
+											].
+										]
+				]
+		]! !
+
+!testRun: #MarsRoverTests #test01MarsRoverStartAtaPositionAndFacingAcardinalPoint stamp: 'am 5/13/2023 15:45:31'!
+PASSED!
+
+!testRun: #MarsRoverTests #test02MarsRoverWithEmptyCommandsMoveStayTheSame stamp: 'am 5/13/2023 15:45:31'!
+PASSED!
+
+!testRun: #MarsRoverTests #test03MarsRoverAtAPositionWithFCommandMoveFowardOnce stamp: 'am 5/13/2023 15:45:31'!
+PASSED!
+
+!testRun: #MarsRoverTests #test04MarsRoverAtAPositionWithBCommandMoveBackwardOnce stamp: 'am 5/13/2023 15:45:31'!
+PASSED!
+
+!testRun: #MarsRoverTests #test05MarsRoverAtAnyPositionWithFCommandMoveFowardOnce stamp: 'am 5/13/2023 15:45:31'!
+PASSED!
+
+!testRun: #MarsRoverTests #test06MarsRoverAtAnyPositionWithBCommandMoveBackwardOnce stamp: 'am 5/13/2023 15:45:31'!
+PASSED!
+
+!testRun: #MarsRoverTests #test07MarsRoverAtAnyPositionWithTwoBCommandMoveBackwardTwice stamp: 'am 5/13/2023 15:45:31'!
+PASSED!
+
+!testRun: #MarsRoverTests #test08MarsRoverAtAnyPositionWithThreeBCommandMoveBackwardThreeTimes stamp: 'am 5/13/2023 15:45:31'!
+PASSED!
+
+!testRun: #MarsRoverTests #test08MarsRoverAtAnyPositionWithTwoBCommandMoveBackwardTwice stamp: 'am 5/13/2023 15:45:31'!
+PASSED!
+!MarsRover methodsFor: 'move' stamp: 'am 5/13/2023 15:47:54' prior: 50605137!
+move
+	moves = 'f' 
+		ifTrue: [
+			xyPosition := xyPosition + (1@0).
+		] ifFalse: [ | index |
+			index:=1.
+			(index <= moves size) whileTrue:[
+				index:= index + 1.
+				] 
+		]! !
+!MarsRover methodsFor: 'move' stamp: 'am 5/13/2023 15:48:40' prior: 50605188!
+move
+	 | index |
+	
+	moves = 'f' 
+		ifTrue: [
+			xyPosition := xyPosition + (1@0).
+		] ifFalse: [
+			index:=1.
+			(index <= moves size) whileTrue:[
+				xyPosition := xyPosition - (1@0).
+				index:= index + 1.
+				] 
+		]! !
+
+!testRun: #MarsRoverTests #test01MarsRoverStartAtaPositionAndFacingAcardinalPoint stamp: 'am 5/13/2023 15:49:35'!
+PASSED!
+
+!testRun: #MarsRoverTests #test02MarsRoverWithEmptyCommandsMoveStayTheSame stamp: 'am 5/13/2023 15:49:35'!
+ERROR!
+
+!testRun: #MarsRoverTests #test03MarsRoverAtAPositionWithFCommandMoveFowardOnce stamp: 'am 5/13/2023 15:49:35'!
+PASSED!
+
+!testRun: #MarsRoverTests #test04MarsRoverAtAPositionWithBCommandMoveBackwardOnce stamp: 'am 5/13/2023 15:49:35'!
+ERROR!
+
+!testRun: #MarsRoverTests #test05MarsRoverAtAnyPositionWithFCommandMoveFowardOnce stamp: 'am 5/13/2023 15:49:35'!
+PASSED!
+
+!testRun: #MarsRoverTests #test06MarsRoverAtAnyPositionWithBCommandMoveBackwardOnce stamp: 'am 5/13/2023 15:49:35'!
+ERROR!
+
+!testRun: #MarsRoverTests #test07MarsRoverAtAnyPositionWithTwoBCommandMoveBackwardTwice stamp: 'am 5/13/2023 15:49:35'!
+ERROR!
+
+!testRun: #MarsRoverTests #test08MarsRoverAtAnyPositionWithThreeBCommandMoveBackwardThreeTimes stamp: 'am 5/13/2023 15:49:35'!
+ERROR!
+
+!testRun: #MarsRoverTests #test08MarsRoverAtAnyPositionWithTwoBCommandMoveBackwardTwice stamp: 'am 5/13/2023 15:49:35'!
+ERROR!
+
+!testRun: #MarsRoverTests #test01MarsRoverStartAtaPositionAndFacingAcardinalPoint stamp: 'am 5/13/2023 15:50:08'!
+PASSED!
+
+!testRun: #MarsRoverTests #test02MarsRoverWithEmptyCommandsMoveStayTheSame stamp: 'am 5/13/2023 15:50:08'!
+ERROR!
+
+!testRun: #MarsRoverTests #test03MarsRoverAtAPositionWithFCommandMoveFowardOnce stamp: 'am 5/13/2023 15:50:08'!
+PASSED!
+
+!testRun: #MarsRoverTests #test04MarsRoverAtAPositionWithBCommandMoveBackwardOnce stamp: 'am 5/13/2023 15:50:08'!
+ERROR!
+
+!testRun: #MarsRoverTests #test05MarsRoverAtAnyPositionWithFCommandMoveFowardOnce stamp: 'am 5/13/2023 15:50:08'!
+PASSED!
+
+!testRun: #MarsRoverTests #test06MarsRoverAtAnyPositionWithBCommandMoveBackwardOnce stamp: 'am 5/13/2023 15:50:08'!
+ERROR!
+
+!testRun: #MarsRoverTests #test07MarsRoverAtAnyPositionWithTwoBCommandMoveBackwardTwice stamp: 'am 5/13/2023 15:50:08'!
+ERROR!
+
+!testRun: #MarsRoverTests #test08MarsRoverAtAnyPositionWithThreeBCommandMoveBackwardThreeTimes stamp: 'am 5/13/2023 15:50:08'!
+ERROR!
+
+!testRun: #MarsRoverTests #test08MarsRoverAtAnyPositionWithTwoBCommandMoveBackwardTwice stamp: 'am 5/13/2023 15:50:08'!
+ERROR!
+
+!testRun: #MarsRoverTests #test02MarsRoverWithEmptyCommandsMoveStayTheSame stamp: 'am 5/13/2023 15:50:10'!
+ERROR!
+!MarsRover methodsFor: 'move' stamp: 'am 5/13/2023 15:50:36' prior: 50605197!
+move
+	 | index |
+	
+	moves = 'f' 
+		ifTrue: [
+			xyPosition := xyPosition + (1@0).
+		] ifFalse: [
+			index:=1.
+			[index <= moves size] whileTrue:[
+				xyPosition := xyPosition - (1@0).
+				index:= index + 1.
+				] 
+		]! !
+
+!testRun: #MarsRoverTests #test01MarsRoverStartAtaPositionAndFacingAcardinalPoint stamp: 'am 5/13/2023 15:50:38'!
+PASSED!
+
+!testRun: #MarsRoverTests #test02MarsRoverWithEmptyCommandsMoveStayTheSame stamp: 'am 5/13/2023 15:50:38'!
+PASSED!
+
+!testRun: #MarsRoverTests #test03MarsRoverAtAPositionWithFCommandMoveFowardOnce stamp: 'am 5/13/2023 15:50:38'!
+PASSED!
+
+!testRun: #MarsRoverTests #test04MarsRoverAtAPositionWithBCommandMoveBackwardOnce stamp: 'am 5/13/2023 15:50:38'!
+PASSED!
+
+!testRun: #MarsRoverTests #test05MarsRoverAtAnyPositionWithFCommandMoveFowardOnce stamp: 'am 5/13/2023 15:50:38'!
+PASSED!
+
+!testRun: #MarsRoverTests #test06MarsRoverAtAnyPositionWithBCommandMoveBackwardOnce stamp: 'am 5/13/2023 15:50:38'!
+PASSED!
+
+!testRun: #MarsRoverTests #test07MarsRoverAtAnyPositionWithTwoBCommandMoveBackwardTwice stamp: 'am 5/13/2023 15:50:38'!
+PASSED!
+
+!testRun: #MarsRoverTests #test08MarsRoverAtAnyPositionWithThreeBCommandMoveBackwardThreeTimes stamp: 'am 5/13/2023 15:50:38'!
+PASSED!
+
+!testRun: #MarsRoverTests #test08MarsRoverAtAnyPositionWithTwoBCommandMoveBackwardTwice stamp: 'am 5/13/2023 15:50:38'!
+PASSED!
+!MarsRoverTests methodsFor: 'as yet unclassified' stamp: 'am 5/13/2023 15:51:07'!
+test09MarsRoverAtAnyPositionWithThreeBCommandMoveBackwardThreeTimes
+	|aMarsRover|
+	
+	aMarsRover:= MarsRover startAt: 1@0 facing: #North.
+	aMarsRover reciveComands: 'bbb'.
+	aMarsRover move.
+	self assert: (aMarsRover isAt: -2@0 facing: #North).! !
+
+!methodRemoval: MarsRoverTests #test08MarsRoverAtAnyPositionWithThreeBCommandMoveBackwardThreeTimes stamp: 'am 5/13/2023 15:51:07'!
+test08MarsRoverAtAnyPositionWithThreeBCommandMoveBackwardThreeTimes
+	|aMarsRover|
+	
+	aMarsRover:= MarsRover startAt: 1@0 facing: #North.
+	aMarsRover reciveComands: 'bbb'.
+	aMarsRover move.
+	self assert: (aMarsRover isAt: -2@0 facing: #North).!
+!MarsRoverTests methodsFor: 'as yet unclassified' stamp: 'am 5/13/2023 15:51:44'!
+test08MarsRoverAtAnyPositionWithTwoFCommandMoveFowardTwice
+	|aMarsRover|
+	
+	aMarsRover:= MarsRover startAt: 1@0 facing: #North.
+	aMarsRover reciveComands: 'bb'.
+	aMarsRover move.
+	self assert: (aMarsRover isAt: -1@0 facing: #North).! !
+!MarsRoverTests methodsFor: 'as yet unclassified' stamp: 'am 5/13/2023 15:51:57'!
+test10MarsRoverAtAnyPositionWithTwoFCommandMoveFowardTwice
+	|aMarsRover|
+	
+	aMarsRover:= MarsRover startAt: 1@0 facing: #North.
+	aMarsRover reciveComands: 'bb'.
+	aMarsRover move.
+	self assert: (aMarsRover isAt: -1@0 facing: #North).! !
+
+!methodRemoval: MarsRoverTests #test08MarsRoverAtAnyPositionWithTwoFCommandMoveFowardTwice stamp: 'am 5/13/2023 15:51:57'!
+test08MarsRoverAtAnyPositionWithTwoFCommandMoveFowardTwice
+	|aMarsRover|
+	
+	aMarsRover:= MarsRover startAt: 1@0 facing: #North.
+	aMarsRover reciveComands: 'bb'.
+	aMarsRover move.
+	self assert: (aMarsRover isAt: -1@0 facing: #North).!
+!MarsRoverTests methodsFor: 'as yet unclassified' stamp: 'am 5/13/2023 15:52:17' prior: 50605358!
+test10MarsRoverAtAnyPositionWithTwoFCommandMoveFowardTwice
+	|aMarsRover|
+	
+	aMarsRover:= MarsRover startAt: 1@0 facing: #North.
+	aMarsRover reciveComands: 'ff'.
+	aMarsRover move.
+	self assert: (aMarsRover isAt: 3@0 facing: #North).! !
+
+!testRun: #MarsRoverTests #test10MarsRoverAtAnyPositionWithTwoFCommandMoveFowardTwice stamp: 'am 5/13/2023 15:52:20'!
+FAILURE!
+!MarsRover methodsFor: 'move' stamp: 'am 5/13/2023 15:54:10' prior: 50605280!
+move
+	 | index |
+	
+	moves = 'f' 
+		ifTrue: [
+			xyPosition := xyPosition + (1@0).
+		] ifFalse: [
+			moves = 'ff' ifTrue: [
+					xyPosition := xyPosition + (1@0) + (1@0).
+				] ifFalse:[
+			index:=1.
+			[index <= moves size] whileTrue:[
+				xyPosition := xyPosition - (1@0).
+				index:= index + 1.
+				]
+			] 
+		]! !
+
+!testRun: #MarsRoverTests #test01MarsRoverStartAtaPositionAndFacingAcardinalPoint stamp: 'am 5/13/2023 15:54:12'!
+PASSED!
+
+!testRun: #MarsRoverTests #test02MarsRoverWithEmptyCommandsMoveStayTheSame stamp: 'am 5/13/2023 15:54:12'!
+PASSED!
+
+!testRun: #MarsRoverTests #test03MarsRoverAtAPositionWithFCommandMoveFowardOnce stamp: 'am 5/13/2023 15:54:12'!
+PASSED!
+
+!testRun: #MarsRoverTests #test04MarsRoverAtAPositionWithBCommandMoveBackwardOnce stamp: 'am 5/13/2023 15:54:12'!
+PASSED!
+
+!testRun: #MarsRoverTests #test05MarsRoverAtAnyPositionWithFCommandMoveFowardOnce stamp: 'am 5/13/2023 15:54:12'!
+PASSED!
+
+!testRun: #MarsRoverTests #test06MarsRoverAtAnyPositionWithBCommandMoveBackwardOnce stamp: 'am 5/13/2023 15:54:12'!
+PASSED!
+
+!testRun: #MarsRoverTests #test07MarsRoverAtAnyPositionWithTwoBCommandMoveBackwardTwice stamp: 'am 5/13/2023 15:54:12'!
+PASSED!
+
+!testRun: #MarsRoverTests #test08MarsRoverAtAnyPositionWithTwoBCommandMoveBackwardTwice stamp: 'am 5/13/2023 15:54:12'!
+PASSED!
+
+!testRun: #MarsRoverTests #test09MarsRoverAtAnyPositionWithThreeBCommandMoveBackwardThreeTimes stamp: 'am 5/13/2023 15:54:12'!
+PASSED!
+
+!testRun: #MarsRoverTests #test10MarsRoverAtAnyPositionWithTwoFCommandMoveFowardTwice stamp: 'am 5/13/2023 15:54:12'!
+PASSED!
+!MarsRoverTests methodsFor: 'as yet unclassified' stamp: 'am 5/13/2023 15:54:50'!
+test11MarsRoverAtAnyPositionWithThreeFCommandMoveFowardThreeTimes
+	|aMarsRover|
+	
+	aMarsRover:= MarsRover startAt: 1@0 facing: #North.
+	aMarsRover reciveComands: 'fff'.
+	aMarsRover move.
+	self assert: (aMarsRover isAt: 4@0 facing: #North).! !
+
+!testRun: #MarsRoverTests #test11MarsRoverAtAnyPositionWithThreeFCommandMoveFowardThreeTimes stamp: 'am 5/13/2023 15:54:52'!
+FAILURE!
+!MarsRover methodsFor: 'move' stamp: 'am 5/13/2023 15:58:16' prior: 50605394!
+move
+	 | index |
+	
+	moves = 'f' 
+		ifTrue: [
+			xyPosition := xyPosition + (1@0).
+		] ifFalse: [
+			moves = 'ff' ifTrue: [
+						xyPosition := xyPosition + (1@0) + (1@0).
+					] ifFalse:[
+						moves = 'fff' ifTrue: [
+									xyPosition := xyPosition + (1@0) + (1@0)  + (1@0).
+								] ifFalse:[
+									index:=1.
+									[index <= moves size] whileTrue:[
+										xyPosition := xyPosition - (1@0).
+										index:= index + 1.
+										]
+									] 
+								]
+		]! !
+
+!testRun: #MarsRoverTests #test01MarsRoverStartAtaPositionAndFacingAcardinalPoint stamp: 'am 5/13/2023 15:58:18'!
+PASSED!
+
+!testRun: #MarsRoverTests #test02MarsRoverWithEmptyCommandsMoveStayTheSame stamp: 'am 5/13/2023 15:58:18'!
+PASSED!
+
+!testRun: #MarsRoverTests #test03MarsRoverAtAPositionWithFCommandMoveFowardOnce stamp: 'am 5/13/2023 15:58:18'!
+PASSED!
+
+!testRun: #MarsRoverTests #test04MarsRoverAtAPositionWithBCommandMoveBackwardOnce stamp: 'am 5/13/2023 15:58:18'!
+PASSED!
+
+!testRun: #MarsRoverTests #test05MarsRoverAtAnyPositionWithFCommandMoveFowardOnce stamp: 'am 5/13/2023 15:58:18'!
+PASSED!
+
+!testRun: #MarsRoverTests #test06MarsRoverAtAnyPositionWithBCommandMoveBackwardOnce stamp: 'am 5/13/2023 15:58:18'!
+PASSED!
+
+!testRun: #MarsRoverTests #test07MarsRoverAtAnyPositionWithTwoBCommandMoveBackwardTwice stamp: 'am 5/13/2023 15:58:18'!
+PASSED!
+
+!testRun: #MarsRoverTests #test08MarsRoverAtAnyPositionWithTwoBCommandMoveBackwardTwice stamp: 'am 5/13/2023 15:58:18'!
+PASSED!
+
+!testRun: #MarsRoverTests #test09MarsRoverAtAnyPositionWithThreeBCommandMoveBackwardThreeTimes stamp: 'am 5/13/2023 15:58:18'!
+PASSED!
+
+!testRun: #MarsRoverTests #test10MarsRoverAtAnyPositionWithTwoFCommandMoveFowardTwice stamp: 'am 5/13/2023 15:58:18'!
+PASSED!
+
+!testRun: #MarsRoverTests #test11MarsRoverAtAnyPositionWithThreeFCommandMoveFowardThreeTimes stamp: 'am 5/13/2023 15:58:18'!
+PASSED!
+!MarsRover methodsFor: 'move' stamp: 'am 5/13/2023 16:03:56' prior: 50605461!
+move
+	 | index |
+	index:=1.
+	(moves at: 1) = $f ifTrue:[
+						[index <= moves size] whileTrue:[
+						xyPosition := xyPosition + (1@0).
+						index:= index + 1.
+						]
+						] ifFalse: [
+							[index <= moves size] whileTrue:[
+								xyPosition := xyPosition - (1@0).
+								index:= index + 1.
+								]
+						] ! !
+
+!testRun: #MarsRoverTests #test01MarsRoverStartAtaPositionAndFacingAcardinalPoint stamp: 'am 5/13/2023 16:03:58'!
+PASSED!
+
+!testRun: #MarsRoverTests #test02MarsRoverWithEmptyCommandsMoveStayTheSame stamp: 'am 5/13/2023 16:03:58'!
+ERROR!
+
+!testRun: #MarsRoverTests #test03MarsRoverAtAPositionWithFCommandMoveFowardOnce stamp: 'am 5/13/2023 16:03:58'!
+PASSED!
+
+!testRun: #MarsRoverTests #test04MarsRoverAtAPositionWithBCommandMoveBackwardOnce stamp: 'am 5/13/2023 16:03:58'!
+PASSED!
+
+!testRun: #MarsRoverTests #test05MarsRoverAtAnyPositionWithFCommandMoveFowardOnce stamp: 'am 5/13/2023 16:03:58'!
+PASSED!
+
+!testRun: #MarsRoverTests #test06MarsRoverAtAnyPositionWithBCommandMoveBackwardOnce stamp: 'am 5/13/2023 16:03:58'!
+PASSED!
+
+!testRun: #MarsRoverTests #test07MarsRoverAtAnyPositionWithTwoBCommandMoveBackwardTwice stamp: 'am 5/13/2023 16:03:58'!
+PASSED!
+
+!testRun: #MarsRoverTests #test08MarsRoverAtAnyPositionWithTwoBCommandMoveBackwardTwice stamp: 'am 5/13/2023 16:03:58'!
+PASSED!
+
+!testRun: #MarsRoverTests #test09MarsRoverAtAnyPositionWithThreeBCommandMoveBackwardThreeTimes stamp: 'am 5/13/2023 16:03:58'!
+PASSED!
+
+!testRun: #MarsRoverTests #test10MarsRoverAtAnyPositionWithTwoFCommandMoveFowardTwice stamp: 'am 5/13/2023 16:03:58'!
+PASSED!
+
+!testRun: #MarsRoverTests #test11MarsRoverAtAnyPositionWithThreeFCommandMoveFowardThreeTimes stamp: 'am 5/13/2023 16:03:58'!
+PASSED!
+
+!testRun: #MarsRoverTests #test02MarsRoverWithEmptyCommandsMoveStayTheSame stamp: 'am 5/13/2023 16:03:58'!
+ERROR!
+!MarsRover methodsFor: 'move' stamp: 'am 5/13/2023 16:05:39' prior: 50605522!
+move
+	 | index |
+	index:=1.
+	(moves at: 1) = $f ifTrue:[
+						[index <= moves size] whileTrue:[
+							xyPosition := xyPosition + (1@0).
+							index:= index + 1.
+						]
+				].
+	(moves at: 1) = $b ifTrue:[
+						[index <= moves size] whileTrue:[
+							xyPosition := xyPosition - (1@0).
+							index:= index + 1.
+						]
+				]. ! !
+
+!testRun: #MarsRoverTests #test01MarsRoverStartAtaPositionAndFacingAcardinalPoint stamp: 'am 5/13/2023 16:05:43'!
+PASSED!
+
+!testRun: #MarsRoverTests #test02MarsRoverWithEmptyCommandsMoveStayTheSame stamp: 'am 5/13/2023 16:05:43'!
+ERROR!
+
+!testRun: #MarsRoverTests #test03MarsRoverAtAPositionWithFCommandMoveFowardOnce stamp: 'am 5/13/2023 16:05:43'!
+PASSED!
+
+!testRun: #MarsRoverTests #test04MarsRoverAtAPositionWithBCommandMoveBackwardOnce stamp: 'am 5/13/2023 16:05:43'!
+PASSED!
+
+!testRun: #MarsRoverTests #test05MarsRoverAtAnyPositionWithFCommandMoveFowardOnce stamp: 'am 5/13/2023 16:05:43'!
+PASSED!
+
+!testRun: #MarsRoverTests #test06MarsRoverAtAnyPositionWithBCommandMoveBackwardOnce stamp: 'am 5/13/2023 16:05:43'!
+PASSED!
+
+!testRun: #MarsRoverTests #test07MarsRoverAtAnyPositionWithTwoBCommandMoveBackwardTwice stamp: 'am 5/13/2023 16:05:43'!
+PASSED!
+
+!testRun: #MarsRoverTests #test08MarsRoverAtAnyPositionWithTwoBCommandMoveBackwardTwice stamp: 'am 5/13/2023 16:05:43'!
+PASSED!
+
+!testRun: #MarsRoverTests #test09MarsRoverAtAnyPositionWithThreeBCommandMoveBackwardThreeTimes stamp: 'am 5/13/2023 16:05:43'!
+PASSED!
+
+!testRun: #MarsRoverTests #test10MarsRoverAtAnyPositionWithTwoFCommandMoveFowardTwice stamp: 'am 5/13/2023 16:05:43'!
+PASSED!
+
+!testRun: #MarsRoverTests #test11MarsRoverAtAnyPositionWithThreeFCommandMoveFowardThreeTimes stamp: 'am 5/13/2023 16:05:43'!
+PASSED!
+
+!testRun: #MarsRoverTests #test02MarsRoverWithEmptyCommandsMoveStayTheSame stamp: 'am 5/13/2023 16:05:43'!
+ERROR!
+!MarsRover methodsFor: 'move' stamp: 'am 5/13/2023 16:06:37' prior: 50605582!
+move
+	 | index |
+	index:=1.
+	moves size < 1 ifTrue:[^self].
+	(moves at: 1) = $f ifTrue:[
+						[index <= moves size] whileTrue:[
+							xyPosition := xyPosition + (1@0).
+							index:= index + 1.
+						]
+				].
+	(moves at: 1) = $b ifTrue:[
+						[index <= moves size] whileTrue:[
+							xyPosition := xyPosition - (1@0).
+							index:= index + 1.
+						]
+				]. ! !
+
+!testRun: #MarsRoverTests #test01MarsRoverStartAtaPositionAndFacingAcardinalPoint stamp: 'am 5/13/2023 16:06:41'!
+PASSED!
+
+!testRun: #MarsRoverTests #test02MarsRoverWithEmptyCommandsMoveStayTheSame stamp: 'am 5/13/2023 16:06:41'!
+PASSED!
+
+!testRun: #MarsRoverTests #test03MarsRoverAtAPositionWithFCommandMoveFowardOnce stamp: 'am 5/13/2023 16:06:41'!
+PASSED!
+
+!testRun: #MarsRoverTests #test04MarsRoverAtAPositionWithBCommandMoveBackwardOnce stamp: 'am 5/13/2023 16:06:41'!
+PASSED!
+
+!testRun: #MarsRoverTests #test05MarsRoverAtAnyPositionWithFCommandMoveFowardOnce stamp: 'am 5/13/2023 16:06:41'!
+PASSED!
+
+!testRun: #MarsRoverTests #test06MarsRoverAtAnyPositionWithBCommandMoveBackwardOnce stamp: 'am 5/13/2023 16:06:41'!
+PASSED!
+
+!testRun: #MarsRoverTests #test07MarsRoverAtAnyPositionWithTwoBCommandMoveBackwardTwice stamp: 'am 5/13/2023 16:06:41'!
+PASSED!
+
+!testRun: #MarsRoverTests #test08MarsRoverAtAnyPositionWithTwoBCommandMoveBackwardTwice stamp: 'am 5/13/2023 16:06:41'!
+PASSED!
+
+!testRun: #MarsRoverTests #test09MarsRoverAtAnyPositionWithThreeBCommandMoveBackwardThreeTimes stamp: 'am 5/13/2023 16:06:41'!
+PASSED!
+
+!testRun: #MarsRoverTests #test10MarsRoverAtAnyPositionWithTwoFCommandMoveFowardTwice stamp: 'am 5/13/2023 16:06:41'!
+PASSED!
+
+!testRun: #MarsRoverTests #test11MarsRoverAtAnyPositionWithThreeFCommandMoveFowardThreeTimes stamp: 'am 5/13/2023 16:06:41'!
+PASSED!
+!MarsRoverTests methodsFor: 'as yet unclassified' stamp: 'am 5/13/2023 16:07:24'!
+test11MarsRoverAtAnyPositionWithManyFCommandMoveFowardManyTimes
+	|aMarsRover|
+	
+	aMarsRover:= MarsRover startAt: 1@0 facing: #North.
+	aMarsRover reciveComands: 'fff'.
+	aMarsRover move.
+	self assert: (aMarsRover isAt: 4@0 facing: #North).! !
+
+!methodRemoval: MarsRoverTests #test11MarsRoverAtAnyPositionWithThreeFCommandMoveFowardThreeTimes stamp: 'am 5/13/2023 16:07:24'!
+test11MarsRoverAtAnyPositionWithThreeFCommandMoveFowardThreeTimes
+	|aMarsRover|
+	
+	aMarsRover:= MarsRover startAt: 1@0 facing: #North.
+	aMarsRover reciveComands: 'fff'.
+	aMarsRover move.
+	self assert: (aMarsRover isAt: 4@0 facing: #North).!
+!MarsRoverTests methodsFor: 'as yet unclassified' stamp: 'am 5/13/2023 16:07:44'!
+test09MarsRoverAtAnyPositionWithManyBCommandMoveBackwardManyTimes
+	|aMarsRover|
+	
+	aMarsRover:= MarsRover startAt: 1@0 facing: #North.
+	aMarsRover reciveComands: 'bbb'.
+	aMarsRover move.
+	self assert: (aMarsRover isAt: -2@0 facing: #North).! !
+
+!methodRemoval: MarsRoverTests #test09MarsRoverAtAnyPositionWithThreeBCommandMoveBackwardThreeTimes stamp: 'am 5/13/2023 16:07:44'!
+test09MarsRoverAtAnyPositionWithThreeBCommandMoveBackwardThreeTimes
+	|aMarsRover|
+	
+	aMarsRover:= MarsRover startAt: 1@0 facing: #North.
+	aMarsRover reciveComands: 'bbb'.
+	aMarsRover move.
+	self assert: (aMarsRover isAt: -2@0 facing: #North).!
+!MarsRoverTests methodsFor: 'as yet unclassified' stamp: 'am 5/13/2023 16:09:25'!
+test11MarsRoverAtAnyPositionWithFBCommandsMovesFrontAndBackOnce
+	|aMarsRover|
+	
+	aMarsRover:= MarsRover startAt: 1@0 facing: #North.
+	aMarsRover reciveComands: 'fb'.
+	aMarsRover move.
+	self assert: (aMarsRover isAt: 1@0 facing: #North).! !
+!MarsRoverTests methodsFor: 'as yet unclassified' stamp: 'am 5/13/2023 16:09:34'!
+test12MarsRoverAtAnyPositionWithFBCommandsMovesFrontAndBackOnce
+	|aMarsRover|
+	
+	aMarsRover:= MarsRover startAt: 1@0 facing: #North.
+	aMarsRover reciveComands: 'fb'.
+	aMarsRover move.
+	self assert: (aMarsRover isAt: 1@0 facing: #North).! !
+
+!methodRemoval: MarsRoverTests #test11MarsRoverAtAnyPositionWithFBCommandsMovesFrontAndBackOnce stamp: 'am 5/13/2023 16:09:37'!
+test11MarsRoverAtAnyPositionWithFBCommandsMovesFrontAndBackOnce
+	|aMarsRover|
+	
+	aMarsRover:= MarsRover startAt: 1@0 facing: #North.
+	aMarsRover reciveComands: 'fb'.
+	aMarsRover move.
+	self assert: (aMarsRover isAt: 1@0 facing: #North).!
+
+!testRun: #MarsRoverTests #test12MarsRoverAtAnyPositionWithFBCommandsMovesFrontAndBackOnce stamp: 'am 5/13/2023 16:12:36'!
+FAILURE!
+!MarsRover methodsFor: 'move' stamp: 'am 5/13/2023 16:13:13' prior: 50605642!
+move
+	 | index |
+	index:=1.
+	moves size < 1 ifTrue:[^self].
+	
+	[index <= moves size] whileTrue:[
+		xyPosition := xyPosition + (1@0).
+		index:= index + 1.
+	]. ! !
+
+!testRun: #MarsRoverTests #test01MarsRoverStartAtaPositionAndFacingAcardinalPoint stamp: 'am 5/13/2023 16:13:16'!
+PASSED!
+
+!testRun: #MarsRoverTests #test02MarsRoverWithEmptyCommandsMoveStayTheSame stamp: 'am 5/13/2023 16:13:16'!
+PASSED!
+
+!testRun: #MarsRoverTests #test03MarsRoverAtAPositionWithFCommandMoveFowardOnce stamp: 'am 5/13/2023 16:13:16'!
+PASSED!
+
+!testRun: #MarsRoverTests #test04MarsRoverAtAPositionWithBCommandMoveBackwardOnce stamp: 'am 5/13/2023 16:13:16'!
+FAILURE!
+
+!testRun: #MarsRoverTests #test05MarsRoverAtAnyPositionWithFCommandMoveFowardOnce stamp: 'am 5/13/2023 16:13:16'!
+PASSED!
+
+!testRun: #MarsRoverTests #test06MarsRoverAtAnyPositionWithBCommandMoveBackwardOnce stamp: 'am 5/13/2023 16:13:16'!
+FAILURE!
+
+!testRun: #MarsRoverTests #test07MarsRoverAtAnyPositionWithTwoBCommandMoveBackwardTwice stamp: 'am 5/13/2023 16:13:16'!
+FAILURE!
+
+!testRun: #MarsRoverTests #test08MarsRoverAtAnyPositionWithTwoBCommandMoveBackwardTwice stamp: 'am 5/13/2023 16:13:16'!
+FAILURE!
+
+!testRun: #MarsRoverTests #test09MarsRoverAtAnyPositionWithManyBCommandMoveBackwardManyTimes stamp: 'am 5/13/2023 16:13:16'!
+FAILURE!
+
+!testRun: #MarsRoverTests #test10MarsRoverAtAnyPositionWithTwoFCommandMoveFowardTwice stamp: 'am 5/13/2023 16:13:16'!
+PASSED!
+
+!testRun: #MarsRoverTests #test11MarsRoverAtAnyPositionWithManyFCommandMoveFowardManyTimes stamp: 'am 5/13/2023 16:13:16'!
+PASSED!
+
+!testRun: #MarsRoverTests #test12MarsRoverAtAnyPositionWithFBCommandsMovesFrontAndBackOnce stamp: 'am 5/13/2023 16:13:16'!
+FAILURE!
+!MarsRover methodsFor: 'move' stamp: 'am 5/13/2023 16:16:11' prior: 50605781!
+move
+	 | index aCommand |
+	index:=1.
+	moves size < 1 ifTrue:[^self].
+	
+	[index <= moves size] whileTrue:[
+		aCommand := moves at: index.
+		aCommand = $b  ifTrue:[
+				xyPosition := xyPosition - (1@0).
+			] 
+			ifFalse: [
+				xyPosition := xyPosition + (1@0).
+			].
+		index:= index + 1.
+	]. ! !
+
+!testRun: #MarsRoverTests #test01MarsRoverStartAtaPositionAndFacingAcardinalPoint stamp: 'am 5/13/2023 16:16:13'!
+PASSED!
+
+!testRun: #MarsRoverTests #test02MarsRoverWithEmptyCommandsMoveStayTheSame stamp: 'am 5/13/2023 16:16:13'!
+PASSED!
+
+!testRun: #MarsRoverTests #test03MarsRoverAtAPositionWithFCommandMoveFowardOnce stamp: 'am 5/13/2023 16:16:13'!
+PASSED!
+
+!testRun: #MarsRoverTests #test04MarsRoverAtAPositionWithBCommandMoveBackwardOnce stamp: 'am 5/13/2023 16:16:13'!
+PASSED!
+
+!testRun: #MarsRoverTests #test05MarsRoverAtAnyPositionWithFCommandMoveFowardOnce stamp: 'am 5/13/2023 16:16:13'!
+PASSED!
+
+!testRun: #MarsRoverTests #test06MarsRoverAtAnyPositionWithBCommandMoveBackwardOnce stamp: 'am 5/13/2023 16:16:13'!
+PASSED!
+
+!testRun: #MarsRoverTests #test07MarsRoverAtAnyPositionWithTwoBCommandMoveBackwardTwice stamp: 'am 5/13/2023 16:16:13'!
+PASSED!
+
+!testRun: #MarsRoverTests #test08MarsRoverAtAnyPositionWithTwoBCommandMoveBackwardTwice stamp: 'am 5/13/2023 16:16:13'!
+PASSED!
+
+!testRun: #MarsRoverTests #test09MarsRoverAtAnyPositionWithManyBCommandMoveBackwardManyTimes stamp: 'am 5/13/2023 16:16:13'!
+PASSED!
+
+!testRun: #MarsRoverTests #test10MarsRoverAtAnyPositionWithTwoFCommandMoveFowardTwice stamp: 'am 5/13/2023 16:16:13'!
+PASSED!
+
+!testRun: #MarsRoverTests #test11MarsRoverAtAnyPositionWithManyFCommandMoveFowardManyTimes stamp: 'am 5/13/2023 16:16:13'!
+PASSED!
+
+!testRun: #MarsRoverTests #test12MarsRoverAtAnyPositionWithFBCommandsMovesFrontAndBackOnce stamp: 'am 5/13/2023 16:16:13'!
+PASSED!
+!MarsRoverTests methodsFor: 'as yet unclassified' stamp: 'am 5/13/2023 16:16:55'!
+test12MarsRoverAtAnyPositionWithFBCommandsMovesFrontAndBackManyTimes
+	|aMarsRover|
+	
+	aMarsRover:= MarsRover startAt: 1@0 facing: #North.
+	aMarsRover reciveComands: 'fb'.
+	aMarsRover move.
+	self assert: (aMarsRover isAt: 1@0 facing: #North).! !
+
+!methodRemoval: MarsRoverTests #test12MarsRoverAtAnyPositionWithFBCommandsMovesFrontAndBackOnce stamp: 'am 5/13/2023 16:16:55'!
+test12MarsRoverAtAnyPositionWithFBCommandsMovesFrontAndBackOnce
+	|aMarsRover|
+	
+	aMarsRover:= MarsRover startAt: 1@0 facing: #North.
+	aMarsRover reciveComands: 'fb'.
+	aMarsRover move.
+	self assert: (aMarsRover isAt: 1@0 facing: #North).!
+!MarsRoverTests methodsFor: 'as yet unclassified' stamp: 'am 5/13/2023 16:17:05' prior: 50605896!
+test12MarsRoverAtAnyPositionWithFBCommandsMovesFrontAndBackManyTimes
+	|aMarsRover|
+	
+	aMarsRover:= MarsRover startAt: 1@0 facing: #North.
+	aMarsRover reciveComands: 'fbbffb'.
+	aMarsRover move.
+	self assert: (aMarsRover isAt: 1@0 facing: #North).! !
+
+!testRun: #MarsRoverTests #test12MarsRoverAtAnyPositionWithFBCommandsMovesFrontAndBackManyTimes stamp: 'am 5/13/2023 16:17:07'!
+PASSED!
+
+!testRun: #MarsRoverTests #test01MarsRoverStartAtaPositionAndFacingAcardinalPoint stamp: 'am 5/13/2023 16:17:07'!
+PASSED!
+
+!testRun: #MarsRoverTests #test02MarsRoverWithEmptyCommandsMoveStayTheSame stamp: 'am 5/13/2023 16:17:07'!
+PASSED!
+
+!testRun: #MarsRoverTests #test03MarsRoverAtAPositionWithFCommandMoveFowardOnce stamp: 'am 5/13/2023 16:17:07'!
+PASSED!
+
+!testRun: #MarsRoverTests #test04MarsRoverAtAPositionWithBCommandMoveBackwardOnce stamp: 'am 5/13/2023 16:17:07'!
+PASSED!
+
+!testRun: #MarsRoverTests #test05MarsRoverAtAnyPositionWithFCommandMoveFowardOnce stamp: 'am 5/13/2023 16:17:07'!
+PASSED!
+
+!testRun: #MarsRoverTests #test06MarsRoverAtAnyPositionWithBCommandMoveBackwardOnce stamp: 'am 5/13/2023 16:17:07'!
+PASSED!
+
+!testRun: #MarsRoverTests #test07MarsRoverAtAnyPositionWithTwoBCommandMoveBackwardTwice stamp: 'am 5/13/2023 16:17:07'!
+PASSED!
+
+!testRun: #MarsRoverTests #test08MarsRoverAtAnyPositionWithTwoBCommandMoveBackwardTwice stamp: 'am 5/13/2023 16:17:07'!
+PASSED!
+
+!testRun: #MarsRoverTests #test09MarsRoverAtAnyPositionWithManyBCommandMoveBackwardManyTimes stamp: 'am 5/13/2023 16:17:07'!
+PASSED!
+
+!testRun: #MarsRoverTests #test10MarsRoverAtAnyPositionWithTwoFCommandMoveFowardTwice stamp: 'am 5/13/2023 16:17:07'!
+PASSED!
+
+!testRun: #MarsRoverTests #test11MarsRoverAtAnyPositionWithManyFCommandMoveFowardManyTimes stamp: 'am 5/13/2023 16:17:07'!
+PASSED!
+
+!testRun: #MarsRoverTests #test12MarsRoverAtAnyPositionWithFBCommandsMovesFrontAndBackManyTimes stamp: 'am 5/13/2023 16:17:07'!
+PASSED!
+
+----SNAPSHOT----(13 May 2023 16:18:50) CuisUniversity-5706.image priorSource: 8713034!
+
+----QUIT----(13 May 2023 16:23:36) CuisUniversity-5706.image priorSource: 8778576!
