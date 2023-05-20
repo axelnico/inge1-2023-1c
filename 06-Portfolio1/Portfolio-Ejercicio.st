@@ -1,11 +1,11 @@
-!classDefinition: #ReceptiveAccountTest category: 'Portfolio-Ejercicio'!
-TestCase subclass: #ReceptiveAccountTest
+!classDefinition: #BacklogTest category: 'Portfolio-Ejercicio'!
+TestCase subclass: #BacklogTest
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Portfolio-Ejercicio'!
 
-!ReceptiveAccountTest methodsFor: 'tests' stamp: 'NR 11/2/2020 17:13:44'!
+!BacklogTest methodsFor: 'tests' stamp: 'NR 11/2/2020 17:13:44'!
 test01ReceptiveAccountHaveZeroAsBalanceWhenCreated 
 
 	| account |
@@ -15,7 +15,7 @@ test01ReceptiveAccountHaveZeroAsBalanceWhenCreated
 	self assert: 0 equals: account balance.
 ! !
 
-!ReceptiveAccountTest methodsFor: 'tests' stamp: 'NR 11/2/2020 17:13:48'!
+!BacklogTest methodsFor: 'tests' stamp: 'NR 11/2/2020 17:13:48'!
 test02DepositIncreasesBalanceOnTransactionValue 
 
 	| account |
@@ -26,7 +26,7 @@ test02DepositIncreasesBalanceOnTransactionValue
 	self assert: 100 equals: account balance.
 ! !
 
-!ReceptiveAccountTest methodsFor: 'tests' stamp: 'NR 11/2/2020 17:13:52'!
+!BacklogTest methodsFor: 'tests' stamp: 'NR 11/2/2020 17:13:52'!
 test03WithdrawDecreasesBalanceOnTransactionValue 
 
 	| account |
@@ -38,7 +38,7 @@ test03WithdrawDecreasesBalanceOnTransactionValue
 	self assert: 50 equals: account balance.
 ! !
 
-!ReceptiveAccountTest methodsFor: 'tests' stamp: 'HAW 5/23/2019 15:20:32'!
+!BacklogTest methodsFor: 'tests' stamp: 'HAW 5/23/2019 15:20:32'!
 test04WithdrawValueMustBePositive 
 
 	| account withdrawValue |
@@ -49,7 +49,7 @@ test04WithdrawValueMustBePositive
 	self assert: withdrawValue equals: (Withdraw register: withdrawValue on: account) value
 ! !
 
-!ReceptiveAccountTest methodsFor: 'tests' stamp: 'HAW 5/23/2019 15:20:46'!
+!BacklogTest methodsFor: 'tests' stamp: 'HAW 5/23/2019 15:20:46'!
 test05ReceptiveAccountKnowsRegisteredTransactions 
 
 	| account deposit withdraw |
@@ -62,7 +62,7 @@ test05ReceptiveAccountKnowsRegisteredTransactions
 	self assert: (account hasRegistered: withdraw).
 ! !
 
-!ReceptiveAccountTest methodsFor: 'tests' stamp: 'NR 5/17/2021 17:29:53'!
+!BacklogTest methodsFor: 'tests' stamp: 'NR 5/17/2021 17:29:53'!
 test06ReceptiveAccountDoNotKnowNotRegisteredTransactions
 
 	| deposit withdraw account |
@@ -75,7 +75,7 @@ test06ReceptiveAccountDoNotKnowNotRegisteredTransactions
 	self deny: (account hasRegistered:withdraw).
 ! !
 
-!ReceptiveAccountTest methodsFor: 'tests' stamp: 'NR 11/2/2020 17:14:01'!
+!BacklogTest methodsFor: 'tests' stamp: 'NR 11/2/2020 17:14:01'!
 test07AccountKnowsItsTransactions 
 
 	| account1 deposit1 |
@@ -88,8 +88,8 @@ test07AccountKnowsItsTransactions
 	self assert: (account1 transactions includes: deposit1).
 ! !
 
-!ReceptiveAccountTest methodsFor: 'tests' stamp: 'NB 5/15/2023 19:48:52'!
-test08
+!BacklogTest methodsFor: 'tests' stamp: 'NB 5/20/2023 17:43:53'!
+test08PortfolioBalanceIsZeroWhenCreated
 
 	|  portfolio |
 	
@@ -98,8 +98,8 @@ test08
 	self assert: 0 equals: portfolio balance.
 ! !
 
-!ReceptiveAccountTest methodsFor: 'tests' stamp: 'NB 5/15/2023 19:51:18'!
-test09
+!BacklogTest methodsFor: 'tests' stamp: 'NB 5/20/2023 17:44:43'!
+test09PortfolioBalanceIsZeroWhenAccountHasAZeroBalance
 
 	|  portfolio account |
 	
@@ -110,8 +110,8 @@ test09
 	self assert: 0 equals: portfolio balance.
 ! !
 
-!ReceptiveAccountTest methodsFor: 'tests' stamp: 'NB 5/15/2023 20:59:37'!
-test10
+!BacklogTest methodsFor: 'tests' stamp: 'NB 5/20/2023 17:46:17'!
+test10PortfolioBalanceHasAccountsBalanceWhenOnlyAccountsAreAddedToPortfolio
 
 	|  portfolio account |
 	
@@ -123,8 +123,8 @@ test10
 	self assert: 100 equals: portfolio balance.
 ! !
 
-!ReceptiveAccountTest methodsFor: 'tests' stamp: 'NB 5/15/2023 21:07:50'!
-test11
+!BacklogTest methodsFor: 'tests' stamp: 'NB 5/20/2023 17:47:00'!
+test11PortfolioBalanceIsCorrectWhenPortfoliosAreAddedToPortfolio
 
 	|  portfolio account portfolioIntern accountOfPortfolioIntern|
 	
@@ -141,8 +141,8 @@ test11
 	self assert: 300 equals: portfolio balance.
 ! !
 
-!ReceptiveAccountTest methodsFor: 'tests' stamp: 'NB 5/15/2023 21:14:19'!
-test12
+!BacklogTest methodsFor: 'tests' stamp: 'NB 5/20/2023 17:47:54'!
+test12EmptyPortfolioDoesNotHaveRegisteredTransactions
 
 	|aPortfolio deposit |
 	
@@ -150,8 +150,8 @@ test12
 	deposit := Deposit for: 200.
 	self deny: (aPortfolio hasRegistered: deposit).! !
 
-!ReceptiveAccountTest methodsFor: 'tests' stamp: 'NB 5/15/2023 21:19:58'!
-test13
+!BacklogTest methodsFor: 'tests' stamp: 'NB 5/20/2023 17:49:30'!
+test13PortfolioRegistersTransactionsWhenOnlyAccountsAreAddedToPortfolio
 
 	|aPortfolio deposit aAccout|
 	
@@ -162,8 +162,8 @@ test13
 	deposit := Deposit register: 100 on: aAccout .
 	self assert: (aPortfolio hasRegistered: deposit).! !
 
-!ReceptiveAccountTest methodsFor: 'tests' stamp: 'NB 5/15/2023 21:21:45'!
-test14
+!BacklogTest methodsFor: 'tests' stamp: 'NB 5/20/2023 17:49:58'!
+test14PortfolioCorrectlyRegistersTransactionsWhenPortfoliosAreAddedToPortfolio
 
 	|  portfolio account portfolioIntern accountOfPortfolioIntern deposit depositIntern|
 	
@@ -181,8 +181,8 @@ test14
 	self assert: (portfolio hasRegistered: depositIntern).
 	! !
 
-!ReceptiveAccountTest methodsFor: 'tests' stamp: 'NB 5/15/2023 21:23:07'!
-test15
+!BacklogTest methodsFor: 'tests' stamp: 'NB 5/20/2023 17:50:32'!
+test15EmptyPortfolioDoesNotHaveTransactions
 
 	|  portfolio |
 	
@@ -191,8 +191,8 @@ test15
 	self assert: (portfolio transactions isEmpty).
 	! !
 
-!ReceptiveAccountTest methodsFor: 'tests' stamp: 'NB 5/15/2023 21:24:55'!
-test16
+!BacklogTest methodsFor: 'tests' stamp: 'NB 5/20/2023 17:51:04'!
+test16PortfolioHasAccountTransactionsWhenOnlyAccountsAreAddedToPortfolio
 
 	|  portfolio account deposit|
 	
@@ -205,8 +205,8 @@ test16
 	self assert: (portfolio transactions includes: deposit).
 	! !
 
-!ReceptiveAccountTest methodsFor: 'tests' stamp: 'NB 5/15/2023 21:27:08'!
-test17
+!BacklogTest methodsFor: 'tests' stamp: 'NB 5/20/2023 17:51:36'!
+test17PortolioHasPortfolioTransactionsWhenPortfoliosAreAddedToPortfolio
 
 	|  portfolio account portfolioIntern accountOfPortfolioIntern deposit depositIntern|
 	
@@ -225,8 +225,8 @@ test17
 	self assert: (portfolio transactions includes: depositIntern).
 	! !
 
-!ReceptiveAccountTest methodsFor: 'tests' stamp: 'NB 5/15/2023 21:33:31'!
-test18
+!BacklogTest methodsFor: 'tests' stamp: 'NB 5/20/2023 18:07:04'!
+test18CannotAddTheSameAccountToAPortfolioMoreThanOneTime
 
 	|  portfolio account |
 	
@@ -235,23 +235,165 @@ test18
 	account := ReceptiveAccount new.
 	portfolio add: account.
 	
-	self should: [portfolio add: account] raise: Error  withMessageText: 'No se puede agregar la cuenta porque ya esta'.
+	self should: [portfolio add: account] raise: Error  withMessageText: Portfolio repeatedBackLogAddedError .
 	! !
 
-!ReceptiveAccountTest methodsFor: 'tests' stamp: 'NB 5/15/2023 21:36:47'!
-test19
+!BacklogTest methodsFor: 'tests' stamp: 'NB 5/20/2023 18:07:13'!
+test19CannotAddAnAccountWhenAnotherPortfolioHasTheSameAccount
 
 	|  portfolio account portfolio2|
 	
 	
 	portfolio := Portfolio new.	
 	account := ReceptiveAccount new.
+	
+	portfolio2 := Portfolio new.	
+	portfolio2 add: account.
+	
+	portfolio add: portfolio2.
+	
+	self should: [portfolio add: account] raise: Error  withMessageText: Portfolio repeatedBackLogAddedError.
+	! !
+
+!BacklogTest methodsFor: 'tests' stamp: 'NB 5/20/2023 18:07:18'!
+test20CannotAddAPortfolioThatHasAnAccountThatTheActualPortfolioAlreadyHas
+
+	|  portfolio account portfolio2|
+	
+	
+	portfolio := Portfolio new.	
+	account := ReceptiveAccount new.
+	
 	portfolio add: account.
 	
 	portfolio2 := Portfolio new.	
 	portfolio2 add: account.
 	
-	self should: [portfolio add: portfolio2] raise: Error  withMessageText: 'No se puede agregar la cuenta porque ya esta'.
+	
+	self should: [portfolio add: portfolio2] raise: Error  withMessageText: Portfolio repeatedBackLogAddedError.
+	! !
+
+!BacklogTest methodsFor: 'tests' stamp: 'NB 5/20/2023 18:07:24'!
+test21CannotAddAPortfolioThatHasAnAccountThatOtherPortfolioHasAPortfolioWithTheSameAccount
+
+	|  portfolio account portfolio2 portfolio3|
+	
+	
+	portfolio := Portfolio new.	
+	account := ReceptiveAccount new.
+	
+	portfolio2 := Portfolio new.	
+	portfolio2 add: account.
+	
+	portfolio3 := Portfolio new.	
+	portfolio3 add: account.
+	
+	portfolio add: portfolio2 .
+	
+	self should: [portfolio add: portfolio3] raise: Error  withMessageText: Portfolio repeatedBackLogAddedError.
+	! !
+
+!BacklogTest methodsFor: 'tests' stamp: 'NB 5/20/2023 18:07:29'!
+test22CannotAddAPortfolioThatHasAPortfolioAlreadyAdded
+
+	|  portfolio portfolio2 portfolio3|
+	
+	
+	portfolio := Portfolio new.	
+	
+	portfolio2 := Portfolio new.	
+	
+	portfolio3 := Portfolio new.	
+
+	portfolio add: portfolio3 .
+	
+	portfolio2 add: portfolio3.
+	
+	self should: [portfolio add: portfolio2] raise: Error  withMessageText: Portfolio repeatedBackLogAddedError.
+	! !
+
+!BacklogTest methodsFor: 'tests' stamp: 'NB 5/20/2023 18:07:34'!
+test23CannotAddTheSamePortfolioToSelf
+
+	|  portfolio account |
+	
+	
+	portfolio := Portfolio new.	
+	
+	account := ReceptiveAccount new.
+	
+	portfolio add: account.
+	
+	self should: [portfolio add: portfolio] raise: Error  withMessageText: Portfolio repeatedBackLogAddedError.
+	! !
+
+!BacklogTest methodsFor: 'tests' stamp: 'NB 5/20/2023 18:07:42'!
+test24CannotAddAnAccountThatPortfoliosParentAlreadyHas
+
+	|  portfolio portfolio2 account  |
+	
+	
+	portfolio := Portfolio new.	
+	
+	portfolio2 := Portfolio new.	
+	
+	account := ReceptiveAccount new.
+	
+	portfolio add: account.
+	
+	portfolio add: portfolio2 .
+	
+	self should: [portfolio2 add: account] raise: Error  withMessageText: Portfolio repeatedBackLogAddedError.
+	! !
+
+!BacklogTest methodsFor: 'tests' stamp: 'NB 5/20/2023 18:07:46'!
+test25CannotAddAnAccountThatOneOfPortfoliosParentAlreadyHas
+
+	|  portfolio portfolio2 portfolio3 account  |
+	
+	
+	portfolio := Portfolio new.	
+	
+	portfolio2 := Portfolio new.	
+	
+	portfolio3 := Portfolio new.	
+	
+	account := ReceptiveAccount new.
+	
+	portfolio add: account.
+	
+	portfolio add: portfolio3 .
+	
+	portfolio2 add: portfolio3 .
+	
+	self should: [portfolio3 add: account] raise: Error  withMessageText: Portfolio repeatedBackLogAddedError.
+	! !
+
+!BacklogTest methodsFor: 'tests' stamp: 'NB 5/20/2023 18:07:53'!
+test26CannotAddAnAccountThatOneOfTheRootsParentAlreadyHas
+
+	|  portfolio portfolio2 portfolio3 portfolio4 account  |
+	
+	
+	portfolio := Portfolio new.	
+	
+	portfolio2 := Portfolio new.	
+	
+	portfolio3 := Portfolio new.	
+	
+	portfolio4 := Portfolio new.	
+	
+	account := ReceptiveAccount new.
+	
+	portfolio add: account.
+	
+	portfolio add: portfolio3 .
+	
+	portfolio2 add: portfolio3 .
+	
+	portfolio3 add: portfolio4 .
+	
+	self should: [portfolio4 add: account] raise: Error  withMessageText: Portfolio repeatedBackLogAddedError.
 	! !
 
 
@@ -364,69 +506,129 @@ for: aValue
 
 !classDefinition: #Backlog category: 'Portfolio-Ejercicio'!
 Object subclass: #Backlog
-	instanceVariableNames: ''
+	instanceVariableNames: 'parents'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Portfolio-Ejercicio'!
+
+!Backlog methodsFor: 'root - private' stamp: 'NB 5/20/2023 17:20:40'!
+addAsParent: aPortfolio
+
+
+	parents add: aPortfolio .! !
+
+!Backlog methodsFor: 'root - private' stamp: 'NB 5/20/2023 17:22:33'!
+rootParents
+
+
+	^parents isEmpty ifTrue: [^OrderedCollection with: self] 
+				     ifFalse: [^parents inject: OrderedCollection new addingAll: [:aBacklog | aBacklog rootParents ] ].! !
+
+
+!Backlog methodsFor: 'childs - private' stamp: 'NB 5/20/2023 16:55:29'!
+allChildBacklogs
+
+	self subclassResponsibility ! !
+
+!Backlog methodsFor: 'childs - private' stamp: 'NB 5/20/2023 16:54:55'!
+hasABacklogInCommonWith: aBacklog
+
+
+	^(self allChildBacklogs intersection: aBacklog allChildBacklogs) notEmpty! !
+
+
+!Backlog methodsFor: 'balance' stamp: 'NB 5/20/2023 15:31:37'!
+balance
+	
+	self subclassResponsibility ! !
+
+
+!Backlog methodsFor: 'testing' stamp: 'NB 5/20/2023 17:33:13'!
+hasRegistered: aTransaction
+
+	self subclassResponsibility .! !
+
+
+!Backlog methodsFor: 'initialization' stamp: 'NB 5/20/2023 17:20:58'!
+initialize
+
+
+	parents:= OrderedCollection new.! !
+
+
+!Backlog methodsFor: 'transactions' stamp: 'NB 5/20/2023 17:33:49'!
+transactions
+
+	self subclassResponsibility .! !
 
 
 !classDefinition: #Portfolio category: 'Portfolio-Ejercicio'!
 Backlog subclass: #Portfolio
-	instanceVariableNames: 'accounts portfolios'
+	instanceVariableNames: 'backlogs'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Portfolio-Ejercicio'!
 
-!Portfolio methodsFor: 'balance' stamp: 'NB 5/15/2023 21:05:48'!
+!Portfolio methodsFor: 'balance' stamp: 'NB 5/20/2023 15:32:02'!
 balance
 	
-	^(accounts sum: [:anAccount | anAccount balance] ifEmpty: [0]) + (portfolios sum: [:aPortfolio | aPortfolio balance] ifEmpty: [0])! !
+	^backlogs sum: [:aBacklog | aBacklog balance] ifEmpty: [0]! !
 
 
-!Portfolio methodsFor: 'initialization' stamp: 'NB 5/15/2023 21:04:55'!
+!Portfolio methodsFor: 'initialization' stamp: 'NB 5/20/2023 17:23:22'!
 initialize
 	
-	accounts:= OrderedCollection new.
-	portfolios := OrderedCollection new.! !
+	backlogs := OrderedCollection new.
+	super initialize .! !
 
 
-!Portfolio methodsFor: 'adding' stamp: 'NB 5/18/2023 20:17:06'!
-add: anObject 
-	
-	(anObject isKindOf: ReceptiveAccount) ifTrue: [
-		(accounts includes: anObject) ifTrue: [self error: 'No se puede agregar la cuenta porque ya esta'].
+!Portfolio methodsFor: 'adding' stamp: 'NB 5/20/2023 18:06:45'!
+add: aBacklog
+
+	(self rootParents anySatisfy: [:aRootParent | aRootParent includes: aBacklog ]) ifTrue: [self error: self class repeatedBackLogAddedError ].
 		
-		accounts add: anObject.
-	].
-	(anObject isKindOf: Portfolio ) ifTrue: [
-		
-		(accounts anySatisfy: [:anAccount | anObject includes: anAccount]) ifTrue: [self error: 'No se puede agregar la cuenta porque ya esta'].
-		
-		(portfolios anySatisfy: [:aPortfolio | aPortfolio includes: anObject]) ifTrue: [self error: 'No se puede agregar la cuenta porque ya esta'].
-		
-		portfolios add: anObject.
-		
-	].
+	backlogs add: aBacklog.
+	aBacklog addAsParent: self.
 	! !
 
-!Portfolio methodsFor: 'adding' stamp: 'NB 5/18/2023 20:13:36'!
-includes: anAccount
+!Portfolio methodsFor: 'adding' stamp: 'NB 5/20/2023 16:56:19'!
+includes: aBacklog
+
+	^backlogs anySatisfy: [:anotherBacklog | anotherBacklog hasABacklogInCommonWith: aBacklog]! !
+
+
+!Portfolio methodsFor: 'childs - private' stamp: 'NB 5/20/2023 16:50:57'!
+allChildBacklogs
 	
-	^accounts includes: anAccount
+	
+	^backlogs inject: (OrderedCollection with: self) addingAll: [:childBacklogs | childBacklogs allChildBacklogs].
 	! !
 
 
-!Portfolio methodsFor: 'xxxxx' stamp: 'NB 5/15/2023 21:22:34'!
+!Portfolio methodsFor: 'transactions' stamp: 'NB 5/20/2023 15:32:46'!
+transactions
+	
+	
+	^backlogs inject: OrderedCollection new addingAll: [:aBacklog | aBacklog transactions].! !
+
+
+!Portfolio methodsFor: 'testing' stamp: 'NB 5/20/2023 15:32:29'!
 hasRegistered: aTransaction 
 	
 	
-	^(accounts anySatisfy: [:anAccount | anAccount hasRegistered: aTransaction]) or: [portfolios anySatisfy: [:aPortfolio | aPortfolio hasRegistered: aTransaction]]
+	^backlogs anySatisfy: [:aBacklog | aBacklog hasRegistered: aTransaction]
 	! !
 
-!Portfolio methodsFor: 'xxxxx' stamp: 'NB 5/15/2023 21:30:06'!
-transactions
-	
-	^(accounts inject: OrderedCollection new into: [:transactions :anAccount | transactions addAll: anAccount transactions;yourself]) addAll: (portfolios inject: OrderedCollection new into: [:transactions :aPortfolio | transactions addAll: aPortfolio transactions;yourself]);yourself.! !
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'Portfolio class' category: 'Portfolio-Ejercicio'!
+Portfolio class
+	instanceVariableNames: ''!
+
+!Portfolio class methodsFor: 'as yet unclassified' stamp: 'NB 5/20/2023 18:06:18'!
+repeatedBackLogAddedError
+
+	^'El backlog ya se encuentra agregado'.! !
 
 
 !classDefinition: #ReceptiveAccount category: 'Portfolio-Ejercicio'!
@@ -436,10 +638,11 @@ Backlog subclass: #ReceptiveAccount
 	poolDictionaries: ''
 	category: 'Portfolio-Ejercicio'!
 
-!ReceptiveAccount methodsFor: 'initialization' stamp: 'NR 10/17/2019 15:06:56'!
+!ReceptiveAccount methodsFor: 'initialization' stamp: 'NB 5/20/2023 17:26:56'!
 initialize
 
-	transactions := OrderedCollection new.! !
+	transactions := OrderedCollection new.
+	super initialize .! !
 
 
 !ReceptiveAccount methodsFor: 'transactions' stamp: 'HernanWilkinson 7/13/2011 18:37'!
@@ -465,3 +668,10 @@ hasRegistered: aTransaction
 
 	^ transactions includes: aTransaction 
 ! !
+
+
+!ReceptiveAccount methodsFor: 'childs - private' stamp: 'NB 5/20/2023 16:51:18'!
+allChildBacklogs
+	
+	
+	^OrderedCollection with: self.! !
