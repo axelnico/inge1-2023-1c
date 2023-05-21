@@ -56558,3 +56558,3300 @@ PASSED!
 
 !testRun: #BacklogTest #test26CannotAddAnAccountThatOneOfTheRootsParentAlreadyHas stamp: 'NB 5/21/2023 16:11:27'!
 PASSED!
+
+----STARTUP---- (21 May 2023 19:04:17) as /Users/nico/Documents/inge1/macos64/CuisUniversity-5706.image!
+
+!Portfolio methodsFor: 'transactions' stamp: 'NB 5/21/2023 19:23:40' prior: 50686085 overrides: 50687673!
+transactions
+	
+	| transactions |
+	transactions := OrderedCollection new.
+	backlogs do: [:aBacklog | aBacklog addTransactionsTo: transactions].
+	
+	^transactions.! !
+
+!testRun: #BacklogTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'NB 5/21/2023 19:23:51'!
+PASSED!
+
+!testRun: #BacklogTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'NB 5/21/2023 19:23:51'!
+PASSED!
+
+!testRun: #BacklogTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'NB 5/21/2023 19:23:51'!
+PASSED!
+
+!testRun: #BacklogTest #test04WithdrawValueMustBePositive stamp: 'NB 5/21/2023 19:23:51'!
+PASSED!
+
+!testRun: #BacklogTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'NB 5/21/2023 19:23:51'!
+PASSED!
+
+!testRun: #BacklogTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'NB 5/21/2023 19:23:51'!
+PASSED!
+
+!testRun: #BacklogTest #test07AccountKnowsItsTransactions stamp: 'NB 5/21/2023 19:23:51'!
+PASSED!
+
+!testRun: #BacklogTest #test08PortfolioBalanceIsZeroWhenCreated stamp: 'NB 5/21/2023 19:23:51'!
+PASSED!
+
+!testRun: #BacklogTest #test09PortfolioBalanceIsZeroWhenAccountHasAZeroBalance stamp: 'NB 5/21/2023 19:23:51'!
+PASSED!
+
+!testRun: #BacklogTest #test10PortfolioBalanceHasAccountsBalanceWhenOnlyAccountsAreAddedToPortfolio stamp: 'NB 5/21/2023 19:23:51'!
+PASSED!
+
+!testRun: #BacklogTest #test11PortfolioBalanceIsCorrectWhenPortfoliosAreAddedToPortfolio stamp: 'NB 5/21/2023 19:23:51'!
+PASSED!
+
+!testRun: #BacklogTest #test12EmptyPortfolioDoesNotHaveRegisteredTransactions stamp: 'NB 5/21/2023 19:23:51'!
+PASSED!
+
+!testRun: #BacklogTest #test13PortfolioRegistersTransactionsWhenOnlyAccountsAreAddedToPortfolio stamp: 'NB 5/21/2023 19:23:51'!
+PASSED!
+
+!testRun: #BacklogTest #test14PortfolioCorrectlyRegistersTransactionsWhenPortfoliosAreAddedToPortfolio stamp: 'NB 5/21/2023 19:23:51'!
+PASSED!
+
+!testRun: #BacklogTest #test15EmptyPortfolioDoesNotHaveTransactions stamp: 'NB 5/21/2023 19:23:51'!
+PASSED!
+
+!testRun: #BacklogTest #test16PortfolioHasAccountTransactionsWhenOnlyAccountsAreAddedToPortfolio stamp: 'NB 5/21/2023 19:23:51'!
+ERROR!
+
+!testRun: #BacklogTest #test17PortolioHasPortfolioTransactionsWhenPortfoliosAreAddedToPortfolio stamp: 'NB 5/21/2023 19:23:51'!
+ERROR!
+
+!testRun: #BacklogTest #test18CannotAddTheSameAccountToAPortfolioMoreThanOneTime stamp: 'NB 5/21/2023 19:23:51'!
+PASSED!
+
+!testRun: #BacklogTest #test19CannotAddAnAccountWhenAnotherPortfolioHasTheSameAccount stamp: 'NB 5/21/2023 19:23:51'!
+PASSED!
+
+!testRun: #BacklogTest #test20CannotAddAPortfolioThatHasAnAccountThatTheActualPortfolioAlreadyHas stamp: 'NB 5/21/2023 19:23:51'!
+PASSED!
+
+!testRun: #BacklogTest #test21CannotAddAPortfolioThatHasAnAccountThatOtherPortfolioHasAPortfolioWithTheSameAccount stamp: 'NB 5/21/2023 19:23:51'!
+PASSED!
+
+!testRun: #BacklogTest #test22CannotAddAPortfolioThatHasAPortfolioAlreadyAdded stamp: 'NB 5/21/2023 19:23:51'!
+PASSED!
+
+!testRun: #BacklogTest #test23CannotAddTheSamePortfolioToSelf stamp: 'NB 5/21/2023 19:23:51'!
+PASSED!
+
+!testRun: #BacklogTest #test24CannotAddAnAccountThatPortfoliosParentAlreadyHas stamp: 'NB 5/21/2023 19:23:51'!
+PASSED!
+
+!testRun: #BacklogTest #test25CannotAddAnAccountThatOneOfPortfoliosParentAlreadyHas stamp: 'NB 5/21/2023 19:23:51'!
+PASSED!
+
+!testRun: #BacklogTest #test26CannotAddAnAccountThatOneOfTheRootsParentAlreadyHas stamp: 'NB 5/21/2023 19:23:51'!
+PASSED!
+
+!testRun: #BacklogTest #test17PortolioHasPortfolioTransactionsWhenPortfoliosAreAddedToPortfolio stamp: 'NB 5/21/2023 19:23:56'!
+ERROR!
+
+!testRun: #BacklogTest #test16PortfolioHasAccountTransactionsWhenOnlyAccountsAreAddedToPortfolio stamp: 'NB 5/21/2023 19:24:00'!
+ERROR!
+
+!testRun: #BacklogTest #test17PortolioHasPortfolioTransactionsWhenPortfoliosAreAddedToPortfolio stamp: 'NB 5/21/2023 19:24:06'!
+ERROR!
+!Portfolio methodsFor: 'transactions' stamp: 'NB 5/21/2023 19:25:23'!
+addTransactionsTo: aCollectionOfTransactions
+	
+	backlogs do: [:aBacklog | aBacklog addTransactionsTo: aCollectionOfTransactions ].! !
+!Portfolio methodsFor: 'transactions' stamp: 'NB 5/21/2023 19:25:30' prior: 50689355 overrides: 50687673!
+transactions
+	
+	| transactions |
+	
+	transactions := OrderedCollection new.
+	backlogs do: [:aBacklog | aBacklog addTransactionsTo: transactions].
+	
+	^transactions.! !
+!ReceptiveAccount methodsFor: 'transactions' stamp: 'NB 5/21/2023 19:26:22'!
+addTransactionsTo: aCollectionOfTransactions
+	
+	aCollectionOfTransactions addAll: transactions.! !
+
+!testRun: #BacklogTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'NB 5/21/2023 19:26:27'!
+PASSED!
+
+!testRun: #BacklogTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'NB 5/21/2023 19:26:27'!
+PASSED!
+
+!testRun: #BacklogTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'NB 5/21/2023 19:26:27'!
+PASSED!
+
+!testRun: #BacklogTest #test04WithdrawValueMustBePositive stamp: 'NB 5/21/2023 19:26:27'!
+PASSED!
+
+!testRun: #BacklogTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'NB 5/21/2023 19:26:27'!
+PASSED!
+
+!testRun: #BacklogTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'NB 5/21/2023 19:26:27'!
+PASSED!
+
+!testRun: #BacklogTest #test07AccountKnowsItsTransactions stamp: 'NB 5/21/2023 19:26:27'!
+PASSED!
+
+!testRun: #BacklogTest #test08PortfolioBalanceIsZeroWhenCreated stamp: 'NB 5/21/2023 19:26:27'!
+PASSED!
+
+!testRun: #BacklogTest #test09PortfolioBalanceIsZeroWhenAccountHasAZeroBalance stamp: 'NB 5/21/2023 19:26:27'!
+PASSED!
+
+!testRun: #BacklogTest #test10PortfolioBalanceHasAccountsBalanceWhenOnlyAccountsAreAddedToPortfolio stamp: 'NB 5/21/2023 19:26:27'!
+PASSED!
+
+!testRun: #BacklogTest #test11PortfolioBalanceIsCorrectWhenPortfoliosAreAddedToPortfolio stamp: 'NB 5/21/2023 19:26:27'!
+PASSED!
+
+!testRun: #BacklogTest #test12EmptyPortfolioDoesNotHaveRegisteredTransactions stamp: 'NB 5/21/2023 19:26:27'!
+PASSED!
+
+!testRun: #BacklogTest #test13PortfolioRegistersTransactionsWhenOnlyAccountsAreAddedToPortfolio stamp: 'NB 5/21/2023 19:26:27'!
+PASSED!
+
+!testRun: #BacklogTest #test14PortfolioCorrectlyRegistersTransactionsWhenPortfoliosAreAddedToPortfolio stamp: 'NB 5/21/2023 19:26:27'!
+PASSED!
+
+!testRun: #BacklogTest #test15EmptyPortfolioDoesNotHaveTransactions stamp: 'NB 5/21/2023 19:26:27'!
+PASSED!
+
+!testRun: #BacklogTest #test16PortfolioHasAccountTransactionsWhenOnlyAccountsAreAddedToPortfolio stamp: 'NB 5/21/2023 19:26:27'!
+PASSED!
+
+!testRun: #BacklogTest #test17PortolioHasPortfolioTransactionsWhenPortfoliosAreAddedToPortfolio stamp: 'NB 5/21/2023 19:26:27'!
+PASSED!
+
+!testRun: #BacklogTest #test18CannotAddTheSameAccountToAPortfolioMoreThanOneTime stamp: 'NB 5/21/2023 19:26:27'!
+PASSED!
+
+!testRun: #BacklogTest #test19CannotAddAnAccountWhenAnotherPortfolioHasTheSameAccount stamp: 'NB 5/21/2023 19:26:27'!
+PASSED!
+
+!testRun: #BacklogTest #test20CannotAddAPortfolioThatHasAnAccountThatTheActualPortfolioAlreadyHas stamp: 'NB 5/21/2023 19:26:27'!
+PASSED!
+
+!testRun: #BacklogTest #test21CannotAddAPortfolioThatHasAnAccountThatOtherPortfolioHasAPortfolioWithTheSameAccount stamp: 'NB 5/21/2023 19:26:27'!
+PASSED!
+
+!testRun: #BacklogTest #test22CannotAddAPortfolioThatHasAPortfolioAlreadyAdded stamp: 'NB 5/21/2023 19:26:27'!
+PASSED!
+
+!testRun: #BacklogTest #test23CannotAddTheSamePortfolioToSelf stamp: 'NB 5/21/2023 19:26:27'!
+PASSED!
+
+!testRun: #BacklogTest #test24CannotAddAnAccountThatPortfoliosParentAlreadyHas stamp: 'NB 5/21/2023 19:26:27'!
+PASSED!
+
+!testRun: #BacklogTest #test25CannotAddAnAccountThatOneOfPortfoliosParentAlreadyHas stamp: 'NB 5/21/2023 19:26:27'!
+PASSED!
+
+!testRun: #BacklogTest #test26CannotAddAnAccountThatOneOfTheRootsParentAlreadyHas stamp: 'NB 5/21/2023 19:26:27'!
+PASSED!
+
+----SNAPSHOT----(21 May 2023 19:26:37) CuisUniversity-5706.image priorSource: 11446311!
+
+----SNAPSHOT----(21 May 2023 19:26:38) CuisUniversity-5706.image priorSource: 11454267!
+
+----SNAPSHOT----(21 May 2023 19:29:45) CuisUniversity-5706.image priorSource: 11454356!
+
+!testRun: #BacklogTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'NB 5/21/2023 19:29:46'!
+PASSED!
+
+!testRun: #BacklogTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'NB 5/21/2023 19:29:46'!
+PASSED!
+
+!testRun: #BacklogTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'NB 5/21/2023 19:29:46'!
+PASSED!
+
+!testRun: #BacklogTest #test04WithdrawValueMustBePositive stamp: 'NB 5/21/2023 19:29:46'!
+PASSED!
+
+!testRun: #BacklogTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'NB 5/21/2023 19:29:46'!
+PASSED!
+
+!testRun: #BacklogTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'NB 5/21/2023 19:29:46'!
+PASSED!
+
+!testRun: #BacklogTest #test07AccountKnowsItsTransactions stamp: 'NB 5/21/2023 19:29:46'!
+PASSED!
+
+!testRun: #BacklogTest #test08PortfolioBalanceIsZeroWhenCreated stamp: 'NB 5/21/2023 19:29:46'!
+PASSED!
+
+!testRun: #BacklogTest #test09PortfolioBalanceIsZeroWhenAccountHasAZeroBalance stamp: 'NB 5/21/2023 19:29:46'!
+PASSED!
+
+!testRun: #BacklogTest #test10PortfolioBalanceHasAccountsBalanceWhenOnlyAccountsAreAddedToPortfolio stamp: 'NB 5/21/2023 19:29:46'!
+PASSED!
+
+!testRun: #BacklogTest #test11PortfolioBalanceIsCorrectWhenPortfoliosAreAddedToPortfolio stamp: 'NB 5/21/2023 19:29:46'!
+PASSED!
+
+!testRun: #BacklogTest #test12EmptyPortfolioDoesNotHaveRegisteredTransactions stamp: 'NB 5/21/2023 19:29:46'!
+PASSED!
+
+!testRun: #BacklogTest #test13PortfolioRegistersTransactionsWhenOnlyAccountsAreAddedToPortfolio stamp: 'NB 5/21/2023 19:29:46'!
+PASSED!
+
+!testRun: #BacklogTest #test14PortfolioCorrectlyRegistersTransactionsWhenPortfoliosAreAddedToPortfolio stamp: 'NB 5/21/2023 19:29:46'!
+PASSED!
+
+!testRun: #BacklogTest #test15EmptyPortfolioDoesNotHaveTransactions stamp: 'NB 5/21/2023 19:29:46'!
+PASSED!
+
+!testRun: #BacklogTest #test16PortfolioHasAccountTransactionsWhenOnlyAccountsAreAddedToPortfolio stamp: 'NB 5/21/2023 19:29:46'!
+PASSED!
+
+!testRun: #BacklogTest #test17PortolioHasPortfolioTransactionsWhenPortfoliosAreAddedToPortfolio stamp: 'NB 5/21/2023 19:29:46'!
+PASSED!
+
+!testRun: #BacklogTest #test18CannotAddTheSameAccountToAPortfolioMoreThanOneTime stamp: 'NB 5/21/2023 19:29:46'!
+PASSED!
+
+!testRun: #BacklogTest #test19CannotAddAnAccountWhenAnotherPortfolioHasTheSameAccount stamp: 'NB 5/21/2023 19:29:46'!
+PASSED!
+
+!testRun: #BacklogTest #test20CannotAddAPortfolioThatHasAnAccountThatTheActualPortfolioAlreadyHas stamp: 'NB 5/21/2023 19:29:46'!
+PASSED!
+
+!testRun: #BacklogTest #test21CannotAddAPortfolioThatHasAnAccountThatOtherPortfolioHasAPortfolioWithTheSameAccount stamp: 'NB 5/21/2023 19:29:46'!
+PASSED!
+
+!testRun: #BacklogTest #test22CannotAddAPortfolioThatHasAPortfolioAlreadyAdded stamp: 'NB 5/21/2023 19:29:46'!
+PASSED!
+
+!testRun: #BacklogTest #test23CannotAddTheSamePortfolioToSelf stamp: 'NB 5/21/2023 19:29:46'!
+PASSED!
+
+!testRun: #BacklogTest #test24CannotAddAnAccountThatPortfoliosParentAlreadyHas stamp: 'NB 5/21/2023 19:29:46'!
+PASSED!
+
+!testRun: #BacklogTest #test25CannotAddAnAccountThatOneOfPortfoliosParentAlreadyHas stamp: 'NB 5/21/2023 19:29:46'!
+PASSED!
+
+!testRun: #BacklogTest #test26CannotAddAnAccountThatOneOfTheRootsParentAlreadyHas stamp: 'NB 5/21/2023 19:29:46'!
+PASSED!
+!Portfolio methodsFor: 'assertions' stamp: 'NB 5/21/2023 19:31:00'!
+signalCannotAddBacklog
+
+	^ self error: self class repeatedBackLogAddedError! !
+!Portfolio methodsFor: 'assertions' stamp: 'NB 5/21/2023 19:31:00' prior: 50689133!
+assertBacklogCanBeAdded: aBacklog
+
+	^ (self rootParents anySatisfy: [:aRootParent | aRootParent includes: aBacklog ]) ifTrue: [self signalCannotAddBacklog ]! !
+
+----SNAPSHOT----(21 May 2023 19:31:08) CuisUniversity-5706.image priorSource: 11454445!
+
+!testRun: #BacklogTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'NB 5/21/2023 19:31:13'!
+PASSED!
+
+!testRun: #BacklogTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'NB 5/21/2023 19:31:13'!
+PASSED!
+
+!testRun: #BacklogTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'NB 5/21/2023 19:31:13'!
+PASSED!
+
+!testRun: #BacklogTest #test04WithdrawValueMustBePositive stamp: 'NB 5/21/2023 19:31:13'!
+PASSED!
+
+!testRun: #BacklogTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'NB 5/21/2023 19:31:13'!
+PASSED!
+
+!testRun: #BacklogTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'NB 5/21/2023 19:31:13'!
+PASSED!
+
+!testRun: #BacklogTest #test07AccountKnowsItsTransactions stamp: 'NB 5/21/2023 19:31:13'!
+PASSED!
+
+!testRun: #BacklogTest #test08PortfolioBalanceIsZeroWhenCreated stamp: 'NB 5/21/2023 19:31:13'!
+PASSED!
+
+!testRun: #BacklogTest #test09PortfolioBalanceIsZeroWhenAccountHasAZeroBalance stamp: 'NB 5/21/2023 19:31:13'!
+PASSED!
+
+!testRun: #BacklogTest #test10PortfolioBalanceHasAccountsBalanceWhenOnlyAccountsAreAddedToPortfolio stamp: 'NB 5/21/2023 19:31:13'!
+PASSED!
+
+!testRun: #BacklogTest #test11PortfolioBalanceIsCorrectWhenPortfoliosAreAddedToPortfolio stamp: 'NB 5/21/2023 19:31:13'!
+PASSED!
+
+!testRun: #BacklogTest #test12EmptyPortfolioDoesNotHaveRegisteredTransactions stamp: 'NB 5/21/2023 19:31:13'!
+PASSED!
+
+!testRun: #BacklogTest #test13PortfolioRegistersTransactionsWhenOnlyAccountsAreAddedToPortfolio stamp: 'NB 5/21/2023 19:31:13'!
+PASSED!
+
+!testRun: #BacklogTest #test14PortfolioCorrectlyRegistersTransactionsWhenPortfoliosAreAddedToPortfolio stamp: 'NB 5/21/2023 19:31:13'!
+PASSED!
+
+!testRun: #BacklogTest #test15EmptyPortfolioDoesNotHaveTransactions stamp: 'NB 5/21/2023 19:31:13'!
+PASSED!
+
+!testRun: #BacklogTest #test16PortfolioHasAccountTransactionsWhenOnlyAccountsAreAddedToPortfolio stamp: 'NB 5/21/2023 19:31:13'!
+PASSED!
+
+!testRun: #BacklogTest #test17PortolioHasPortfolioTransactionsWhenPortfoliosAreAddedToPortfolio stamp: 'NB 5/21/2023 19:31:13'!
+PASSED!
+
+!testRun: #BacklogTest #test18CannotAddTheSameAccountToAPortfolioMoreThanOneTime stamp: 'NB 5/21/2023 19:31:13'!
+PASSED!
+
+!testRun: #BacklogTest #test19CannotAddAnAccountWhenAnotherPortfolioHasTheSameAccount stamp: 'NB 5/21/2023 19:31:13'!
+PASSED!
+
+!testRun: #BacklogTest #test20CannotAddAPortfolioThatHasAnAccountThatTheActualPortfolioAlreadyHas stamp: 'NB 5/21/2023 19:31:13'!
+PASSED!
+
+!testRun: #BacklogTest #test21CannotAddAPortfolioThatHasAnAccountThatOtherPortfolioHasAPortfolioWithTheSameAccount stamp: 'NB 5/21/2023 19:31:13'!
+PASSED!
+
+!testRun: #BacklogTest #test22CannotAddAPortfolioThatHasAPortfolioAlreadyAdded stamp: 'NB 5/21/2023 19:31:13'!
+PASSED!
+
+!testRun: #BacklogTest #test23CannotAddTheSamePortfolioToSelf stamp: 'NB 5/21/2023 19:31:13'!
+PASSED!
+
+!testRun: #BacklogTest #test24CannotAddAnAccountThatPortfoliosParentAlreadyHas stamp: 'NB 5/21/2023 19:31:13'!
+PASSED!
+
+!testRun: #BacklogTest #test25CannotAddAnAccountThatOneOfPortfoliosParentAlreadyHas stamp: 'NB 5/21/2023 19:31:13'!
+PASSED!
+
+!testRun: #BacklogTest #test26CannotAddAnAccountThatOneOfTheRootsParentAlreadyHas stamp: 'NB 5/21/2023 19:31:13'!
+PASSED!
+!Backlog methodsFor: 'root - private' stamp: 'NB 5/21/2023 19:32:28' prior: 50687320!
+rootParents
+
+
+	^parents ifEmpty: [^OrderedCollection with: self] 
+				     ifNotEmpty: [^parents inject: OrderedCollection new addingAll: [:aBacklog | aBacklog rootParents ] ].! !
+
+!testRun: #BacklogTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'NB 5/21/2023 19:32:29'!
+PASSED!
+
+!testRun: #BacklogTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'NB 5/21/2023 19:32:29'!
+PASSED!
+
+!testRun: #BacklogTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'NB 5/21/2023 19:32:29'!
+PASSED!
+
+!testRun: #BacklogTest #test04WithdrawValueMustBePositive stamp: 'NB 5/21/2023 19:32:29'!
+PASSED!
+
+!testRun: #BacklogTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'NB 5/21/2023 19:32:29'!
+PASSED!
+
+!testRun: #BacklogTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'NB 5/21/2023 19:32:29'!
+PASSED!
+
+!testRun: #BacklogTest #test07AccountKnowsItsTransactions stamp: 'NB 5/21/2023 19:32:29'!
+PASSED!
+
+!testRun: #BacklogTest #test08PortfolioBalanceIsZeroWhenCreated stamp: 'NB 5/21/2023 19:32:29'!
+PASSED!
+
+!testRun: #BacklogTest #test09PortfolioBalanceIsZeroWhenAccountHasAZeroBalance stamp: 'NB 5/21/2023 19:32:29'!
+PASSED!
+
+!testRun: #BacklogTest #test10PortfolioBalanceHasAccountsBalanceWhenOnlyAccountsAreAddedToPortfolio stamp: 'NB 5/21/2023 19:32:29'!
+PASSED!
+
+!testRun: #BacklogTest #test11PortfolioBalanceIsCorrectWhenPortfoliosAreAddedToPortfolio stamp: 'NB 5/21/2023 19:32:29'!
+PASSED!
+
+!testRun: #BacklogTest #test12EmptyPortfolioDoesNotHaveRegisteredTransactions stamp: 'NB 5/21/2023 19:32:29'!
+PASSED!
+
+!testRun: #BacklogTest #test13PortfolioRegistersTransactionsWhenOnlyAccountsAreAddedToPortfolio stamp: 'NB 5/21/2023 19:32:29'!
+PASSED!
+
+!testRun: #BacklogTest #test14PortfolioCorrectlyRegistersTransactionsWhenPortfoliosAreAddedToPortfolio stamp: 'NB 5/21/2023 19:32:29'!
+PASSED!
+
+!testRun: #BacklogTest #test15EmptyPortfolioDoesNotHaveTransactions stamp: 'NB 5/21/2023 19:32:29'!
+PASSED!
+
+!testRun: #BacklogTest #test16PortfolioHasAccountTransactionsWhenOnlyAccountsAreAddedToPortfolio stamp: 'NB 5/21/2023 19:32:29'!
+PASSED!
+
+!testRun: #BacklogTest #test17PortolioHasPortfolioTransactionsWhenPortfoliosAreAddedToPortfolio stamp: 'NB 5/21/2023 19:32:29'!
+PASSED!
+
+!testRun: #BacklogTest #test18CannotAddTheSameAccountToAPortfolioMoreThanOneTime stamp: 'NB 5/21/2023 19:32:29'!
+PASSED!
+
+!testRun: #BacklogTest #test19CannotAddAnAccountWhenAnotherPortfolioHasTheSameAccount stamp: 'NB 5/21/2023 19:32:29'!
+PASSED!
+
+!testRun: #BacklogTest #test20CannotAddAPortfolioThatHasAnAccountThatTheActualPortfolioAlreadyHas stamp: 'NB 5/21/2023 19:32:29'!
+PASSED!
+
+!testRun: #BacklogTest #test21CannotAddAPortfolioThatHasAnAccountThatOtherPortfolioHasAPortfolioWithTheSameAccount stamp: 'NB 5/21/2023 19:32:29'!
+PASSED!
+
+!testRun: #BacklogTest #test22CannotAddAPortfolioThatHasAPortfolioAlreadyAdded stamp: 'NB 5/21/2023 19:32:29'!
+PASSED!
+
+!testRun: #BacklogTest #test23CannotAddTheSamePortfolioToSelf stamp: 'NB 5/21/2023 19:32:29'!
+PASSED!
+
+!testRun: #BacklogTest #test24CannotAddAnAccountThatPortfoliosParentAlreadyHas stamp: 'NB 5/21/2023 19:32:29'!
+PASSED!
+
+!testRun: #BacklogTest #test25CannotAddAnAccountThatOneOfPortfoliosParentAlreadyHas stamp: 'NB 5/21/2023 19:32:29'!
+PASSED!
+
+!testRun: #BacklogTest #test26CannotAddAnAccountThatOneOfTheRootsParentAlreadyHas stamp: 'NB 5/21/2023 19:32:29'!
+PASSED!
+
+----SNAPSHOT----(21 May 2023 19:34:30) CuisUniversity-5706.image priorSource: 11458175!
+!Backlog methodsFor: 'transactions' stamp: 'NB 5/21/2023 19:42:50'!
+addTransactionsTo: aCollectionOfTransactions
+
+	self subclassResponsibility .! !
+
+!testRun: #BacklogTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'NB 5/21/2023 19:42:51'!
+PASSED!
+
+!testRun: #BacklogTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'NB 5/21/2023 19:42:51'!
+PASSED!
+
+!testRun: #BacklogTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'NB 5/21/2023 19:42:51'!
+PASSED!
+
+!testRun: #BacklogTest #test04WithdrawValueMustBePositive stamp: 'NB 5/21/2023 19:42:51'!
+PASSED!
+
+!testRun: #BacklogTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'NB 5/21/2023 19:42:51'!
+PASSED!
+
+!testRun: #BacklogTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'NB 5/21/2023 19:42:51'!
+PASSED!
+
+!testRun: #BacklogTest #test07AccountKnowsItsTransactions stamp: 'NB 5/21/2023 19:42:51'!
+PASSED!
+
+!testRun: #BacklogTest #test08PortfolioBalanceIsZeroWhenCreated stamp: 'NB 5/21/2023 19:42:51'!
+PASSED!
+
+!testRun: #BacklogTest #test09PortfolioBalanceIsZeroWhenAccountHasAZeroBalance stamp: 'NB 5/21/2023 19:42:51'!
+PASSED!
+
+!testRun: #BacklogTest #test10PortfolioBalanceHasAccountsBalanceWhenOnlyAccountsAreAddedToPortfolio stamp: 'NB 5/21/2023 19:42:51'!
+PASSED!
+
+!testRun: #BacklogTest #test11PortfolioBalanceIsCorrectWhenPortfoliosAreAddedToPortfolio stamp: 'NB 5/21/2023 19:42:51'!
+PASSED!
+
+!testRun: #BacklogTest #test12EmptyPortfolioDoesNotHaveRegisteredTransactions stamp: 'NB 5/21/2023 19:42:51'!
+PASSED!
+
+!testRun: #BacklogTest #test13PortfolioRegistersTransactionsWhenOnlyAccountsAreAddedToPortfolio stamp: 'NB 5/21/2023 19:42:51'!
+PASSED!
+
+!testRun: #BacklogTest #test14PortfolioCorrectlyRegistersTransactionsWhenPortfoliosAreAddedToPortfolio stamp: 'NB 5/21/2023 19:42:51'!
+PASSED!
+
+!testRun: #BacklogTest #test15EmptyPortfolioDoesNotHaveTransactions stamp: 'NB 5/21/2023 19:42:51'!
+PASSED!
+
+!testRun: #BacklogTest #test16PortfolioHasAccountTransactionsWhenOnlyAccountsAreAddedToPortfolio stamp: 'NB 5/21/2023 19:42:51'!
+PASSED!
+
+!testRun: #BacklogTest #test17PortolioHasPortfolioTransactionsWhenPortfoliosAreAddedToPortfolio stamp: 'NB 5/21/2023 19:42:51'!
+PASSED!
+
+!testRun: #BacklogTest #test18CannotAddTheSameAccountToAPortfolioMoreThanOneTime stamp: 'NB 5/21/2023 19:42:51'!
+PASSED!
+
+!testRun: #BacklogTest #test19CannotAddAnAccountWhenAnotherPortfolioHasTheSameAccount stamp: 'NB 5/21/2023 19:42:51'!
+PASSED!
+
+!testRun: #BacklogTest #test20CannotAddAPortfolioThatHasAnAccountThatTheActualPortfolioAlreadyHas stamp: 'NB 5/21/2023 19:42:51'!
+PASSED!
+
+!testRun: #BacklogTest #test21CannotAddAPortfolioThatHasAnAccountThatOtherPortfolioHasAPortfolioWithTheSameAccount stamp: 'NB 5/21/2023 19:42:51'!
+PASSED!
+
+!testRun: #BacklogTest #test22CannotAddAPortfolioThatHasAPortfolioAlreadyAdded stamp: 'NB 5/21/2023 19:42:51'!
+PASSED!
+
+!testRun: #BacklogTest #test23CannotAddTheSamePortfolioToSelf stamp: 'NB 5/21/2023 19:42:51'!
+PASSED!
+
+!testRun: #BacklogTest #test24CannotAddAnAccountThatPortfoliosParentAlreadyHas stamp: 'NB 5/21/2023 19:42:51'!
+PASSED!
+
+!testRun: #BacklogTest #test25CannotAddAnAccountThatOneOfPortfoliosParentAlreadyHas stamp: 'NB 5/21/2023 19:42:51'!
+PASSED!
+
+!testRun: #BacklogTest #test26CannotAddAnAccountThatOneOfTheRootsParentAlreadyHas stamp: 'NB 5/21/2023 19:42:51'!
+PASSED!
+!BacklogTest methodsFor: 'tests' stamp: 'NB 5/21/2023 19:44:16' prior: 50687848!
+test08PortfolioBalanceIsZeroWhenCreated
+
+	self assert: 0 equals: Portfolio new balance.
+! !
+
+!testRun: #BacklogTest #test08PortfolioBalanceIsZeroWhenCreated stamp: 'NB 5/21/2023 19:44:17'!
+PASSED!
+
+!testRun: #BacklogTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'NB 5/21/2023 19:44:17'!
+PASSED!
+
+!testRun: #BacklogTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'NB 5/21/2023 19:44:17'!
+PASSED!
+
+!testRun: #BacklogTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'NB 5/21/2023 19:44:17'!
+PASSED!
+
+!testRun: #BacklogTest #test04WithdrawValueMustBePositive stamp: 'NB 5/21/2023 19:44:17'!
+PASSED!
+
+!testRun: #BacklogTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'NB 5/21/2023 19:44:17'!
+PASSED!
+
+!testRun: #BacklogTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'NB 5/21/2023 19:44:17'!
+PASSED!
+
+!testRun: #BacklogTest #test07AccountKnowsItsTransactions stamp: 'NB 5/21/2023 19:44:17'!
+PASSED!
+
+!testRun: #BacklogTest #test08PortfolioBalanceIsZeroWhenCreated stamp: 'NB 5/21/2023 19:44:17'!
+PASSED!
+
+!testRun: #BacklogTest #test09PortfolioBalanceIsZeroWhenAccountHasAZeroBalance stamp: 'NB 5/21/2023 19:44:17'!
+PASSED!
+
+!testRun: #BacklogTest #test10PortfolioBalanceHasAccountsBalanceWhenOnlyAccountsAreAddedToPortfolio stamp: 'NB 5/21/2023 19:44:17'!
+PASSED!
+
+!testRun: #BacklogTest #test11PortfolioBalanceIsCorrectWhenPortfoliosAreAddedToPortfolio stamp: 'NB 5/21/2023 19:44:17'!
+PASSED!
+
+!testRun: #BacklogTest #test12EmptyPortfolioDoesNotHaveRegisteredTransactions stamp: 'NB 5/21/2023 19:44:17'!
+PASSED!
+
+!testRun: #BacklogTest #test13PortfolioRegistersTransactionsWhenOnlyAccountsAreAddedToPortfolio stamp: 'NB 5/21/2023 19:44:17'!
+PASSED!
+
+!testRun: #BacklogTest #test14PortfolioCorrectlyRegistersTransactionsWhenPortfoliosAreAddedToPortfolio stamp: 'NB 5/21/2023 19:44:17'!
+PASSED!
+
+!testRun: #BacklogTest #test15EmptyPortfolioDoesNotHaveTransactions stamp: 'NB 5/21/2023 19:44:17'!
+PASSED!
+
+!testRun: #BacklogTest #test16PortfolioHasAccountTransactionsWhenOnlyAccountsAreAddedToPortfolio stamp: 'NB 5/21/2023 19:44:17'!
+PASSED!
+
+!testRun: #BacklogTest #test17PortolioHasPortfolioTransactionsWhenPortfoliosAreAddedToPortfolio stamp: 'NB 5/21/2023 19:44:17'!
+PASSED!
+
+!testRun: #BacklogTest #test18CannotAddTheSameAccountToAPortfolioMoreThanOneTime stamp: 'NB 5/21/2023 19:44:17'!
+PASSED!
+
+!testRun: #BacklogTest #test19CannotAddAnAccountWhenAnotherPortfolioHasTheSameAccount stamp: 'NB 5/21/2023 19:44:17'!
+PASSED!
+
+!testRun: #BacklogTest #test20CannotAddAPortfolioThatHasAnAccountThatTheActualPortfolioAlreadyHas stamp: 'NB 5/21/2023 19:44:17'!
+PASSED!
+
+!testRun: #BacklogTest #test21CannotAddAPortfolioThatHasAnAccountThatOtherPortfolioHasAPortfolioWithTheSameAccount stamp: 'NB 5/21/2023 19:44:17'!
+PASSED!
+
+!testRun: #BacklogTest #test22CannotAddAPortfolioThatHasAPortfolioAlreadyAdded stamp: 'NB 5/21/2023 19:44:17'!
+PASSED!
+
+!testRun: #BacklogTest #test23CannotAddTheSamePortfolioToSelf stamp: 'NB 5/21/2023 19:44:17'!
+PASSED!
+
+!testRun: #BacklogTest #test24CannotAddAnAccountThatPortfoliosParentAlreadyHas stamp: 'NB 5/21/2023 19:44:17'!
+PASSED!
+
+!testRun: #BacklogTest #test25CannotAddAnAccountThatOneOfPortfoliosParentAlreadyHas stamp: 'NB 5/21/2023 19:44:17'!
+PASSED!
+
+!testRun: #BacklogTest #test26CannotAddAnAccountThatOneOfTheRootsParentAlreadyHas stamp: 'NB 5/21/2023 19:44:17'!
+PASSED!
+!BacklogTest methodsFor: 'tests' stamp: 'NB 5/21/2023 19:44:55' prior: 50687947!
+test10PortfolioBalanceHasAccountsBalanceWhenOnlyAccountsAreAddedToPortfolio
+
+	|  portfolio account |
+	
+	
+	portfolio := Portfolio new.	
+	account := ReceptiveAccount new.
+	portfolio add: account.
+	Deposit register: 100 on: account.
+	self assert: account balance equals: portfolio balance.
+! !
+
+!testRun: #BacklogTest #test10PortfolioBalanceHasAccountsBalanceWhenOnlyAccountsAreAddedToPortfolio stamp: 'NB 5/21/2023 19:44:56'!
+PASSED!
+
+!testRun: #BacklogTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'NB 5/21/2023 19:44:56'!
+PASSED!
+
+!testRun: #BacklogTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'NB 5/21/2023 19:44:56'!
+PASSED!
+
+!testRun: #BacklogTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'NB 5/21/2023 19:44:56'!
+PASSED!
+
+!testRun: #BacklogTest #test04WithdrawValueMustBePositive stamp: 'NB 5/21/2023 19:44:56'!
+PASSED!
+
+!testRun: #BacklogTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'NB 5/21/2023 19:44:56'!
+PASSED!
+
+!testRun: #BacklogTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'NB 5/21/2023 19:44:56'!
+PASSED!
+
+!testRun: #BacklogTest #test07AccountKnowsItsTransactions stamp: 'NB 5/21/2023 19:44:56'!
+PASSED!
+
+!testRun: #BacklogTest #test08PortfolioBalanceIsZeroWhenCreated stamp: 'NB 5/21/2023 19:44:56'!
+PASSED!
+
+!testRun: #BacklogTest #test09PortfolioBalanceIsZeroWhenAccountHasAZeroBalance stamp: 'NB 5/21/2023 19:44:56'!
+PASSED!
+
+!testRun: #BacklogTest #test10PortfolioBalanceHasAccountsBalanceWhenOnlyAccountsAreAddedToPortfolio stamp: 'NB 5/21/2023 19:44:56'!
+PASSED!
+
+!testRun: #BacklogTest #test11PortfolioBalanceIsCorrectWhenPortfoliosAreAddedToPortfolio stamp: 'NB 5/21/2023 19:44:56'!
+PASSED!
+
+!testRun: #BacklogTest #test12EmptyPortfolioDoesNotHaveRegisteredTransactions stamp: 'NB 5/21/2023 19:44:56'!
+PASSED!
+
+!testRun: #BacklogTest #test13PortfolioRegistersTransactionsWhenOnlyAccountsAreAddedToPortfolio stamp: 'NB 5/21/2023 19:44:56'!
+PASSED!
+
+!testRun: #BacklogTest #test14PortfolioCorrectlyRegistersTransactionsWhenPortfoliosAreAddedToPortfolio stamp: 'NB 5/21/2023 19:44:56'!
+PASSED!
+
+!testRun: #BacklogTest #test15EmptyPortfolioDoesNotHaveTransactions stamp: 'NB 5/21/2023 19:44:56'!
+PASSED!
+
+!testRun: #BacklogTest #test16PortfolioHasAccountTransactionsWhenOnlyAccountsAreAddedToPortfolio stamp: 'NB 5/21/2023 19:44:56'!
+PASSED!
+
+!testRun: #BacklogTest #test17PortolioHasPortfolioTransactionsWhenPortfoliosAreAddedToPortfolio stamp: 'NB 5/21/2023 19:44:56'!
+PASSED!
+
+!testRun: #BacklogTest #test18CannotAddTheSameAccountToAPortfolioMoreThanOneTime stamp: 'NB 5/21/2023 19:44:56'!
+PASSED!
+
+!testRun: #BacklogTest #test19CannotAddAnAccountWhenAnotherPortfolioHasTheSameAccount stamp: 'NB 5/21/2023 19:44:56'!
+PASSED!
+
+!testRun: #BacklogTest #test20CannotAddAPortfolioThatHasAnAccountThatTheActualPortfolioAlreadyHas stamp: 'NB 5/21/2023 19:44:56'!
+PASSED!
+
+!testRun: #BacklogTest #test21CannotAddAPortfolioThatHasAnAccountThatOtherPortfolioHasAPortfolioWithTheSameAccount stamp: 'NB 5/21/2023 19:44:56'!
+PASSED!
+
+!testRun: #BacklogTest #test22CannotAddAPortfolioThatHasAPortfolioAlreadyAdded stamp: 'NB 5/21/2023 19:44:56'!
+PASSED!
+
+!testRun: #BacklogTest #test23CannotAddTheSamePortfolioToSelf stamp: 'NB 5/21/2023 19:44:56'!
+PASSED!
+
+!testRun: #BacklogTest #test24CannotAddAnAccountThatPortfoliosParentAlreadyHas stamp: 'NB 5/21/2023 19:44:56'!
+PASSED!
+
+!testRun: #BacklogTest #test25CannotAddAnAccountThatOneOfPortfoliosParentAlreadyHas stamp: 'NB 5/21/2023 19:44:56'!
+PASSED!
+
+!testRun: #BacklogTest #test26CannotAddAnAccountThatOneOfTheRootsParentAlreadyHas stamp: 'NB 5/21/2023 19:44:56'!
+PASSED!
+
+----SNAPSHOT----(21 May 2023 19:45:01) CuisUniversity-5706.image priorSource: 11464940!
+
+----SNAPSHOT----(21 May 2023 19:45:04) CuisUniversity-5706.image priorSource: 11475592!
+!BacklogTest methodsFor: 'tests' stamp: 'NB 5/21/2023 19:46:00' prior: 50687967!
+test11PortfolioBalanceIsCorrectWhenPortfoliosAreAddedToPortfolio
+
+	|  portfolio account portfolioIntern accountOfPortfolioIntern|
+	
+	
+	portfolio := Portfolio new.	
+	account := ReceptiveAccount new.
+	portfolio add: account.
+	portfolioIntern := Portfolio new.
+	accountOfPortfolioIntern:=  ReceptiveAccount new.
+	Deposit register: 100 on: account.
+	Deposit register: 200 on: accountOfPortfolioIntern.
+	portfolioIntern add: accountOfPortfolioIntern .
+	portfolio add: portfolioIntern .
+	self assert: (accountOfPortfolioIntern balance + account balance) equals: portfolio balance.
+! !
+
+!testRun: #BacklogTest #test11PortfolioBalanceIsCorrectWhenPortfoliosAreAddedToPortfolio stamp: 'NB 5/21/2023 19:46:01'!
+PASSED!
+
+!testRun: #BacklogTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'NB 5/21/2023 19:46:01'!
+PASSED!
+
+!testRun: #BacklogTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'NB 5/21/2023 19:46:01'!
+PASSED!
+
+!testRun: #BacklogTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'NB 5/21/2023 19:46:01'!
+PASSED!
+
+!testRun: #BacklogTest #test04WithdrawValueMustBePositive stamp: 'NB 5/21/2023 19:46:01'!
+PASSED!
+
+!testRun: #BacklogTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'NB 5/21/2023 19:46:01'!
+PASSED!
+
+!testRun: #BacklogTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'NB 5/21/2023 19:46:01'!
+PASSED!
+
+!testRun: #BacklogTest #test07AccountKnowsItsTransactions stamp: 'NB 5/21/2023 19:46:01'!
+PASSED!
+
+!testRun: #BacklogTest #test08PortfolioBalanceIsZeroWhenCreated stamp: 'NB 5/21/2023 19:46:01'!
+PASSED!
+
+!testRun: #BacklogTest #test09PortfolioBalanceIsZeroWhenAccountHasAZeroBalance stamp: 'NB 5/21/2023 19:46:01'!
+PASSED!
+
+!testRun: #BacklogTest #test10PortfolioBalanceHasAccountsBalanceWhenOnlyAccountsAreAddedToPortfolio stamp: 'NB 5/21/2023 19:46:01'!
+PASSED!
+
+!testRun: #BacklogTest #test11PortfolioBalanceIsCorrectWhenPortfoliosAreAddedToPortfolio stamp: 'NB 5/21/2023 19:46:01'!
+PASSED!
+
+!testRun: #BacklogTest #test12EmptyPortfolioDoesNotHaveRegisteredTransactions stamp: 'NB 5/21/2023 19:46:01'!
+PASSED!
+
+!testRun: #BacklogTest #test13PortfolioRegistersTransactionsWhenOnlyAccountsAreAddedToPortfolio stamp: 'NB 5/21/2023 19:46:01'!
+PASSED!
+
+!testRun: #BacklogTest #test14PortfolioCorrectlyRegistersTransactionsWhenPortfoliosAreAddedToPortfolio stamp: 'NB 5/21/2023 19:46:01'!
+PASSED!
+
+!testRun: #BacklogTest #test15EmptyPortfolioDoesNotHaveTransactions stamp: 'NB 5/21/2023 19:46:01'!
+PASSED!
+
+!testRun: #BacklogTest #test16PortfolioHasAccountTransactionsWhenOnlyAccountsAreAddedToPortfolio stamp: 'NB 5/21/2023 19:46:01'!
+PASSED!
+
+!testRun: #BacklogTest #test17PortolioHasPortfolioTransactionsWhenPortfoliosAreAddedToPortfolio stamp: 'NB 5/21/2023 19:46:01'!
+PASSED!
+
+!testRun: #BacklogTest #test18CannotAddTheSameAccountToAPortfolioMoreThanOneTime stamp: 'NB 5/21/2023 19:46:01'!
+PASSED!
+
+!testRun: #BacklogTest #test19CannotAddAnAccountWhenAnotherPortfolioHasTheSameAccount stamp: 'NB 5/21/2023 19:46:01'!
+PASSED!
+
+!testRun: #BacklogTest #test20CannotAddAPortfolioThatHasAnAccountThatTheActualPortfolioAlreadyHas stamp: 'NB 5/21/2023 19:46:01'!
+PASSED!
+
+!testRun: #BacklogTest #test21CannotAddAPortfolioThatHasAnAccountThatOtherPortfolioHasAPortfolioWithTheSameAccount stamp: 'NB 5/21/2023 19:46:01'!
+PASSED!
+
+!testRun: #BacklogTest #test22CannotAddAPortfolioThatHasAPortfolioAlreadyAdded stamp: 'NB 5/21/2023 19:46:01'!
+PASSED!
+
+!testRun: #BacklogTest #test23CannotAddTheSamePortfolioToSelf stamp: 'NB 5/21/2023 19:46:01'!
+PASSED!
+
+!testRun: #BacklogTest #test24CannotAddAnAccountThatPortfoliosParentAlreadyHas stamp: 'NB 5/21/2023 19:46:01'!
+PASSED!
+
+!testRun: #BacklogTest #test25CannotAddAnAccountThatOneOfPortfoliosParentAlreadyHas stamp: 'NB 5/21/2023 19:46:01'!
+PASSED!
+
+!testRun: #BacklogTest #test26CannotAddAnAccountThatOneOfTheRootsParentAlreadyHas stamp: 'NB 5/21/2023 19:46:01'!
+PASSED!
+
+----SNAPSHOT----(21 May 2023 19:46:04) CuisUniversity-5706.image priorSource: 11475681!
+!BacklogTest methodsFor: 'tests' stamp: 'NB 5/21/2023 19:47:17' prior: 50688110!
+test15EmptyPortfolioDoesNotHaveTransactions
+
+	self assert: (Portfolio new transactions isEmpty).
+	! !
+
+!testRun: #BacklogTest #test15EmptyPortfolioDoesNotHaveTransactions stamp: 'NB 5/21/2023 19:47:18'!
+PASSED!
+
+!testRun: #BacklogTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'NB 5/21/2023 19:47:18'!
+PASSED!
+
+!testRun: #BacklogTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'NB 5/21/2023 19:47:18'!
+PASSED!
+
+!testRun: #BacklogTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'NB 5/21/2023 19:47:18'!
+PASSED!
+
+!testRun: #BacklogTest #test04WithdrawValueMustBePositive stamp: 'NB 5/21/2023 19:47:18'!
+PASSED!
+
+!testRun: #BacklogTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'NB 5/21/2023 19:47:18'!
+PASSED!
+
+!testRun: #BacklogTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'NB 5/21/2023 19:47:19'!
+PASSED!
+
+!testRun: #BacklogTest #test07AccountKnowsItsTransactions stamp: 'NB 5/21/2023 19:47:19'!
+PASSED!
+
+!testRun: #BacklogTest #test08PortfolioBalanceIsZeroWhenCreated stamp: 'NB 5/21/2023 19:47:19'!
+PASSED!
+
+!testRun: #BacklogTest #test09PortfolioBalanceIsZeroWhenAccountHasAZeroBalance stamp: 'NB 5/21/2023 19:47:19'!
+PASSED!
+
+!testRun: #BacklogTest #test10PortfolioBalanceHasAccountsBalanceWhenOnlyAccountsAreAddedToPortfolio stamp: 'NB 5/21/2023 19:47:19'!
+PASSED!
+
+!testRun: #BacklogTest #test11PortfolioBalanceIsCorrectWhenPortfoliosAreAddedToPortfolio stamp: 'NB 5/21/2023 19:47:19'!
+PASSED!
+
+!testRun: #BacklogTest #test12EmptyPortfolioDoesNotHaveRegisteredTransactions stamp: 'NB 5/21/2023 19:47:19'!
+PASSED!
+
+!testRun: #BacklogTest #test13PortfolioRegistersTransactionsWhenOnlyAccountsAreAddedToPortfolio stamp: 'NB 5/21/2023 19:47:19'!
+PASSED!
+
+!testRun: #BacklogTest #test14PortfolioCorrectlyRegistersTransactionsWhenPortfoliosAreAddedToPortfolio stamp: 'NB 5/21/2023 19:47:19'!
+PASSED!
+
+!testRun: #BacklogTest #test15EmptyPortfolioDoesNotHaveTransactions stamp: 'NB 5/21/2023 19:47:19'!
+PASSED!
+
+!testRun: #BacklogTest #test16PortfolioHasAccountTransactionsWhenOnlyAccountsAreAddedToPortfolio stamp: 'NB 5/21/2023 19:47:19'!
+PASSED!
+
+!testRun: #BacklogTest #test17PortolioHasPortfolioTransactionsWhenPortfoliosAreAddedToPortfolio stamp: 'NB 5/21/2023 19:47:19'!
+PASSED!
+
+!testRun: #BacklogTest #test18CannotAddTheSameAccountToAPortfolioMoreThanOneTime stamp: 'NB 5/21/2023 19:47:19'!
+PASSED!
+
+!testRun: #BacklogTest #test19CannotAddAnAccountWhenAnotherPortfolioHasTheSameAccount stamp: 'NB 5/21/2023 19:47:19'!
+PASSED!
+
+!testRun: #BacklogTest #test20CannotAddAPortfolioThatHasAnAccountThatTheActualPortfolioAlreadyHas stamp: 'NB 5/21/2023 19:47:19'!
+PASSED!
+
+!testRun: #BacklogTest #test21CannotAddAPortfolioThatHasAnAccountThatOtherPortfolioHasAPortfolioWithTheSameAccount stamp: 'NB 5/21/2023 19:47:19'!
+PASSED!
+
+!testRun: #BacklogTest #test22CannotAddAPortfolioThatHasAPortfolioAlreadyAdded stamp: 'NB 5/21/2023 19:47:19'!
+PASSED!
+
+!testRun: #BacklogTest #test23CannotAddTheSamePortfolioToSelf stamp: 'NB 5/21/2023 19:47:19'!
+PASSED!
+
+!testRun: #BacklogTest #test24CannotAddAnAccountThatPortfoliosParentAlreadyHas stamp: 'NB 5/21/2023 19:47:19'!
+PASSED!
+
+!testRun: #BacklogTest #test25CannotAddAnAccountThatOneOfPortfoliosParentAlreadyHas stamp: 'NB 5/21/2023 19:47:19'!
+PASSED!
+
+!testRun: #BacklogTest #test26CannotAddAnAccountThatOneOfTheRootsParentAlreadyHas stamp: 'NB 5/21/2023 19:47:19'!
+PASSED!
+
+!testRun: #BacklogTest #test18CannotAddTheSameAccountToAPortfolioMoreThanOneTime stamp: 'NB 5/21/2023 19:50:02'!
+PASSED!
+
+!testRun: #BacklogTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'NB 5/21/2023 19:50:02'!
+PASSED!
+
+!testRun: #BacklogTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'NB 5/21/2023 19:50:02'!
+PASSED!
+
+!testRun: #BacklogTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'NB 5/21/2023 19:50:02'!
+PASSED!
+
+!testRun: #BacklogTest #test04WithdrawValueMustBePositive stamp: 'NB 5/21/2023 19:50:02'!
+PASSED!
+
+!testRun: #BacklogTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'NB 5/21/2023 19:50:02'!
+PASSED!
+
+!testRun: #BacklogTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'NB 5/21/2023 19:50:02'!
+PASSED!
+
+!testRun: #BacklogTest #test07AccountKnowsItsTransactions stamp: 'NB 5/21/2023 19:50:02'!
+PASSED!
+
+!testRun: #BacklogTest #test08PortfolioBalanceIsZeroWhenCreated stamp: 'NB 5/21/2023 19:50:02'!
+PASSED!
+
+!testRun: #BacklogTest #test09PortfolioBalanceIsZeroWhenAccountHasAZeroBalance stamp: 'NB 5/21/2023 19:50:02'!
+PASSED!
+
+!testRun: #BacklogTest #test10PortfolioBalanceHasAccountsBalanceWhenOnlyAccountsAreAddedToPortfolio stamp: 'NB 5/21/2023 19:50:02'!
+PASSED!
+
+!testRun: #BacklogTest #test11PortfolioBalanceIsCorrectWhenPortfoliosAreAddedToPortfolio stamp: 'NB 5/21/2023 19:50:02'!
+PASSED!
+
+!testRun: #BacklogTest #test12EmptyPortfolioDoesNotHaveRegisteredTransactions stamp: 'NB 5/21/2023 19:50:02'!
+PASSED!
+
+!testRun: #BacklogTest #test13PortfolioRegistersTransactionsWhenOnlyAccountsAreAddedToPortfolio stamp: 'NB 5/21/2023 19:50:02'!
+PASSED!
+
+!testRun: #BacklogTest #test14PortfolioCorrectlyRegistersTransactionsWhenPortfoliosAreAddedToPortfolio stamp: 'NB 5/21/2023 19:50:02'!
+PASSED!
+
+!testRun: #BacklogTest #test15EmptyPortfolioDoesNotHaveTransactions stamp: 'NB 5/21/2023 19:50:02'!
+PASSED!
+
+!testRun: #BacklogTest #test16PortfolioHasAccountTransactionsWhenOnlyAccountsAreAddedToPortfolio stamp: 'NB 5/21/2023 19:50:02'!
+PASSED!
+
+!testRun: #BacklogTest #test17PortolioHasPortfolioTransactionsWhenPortfoliosAreAddedToPortfolio stamp: 'NB 5/21/2023 19:50:02'!
+PASSED!
+
+!testRun: #BacklogTest #test18CannotAddTheSameAccountToAPortfolioMoreThanOneTime stamp: 'NB 5/21/2023 19:50:02'!
+PASSED!
+
+!testRun: #BacklogTest #test19CannotAddAnAccountWhenAnotherPortfolioHasTheSameAccount stamp: 'NB 5/21/2023 19:50:02'!
+PASSED!
+
+!testRun: #BacklogTest #test20CannotAddAPortfolioThatHasAnAccountThatTheActualPortfolioAlreadyHas stamp: 'NB 5/21/2023 19:50:02'!
+PASSED!
+
+!testRun: #BacklogTest #test21CannotAddAPortfolioThatHasAnAccountThatOtherPortfolioHasAPortfolioWithTheSameAccount stamp: 'NB 5/21/2023 19:50:02'!
+PASSED!
+
+!testRun: #BacklogTest #test22CannotAddAPortfolioThatHasAPortfolioAlreadyAdded stamp: 'NB 5/21/2023 19:50:02'!
+PASSED!
+
+!testRun: #BacklogTest #test23CannotAddTheSamePortfolioToSelf stamp: 'NB 5/21/2023 19:50:02'!
+PASSED!
+
+!testRun: #BacklogTest #test24CannotAddAnAccountThatPortfoliosParentAlreadyHas stamp: 'NB 5/21/2023 19:50:02'!
+PASSED!
+
+!testRun: #BacklogTest #test25CannotAddAnAccountThatOneOfPortfoliosParentAlreadyHas stamp: 'NB 5/21/2023 19:50:02'!
+PASSED!
+
+!testRun: #BacklogTest #test26CannotAddAnAccountThatOneOfTheRootsParentAlreadyHas stamp: 'NB 5/21/2023 19:50:02'!
+PASSED!
+
+TestCase subclass: #PortfolioTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #PortfolioTest category: 'Portfolio-Ejercicio' stamp: 'NB 5/21/2023 19:52:12'!
+TestCase subclass: #PortfolioTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!PortfolioTest methodsFor: 'tests' stamp: 'NB 5/21/2023 19:52:49'!
+test01PortfolioBalanceIsZeroWhenCreated
+
+	self assert: 0 equals: Portfolio new balance.
+! !
+
+!testRun: #PortfolioTest #test01PortfolioBalanceIsZeroWhenCreated stamp: 'NB 5/21/2023 19:52:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test01PortfolioBalanceIsZeroWhenCreated stamp: 'NB 5/21/2023 19:52:50'!
+PASSED!
+
+!methodRemoval: BacklogTest #test08PortfolioBalanceIsZeroWhenCreated stamp: 'NB 5/21/2023 19:53:01'!
+test08PortfolioBalanceIsZeroWhenCreated
+
+	self assert: 0 equals: Portfolio new balance.
+!
+!PortfolioTest methodsFor: 'tests' stamp: 'NB 5/21/2023 19:53:14'!
+test02PortfolioBalanceIsZeroWhenAccountHasAZeroBalance
+
+	|  portfolio account |
+	
+	
+	portfolio := Portfolio new.	
+	account := ReceptiveAccount new.
+	portfolio add: account.
+	self assert: 0 equals: portfolio balance.! !
+
+!testRun: #PortfolioTest #test02PortfolioBalanceIsZeroWhenAccountHasAZeroBalance stamp: 'NB 5/21/2023 19:53:15'!
+PASSED!
+
+!testRun: #PortfolioTest #test01PortfolioBalanceIsZeroWhenCreated stamp: 'NB 5/21/2023 19:53:15'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioBalanceIsZeroWhenAccountHasAZeroBalance stamp: 'NB 5/21/2023 19:53:15'!
+PASSED!
+
+!methodRemoval: BacklogTest #test09PortfolioBalanceIsZeroWhenAccountHasAZeroBalance stamp: 'NB 5/21/2023 19:53:30'!
+test09PortfolioBalanceIsZeroWhenAccountHasAZeroBalance
+
+	|  portfolio account |
+	
+	
+	portfolio := Portfolio new.	
+	account := ReceptiveAccount new.
+	portfolio add: account.
+	self assert: 0 equals: portfolio balance.
+!
+!PortfolioTest methodsFor: 'tests' stamp: 'NB 5/21/2023 19:53:50'!
+test03PortfolioBalanceHasAccountsBalanceWhenOnlyAccountsAreAddedToPortfolio
+
+	|  portfolio account |
+	
+	
+	portfolio := Portfolio new.	
+	account := ReceptiveAccount new.
+	portfolio add: account.
+	Deposit register: 100 on: account.
+	self assert: account balance equals: portfolio balance.! !
+
+!testRun: #PortfolioTest #test03PortfolioBalanceHasAccountsBalanceWhenOnlyAccountsAreAddedToPortfolio stamp: 'NB 5/21/2023 19:53:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test01PortfolioBalanceIsZeroWhenCreated stamp: 'NB 5/21/2023 19:53:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioBalanceIsZeroWhenAccountHasAZeroBalance stamp: 'NB 5/21/2023 19:53:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioBalanceHasAccountsBalanceWhenOnlyAccountsAreAddedToPortfolio stamp: 'NB 5/21/2023 19:53:51'!
+PASSED!
+
+!methodRemoval: BacklogTest #test10PortfolioBalanceHasAccountsBalanceWhenOnlyAccountsAreAddedToPortfolio stamp: 'NB 5/21/2023 19:53:59'!
+test10PortfolioBalanceHasAccountsBalanceWhenOnlyAccountsAreAddedToPortfolio
+
+	|  portfolio account |
+	
+	
+	portfolio := Portfolio new.	
+	account := ReceptiveAccount new.
+	portfolio add: account.
+	Deposit register: 100 on: account.
+	self assert: account balance equals: portfolio balance.
+!
+!PortfolioTest methodsFor: 'tests' stamp: 'NB 5/21/2023 19:54:12'!
+test04PortfolioBalanceIsCorrectWhenPortfoliosAreAddedToPortfolio
+
+	|  portfolio account portfolioIntern accountOfPortfolioIntern|
+	
+	
+	portfolio := Portfolio new.	
+	account := ReceptiveAccount new.
+	portfolio add: account.
+	portfolioIntern := Portfolio new.
+	accountOfPortfolioIntern:=  ReceptiveAccount new.
+	Deposit register: 100 on: account.
+	Deposit register: 200 on: accountOfPortfolioIntern.
+	portfolioIntern add: accountOfPortfolioIntern .
+	portfolio add: portfolioIntern .
+	self assert: (accountOfPortfolioIntern balance + account balance) equals: portfolio balance.! !
+
+!testRun: #PortfolioTest #test04PortfolioBalanceIsCorrectWhenPortfoliosAreAddedToPortfolio stamp: 'NB 5/21/2023 19:54:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test01PortfolioBalanceIsZeroWhenCreated stamp: 'NB 5/21/2023 19:54:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioBalanceIsZeroWhenAccountHasAZeroBalance stamp: 'NB 5/21/2023 19:54:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioBalanceHasAccountsBalanceWhenOnlyAccountsAreAddedToPortfolio stamp: 'NB 5/21/2023 19:54:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioBalanceIsCorrectWhenPortfoliosAreAddedToPortfolio stamp: 'NB 5/21/2023 19:54:13'!
+PASSED!
+
+!methodRemoval: BacklogTest #test11PortfolioBalanceIsCorrectWhenPortfoliosAreAddedToPortfolio stamp: 'NB 5/21/2023 19:54:20'!
+test11PortfolioBalanceIsCorrectWhenPortfoliosAreAddedToPortfolio
+
+	|  portfolio account portfolioIntern accountOfPortfolioIntern|
+	
+	
+	portfolio := Portfolio new.	
+	account := ReceptiveAccount new.
+	portfolio add: account.
+	portfolioIntern := Portfolio new.
+	accountOfPortfolioIntern:=  ReceptiveAccount new.
+	Deposit register: 100 on: account.
+	Deposit register: 200 on: accountOfPortfolioIntern.
+	portfolioIntern add: accountOfPortfolioIntern .
+	portfolio add: portfolioIntern .
+	self assert: (accountOfPortfolioIntern balance + account balance) equals: portfolio balance.
+!
+!PortfolioTest methodsFor: 'tests' stamp: 'NB 5/21/2023 19:54:30'!
+test05EmptyPortfolioDoesNotHaveRegisteredTransactions
+
+	|aPortfolio deposit |
+	
+	aPortfolio := Portfolio new.
+	deposit := Deposit for: 200.
+	self deny: (aPortfolio hasRegistered: deposit).! !
+
+!testRun: #PortfolioTest #test05EmptyPortfolioDoesNotHaveRegisteredTransactions stamp: 'NB 5/21/2023 19:54:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test01PortfolioBalanceIsZeroWhenCreated stamp: 'NB 5/21/2023 19:54:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioBalanceIsZeroWhenAccountHasAZeroBalance stamp: 'NB 5/21/2023 19:54:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioBalanceHasAccountsBalanceWhenOnlyAccountsAreAddedToPortfolio stamp: 'NB 5/21/2023 19:54:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioBalanceIsCorrectWhenPortfoliosAreAddedToPortfolio stamp: 'NB 5/21/2023 19:54:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test05EmptyPortfolioDoesNotHaveRegisteredTransactions stamp: 'NB 5/21/2023 19:54:31'!
+PASSED!
+
+!methodRemoval: BacklogTest #test12EmptyPortfolioDoesNotHaveRegisteredTransactions stamp: 'NB 5/21/2023 19:54:43'!
+test12EmptyPortfolioDoesNotHaveRegisteredTransactions
+
+	|aPortfolio deposit |
+	
+	aPortfolio := Portfolio new.
+	deposit := Deposit for: 200.
+	self deny: (aPortfolio hasRegistered: deposit).!
+!PortfolioTest methodsFor: 'tests' stamp: 'NB 5/21/2023 19:54:56'!
+test06PortfolioRegistersTransactionsWhenOnlyAccountsAreAddedToPortfolio
+
+	|aPortfolio deposit aAccout|
+	
+	aPortfolio := Portfolio new.
+	
+	aAccout := ReceptiveAccount new.
+	aPortfolio add: aAccout .
+	deposit := Deposit register: 100 on: aAccout .
+	self assert: (aPortfolio hasRegistered: deposit).! !
+
+!testRun: #PortfolioTest #test06PortfolioRegistersTransactionsWhenOnlyAccountsAreAddedToPortfolio stamp: 'NB 5/21/2023 19:54:57'!
+PASSED!
+
+!testRun: #PortfolioTest #test01PortfolioBalanceIsZeroWhenCreated stamp: 'NB 5/21/2023 19:54:57'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioBalanceIsZeroWhenAccountHasAZeroBalance stamp: 'NB 5/21/2023 19:54:57'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioBalanceHasAccountsBalanceWhenOnlyAccountsAreAddedToPortfolio stamp: 'NB 5/21/2023 19:54:57'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioBalanceIsCorrectWhenPortfoliosAreAddedToPortfolio stamp: 'NB 5/21/2023 19:54:57'!
+PASSED!
+
+!testRun: #PortfolioTest #test05EmptyPortfolioDoesNotHaveRegisteredTransactions stamp: 'NB 5/21/2023 19:54:57'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioRegistersTransactionsWhenOnlyAccountsAreAddedToPortfolio stamp: 'NB 5/21/2023 19:54:57'!
+PASSED!
+
+!methodRemoval: BacklogTest #test13PortfolioRegistersTransactionsWhenOnlyAccountsAreAddedToPortfolio stamp: 'NB 5/21/2023 19:55:11'!
+test13PortfolioRegistersTransactionsWhenOnlyAccountsAreAddedToPortfolio
+
+	|aPortfolio deposit aAccout|
+	
+	aPortfolio := Portfolio new.
+	
+	aAccout := ReceptiveAccount new.
+	aPortfolio add: aAccout .
+	deposit := Deposit register: 100 on: aAccout .
+	self assert: (aPortfolio hasRegistered: deposit).!
+!PortfolioTest methodsFor: 'tests' stamp: 'NB 5/21/2023 19:55:22'!
+test07PortfolioCorrectlyRegistersTransactionsWhenPortfoliosAreAddedToPortfolio
+
+	|  portfolio account portfolioIntern accountOfPortfolioIntern deposit depositIntern|
+	
+	
+	portfolio := Portfolio new.	
+	account := ReceptiveAccount new.
+	portfolio add: account.
+	portfolioIntern := Portfolio new.
+	accountOfPortfolioIntern:=  ReceptiveAccount new.
+	deposit:= Deposit register: 100 on: account.
+	depositIntern:= Deposit register: 200 on: accountOfPortfolioIntern.
+	portfolioIntern add: accountOfPortfolioIntern .
+	portfolio add: portfolioIntern .
+	self assert: (portfolio hasRegistered: deposit).
+	self assert: (portfolio hasRegistered: depositIntern).! !
+
+!testRun: #PortfolioTest #test07PortfolioCorrectlyRegistersTransactionsWhenPortfoliosAreAddedToPortfolio stamp: 'NB 5/21/2023 19:55:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test01PortfolioBalanceIsZeroWhenCreated stamp: 'NB 5/21/2023 19:55:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioBalanceIsZeroWhenAccountHasAZeroBalance stamp: 'NB 5/21/2023 19:55:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioBalanceHasAccountsBalanceWhenOnlyAccountsAreAddedToPortfolio stamp: 'NB 5/21/2023 19:55:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioBalanceIsCorrectWhenPortfoliosAreAddedToPortfolio stamp: 'NB 5/21/2023 19:55:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test05EmptyPortfolioDoesNotHaveRegisteredTransactions stamp: 'NB 5/21/2023 19:55:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioRegistersTransactionsWhenOnlyAccountsAreAddedToPortfolio stamp: 'NB 5/21/2023 19:55:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioCorrectlyRegistersTransactionsWhenPortfoliosAreAddedToPortfolio stamp: 'NB 5/21/2023 19:55:24'!
+PASSED!
+
+!methodRemoval: BacklogTest #test14PortfolioCorrectlyRegistersTransactionsWhenPortfoliosAreAddedToPortfolio stamp: 'NB 5/21/2023 19:55:31'!
+test14PortfolioCorrectlyRegistersTransactionsWhenPortfoliosAreAddedToPortfolio
+
+	|  portfolio account portfolioIntern accountOfPortfolioIntern deposit depositIntern|
+	
+	
+	portfolio := Portfolio new.	
+	account := ReceptiveAccount new.
+	portfolio add: account.
+	portfolioIntern := Portfolio new.
+	accountOfPortfolioIntern:=  ReceptiveAccount new.
+	deposit:= Deposit register: 100 on: account.
+	depositIntern:= Deposit register: 200 on: accountOfPortfolioIntern.
+	portfolioIntern add: accountOfPortfolioIntern .
+	portfolio add: portfolioIntern .
+	self assert: (portfolio hasRegistered: deposit).
+	self assert: (portfolio hasRegistered: depositIntern).
+	!
+!PortfolioTest methodsFor: 'tests' stamp: 'NB 5/21/2023 19:55:46'!
+test08EmptyPortfolioDoesNotHaveTransactions
+
+	self assert: (Portfolio new transactions isEmpty).! !
+
+!testRun: #PortfolioTest #test08EmptyPortfolioDoesNotHaveTransactions stamp: 'NB 5/21/2023 19:55:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test01PortfolioBalanceIsZeroWhenCreated stamp: 'NB 5/21/2023 19:55:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioBalanceIsZeroWhenAccountHasAZeroBalance stamp: 'NB 5/21/2023 19:55:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioBalanceHasAccountsBalanceWhenOnlyAccountsAreAddedToPortfolio stamp: 'NB 5/21/2023 19:55:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioBalanceIsCorrectWhenPortfoliosAreAddedToPortfolio stamp: 'NB 5/21/2023 19:55:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test05EmptyPortfolioDoesNotHaveRegisteredTransactions stamp: 'NB 5/21/2023 19:55:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioRegistersTransactionsWhenOnlyAccountsAreAddedToPortfolio stamp: 'NB 5/21/2023 19:55:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioCorrectlyRegistersTransactionsWhenPortfoliosAreAddedToPortfolio stamp: 'NB 5/21/2023 19:55:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test08EmptyPortfolioDoesNotHaveTransactions stamp: 'NB 5/21/2023 19:55:47'!
+PASSED!
+
+!methodRemoval: BacklogTest #test15EmptyPortfolioDoesNotHaveTransactions stamp: 'NB 5/21/2023 19:55:54'!
+test15EmptyPortfolioDoesNotHaveTransactions
+
+	self assert: (Portfolio new transactions isEmpty).
+	!
+!PortfolioTest methodsFor: 'tests' stamp: 'NB 5/21/2023 19:56:06'!
+test09PortfolioHasAccountTransactionsWhenOnlyAccountsAreAddedToPortfolio
+
+	|  portfolio account deposit|
+	
+	
+	portfolio := Portfolio new.	
+	account := ReceptiveAccount new.
+	deposit:= Deposit register: 100 on: account.
+	portfolio add: account. 
+	self assert: 1 equals: portfolio transactions size.
+	self assert: (portfolio transactions includes: deposit).! !
+
+!testRun: #PortfolioTest #test09PortfolioHasAccountTransactionsWhenOnlyAccountsAreAddedToPortfolio stamp: 'NB 5/21/2023 19:56:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test01PortfolioBalanceIsZeroWhenCreated stamp: 'NB 5/21/2023 19:56:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioBalanceIsZeroWhenAccountHasAZeroBalance stamp: 'NB 5/21/2023 19:56:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioBalanceHasAccountsBalanceWhenOnlyAccountsAreAddedToPortfolio stamp: 'NB 5/21/2023 19:56:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioBalanceIsCorrectWhenPortfoliosAreAddedToPortfolio stamp: 'NB 5/21/2023 19:56:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test05EmptyPortfolioDoesNotHaveRegisteredTransactions stamp: 'NB 5/21/2023 19:56:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioRegistersTransactionsWhenOnlyAccountsAreAddedToPortfolio stamp: 'NB 5/21/2023 19:56:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioCorrectlyRegistersTransactionsWhenPortfoliosAreAddedToPortfolio stamp: 'NB 5/21/2023 19:56:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test08EmptyPortfolioDoesNotHaveTransactions stamp: 'NB 5/21/2023 19:56:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioHasAccountTransactionsWhenOnlyAccountsAreAddedToPortfolio stamp: 'NB 5/21/2023 19:56:07'!
+PASSED!
+
+!methodRemoval: BacklogTest #test16PortfolioHasAccountTransactionsWhenOnlyAccountsAreAddedToPortfolio stamp: 'NB 5/21/2023 19:56:15'!
+test16PortfolioHasAccountTransactionsWhenOnlyAccountsAreAddedToPortfolio
+
+	|  portfolio account deposit|
+	
+	
+	portfolio := Portfolio new.	
+	account := ReceptiveAccount new.
+	deposit:= Deposit register: 100 on: account.
+	portfolio add: account. 
+	self assert: 1 equals: portfolio transactions size.
+	self assert: (portfolio transactions includes: deposit).
+	!
+!PortfolioTest methodsFor: 'tests' stamp: 'NB 5/21/2023 19:56:25'!
+test10PortolioHasPortfolioTransactionsWhenPortfoliosAreAddedToPortfolio
+
+	|  portfolio account portfolioIntern accountOfPortfolioIntern deposit depositIntern|
+	
+	
+	portfolio := Portfolio new.	
+	account := ReceptiveAccount new.
+	portfolio add: account.
+	portfolioIntern := Portfolio new.
+	accountOfPortfolioIntern:=  ReceptiveAccount new.
+	deposit:= Deposit register: 100 on: account.
+	depositIntern:= Deposit register: 200 on: accountOfPortfolioIntern.
+	portfolioIntern add: accountOfPortfolioIntern .
+	portfolio add: portfolioIntern .
+	self assert: 2 equals: portfolio transactions size.
+	self assert: (portfolio transactions includes: deposit).
+	self assert: (portfolio transactions includes: depositIntern).! !
+
+!testRun: #PortfolioTest #test10PortolioHasPortfolioTransactionsWhenPortfoliosAreAddedToPortfolio stamp: 'NB 5/21/2023 19:56:27'!
+PASSED!
+
+!testRun: #PortfolioTest #test01PortfolioBalanceIsZeroWhenCreated stamp: 'NB 5/21/2023 19:56:27'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioBalanceIsZeroWhenAccountHasAZeroBalance stamp: 'NB 5/21/2023 19:56:27'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioBalanceHasAccountsBalanceWhenOnlyAccountsAreAddedToPortfolio stamp: 'NB 5/21/2023 19:56:27'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioBalanceIsCorrectWhenPortfoliosAreAddedToPortfolio stamp: 'NB 5/21/2023 19:56:27'!
+PASSED!
+
+!testRun: #PortfolioTest #test05EmptyPortfolioDoesNotHaveRegisteredTransactions stamp: 'NB 5/21/2023 19:56:27'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioRegistersTransactionsWhenOnlyAccountsAreAddedToPortfolio stamp: 'NB 5/21/2023 19:56:27'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioCorrectlyRegistersTransactionsWhenPortfoliosAreAddedToPortfolio stamp: 'NB 5/21/2023 19:56:27'!
+PASSED!
+
+!testRun: #PortfolioTest #test08EmptyPortfolioDoesNotHaveTransactions stamp: 'NB 5/21/2023 19:56:27'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioHasAccountTransactionsWhenOnlyAccountsAreAddedToPortfolio stamp: 'NB 5/21/2023 19:56:27'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortolioHasPortfolioTransactionsWhenPortfoliosAreAddedToPortfolio stamp: 'NB 5/21/2023 19:56:27'!
+PASSED!
+
+!methodRemoval: BacklogTest #test17PortolioHasPortfolioTransactionsWhenPortfoliosAreAddedToPortfolio stamp: 'NB 5/21/2023 19:56:40'!
+test17PortolioHasPortfolioTransactionsWhenPortfoliosAreAddedToPortfolio
+
+	|  portfolio account portfolioIntern accountOfPortfolioIntern deposit depositIntern|
+	
+	
+	portfolio := Portfolio new.	
+	account := ReceptiveAccount new.
+	portfolio add: account.
+	portfolioIntern := Portfolio new.
+	accountOfPortfolioIntern:=  ReceptiveAccount new.
+	deposit:= Deposit register: 100 on: account.
+	depositIntern:= Deposit register: 200 on: accountOfPortfolioIntern.
+	portfolioIntern add: accountOfPortfolioIntern .
+	portfolio add: portfolioIntern .
+	self assert: 2 equals: portfolio transactions size.
+	self assert: (portfolio transactions includes: deposit).
+	self assert: (portfolio transactions includes: depositIntern).
+	!
+!PortfolioTest methodsFor: 'tests' stamp: 'NB 5/21/2023 19:56:54'!
+test11CannotAddTheSameAccountToAPortfolioMoreThanOneTime
+
+	|  portfolio account |
+	
+	
+	portfolio := Portfolio new.	
+	account := ReceptiveAccount new.
+	portfolio add: account.
+	
+	self should: [portfolio add: account] raise: Error  withMessageText: Portfolio repeatedBackLogAddedError .! !
+
+!methodRemoval: BacklogTest #test18CannotAddTheSameAccountToAPortfolioMoreThanOneTime stamp: 'NB 5/21/2023 19:57:00'!
+test18CannotAddTheSameAccountToAPortfolioMoreThanOneTime
+
+	|  portfolio account |
+	
+	
+	portfolio := Portfolio new.	
+	account := ReceptiveAccount new.
+	portfolio add: account.
+	
+	self should: [portfolio add: account] raise: Error  withMessageText: Portfolio repeatedBackLogAddedError .
+	!
+!PortfolioTest methodsFor: 'tests' stamp: 'NB 5/21/2023 19:57:11'!
+test12CannotAddAnAccountWhenAnotherPortfolioHasTheSameAccount
+
+	|  portfolio account portfolio2|
+	
+	
+	portfolio := Portfolio new.	
+	account := ReceptiveAccount new.
+	
+	portfolio2 := Portfolio new.	
+	portfolio2 add: account.
+	
+	portfolio add: portfolio2.
+	
+	self should: [portfolio add: account] raise: Error  withMessageText: Portfolio repeatedBackLogAddedError.! !
+
+!testRun: #PortfolioTest #test12CannotAddAnAccountWhenAnotherPortfolioHasTheSameAccount stamp: 'NB 5/21/2023 19:57:12'!
+PASSED!
+
+!testRun: #PortfolioTest #test01PortfolioBalanceIsZeroWhenCreated stamp: 'NB 5/21/2023 19:57:12'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioBalanceIsZeroWhenAccountHasAZeroBalance stamp: 'NB 5/21/2023 19:57:12'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioBalanceHasAccountsBalanceWhenOnlyAccountsAreAddedToPortfolio stamp: 'NB 5/21/2023 19:57:12'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioBalanceIsCorrectWhenPortfoliosAreAddedToPortfolio stamp: 'NB 5/21/2023 19:57:12'!
+PASSED!
+
+!testRun: #PortfolioTest #test05EmptyPortfolioDoesNotHaveRegisteredTransactions stamp: 'NB 5/21/2023 19:57:12'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioRegistersTransactionsWhenOnlyAccountsAreAddedToPortfolio stamp: 'NB 5/21/2023 19:57:12'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioCorrectlyRegistersTransactionsWhenPortfoliosAreAddedToPortfolio stamp: 'NB 5/21/2023 19:57:12'!
+PASSED!
+
+!testRun: #PortfolioTest #test08EmptyPortfolioDoesNotHaveTransactions stamp: 'NB 5/21/2023 19:57:12'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioHasAccountTransactionsWhenOnlyAccountsAreAddedToPortfolio stamp: 'NB 5/21/2023 19:57:12'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortolioHasPortfolioTransactionsWhenPortfoliosAreAddedToPortfolio stamp: 'NB 5/21/2023 19:57:12'!
+PASSED!
+
+!testRun: #PortfolioTest #test11CannotAddTheSameAccountToAPortfolioMoreThanOneTime stamp: 'NB 5/21/2023 19:57:12'!
+PASSED!
+
+!testRun: #PortfolioTest #test12CannotAddAnAccountWhenAnotherPortfolioHasTheSameAccount stamp: 'NB 5/21/2023 19:57:12'!
+PASSED!
+
+!methodRemoval: BacklogTest #test19CannotAddAnAccountWhenAnotherPortfolioHasTheSameAccount stamp: 'NB 5/21/2023 19:57:18'!
+test19CannotAddAnAccountWhenAnotherPortfolioHasTheSameAccount
+
+	|  portfolio account portfolio2|
+	
+	
+	portfolio := Portfolio new.	
+	account := ReceptiveAccount new.
+	
+	portfolio2 := Portfolio new.	
+	portfolio2 add: account.
+	
+	portfolio add: portfolio2.
+	
+	self should: [portfolio add: account] raise: Error  withMessageText: Portfolio repeatedBackLogAddedError.
+	!
+!PortfolioTest methodsFor: 'tests' stamp: 'NB 5/21/2023 19:57:30'!
+test13CannotAddAPortfolioThatHasAnAccountThatTheActualPortfolioAlreadyHas
+
+	|  portfolio account portfolio2|
+	
+	
+	portfolio := Portfolio new.	
+	account := ReceptiveAccount new.
+	
+	portfolio add: account.
+	
+	portfolio2 := Portfolio new.	
+	portfolio2 add: account.
+	
+	
+	self should: [portfolio add: portfolio2] raise: Error  withMessageText: Portfolio repeatedBackLogAddedError.! !
+
+!testRun: #PortfolioTest #test13CannotAddAPortfolioThatHasAnAccountThatTheActualPortfolioAlreadyHas stamp: 'NB 5/21/2023 19:57:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test01PortfolioBalanceIsZeroWhenCreated stamp: 'NB 5/21/2023 19:57:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioBalanceIsZeroWhenAccountHasAZeroBalance stamp: 'NB 5/21/2023 19:57:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioBalanceHasAccountsBalanceWhenOnlyAccountsAreAddedToPortfolio stamp: 'NB 5/21/2023 19:57:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioBalanceIsCorrectWhenPortfoliosAreAddedToPortfolio stamp: 'NB 5/21/2023 19:57:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test05EmptyPortfolioDoesNotHaveRegisteredTransactions stamp: 'NB 5/21/2023 19:57:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioRegistersTransactionsWhenOnlyAccountsAreAddedToPortfolio stamp: 'NB 5/21/2023 19:57:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioCorrectlyRegistersTransactionsWhenPortfoliosAreAddedToPortfolio stamp: 'NB 5/21/2023 19:57:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test08EmptyPortfolioDoesNotHaveTransactions stamp: 'NB 5/21/2023 19:57:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioHasAccountTransactionsWhenOnlyAccountsAreAddedToPortfolio stamp: 'NB 5/21/2023 19:57:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortolioHasPortfolioTransactionsWhenPortfoliosAreAddedToPortfolio stamp: 'NB 5/21/2023 19:57:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test11CannotAddTheSameAccountToAPortfolioMoreThanOneTime stamp: 'NB 5/21/2023 19:57:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test12CannotAddAnAccountWhenAnotherPortfolioHasTheSameAccount stamp: 'NB 5/21/2023 19:57:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test13CannotAddAPortfolioThatHasAnAccountThatTheActualPortfolioAlreadyHas stamp: 'NB 5/21/2023 19:57:31'!
+PASSED!
+
+!methodRemoval: BacklogTest #test20CannotAddAPortfolioThatHasAnAccountThatTheActualPortfolioAlreadyHas stamp: 'NB 5/21/2023 19:57:37'!
+test20CannotAddAPortfolioThatHasAnAccountThatTheActualPortfolioAlreadyHas
+
+	|  portfolio account portfolio2|
+	
+	
+	portfolio := Portfolio new.	
+	account := ReceptiveAccount new.
+	
+	portfolio add: account.
+	
+	portfolio2 := Portfolio new.	
+	portfolio2 add: account.
+	
+	
+	self should: [portfolio add: portfolio2] raise: Error  withMessageText: Portfolio repeatedBackLogAddedError.
+	!
+!PortfolioTest methodsFor: 'tests' stamp: 'NB 5/21/2023 19:57:49'!
+test14CannotAddAPortfolioThatHasAnAccountThatOtherPortfolioHasAPortfolioWithTheSameAccount
+
+	|  portfolio account portfolio2 portfolio3|
+	
+	
+	portfolio := Portfolio new.	
+	account := ReceptiveAccount new.
+	
+	portfolio2 := Portfolio new.	
+	portfolio2 add: account.
+	
+	portfolio3 := Portfolio new.	
+	portfolio3 add: account.
+	
+	portfolio add: portfolio2 .
+	
+	self should: [portfolio add: portfolio3] raise: Error  withMessageText: Portfolio repeatedBackLogAddedError.! !
+
+!testRun: #PortfolioTest #test14CannotAddAPortfolioThatHasAnAccountThatOtherPortfolioHasAPortfolioWithTheSameAccount stamp: 'NB 5/21/2023 19:57:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test01PortfolioBalanceIsZeroWhenCreated stamp: 'NB 5/21/2023 19:57:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioBalanceIsZeroWhenAccountHasAZeroBalance stamp: 'NB 5/21/2023 19:57:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioBalanceHasAccountsBalanceWhenOnlyAccountsAreAddedToPortfolio stamp: 'NB 5/21/2023 19:57:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioBalanceIsCorrectWhenPortfoliosAreAddedToPortfolio stamp: 'NB 5/21/2023 19:57:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test05EmptyPortfolioDoesNotHaveRegisteredTransactions stamp: 'NB 5/21/2023 19:57:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioRegistersTransactionsWhenOnlyAccountsAreAddedToPortfolio stamp: 'NB 5/21/2023 19:57:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioCorrectlyRegistersTransactionsWhenPortfoliosAreAddedToPortfolio stamp: 'NB 5/21/2023 19:57:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test08EmptyPortfolioDoesNotHaveTransactions stamp: 'NB 5/21/2023 19:57:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioHasAccountTransactionsWhenOnlyAccountsAreAddedToPortfolio stamp: 'NB 5/21/2023 19:57:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortolioHasPortfolioTransactionsWhenPortfoliosAreAddedToPortfolio stamp: 'NB 5/21/2023 19:57:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test11CannotAddTheSameAccountToAPortfolioMoreThanOneTime stamp: 'NB 5/21/2023 19:57:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test12CannotAddAnAccountWhenAnotherPortfolioHasTheSameAccount stamp: 'NB 5/21/2023 19:57:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test13CannotAddAPortfolioThatHasAnAccountThatTheActualPortfolioAlreadyHas stamp: 'NB 5/21/2023 19:57:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test14CannotAddAPortfolioThatHasAnAccountThatOtherPortfolioHasAPortfolioWithTheSameAccount stamp: 'NB 5/21/2023 19:57:50'!
+PASSED!
+
+!methodRemoval: BacklogTest #test21CannotAddAPortfolioThatHasAnAccountThatOtherPortfolioHasAPortfolioWithTheSameAccount stamp: 'NB 5/21/2023 19:57:55'!
+test21CannotAddAPortfolioThatHasAnAccountThatOtherPortfolioHasAPortfolioWithTheSameAccount
+
+	|  portfolio account portfolio2 portfolio3|
+	
+	
+	portfolio := Portfolio new.	
+	account := ReceptiveAccount new.
+	
+	portfolio2 := Portfolio new.	
+	portfolio2 add: account.
+	
+	portfolio3 := Portfolio new.	
+	portfolio3 add: account.
+	
+	portfolio add: portfolio2 .
+	
+	self should: [portfolio add: portfolio3] raise: Error  withMessageText: Portfolio repeatedBackLogAddedError.
+	!
+!PortfolioTest methodsFor: 'tests' stamp: 'NB 5/21/2023 19:58:06'!
+test15CannotAddAPortfolioThatHasAPortfolioAlreadyAdded
+
+	|  portfolio portfolio2 portfolio3|
+	
+	
+	portfolio := Portfolio new.	
+	
+	portfolio2 := Portfolio new.	
+	
+	portfolio3 := Portfolio new.	
+
+	portfolio add: portfolio3 .
+	
+	portfolio2 add: portfolio3.
+	
+	self should: [portfolio add: portfolio2] raise: Error  withMessageText: Portfolio repeatedBackLogAddedError.! !
+
+!methodRemoval: BacklogTest #test22CannotAddAPortfolioThatHasAPortfolioAlreadyAdded stamp: 'NB 5/21/2023 19:58:11'!
+test22CannotAddAPortfolioThatHasAPortfolioAlreadyAdded
+
+	|  portfolio portfolio2 portfolio3|
+	
+	
+	portfolio := Portfolio new.	
+	
+	portfolio2 := Portfolio new.	
+	
+	portfolio3 := Portfolio new.	
+
+	portfolio add: portfolio3 .
+	
+	portfolio2 add: portfolio3.
+	
+	self should: [portfolio add: portfolio2] raise: Error  withMessageText: Portfolio repeatedBackLogAddedError.
+	!
+!PortfolioTest methodsFor: 'tests' stamp: 'NB 5/21/2023 19:58:25'!
+test16CannotAddTheSamePortfolioToSelf
+
+	|  portfolio account |
+	
+	
+	portfolio := Portfolio new.	
+	
+	account := ReceptiveAccount new.
+	
+	portfolio add: account.
+	
+	self should: [portfolio add: portfolio] raise: Error  withMessageText: Portfolio repeatedBackLogAddedError.! !
+
+!methodRemoval: BacklogTest #test23CannotAddTheSamePortfolioToSelf stamp: 'NB 5/21/2023 19:58:35'!
+test23CannotAddTheSamePortfolioToSelf
+
+	|  portfolio account |
+	
+	
+	portfolio := Portfolio new.	
+	
+	account := ReceptiveAccount new.
+	
+	portfolio add: account.
+	
+	self should: [portfolio add: portfolio] raise: Error  withMessageText: Portfolio repeatedBackLogAddedError.
+	!
+!PortfolioTest methodsFor: 'tests' stamp: 'NB 5/21/2023 19:58:46'!
+test17CannotAddAnAccountThatPortfoliosParentAlreadyHas
+
+	|  portfolio portfolio2 account  |
+	
+	
+	portfolio := Portfolio new.	
+	
+	portfolio2 := Portfolio new.	
+	
+	account := ReceptiveAccount new.
+	
+	portfolio add: account.
+	
+	portfolio add: portfolio2 .
+	
+	self should: [portfolio2 add: account] raise: Error  withMessageText: Portfolio repeatedBackLogAddedError.! !
+
+!testRun: #PortfolioTest #test17CannotAddAnAccountThatPortfoliosParentAlreadyHas stamp: 'NB 5/21/2023 19:58:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test01PortfolioBalanceIsZeroWhenCreated stamp: 'NB 5/21/2023 19:58:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioBalanceIsZeroWhenAccountHasAZeroBalance stamp: 'NB 5/21/2023 19:58:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioBalanceHasAccountsBalanceWhenOnlyAccountsAreAddedToPortfolio stamp: 'NB 5/21/2023 19:58:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioBalanceIsCorrectWhenPortfoliosAreAddedToPortfolio stamp: 'NB 5/21/2023 19:58:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test05EmptyPortfolioDoesNotHaveRegisteredTransactions stamp: 'NB 5/21/2023 19:58:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioRegistersTransactionsWhenOnlyAccountsAreAddedToPortfolio stamp: 'NB 5/21/2023 19:58:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioCorrectlyRegistersTransactionsWhenPortfoliosAreAddedToPortfolio stamp: 'NB 5/21/2023 19:58:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test08EmptyPortfolioDoesNotHaveTransactions stamp: 'NB 5/21/2023 19:58:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioHasAccountTransactionsWhenOnlyAccountsAreAddedToPortfolio stamp: 'NB 5/21/2023 19:58:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortolioHasPortfolioTransactionsWhenPortfoliosAreAddedToPortfolio stamp: 'NB 5/21/2023 19:58:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test11CannotAddTheSameAccountToAPortfolioMoreThanOneTime stamp: 'NB 5/21/2023 19:58:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test12CannotAddAnAccountWhenAnotherPortfolioHasTheSameAccount stamp: 'NB 5/21/2023 19:58:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test13CannotAddAPortfolioThatHasAnAccountThatTheActualPortfolioAlreadyHas stamp: 'NB 5/21/2023 19:58:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test14CannotAddAPortfolioThatHasAnAccountThatOtherPortfolioHasAPortfolioWithTheSameAccount stamp: 'NB 5/21/2023 19:58:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test15CannotAddAPortfolioThatHasAPortfolioAlreadyAdded stamp: 'NB 5/21/2023 19:58:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test16CannotAddTheSamePortfolioToSelf stamp: 'NB 5/21/2023 19:58:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test17CannotAddAnAccountThatPortfoliosParentAlreadyHas stamp: 'NB 5/21/2023 19:58:47'!
+PASSED!
+
+!methodRemoval: BacklogTest #test24CannotAddAnAccountThatPortfoliosParentAlreadyHas stamp: 'NB 5/21/2023 19:58:52'!
+test24CannotAddAnAccountThatPortfoliosParentAlreadyHas
+
+	|  portfolio portfolio2 account  |
+	
+	
+	portfolio := Portfolio new.	
+	
+	portfolio2 := Portfolio new.	
+	
+	account := ReceptiveAccount new.
+	
+	portfolio add: account.
+	
+	portfolio add: portfolio2 .
+	
+	self should: [portfolio2 add: account] raise: Error  withMessageText: Portfolio repeatedBackLogAddedError.
+	!
+!PortfolioTest methodsFor: 'tests' stamp: 'NB 5/21/2023 19:59:05'!
+test18CannotAddAnAccountThatOneOfPortfoliosParentAlreadyHas
+
+	|  portfolio portfolio2 portfolio3 account  |
+	
+	
+	portfolio := Portfolio new.	
+	
+	portfolio2 := Portfolio new.	
+	
+	portfolio3 := Portfolio new.	
+	
+	account := ReceptiveAccount new.
+	
+	portfolio add: account.
+	
+	portfolio add: portfolio3 .
+	
+	portfolio2 add: portfolio3 .
+	
+	self should: [portfolio3 add: account] raise: Error  withMessageText: Portfolio repeatedBackLogAddedError.! !
+
+!testRun: #PortfolioTest #test18CannotAddAnAccountThatOneOfPortfoliosParentAlreadyHas stamp: 'NB 5/21/2023 19:59:06'!
+PASSED!
+
+!testRun: #PortfolioTest #test01PortfolioBalanceIsZeroWhenCreated stamp: 'NB 5/21/2023 19:59:06'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioBalanceIsZeroWhenAccountHasAZeroBalance stamp: 'NB 5/21/2023 19:59:06'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioBalanceHasAccountsBalanceWhenOnlyAccountsAreAddedToPortfolio stamp: 'NB 5/21/2023 19:59:06'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioBalanceIsCorrectWhenPortfoliosAreAddedToPortfolio stamp: 'NB 5/21/2023 19:59:06'!
+PASSED!
+
+!testRun: #PortfolioTest #test05EmptyPortfolioDoesNotHaveRegisteredTransactions stamp: 'NB 5/21/2023 19:59:06'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioRegistersTransactionsWhenOnlyAccountsAreAddedToPortfolio stamp: 'NB 5/21/2023 19:59:06'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioCorrectlyRegistersTransactionsWhenPortfoliosAreAddedToPortfolio stamp: 'NB 5/21/2023 19:59:06'!
+PASSED!
+
+!testRun: #PortfolioTest #test08EmptyPortfolioDoesNotHaveTransactions stamp: 'NB 5/21/2023 19:59:06'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioHasAccountTransactionsWhenOnlyAccountsAreAddedToPortfolio stamp: 'NB 5/21/2023 19:59:06'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortolioHasPortfolioTransactionsWhenPortfoliosAreAddedToPortfolio stamp: 'NB 5/21/2023 19:59:06'!
+PASSED!
+
+!testRun: #PortfolioTest #test11CannotAddTheSameAccountToAPortfolioMoreThanOneTime stamp: 'NB 5/21/2023 19:59:06'!
+PASSED!
+
+!testRun: #PortfolioTest #test12CannotAddAnAccountWhenAnotherPortfolioHasTheSameAccount stamp: 'NB 5/21/2023 19:59:06'!
+PASSED!
+
+!testRun: #PortfolioTest #test13CannotAddAPortfolioThatHasAnAccountThatTheActualPortfolioAlreadyHas stamp: 'NB 5/21/2023 19:59:06'!
+PASSED!
+
+!testRun: #PortfolioTest #test14CannotAddAPortfolioThatHasAnAccountThatOtherPortfolioHasAPortfolioWithTheSameAccount stamp: 'NB 5/21/2023 19:59:06'!
+PASSED!
+
+!testRun: #PortfolioTest #test15CannotAddAPortfolioThatHasAPortfolioAlreadyAdded stamp: 'NB 5/21/2023 19:59:06'!
+PASSED!
+
+!testRun: #PortfolioTest #test16CannotAddTheSamePortfolioToSelf stamp: 'NB 5/21/2023 19:59:06'!
+PASSED!
+
+!testRun: #PortfolioTest #test17CannotAddAnAccountThatPortfoliosParentAlreadyHas stamp: 'NB 5/21/2023 19:59:06'!
+PASSED!
+
+!testRun: #PortfolioTest #test18CannotAddAnAccountThatOneOfPortfoliosParentAlreadyHas stamp: 'NB 5/21/2023 19:59:06'!
+PASSED!
+
+!methodRemoval: BacklogTest #test25CannotAddAnAccountThatOneOfPortfoliosParentAlreadyHas stamp: 'NB 5/21/2023 19:59:11'!
+test25CannotAddAnAccountThatOneOfPortfoliosParentAlreadyHas
+
+	|  portfolio portfolio2 portfolio3 account  |
+	
+	
+	portfolio := Portfolio new.	
+	
+	portfolio2 := Portfolio new.	
+	
+	portfolio3 := Portfolio new.	
+	
+	account := ReceptiveAccount new.
+	
+	portfolio add: account.
+	
+	portfolio add: portfolio3 .
+	
+	portfolio2 add: portfolio3 .
+	
+	self should: [portfolio3 add: account] raise: Error  withMessageText: Portfolio repeatedBackLogAddedError.
+	!
+!PortfolioTest methodsFor: 'tests' stamp: 'NB 5/21/2023 19:59:25'!
+test19CannotAddAnAccountThatOneOfTheRootsParentAlreadyHas
+
+	|  portfolio portfolio2 portfolio3 portfolio4 account  |
+	
+	
+	portfolio := Portfolio new.	
+	
+	portfolio2 := Portfolio new.	
+	
+	portfolio3 := Portfolio new.	
+	
+	portfolio4 := Portfolio new.	
+	
+	account := ReceptiveAccount new.
+	
+	portfolio add: account.
+	
+	portfolio add: portfolio3 .
+	
+	portfolio2 add: portfolio3 .
+	
+	portfolio3 add: portfolio4 .
+	
+	self should: [portfolio4 add: account] raise: Error  withMessageText: Portfolio repeatedBackLogAddedError.! !
+
+!testRun: #PortfolioTest #test19CannotAddAnAccountThatOneOfTheRootsParentAlreadyHas stamp: 'NB 5/21/2023 19:59:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test01PortfolioBalanceIsZeroWhenCreated stamp: 'NB 5/21/2023 19:59:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioBalanceIsZeroWhenAccountHasAZeroBalance stamp: 'NB 5/21/2023 19:59:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioBalanceHasAccountsBalanceWhenOnlyAccountsAreAddedToPortfolio stamp: 'NB 5/21/2023 19:59:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioBalanceIsCorrectWhenPortfoliosAreAddedToPortfolio stamp: 'NB 5/21/2023 19:59:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test05EmptyPortfolioDoesNotHaveRegisteredTransactions stamp: 'NB 5/21/2023 19:59:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioRegistersTransactionsWhenOnlyAccountsAreAddedToPortfolio stamp: 'NB 5/21/2023 19:59:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioCorrectlyRegistersTransactionsWhenPortfoliosAreAddedToPortfolio stamp: 'NB 5/21/2023 19:59:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test08EmptyPortfolioDoesNotHaveTransactions stamp: 'NB 5/21/2023 19:59:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioHasAccountTransactionsWhenOnlyAccountsAreAddedToPortfolio stamp: 'NB 5/21/2023 19:59:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortolioHasPortfolioTransactionsWhenPortfoliosAreAddedToPortfolio stamp: 'NB 5/21/2023 19:59:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test11CannotAddTheSameAccountToAPortfolioMoreThanOneTime stamp: 'NB 5/21/2023 19:59:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test12CannotAddAnAccountWhenAnotherPortfolioHasTheSameAccount stamp: 'NB 5/21/2023 19:59:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test13CannotAddAPortfolioThatHasAnAccountThatTheActualPortfolioAlreadyHas stamp: 'NB 5/21/2023 19:59:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test14CannotAddAPortfolioThatHasAnAccountThatOtherPortfolioHasAPortfolioWithTheSameAccount stamp: 'NB 5/21/2023 19:59:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test15CannotAddAPortfolioThatHasAPortfolioAlreadyAdded stamp: 'NB 5/21/2023 19:59:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test16CannotAddTheSamePortfolioToSelf stamp: 'NB 5/21/2023 19:59:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test17CannotAddAnAccountThatPortfoliosParentAlreadyHas stamp: 'NB 5/21/2023 19:59:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test18CannotAddAnAccountThatOneOfPortfoliosParentAlreadyHas stamp: 'NB 5/21/2023 19:59:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test19CannotAddAnAccountThatOneOfTheRootsParentAlreadyHas stamp: 'NB 5/21/2023 19:59:26'!
+PASSED!
+
+----SNAPSHOT----(21 May 2023 19:59:30) CuisUniversity-5706.image priorSource: 11479773!
+
+!methodRemoval: BacklogTest #test26CannotAddAnAccountThatOneOfTheRootsParentAlreadyHas stamp: 'NB 5/21/2023 19:59:39'!
+test26CannotAddAnAccountThatOneOfTheRootsParentAlreadyHas
+
+	|  portfolio portfolio2 portfolio3 portfolio4 account  |
+	
+	
+	portfolio := Portfolio new.	
+	
+	portfolio2 := Portfolio new.	
+	
+	portfolio3 := Portfolio new.	
+	
+	portfolio4 := Portfolio new.	
+	
+	account := ReceptiveAccount new.
+	
+	portfolio add: account.
+	
+	portfolio add: portfolio3 .
+	
+	portfolio2 add: portfolio3 .
+	
+	portfolio3 add: portfolio4 .
+	
+	self should: [portfolio4 add: account] raise: Error  withMessageText: Portfolio repeatedBackLogAddedError.
+	!
+
+!classRenamed: #BacklogTest as: #ReceptiveAccountTest stamp: 'NB 5/21/2023 20:00:17'!
+Smalltalk renameClassNamed: #BacklogTest as: #ReceptiveAccountTest!
+
+!testRun: #PortfolioTest #test01PortfolioBalanceIsZeroWhenCreated stamp: 'NB 5/21/2023 20:00:21'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioBalanceIsZeroWhenAccountHasAZeroBalance stamp: 'NB 5/21/2023 20:00:21'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioBalanceHasAccountsBalanceWhenOnlyAccountsAreAddedToPortfolio stamp: 'NB 5/21/2023 20:00:21'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioBalanceIsCorrectWhenPortfoliosAreAddedToPortfolio stamp: 'NB 5/21/2023 20:00:21'!
+PASSED!
+
+!testRun: #PortfolioTest #test05EmptyPortfolioDoesNotHaveRegisteredTransactions stamp: 'NB 5/21/2023 20:00:21'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioRegistersTransactionsWhenOnlyAccountsAreAddedToPortfolio stamp: 'NB 5/21/2023 20:00:21'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioCorrectlyRegistersTransactionsWhenPortfoliosAreAddedToPortfolio stamp: 'NB 5/21/2023 20:00:21'!
+PASSED!
+
+!testRun: #PortfolioTest #test08EmptyPortfolioDoesNotHaveTransactions stamp: 'NB 5/21/2023 20:00:21'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioHasAccountTransactionsWhenOnlyAccountsAreAddedToPortfolio stamp: 'NB 5/21/2023 20:00:21'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortolioHasPortfolioTransactionsWhenPortfoliosAreAddedToPortfolio stamp: 'NB 5/21/2023 20:00:21'!
+PASSED!
+
+!testRun: #PortfolioTest #test11CannotAddTheSameAccountToAPortfolioMoreThanOneTime stamp: 'NB 5/21/2023 20:00:21'!
+PASSED!
+
+!testRun: #PortfolioTest #test12CannotAddAnAccountWhenAnotherPortfolioHasTheSameAccount stamp: 'NB 5/21/2023 20:00:21'!
+PASSED!
+
+!testRun: #PortfolioTest #test13CannotAddAPortfolioThatHasAnAccountThatTheActualPortfolioAlreadyHas stamp: 'NB 5/21/2023 20:00:21'!
+PASSED!
+
+!testRun: #PortfolioTest #test14CannotAddAPortfolioThatHasAnAccountThatOtherPortfolioHasAPortfolioWithTheSameAccount stamp: 'NB 5/21/2023 20:00:21'!
+PASSED!
+
+!testRun: #PortfolioTest #test15CannotAddAPortfolioThatHasAPortfolioAlreadyAdded stamp: 'NB 5/21/2023 20:00:21'!
+PASSED!
+
+!testRun: #PortfolioTest #test16CannotAddTheSamePortfolioToSelf stamp: 'NB 5/21/2023 20:00:21'!
+PASSED!
+
+!testRun: #PortfolioTest #test17CannotAddAnAccountThatPortfoliosParentAlreadyHas stamp: 'NB 5/21/2023 20:00:21'!
+PASSED!
+
+!testRun: #PortfolioTest #test18CannotAddAnAccountThatOneOfPortfoliosParentAlreadyHas stamp: 'NB 5/21/2023 20:00:21'!
+PASSED!
+
+!testRun: #PortfolioTest #test19CannotAddAnAccountThatOneOfTheRootsParentAlreadyHas stamp: 'NB 5/21/2023 20:00:21'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'NB 5/21/2023 20:00:23'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'NB 5/21/2023 20:00:23'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'NB 5/21/2023 20:00:23'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'NB 5/21/2023 20:00:23'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'NB 5/21/2023 20:00:23'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'NB 5/21/2023 20:00:23'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'NB 5/21/2023 20:00:23'!
+PASSED!
+
+----SNAPSHOT----(21 May 2023 20:00:27) CuisUniversity-5706.image priorSource: 11525466!
+
+----SNAPSHOT----(21 May 2023 20:06:49) CuisUniversity-5706.image priorSource: 11529645!
+
+----SNAPSHOT----(21 May 2023 20:08:44) CuisUniversity-5706.image priorSource: 11529734!
+
+----SNAPSHOT----(21 May 2023 20:11:10) CuisUniversity-5706.image priorSource: 11529823!
+
+----SNAPSHOT----(21 May 2023 20:11:21) CuisUniversity-5706.image priorSource: 11529912!
+
+!testRun: #PortfolioTest #test01PortfolioBalanceIsZeroWhenCreated stamp: 'NB 5/21/2023 20:11:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioBalanceIsZeroWhenAccountHasAZeroBalance stamp: 'NB 5/21/2023 20:11:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioBalanceHasAccountsBalanceWhenOnlyAccountsAreAddedToPortfolio stamp: 'NB 5/21/2023 20:11:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioBalanceIsCorrectWhenPortfoliosAreAddedToPortfolio stamp: 'NB 5/21/2023 20:11:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test05EmptyPortfolioDoesNotHaveRegisteredTransactions stamp: 'NB 5/21/2023 20:11:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioRegistersTransactionsWhenOnlyAccountsAreAddedToPortfolio stamp: 'NB 5/21/2023 20:11:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioCorrectlyRegistersTransactionsWhenPortfoliosAreAddedToPortfolio stamp: 'NB 5/21/2023 20:11:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test08EmptyPortfolioDoesNotHaveTransactions stamp: 'NB 5/21/2023 20:11:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioHasAccountTransactionsWhenOnlyAccountsAreAddedToPortfolio stamp: 'NB 5/21/2023 20:11:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortolioHasPortfolioTransactionsWhenPortfoliosAreAddedToPortfolio stamp: 'NB 5/21/2023 20:11:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test11CannotAddTheSameAccountToAPortfolioMoreThanOneTime stamp: 'NB 5/21/2023 20:11:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test12CannotAddAnAccountWhenAnotherPortfolioHasTheSameAccount stamp: 'NB 5/21/2023 20:11:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test13CannotAddAPortfolioThatHasAnAccountThatTheActualPortfolioAlreadyHas stamp: 'NB 5/21/2023 20:11:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test14CannotAddAPortfolioThatHasAnAccountThatOtherPortfolioHasAPortfolioWithTheSameAccount stamp: 'NB 5/21/2023 20:11:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test15CannotAddAPortfolioThatHasAPortfolioAlreadyAdded stamp: 'NB 5/21/2023 20:11:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test16CannotAddTheSamePortfolioToSelf stamp: 'NB 5/21/2023 20:11:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test17CannotAddAnAccountThatPortfoliosParentAlreadyHas stamp: 'NB 5/21/2023 20:11:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test18CannotAddAnAccountThatOneOfPortfoliosParentAlreadyHas stamp: 'NB 5/21/2023 20:11:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test19CannotAddAnAccountThatOneOfTheRootsParentAlreadyHas stamp: 'NB 5/21/2023 20:11:23'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'NB 5/21/2023 20:11:24'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'NB 5/21/2023 20:11:24'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'NB 5/21/2023 20:11:25'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'NB 5/21/2023 20:11:25'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'NB 5/21/2023 20:11:25'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'NB 5/21/2023 20:11:25'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'NB 5/21/2023 20:11:25'!
+PASSED!
+!Backlog methodsFor: 'root - private' stamp: 'NB 5/21/2023 20:13:50'!
+addRootParentsTo: rootParents
+
+
+	^parents ifEmpty: [ rootParents add: self] 
+				     ifNotEmpty: [ parents do: [:aParent | aParent addRootParentsTo: rootParents] ].! !
+!Backlog methodsFor: 'root - private' stamp: 'NB 5/21/2023 20:15:24' prior: 50689822!
+rootParents
+
+	| rootParents |
+	
+	rootParents:= OrderedCollection new.
+	self addRootParentsTo: rootParents.
+	
+	^rootParents.
+	! !
+
+!testRun: #PortfolioTest #test01PortfolioBalanceIsZeroWhenCreated stamp: 'NB 5/21/2023 20:15:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioBalanceIsZeroWhenAccountHasAZeroBalance stamp: 'NB 5/21/2023 20:15:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioBalanceHasAccountsBalanceWhenOnlyAccountsAreAddedToPortfolio stamp: 'NB 5/21/2023 20:15:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioBalanceIsCorrectWhenPortfoliosAreAddedToPortfolio stamp: 'NB 5/21/2023 20:15:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test05EmptyPortfolioDoesNotHaveRegisteredTransactions stamp: 'NB 5/21/2023 20:15:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioRegistersTransactionsWhenOnlyAccountsAreAddedToPortfolio stamp: 'NB 5/21/2023 20:15:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioCorrectlyRegistersTransactionsWhenPortfoliosAreAddedToPortfolio stamp: 'NB 5/21/2023 20:15:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test08EmptyPortfolioDoesNotHaveTransactions stamp: 'NB 5/21/2023 20:15:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioHasAccountTransactionsWhenOnlyAccountsAreAddedToPortfolio stamp: 'NB 5/21/2023 20:15:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortolioHasPortfolioTransactionsWhenPortfoliosAreAddedToPortfolio stamp: 'NB 5/21/2023 20:15:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test11CannotAddTheSameAccountToAPortfolioMoreThanOneTime stamp: 'NB 5/21/2023 20:15:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test12CannotAddAnAccountWhenAnotherPortfolioHasTheSameAccount stamp: 'NB 5/21/2023 20:15:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test13CannotAddAPortfolioThatHasAnAccountThatTheActualPortfolioAlreadyHas stamp: 'NB 5/21/2023 20:15:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test14CannotAddAPortfolioThatHasAnAccountThatOtherPortfolioHasAPortfolioWithTheSameAccount stamp: 'NB 5/21/2023 20:15:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test15CannotAddAPortfolioThatHasAPortfolioAlreadyAdded stamp: 'NB 5/21/2023 20:15:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test16CannotAddTheSamePortfolioToSelf stamp: 'NB 5/21/2023 20:15:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test17CannotAddAnAccountThatPortfoliosParentAlreadyHas stamp: 'NB 5/21/2023 20:15:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test18CannotAddAnAccountThatOneOfPortfoliosParentAlreadyHas stamp: 'NB 5/21/2023 20:15:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test19CannotAddAnAccountThatOneOfTheRootsParentAlreadyHas stamp: 'NB 5/21/2023 20:15:30'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'NB 5/21/2023 20:15:32'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'NB 5/21/2023 20:15:32'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'NB 5/21/2023 20:15:32'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'NB 5/21/2023 20:15:32'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'NB 5/21/2023 20:15:32'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'NB 5/21/2023 20:15:32'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'NB 5/21/2023 20:15:32'!
+PASSED!
+
+!testRun: #PortfolioTest #test01PortfolioBalanceIsZeroWhenCreated stamp: 'NB 5/21/2023 20:15:34'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioBalanceIsZeroWhenAccountHasAZeroBalance stamp: 'NB 5/21/2023 20:15:34'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioBalanceHasAccountsBalanceWhenOnlyAccountsAreAddedToPortfolio stamp: 'NB 5/21/2023 20:15:34'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioBalanceIsCorrectWhenPortfoliosAreAddedToPortfolio stamp: 'NB 5/21/2023 20:15:34'!
+PASSED!
+
+!testRun: #PortfolioTest #test05EmptyPortfolioDoesNotHaveRegisteredTransactions stamp: 'NB 5/21/2023 20:15:34'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioRegistersTransactionsWhenOnlyAccountsAreAddedToPortfolio stamp: 'NB 5/21/2023 20:15:34'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioCorrectlyRegistersTransactionsWhenPortfoliosAreAddedToPortfolio stamp: 'NB 5/21/2023 20:15:34'!
+PASSED!
+
+!testRun: #PortfolioTest #test08EmptyPortfolioDoesNotHaveTransactions stamp: 'NB 5/21/2023 20:15:34'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioHasAccountTransactionsWhenOnlyAccountsAreAddedToPortfolio stamp: 'NB 5/21/2023 20:15:34'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortolioHasPortfolioTransactionsWhenPortfoliosAreAddedToPortfolio stamp: 'NB 5/21/2023 20:15:34'!
+PASSED!
+
+!testRun: #PortfolioTest #test11CannotAddTheSameAccountToAPortfolioMoreThanOneTime stamp: 'NB 5/21/2023 20:15:34'!
+PASSED!
+
+!testRun: #PortfolioTest #test12CannotAddAnAccountWhenAnotherPortfolioHasTheSameAccount stamp: 'NB 5/21/2023 20:15:34'!
+PASSED!
+
+!testRun: #PortfolioTest #test13CannotAddAPortfolioThatHasAnAccountThatTheActualPortfolioAlreadyHas stamp: 'NB 5/21/2023 20:15:34'!
+PASSED!
+
+!testRun: #PortfolioTest #test14CannotAddAPortfolioThatHasAnAccountThatOtherPortfolioHasAPortfolioWithTheSameAccount stamp: 'NB 5/21/2023 20:15:34'!
+PASSED!
+
+!testRun: #PortfolioTest #test15CannotAddAPortfolioThatHasAPortfolioAlreadyAdded stamp: 'NB 5/21/2023 20:15:34'!
+PASSED!
+
+!testRun: #PortfolioTest #test16CannotAddTheSamePortfolioToSelf stamp: 'NB 5/21/2023 20:15:34'!
+PASSED!
+
+!testRun: #PortfolioTest #test17CannotAddAnAccountThatPortfoliosParentAlreadyHas stamp: 'NB 5/21/2023 20:15:34'!
+PASSED!
+
+!testRun: #PortfolioTest #test18CannotAddAnAccountThatOneOfPortfoliosParentAlreadyHas stamp: 'NB 5/21/2023 20:15:34'!
+PASSED!
+
+!testRun: #PortfolioTest #test19CannotAddAnAccountThatOneOfTheRootsParentAlreadyHas stamp: 'NB 5/21/2023 20:15:34'!
+PASSED!
+!Portfolio methodsFor: 'childs - private' stamp: 'NB 5/21/2023 20:18:09'!
+addToChilds: aCollectionOfChildBacklogs
+
+	aCollectionOfChildBacklogs do: [:aBacklog | aBacklog addToChilds: aCollectionOfChildBacklogs ].
+
+	! !
+!Portfolio methodsFor: 'childs - private' stamp: 'NB 5/21/2023 20:19:09' prior: 50686748 overrides: 50686772!
+allChildBacklogs
+	
+	| childBacklogs |
+	
+	childBacklogs := OrderedCollection new.
+	backlogs do: [:aBacklog | aBacklog addToChilds: childBacklogs ].
+	^childBacklogs .
+	
+	! !
+!ReceptiveAccount methodsFor: 'childs - private' stamp: 'NB 5/21/2023 20:20:21'!
+addToChilds: aCollectionOfChildBacklogs
+
+	aCollectionOfChildBacklogs add: self.! !
+!Portfolio methodsFor: 'childs - private' stamp: 'NB 5/21/2023 20:20:28' prior: 50692263!
+addToChilds: aCollectionOfChildBacklogs
+
+	backlogs do: [:aBacklog | aBacklog addToChilds: aCollectionOfChildBacklogs ].
+
+	! !
+!ReceptiveAccount methodsFor: 'childs - private' stamp: 'NB 5/21/2023 20:21:10' prior: 50686755 overrides: 50686772!
+allChildBacklogs
+	
+	
+	^self.! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'NB 5/21/2023 20:21:12'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'NB 5/21/2023 20:21:12'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'NB 5/21/2023 20:21:12'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'NB 5/21/2023 20:21:12'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'NB 5/21/2023 20:21:12'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'NB 5/21/2023 20:21:12'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'NB 5/21/2023 20:21:12'!
+PASSED!
+
+!testRun: #PortfolioTest #test01PortfolioBalanceIsZeroWhenCreated stamp: 'NB 5/21/2023 20:21:15'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioBalanceIsZeroWhenAccountHasAZeroBalance stamp: 'NB 5/21/2023 20:21:15'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioBalanceHasAccountsBalanceWhenOnlyAccountsAreAddedToPortfolio stamp: 'NB 5/21/2023 20:21:15'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioBalanceIsCorrectWhenPortfoliosAreAddedToPortfolio stamp: 'NB 5/21/2023 20:21:15'!
+ERROR!
+
+!testRun: #PortfolioTest #test05EmptyPortfolioDoesNotHaveRegisteredTransactions stamp: 'NB 5/21/2023 20:21:15'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioRegistersTransactionsWhenOnlyAccountsAreAddedToPortfolio stamp: 'NB 5/21/2023 20:21:15'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioCorrectlyRegistersTransactionsWhenPortfoliosAreAddedToPortfolio stamp: 'NB 5/21/2023 20:21:15'!
+ERROR!
+
+!testRun: #PortfolioTest #test08EmptyPortfolioDoesNotHaveTransactions stamp: 'NB 5/21/2023 20:21:15'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioHasAccountTransactionsWhenOnlyAccountsAreAddedToPortfolio stamp: 'NB 5/21/2023 20:21:15'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortolioHasPortfolioTransactionsWhenPortfoliosAreAddedToPortfolio stamp: 'NB 5/21/2023 20:21:15'!
+ERROR!
+
+!testRun: #PortfolioTest #test11CannotAddTheSameAccountToAPortfolioMoreThanOneTime stamp: 'NB 5/21/2023 20:21:15'!
+FAILURE!
+
+!testRun: #PortfolioTest #test12CannotAddAnAccountWhenAnotherPortfolioHasTheSameAccount stamp: 'NB 5/21/2023 20:21:15'!
+FAILURE!
+
+!testRun: #PortfolioTest #test13CannotAddAPortfolioThatHasAnAccountThatTheActualPortfolioAlreadyHas stamp: 'NB 5/21/2023 20:21:15'!
+FAILURE!
+
+!testRun: #PortfolioTest #test14CannotAddAPortfolioThatHasAnAccountThatOtherPortfolioHasAPortfolioWithTheSameAccount stamp: 'NB 5/21/2023 20:21:15'!
+PASSED!
+
+!testRun: #PortfolioTest #test15CannotAddAPortfolioThatHasAPortfolioAlreadyAdded stamp: 'NB 5/21/2023 20:21:15'!
+FAILURE!
+
+!testRun: #PortfolioTest #test16CannotAddTheSamePortfolioToSelf stamp: 'NB 5/21/2023 20:21:15'!
+FAILURE!
+
+!testRun: #PortfolioTest #test17CannotAddAnAccountThatPortfoliosParentAlreadyHas stamp: 'NB 5/21/2023 20:21:15'!
+ERROR!
+
+!testRun: #PortfolioTest #test18CannotAddAnAccountThatOneOfPortfoliosParentAlreadyHas stamp: 'NB 5/21/2023 20:21:15'!
+ERROR!
+
+!testRun: #PortfolioTest #test19CannotAddAnAccountThatOneOfTheRootsParentAlreadyHas stamp: 'NB 5/21/2023 20:21:15'!
+ERROR!
+!ReceptiveAccount methodsFor: 'childs - private' stamp: 'NB 5/21/2023 20:21:28' prior: 50692293 overrides: 50686772!
+allChildBacklogs
+	
+	! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'NB 5/21/2023 20:21:29'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'NB 5/21/2023 20:21:29'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'NB 5/21/2023 20:21:29'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'NB 5/21/2023 20:21:29'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'NB 5/21/2023 20:21:29'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'NB 5/21/2023 20:21:29'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'NB 5/21/2023 20:21:29'!
+PASSED!
+
+!testRun: #PortfolioTest #test01PortfolioBalanceIsZeroWhenCreated stamp: 'NB 5/21/2023 20:21:32'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioBalanceIsZeroWhenAccountHasAZeroBalance stamp: 'NB 5/21/2023 20:21:32'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioBalanceHasAccountsBalanceWhenOnlyAccountsAreAddedToPortfolio stamp: 'NB 5/21/2023 20:21:32'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioBalanceIsCorrectWhenPortfoliosAreAddedToPortfolio stamp: 'NB 5/21/2023 20:21:32'!
+ERROR!
+
+!testRun: #PortfolioTest #test05EmptyPortfolioDoesNotHaveRegisteredTransactions stamp: 'NB 5/21/2023 20:21:32'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioRegistersTransactionsWhenOnlyAccountsAreAddedToPortfolio stamp: 'NB 5/21/2023 20:21:32'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioCorrectlyRegistersTransactionsWhenPortfoliosAreAddedToPortfolio stamp: 'NB 5/21/2023 20:21:32'!
+ERROR!
+
+!testRun: #PortfolioTest #test08EmptyPortfolioDoesNotHaveTransactions stamp: 'NB 5/21/2023 20:21:32'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioHasAccountTransactionsWhenOnlyAccountsAreAddedToPortfolio stamp: 'NB 5/21/2023 20:21:32'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortolioHasPortfolioTransactionsWhenPortfoliosAreAddedToPortfolio stamp: 'NB 5/21/2023 20:21:32'!
+ERROR!
+
+!testRun: #PortfolioTest #test11CannotAddTheSameAccountToAPortfolioMoreThanOneTime stamp: 'NB 5/21/2023 20:21:32'!
+FAILURE!
+
+!testRun: #PortfolioTest #test12CannotAddAnAccountWhenAnotherPortfolioHasTheSameAccount stamp: 'NB 5/21/2023 20:21:32'!
+FAILURE!
+
+!testRun: #PortfolioTest #test13CannotAddAPortfolioThatHasAnAccountThatTheActualPortfolioAlreadyHas stamp: 'NB 5/21/2023 20:21:32'!
+FAILURE!
+
+!testRun: #PortfolioTest #test14CannotAddAPortfolioThatHasAnAccountThatOtherPortfolioHasAPortfolioWithTheSameAccount stamp: 'NB 5/21/2023 20:21:32'!
+PASSED!
+
+!testRun: #PortfolioTest #test15CannotAddAPortfolioThatHasAPortfolioAlreadyAdded stamp: 'NB 5/21/2023 20:21:32'!
+FAILURE!
+
+!testRun: #PortfolioTest #test16CannotAddTheSamePortfolioToSelf stamp: 'NB 5/21/2023 20:21:32'!
+FAILURE!
+
+!testRun: #PortfolioTest #test17CannotAddAnAccountThatPortfoliosParentAlreadyHas stamp: 'NB 5/21/2023 20:21:32'!
+ERROR!
+
+!testRun: #PortfolioTest #test18CannotAddAnAccountThatOneOfPortfoliosParentAlreadyHas stamp: 'NB 5/21/2023 20:21:32'!
+ERROR!
+
+!testRun: #PortfolioTest #test19CannotAddAnAccountThatOneOfTheRootsParentAlreadyHas stamp: 'NB 5/21/2023 20:21:32'!
+ERROR!
+
+!testRun: #PortfolioTest #test04PortfolioBalanceIsCorrectWhenPortfoliosAreAddedToPortfolio stamp: 'NB 5/21/2023 20:21:34'!
+ERROR!
+!ReceptiveAccount methodsFor: 'childs - private' stamp: 'NB 5/21/2023 20:22:20' prior: 50692401 overrides: 50686772!
+allChildBacklogs
+	
+	^OrderedCollection new.! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'NB 5/21/2023 20:22:24'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'NB 5/21/2023 20:22:24'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'NB 5/21/2023 20:22:24'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'NB 5/21/2023 20:22:24'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'NB 5/21/2023 20:22:24'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'NB 5/21/2023 20:22:24'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'NB 5/21/2023 20:22:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test01PortfolioBalanceIsZeroWhenCreated stamp: 'NB 5/21/2023 20:22:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioBalanceIsZeroWhenAccountHasAZeroBalance stamp: 'NB 5/21/2023 20:22:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioBalanceHasAccountsBalanceWhenOnlyAccountsAreAddedToPortfolio stamp: 'NB 5/21/2023 20:22:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioBalanceIsCorrectWhenPortfoliosAreAddedToPortfolio stamp: 'NB 5/21/2023 20:22:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test05EmptyPortfolioDoesNotHaveRegisteredTransactions stamp: 'NB 5/21/2023 20:22:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioRegistersTransactionsWhenOnlyAccountsAreAddedToPortfolio stamp: 'NB 5/21/2023 20:22:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioCorrectlyRegistersTransactionsWhenPortfoliosAreAddedToPortfolio stamp: 'NB 5/21/2023 20:22:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test08EmptyPortfolioDoesNotHaveTransactions stamp: 'NB 5/21/2023 20:22:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioHasAccountTransactionsWhenOnlyAccountsAreAddedToPortfolio stamp: 'NB 5/21/2023 20:22:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortolioHasPortfolioTransactionsWhenPortfoliosAreAddedToPortfolio stamp: 'NB 5/21/2023 20:22:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test11CannotAddTheSameAccountToAPortfolioMoreThanOneTime stamp: 'NB 5/21/2023 20:22:26'!
+FAILURE!
+
+!testRun: #PortfolioTest #test12CannotAddAnAccountWhenAnotherPortfolioHasTheSameAccount stamp: 'NB 5/21/2023 20:22:26'!
+FAILURE!
+
+!testRun: #PortfolioTest #test13CannotAddAPortfolioThatHasAnAccountThatTheActualPortfolioAlreadyHas stamp: 'NB 5/21/2023 20:22:26'!
+FAILURE!
+
+!testRun: #PortfolioTest #test14CannotAddAPortfolioThatHasAnAccountThatOtherPortfolioHasAPortfolioWithTheSameAccount stamp: 'NB 5/21/2023 20:22:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test15CannotAddAPortfolioThatHasAPortfolioAlreadyAdded stamp: 'NB 5/21/2023 20:22:26'!
+FAILURE!
+
+!testRun: #PortfolioTest #test16CannotAddTheSamePortfolioToSelf stamp: 'NB 5/21/2023 20:22:26'!
+FAILURE!
+
+!testRun: #PortfolioTest #test17CannotAddAnAccountThatPortfoliosParentAlreadyHas stamp: 'NB 5/21/2023 20:22:26'!
+FAILURE!
+
+!testRun: #PortfolioTest #test18CannotAddAnAccountThatOneOfPortfoliosParentAlreadyHas stamp: 'NB 5/21/2023 20:22:26'!
+FAILURE!
+
+!testRun: #PortfolioTest #test19CannotAddAnAccountThatOneOfTheRootsParentAlreadyHas stamp: 'NB 5/21/2023 20:22:26'!
+FAILURE!
+
+!testRun: #PortfolioTest #test11CannotAddTheSameAccountToAPortfolioMoreThanOneTime stamp: 'NB 5/21/2023 20:22:29'!
+FAILURE!
+
+!testRun: #PortfolioTest #test11CannotAddTheSameAccountToAPortfolioMoreThanOneTime stamp: 'NB 5/21/2023 20:23:56'!
+FAILURE!
+
+!testRun: #PortfolioTest #test11CannotAddTheSameAccountToAPortfolioMoreThanOneTime stamp: 'NB 5/21/2023 20:23:56'!
+FAILURE!
+!Backlog methodsFor: 'childs - private' stamp: 'NB 5/21/2023 20:26:54' prior: 50686766!
+hasABacklogInCommonWith: aBacklog
+
+
+	self halt.
+	^(self allChildBacklogs intersection: aBacklog allChildBacklogs) notEmpty! !
+!Backlog methodsFor: 'childs - private' stamp: 'NB 5/21/2023 20:28:17' prior: 50692633!
+hasABacklogInCommonWith: aBacklog
+
+	^(self allChildBacklogs intersection: aBacklog allChildBacklogs) notEmpty! !
+!ReceptiveAccount methodsFor: 'childs - private' stamp: 'NB 5/21/2023 20:28:26' prior: 50692513 overrides: 50686772!
+allChildBacklogs
+	
+	^OrderedCollection with: self.! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'NB 5/21/2023 20:28:28'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'NB 5/21/2023 20:28:28'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'NB 5/21/2023 20:28:28'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'NB 5/21/2023 20:28:28'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'NB 5/21/2023 20:28:28'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'NB 5/21/2023 20:28:28'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'NB 5/21/2023 20:28:28'!
+PASSED!
+
+!testRun: #PortfolioTest #test01PortfolioBalanceIsZeroWhenCreated stamp: 'NB 5/21/2023 20:28:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioBalanceIsZeroWhenAccountHasAZeroBalance stamp: 'NB 5/21/2023 20:28:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioBalanceHasAccountsBalanceWhenOnlyAccountsAreAddedToPortfolio stamp: 'NB 5/21/2023 20:28:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioBalanceIsCorrectWhenPortfoliosAreAddedToPortfolio stamp: 'NB 5/21/2023 20:28:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test05EmptyPortfolioDoesNotHaveRegisteredTransactions stamp: 'NB 5/21/2023 20:28:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioRegistersTransactionsWhenOnlyAccountsAreAddedToPortfolio stamp: 'NB 5/21/2023 20:28:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioCorrectlyRegistersTransactionsWhenPortfoliosAreAddedToPortfolio stamp: 'NB 5/21/2023 20:28:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test08EmptyPortfolioDoesNotHaveTransactions stamp: 'NB 5/21/2023 20:28:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioHasAccountTransactionsWhenOnlyAccountsAreAddedToPortfolio stamp: 'NB 5/21/2023 20:28:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortolioHasPortfolioTransactionsWhenPortfoliosAreAddedToPortfolio stamp: 'NB 5/21/2023 20:28:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test11CannotAddTheSameAccountToAPortfolioMoreThanOneTime stamp: 'NB 5/21/2023 20:28:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test12CannotAddAnAccountWhenAnotherPortfolioHasTheSameAccount stamp: 'NB 5/21/2023 20:28:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test13CannotAddAPortfolioThatHasAnAccountThatTheActualPortfolioAlreadyHas stamp: 'NB 5/21/2023 20:28:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test14CannotAddAPortfolioThatHasAnAccountThatOtherPortfolioHasAPortfolioWithTheSameAccount stamp: 'NB 5/21/2023 20:28:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test15CannotAddAPortfolioThatHasAPortfolioAlreadyAdded stamp: 'NB 5/21/2023 20:28:30'!
+FAILURE!
+
+!testRun: #PortfolioTest #test16CannotAddTheSamePortfolioToSelf stamp: 'NB 5/21/2023 20:28:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test17CannotAddAnAccountThatPortfoliosParentAlreadyHas stamp: 'NB 5/21/2023 20:28:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test18CannotAddAnAccountThatOneOfPortfoliosParentAlreadyHas stamp: 'NB 5/21/2023 20:28:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test19CannotAddAnAccountThatOneOfTheRootsParentAlreadyHas stamp: 'NB 5/21/2023 20:28:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test15CannotAddAPortfolioThatHasAPortfolioAlreadyAdded stamp: 'NB 5/21/2023 20:28:30'!
+FAILURE!
+
+!testRun: #PortfolioTest #test11CannotAddTheSameAccountToAPortfolioMoreThanOneTime stamp: 'NB 5/21/2023 20:28:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test12CannotAddAnAccountWhenAnotherPortfolioHasTheSameAccount stamp: 'NB 5/21/2023 20:28:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test13CannotAddAPortfolioThatHasAnAccountThatTheActualPortfolioAlreadyHas stamp: 'NB 5/21/2023 20:28:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test14CannotAddAPortfolioThatHasAnAccountThatOtherPortfolioHasAPortfolioWithTheSameAccount stamp: 'NB 5/21/2023 20:28:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test15CannotAddAPortfolioThatHasAPortfolioAlreadyAdded stamp: 'NB 5/21/2023 20:28:54'!
+FAILURE!
+
+!testRun: #PortfolioTest #test15CannotAddAPortfolioThatHasAPortfolioAlreadyAdded stamp: 'NB 5/21/2023 20:28:54'!
+FAILURE!
+!Portfolio methodsFor: 'childs - private' stamp: 'NB 5/21/2023 20:34:07' prior: 50692285!
+addToChilds: aCollectionOfChildBacklogs
+
+	aCollectionOfChildBacklogs add: self.
+	backlogs do: [:aBacklog | aBacklog addToChilds: aCollectionOfChildBacklogs ].
+
+	! !
+
+!testRun: #PortfolioTest #test01PortfolioBalanceIsZeroWhenCreated stamp: 'NB 5/21/2023 20:34:19'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioBalanceIsZeroWhenAccountHasAZeroBalance stamp: 'NB 5/21/2023 20:34:19'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioBalanceHasAccountsBalanceWhenOnlyAccountsAreAddedToPortfolio stamp: 'NB 5/21/2023 20:34:19'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioBalanceIsCorrectWhenPortfoliosAreAddedToPortfolio stamp: 'NB 5/21/2023 20:34:19'!
+PASSED!
+
+!testRun: #PortfolioTest #test05EmptyPortfolioDoesNotHaveRegisteredTransactions stamp: 'NB 5/21/2023 20:34:19'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioRegistersTransactionsWhenOnlyAccountsAreAddedToPortfolio stamp: 'NB 5/21/2023 20:34:19'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioCorrectlyRegistersTransactionsWhenPortfoliosAreAddedToPortfolio stamp: 'NB 5/21/2023 20:34:19'!
+PASSED!
+
+!testRun: #PortfolioTest #test08EmptyPortfolioDoesNotHaveTransactions stamp: 'NB 5/21/2023 20:34:19'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioHasAccountTransactionsWhenOnlyAccountsAreAddedToPortfolio stamp: 'NB 5/21/2023 20:34:19'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortolioHasPortfolioTransactionsWhenPortfoliosAreAddedToPortfolio stamp: 'NB 5/21/2023 20:34:19'!
+PASSED!
+
+!testRun: #PortfolioTest #test11CannotAddTheSameAccountToAPortfolioMoreThanOneTime stamp: 'NB 5/21/2023 20:34:19'!
+PASSED!
+
+!testRun: #PortfolioTest #test12CannotAddAnAccountWhenAnotherPortfolioHasTheSameAccount stamp: 'NB 5/21/2023 20:34:19'!
+PASSED!
+
+!testRun: #PortfolioTest #test13CannotAddAPortfolioThatHasAnAccountThatTheActualPortfolioAlreadyHas stamp: 'NB 5/21/2023 20:34:19'!
+PASSED!
+
+!testRun: #PortfolioTest #test14CannotAddAPortfolioThatHasAnAccountThatOtherPortfolioHasAPortfolioWithTheSameAccount stamp: 'NB 5/21/2023 20:34:19'!
+PASSED!
+
+!testRun: #PortfolioTest #test15CannotAddAPortfolioThatHasAPortfolioAlreadyAdded stamp: 'NB 5/21/2023 20:34:19'!
+FAILURE!
+
+!testRun: #PortfolioTest #test16CannotAddTheSamePortfolioToSelf stamp: 'NB 5/21/2023 20:34:19'!
+PASSED!
+
+!testRun: #PortfolioTest #test17CannotAddAnAccountThatPortfoliosParentAlreadyHas stamp: 'NB 5/21/2023 20:34:19'!
+PASSED!
+
+!testRun: #PortfolioTest #test18CannotAddAnAccountThatOneOfPortfoliosParentAlreadyHas stamp: 'NB 5/21/2023 20:34:19'!
+PASSED!
+
+!testRun: #PortfolioTest #test19CannotAddAnAccountThatOneOfTheRootsParentAlreadyHas stamp: 'NB 5/21/2023 20:34:19'!
+PASSED!
+
+!testRun: #PortfolioTest #test15CannotAddAPortfolioThatHasAPortfolioAlreadyAdded stamp: 'NB 5/21/2023 20:34:19'!
+FAILURE!
+
+!testRun: #PortfolioTest #test01PortfolioBalanceIsZeroWhenCreated stamp: 'NB 5/21/2023 20:35:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioBalanceIsZeroWhenAccountHasAZeroBalance stamp: 'NB 5/21/2023 20:35:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioBalanceHasAccountsBalanceWhenOnlyAccountsAreAddedToPortfolio stamp: 'NB 5/21/2023 20:35:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioBalanceIsCorrectWhenPortfoliosAreAddedToPortfolio stamp: 'NB 5/21/2023 20:35:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test05EmptyPortfolioDoesNotHaveRegisteredTransactions stamp: 'NB 5/21/2023 20:35:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioRegistersTransactionsWhenOnlyAccountsAreAddedToPortfolio stamp: 'NB 5/21/2023 20:35:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioCorrectlyRegistersTransactionsWhenPortfoliosAreAddedToPortfolio stamp: 'NB 5/21/2023 20:35:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test08EmptyPortfolioDoesNotHaveTransactions stamp: 'NB 5/21/2023 20:35:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioHasAccountTransactionsWhenOnlyAccountsAreAddedToPortfolio stamp: 'NB 5/21/2023 20:35:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortolioHasPortfolioTransactionsWhenPortfoliosAreAddedToPortfolio stamp: 'NB 5/21/2023 20:35:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test11CannotAddTheSameAccountToAPortfolioMoreThanOneTime stamp: 'NB 5/21/2023 20:35:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test12CannotAddAnAccountWhenAnotherPortfolioHasTheSameAccount stamp: 'NB 5/21/2023 20:35:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test13CannotAddAPortfolioThatHasAnAccountThatTheActualPortfolioAlreadyHas stamp: 'NB 5/21/2023 20:35:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test14CannotAddAPortfolioThatHasAnAccountThatOtherPortfolioHasAPortfolioWithTheSameAccount stamp: 'NB 5/21/2023 20:35:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test15CannotAddAPortfolioThatHasAPortfolioAlreadyAdded stamp: 'NB 5/21/2023 20:35:07'!
+FAILURE!
+
+!testRun: #PortfolioTest #test16CannotAddTheSamePortfolioToSelf stamp: 'NB 5/21/2023 20:35:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test17CannotAddAnAccountThatPortfoliosParentAlreadyHas stamp: 'NB 5/21/2023 20:35:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test18CannotAddAnAccountThatOneOfPortfoliosParentAlreadyHas stamp: 'NB 5/21/2023 20:35:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test19CannotAddAnAccountThatOneOfTheRootsParentAlreadyHas stamp: 'NB 5/21/2023 20:35:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test15CannotAddAPortfolioThatHasAPortfolioAlreadyAdded stamp: 'NB 5/21/2023 20:35:07'!
+FAILURE!
+
+!testRun: #PortfolioTest #test15CannotAddAPortfolioThatHasAPortfolioAlreadyAdded stamp: 'NB 5/21/2023 20:35:17'!
+FAILURE!
+
+!testRun: #PortfolioTest #test15CannotAddAPortfolioThatHasAPortfolioAlreadyAdded stamp: 'NB 5/21/2023 20:35:17'!
+FAILURE!
+!Portfolio methodsFor: 'childs - private' stamp: 'NB 5/21/2023 20:41:18' prior: 50692271 overrides: 50686772!
+allChildBacklogs
+	
+	| childBacklogs |
+	
+	childBacklogs := OrderedCollection with: self.
+	backlogs do: [:aBacklog | aBacklog addToChilds: childBacklogs ].
+	^childBacklogs .
+	
+	! !
+
+!testRun: #PortfolioTest #test01PortfolioBalanceIsZeroWhenCreated stamp: 'NB 5/21/2023 20:42:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioBalanceIsZeroWhenAccountHasAZeroBalance stamp: 'NB 5/21/2023 20:42:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioBalanceHasAccountsBalanceWhenOnlyAccountsAreAddedToPortfolio stamp: 'NB 5/21/2023 20:42:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioBalanceIsCorrectWhenPortfoliosAreAddedToPortfolio stamp: 'NB 5/21/2023 20:42:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test05EmptyPortfolioDoesNotHaveRegisteredTransactions stamp: 'NB 5/21/2023 20:42:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioRegistersTransactionsWhenOnlyAccountsAreAddedToPortfolio stamp: 'NB 5/21/2023 20:42:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioCorrectlyRegistersTransactionsWhenPortfoliosAreAddedToPortfolio stamp: 'NB 5/21/2023 20:42:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test08EmptyPortfolioDoesNotHaveTransactions stamp: 'NB 5/21/2023 20:42:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioHasAccountTransactionsWhenOnlyAccountsAreAddedToPortfolio stamp: 'NB 5/21/2023 20:42:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortolioHasPortfolioTransactionsWhenPortfoliosAreAddedToPortfolio stamp: 'NB 5/21/2023 20:42:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test11CannotAddTheSameAccountToAPortfolioMoreThanOneTime stamp: 'NB 5/21/2023 20:42:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test12CannotAddAnAccountWhenAnotherPortfolioHasTheSameAccount stamp: 'NB 5/21/2023 20:42:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test13CannotAddAPortfolioThatHasAnAccountThatTheActualPortfolioAlreadyHas stamp: 'NB 5/21/2023 20:42:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test14CannotAddAPortfolioThatHasAnAccountThatOtherPortfolioHasAPortfolioWithTheSameAccount stamp: 'NB 5/21/2023 20:42:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test15CannotAddAPortfolioThatHasAPortfolioAlreadyAdded stamp: 'NB 5/21/2023 20:42:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test16CannotAddTheSamePortfolioToSelf stamp: 'NB 5/21/2023 20:42:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test17CannotAddAnAccountThatPortfoliosParentAlreadyHas stamp: 'NB 5/21/2023 20:42:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test18CannotAddAnAccountThatOneOfPortfoliosParentAlreadyHas stamp: 'NB 5/21/2023 20:42:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test19CannotAddAnAccountThatOneOfTheRootsParentAlreadyHas stamp: 'NB 5/21/2023 20:42:07'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'NB 5/21/2023 20:42:10'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'NB 5/21/2023 20:42:10'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'NB 5/21/2023 20:42:10'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'NB 5/21/2023 20:42:10'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'NB 5/21/2023 20:42:10'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'NB 5/21/2023 20:42:10'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'NB 5/21/2023 20:42:10'!
+PASSED!
+
+----SNAPSHOT----(21 May 2023 20:42:13) CuisUniversity-5706.image priorSource: 11530001!
+!Backlog methodsFor: 'childs - private' stamp: 'NB 5/21/2023 20:43:25'!
+addToChilds: aCollectionOfChildBacklogs
+
+	self subclassResponsibility ! !
+
+----SNAPSHOT----(21 May 2023 20:43:30) CuisUniversity-5706.image priorSource: 11565552!
+
+!testRun: #PortfolioTest #test01PortfolioBalanceIsZeroWhenCreated stamp: 'NB 5/21/2023 20:44:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioBalanceIsZeroWhenAccountHasAZeroBalance stamp: 'NB 5/21/2023 20:44:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioBalanceHasAccountsBalanceWhenOnlyAccountsAreAddedToPortfolio stamp: 'NB 5/21/2023 20:44:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioBalanceIsCorrectWhenPortfoliosAreAddedToPortfolio stamp: 'NB 5/21/2023 20:44:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test05EmptyPortfolioDoesNotHaveRegisteredTransactions stamp: 'NB 5/21/2023 20:44:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioRegistersTransactionsWhenOnlyAccountsAreAddedToPortfolio stamp: 'NB 5/21/2023 20:44:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioCorrectlyRegistersTransactionsWhenPortfoliosAreAddedToPortfolio stamp: 'NB 5/21/2023 20:44:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test08EmptyPortfolioDoesNotHaveTransactions stamp: 'NB 5/21/2023 20:44:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioHasAccountTransactionsWhenOnlyAccountsAreAddedToPortfolio stamp: 'NB 5/21/2023 20:44:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortolioHasPortfolioTransactionsWhenPortfoliosAreAddedToPortfolio stamp: 'NB 5/21/2023 20:44:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test11CannotAddTheSameAccountToAPortfolioMoreThanOneTime stamp: 'NB 5/21/2023 20:44:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test12CannotAddAnAccountWhenAnotherPortfolioHasTheSameAccount stamp: 'NB 5/21/2023 20:44:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test13CannotAddAPortfolioThatHasAnAccountThatTheActualPortfolioAlreadyHas stamp: 'NB 5/21/2023 20:44:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test14CannotAddAPortfolioThatHasAnAccountThatOtherPortfolioHasAPortfolioWithTheSameAccount stamp: 'NB 5/21/2023 20:44:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test15CannotAddAPortfolioThatHasAPortfolioAlreadyAdded stamp: 'NB 5/21/2023 20:44:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test16CannotAddTheSamePortfolioToSelf stamp: 'NB 5/21/2023 20:44:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test17CannotAddAnAccountThatPortfoliosParentAlreadyHas stamp: 'NB 5/21/2023 20:44:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test18CannotAddAnAccountThatOneOfPortfoliosParentAlreadyHas stamp: 'NB 5/21/2023 20:44:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test19CannotAddAnAccountThatOneOfTheRootsParentAlreadyHas stamp: 'NB 5/21/2023 20:44:47'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'NB 5/21/2023 20:44:49'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'NB 5/21/2023 20:44:49'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'NB 5/21/2023 20:44:49'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'NB 5/21/2023 20:44:49'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'NB 5/21/2023 20:44:49'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'NB 5/21/2023 20:44:49'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'NB 5/21/2023 20:44:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test01PortfolioBalanceIsZeroWhenCreated stamp: 'NB 5/21/2023 20:44:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioBalanceIsZeroWhenAccountHasAZeroBalance stamp: 'NB 5/21/2023 20:44:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioBalanceHasAccountsBalanceWhenOnlyAccountsAreAddedToPortfolio stamp: 'NB 5/21/2023 20:44:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioBalanceIsCorrectWhenPortfoliosAreAddedToPortfolio stamp: 'NB 5/21/2023 20:44:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test05EmptyPortfolioDoesNotHaveRegisteredTransactions stamp: 'NB 5/21/2023 20:44:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioRegistersTransactionsWhenOnlyAccountsAreAddedToPortfolio stamp: 'NB 5/21/2023 20:44:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioCorrectlyRegistersTransactionsWhenPortfoliosAreAddedToPortfolio stamp: 'NB 5/21/2023 20:44:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test08EmptyPortfolioDoesNotHaveTransactions stamp: 'NB 5/21/2023 20:44:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioHasAccountTransactionsWhenOnlyAccountsAreAddedToPortfolio stamp: 'NB 5/21/2023 20:44:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortolioHasPortfolioTransactionsWhenPortfoliosAreAddedToPortfolio stamp: 'NB 5/21/2023 20:44:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test11CannotAddTheSameAccountToAPortfolioMoreThanOneTime stamp: 'NB 5/21/2023 20:44:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test12CannotAddAnAccountWhenAnotherPortfolioHasTheSameAccount stamp: 'NB 5/21/2023 20:44:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test13CannotAddAPortfolioThatHasAnAccountThatTheActualPortfolioAlreadyHas stamp: 'NB 5/21/2023 20:44:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test14CannotAddAPortfolioThatHasAnAccountThatOtherPortfolioHasAPortfolioWithTheSameAccount stamp: 'NB 5/21/2023 20:44:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test15CannotAddAPortfolioThatHasAPortfolioAlreadyAdded stamp: 'NB 5/21/2023 20:44:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test16CannotAddTheSamePortfolioToSelf stamp: 'NB 5/21/2023 20:44:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test17CannotAddAnAccountThatPortfoliosParentAlreadyHas stamp: 'NB 5/21/2023 20:44:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test18CannotAddAnAccountThatOneOfPortfoliosParentAlreadyHas stamp: 'NB 5/21/2023 20:44:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test19CannotAddAnAccountThatOneOfTheRootsParentAlreadyHas stamp: 'NB 5/21/2023 20:44:52'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'NB 5/21/2023 20:44:56'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'NB 5/21/2023 20:44:56'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'NB 5/21/2023 20:44:56'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'NB 5/21/2023 20:44:56'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'NB 5/21/2023 20:44:56'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'NB 5/21/2023 20:44:56'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'NB 5/21/2023 20:44:56'!
+PASSED!
+
+!testRun: #PortfolioTest #test01PortfolioBalanceIsZeroWhenCreated stamp: 'NB 5/21/2023 20:44:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioBalanceIsZeroWhenAccountHasAZeroBalance stamp: 'NB 5/21/2023 20:44:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioBalanceHasAccountsBalanceWhenOnlyAccountsAreAddedToPortfolio stamp: 'NB 5/21/2023 20:44:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioBalanceIsCorrectWhenPortfoliosAreAddedToPortfolio stamp: 'NB 5/21/2023 20:44:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test05EmptyPortfolioDoesNotHaveRegisteredTransactions stamp: 'NB 5/21/2023 20:44:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioRegistersTransactionsWhenOnlyAccountsAreAddedToPortfolio stamp: 'NB 5/21/2023 20:44:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioCorrectlyRegistersTransactionsWhenPortfoliosAreAddedToPortfolio stamp: 'NB 5/21/2023 20:44:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test08EmptyPortfolioDoesNotHaveTransactions stamp: 'NB 5/21/2023 20:44:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioHasAccountTransactionsWhenOnlyAccountsAreAddedToPortfolio stamp: 'NB 5/21/2023 20:44:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortolioHasPortfolioTransactionsWhenPortfoliosAreAddedToPortfolio stamp: 'NB 5/21/2023 20:44:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test11CannotAddTheSameAccountToAPortfolioMoreThanOneTime stamp: 'NB 5/21/2023 20:44:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test12CannotAddAnAccountWhenAnotherPortfolioHasTheSameAccount stamp: 'NB 5/21/2023 20:44:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test13CannotAddAPortfolioThatHasAnAccountThatTheActualPortfolioAlreadyHas stamp: 'NB 5/21/2023 20:44:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test14CannotAddAPortfolioThatHasAnAccountThatOtherPortfolioHasAPortfolioWithTheSameAccount stamp: 'NB 5/21/2023 20:44:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test15CannotAddAPortfolioThatHasAPortfolioAlreadyAdded stamp: 'NB 5/21/2023 20:44:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test16CannotAddTheSamePortfolioToSelf stamp: 'NB 5/21/2023 20:44:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test17CannotAddAnAccountThatPortfoliosParentAlreadyHas stamp: 'NB 5/21/2023 20:44:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test18CannotAddAnAccountThatOneOfPortfoliosParentAlreadyHas stamp: 'NB 5/21/2023 20:44:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test19CannotAddAnAccountThatOneOfTheRootsParentAlreadyHas stamp: 'NB 5/21/2023 20:44:58'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'NB 5/21/2023 20:45:00'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'NB 5/21/2023 20:45:00'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'NB 5/21/2023 20:45:00'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'NB 5/21/2023 20:45:00'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'NB 5/21/2023 20:45:00'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'NB 5/21/2023 20:45:00'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'NB 5/21/2023 20:45:00'!
+PASSED!
+
+!testRun: #PortfolioTest #test01PortfolioBalanceIsZeroWhenCreated stamp: 'NB 5/21/2023 20:45:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioBalanceIsZeroWhenAccountHasAZeroBalance stamp: 'NB 5/21/2023 20:45:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioBalanceHasAccountsBalanceWhenOnlyAccountsAreAddedToPortfolio stamp: 'NB 5/21/2023 20:45:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioBalanceIsCorrectWhenPortfoliosAreAddedToPortfolio stamp: 'NB 5/21/2023 20:45:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test05EmptyPortfolioDoesNotHaveRegisteredTransactions stamp: 'NB 5/21/2023 20:45:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioRegistersTransactionsWhenOnlyAccountsAreAddedToPortfolio stamp: 'NB 5/21/2023 20:45:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioCorrectlyRegistersTransactionsWhenPortfoliosAreAddedToPortfolio stamp: 'NB 5/21/2023 20:45:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test08EmptyPortfolioDoesNotHaveTransactions stamp: 'NB 5/21/2023 20:45:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioHasAccountTransactionsWhenOnlyAccountsAreAddedToPortfolio stamp: 'NB 5/21/2023 20:45:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortolioHasPortfolioTransactionsWhenPortfoliosAreAddedToPortfolio stamp: 'NB 5/21/2023 20:45:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test11CannotAddTheSameAccountToAPortfolioMoreThanOneTime stamp: 'NB 5/21/2023 20:45:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test12CannotAddAnAccountWhenAnotherPortfolioHasTheSameAccount stamp: 'NB 5/21/2023 20:45:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test13CannotAddAPortfolioThatHasAnAccountThatTheActualPortfolioAlreadyHas stamp: 'NB 5/21/2023 20:45:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test14CannotAddAPortfolioThatHasAnAccountThatOtherPortfolioHasAPortfolioWithTheSameAccount stamp: 'NB 5/21/2023 20:45:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test15CannotAddAPortfolioThatHasAPortfolioAlreadyAdded stamp: 'NB 5/21/2023 20:45:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test16CannotAddTheSamePortfolioToSelf stamp: 'NB 5/21/2023 20:45:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test17CannotAddAnAccountThatPortfoliosParentAlreadyHas stamp: 'NB 5/21/2023 20:45:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test18CannotAddAnAccountThatOneOfPortfoliosParentAlreadyHas stamp: 'NB 5/21/2023 20:45:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test19CannotAddAnAccountThatOneOfTheRootsParentAlreadyHas stamp: 'NB 5/21/2023 20:45:02'!
+PASSED!
+
+----SNAPSHOT----(21 May 2023 20:45:06) CuisUniversity-5706.image priorSource: 11565801!
+
+----SNAPSHOT----(21 May 2023 20:46:51) CuisUniversity-5706.image priorSource: 11578225!
