@@ -582,10 +582,10 @@ initialize
 	super initialize .! !
 
 
-!Portfolio methodsFor: 'adding' stamp: 'NB 5/20/2023 18:06:45'!
+!Portfolio methodsFor: 'adding' stamp: 'NB 5/21/2023 16:10:07'!
 add: aBacklog
 
-	(self rootParents anySatisfy: [:aRootParent | aRootParent includes: aBacklog ]) ifTrue: [self error: self class repeatedBackLogAddedError ].
+	self assertBacklogCanBeAdded: aBacklog.
 		
 	backlogs add: aBacklog.
 	aBacklog addAsParent: self.
@@ -618,6 +618,12 @@ hasRegistered: aTransaction
 	
 	^backlogs anySatisfy: [:aBacklog | aBacklog hasRegistered: aTransaction]
 	! !
+
+
+!Portfolio methodsFor: 'assertions' stamp: 'NB 5/21/2023 16:10:07'!
+assertBacklogCanBeAdded: aBacklog
+
+	^ (self rootParents anySatisfy: [:aRootParent | aRootParent includes: aBacklog ]) ifTrue: [self error: self class repeatedBackLogAddedError ]! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
