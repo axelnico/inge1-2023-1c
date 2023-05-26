@@ -1,0 +1,679 @@
+
+
+----QUIT----(20 March 2023 11:15:29) CuisUniversity-5706.image priorSource: 4313282!
+
+----STARTUP---- (20 March 2023 11:15:29) as /Users/hernan/Documents/Cuis/5.0-64Bits/Cuis-University-Installer/CuisUniversity-5706.image!
+
+
+----QUIT----(20 March 2023 11:15:30) CuisUniversity-5706.image priorSource: 8712809!
+
+----STARTUP---- (26 May 2023 19:26:03) as C:\Users\Recursiva\Desktop\inge1\windows64\CuisUniversity-5706.image!
+
+
+----End fileIn of C:\Users\Recursiva\Downloads\2023-1c-main\06-Portfolio1\Portfolio-Ejercicio.st----!
+
+!classRemoval: #ReceptiveAccount stamp: 'am 5/26/2023 19:27:43'!
+Object subclass: #ReceptiveAccount
+	instanceVariableNames: 'transactions'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classRemoval: #Withdraw stamp: 'am 5/26/2023 19:27:43'!
+AccountTransaction subclass: #Withdraw
+	instanceVariableNames: 'value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classRemoval: #Deposit stamp: 'am 5/26/2023 19:27:43'!
+AccountTransaction subclass: #Deposit
+	instanceVariableNames: 'value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classRemoval: #AccountTransaction stamp: 'am 5/26/2023 19:27:43'!
+Object subclass: #AccountTransaction
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classRemoval: #ReceptiveAccountTest stamp: 'am 5/26/2023 19:27:43'!
+TestCase subclass: #ReceptiveAccountTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+----End fileIn of C:\Users\Recursiva\Downloads\2023-1c-main\06-Portfolio1\Portfolio-Ejercicio.st----!
+
+----End fileIn of C:\Users\Recursiva\Downloads\2023-1c-main\06-Portfolio1\Portfolio-Solucion.st----!
+
+!classRemoval: #Withdraw stamp: 'am 5/26/2023 19:29:01'!
+AccountTransaction subclass: #Withdraw
+	instanceVariableNames: 'value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #Deposit stamp: 'am 5/26/2023 19:29:01'!
+AccountTransaction subclass: #Deposit
+	instanceVariableNames: 'value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #AccountTransaction stamp: 'am 5/26/2023 19:29:01'!
+Object subclass: #AccountTransaction
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #ReceptiveAccount stamp: 'am 5/26/2023 19:29:01'!
+Account subclass: #ReceptiveAccount
+	instanceVariableNames: 'transactions'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #Portfolio stamp: 'am 5/26/2023 19:29:02'!
+Account subclass: #Portfolio
+	instanceVariableNames: 'accounts parents'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #Account stamp: 'am 5/26/2023 19:29:02'!
+Object subclass: #Account
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #ReceptiveAccountTest stamp: 'am 5/26/2023 19:29:02'!
+TestCase subclass: #ReceptiveAccountTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #PortfolioTest stamp: 'am 5/26/2023 19:29:02'!
+TestCase subclass: #PortfolioTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+----End fileIn of C:\Users\Recursiva\Downloads\2023-1c-main\06-Portfolio1\Portfolio-Solucion.st----!
+
+TestCase subclass: #TransferTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #TransferTest category: 'Portfolio-Solucion' stamp: 'am 5/26/2023 19:30:13'!
+TestCase subclass: #TransferTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!TransferTest methodsFor: 'no messages' stamp: 'am 5/26/2023 19:30:29'!
+test01! !
+
+!classDefinition: #Transfer category: 'Portfolio-Solucion' stamp: 'am 5/26/2023 19:33:38'!
+Object subclass: #Transfer
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!TransferTest methodsFor: 'as yet unclassified' stamp: 'am 5/26/2023 19:33:31' prior: 50605933!
+test01
+	| account1 account2|
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	
+	Transfer registrer: 100 from: account1 to: account2.
+	self assert: 100 equals: account2 balance.
+	self assert: -100 equals: account1 balance.! !
+
+!testRun: #TransferTest #test01 stamp: 'am 5/26/2023 19:33:43'!
+ERROR!
+!Transfer class methodsFor: 'transfer' stamp: 'am 5/26/2023 19:34:05'!
+registrer: aRenameMe1 from: account1 to: account2 
+	self shouldBeImplemented.! !
+!Transfer class methodsFor: 'transfer' stamp: 'am 5/26/2023 19:35:44' prior: 50605957!
+registrer: anAmountToTransfer from: account1 to: account2 
+	Deposit register: anAmountToTransfer on: account2.
+	Withdraw register: anAmountToTransfer on: account1.! !
+!Transfer class methodsFor: 'transfer' stamp: 'am 5/26/2023 19:36:37' prior: 50605963!
+registrer: anAmountToTransfer from: accountToWithdraw to: account2 
+	Deposit register: anAmountToTransfer on: account2.
+	Withdraw register: anAmountToTransfer on: accountToWithdraw.! !
+!Transfer class methodsFor: 'transfer' stamp: 'am 5/26/2023 19:36:49' prior: 50605971!
+registrer: anAmountToTransfer from: accountToWithdraw to: accountToDeposit 
+	Deposit register: anAmountToTransfer on: accountToDeposit.
+	Withdraw register: anAmountToTransfer on: accountToWithdraw.! !
+
+!testRun: #TransferTest #test01 stamp: 'am 5/26/2023 19:36:53'!
+PASSED!
+
+!testRun: #TransferTest #test01 stamp: 'am 5/26/2023 19:36:53'!
+PASSED!
+!TransferTest methodsFor: 'as yet unclassified' stamp: 'am 5/26/2023 19:37:05'!
+test02
+	| account1 account2|
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	
+	Transfer registrer: 100 from: account1 to: account2.
+	self assert: 100 equals: account2 balance.
+	self assert: -100 equals: account1 balance.! !
+!TransferTest methodsFor: 'as yet unclassified' stamp: 'am 5/26/2023 19:56:38' prior: 50605994!
+test02
+	| account1 account2 aTransfer|
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	
+	aTransfer := Transfer registrer: 100 from: account1 to: account2.
+	self assert: aTransfer decrementInstallCount equals: account1.
+	self assert: aTransfer withrawAccount equals: account1.! !
+!TransferTest methodsFor: 'as yet unclassified' stamp: 'am 5/26/2023 20:05:48' prior: 50606005!
+test02
+	| account1 account2 aTransfer|
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	
+	aTransfer := Transfer registrer: 100 from: account1 to: account2.
+	self assert: (account1 hasRegistered: aTransfer sender).! !
+
+!testRun: #TransferTest #test02 stamp: 'am 5/26/2023 20:05:57'!
+ERROR!
+!Transfer class methodsFor: 'transfer' stamp: 'am 5/26/2023 20:07:52' prior: 50605980!
+registrer: anAmountToTransfer from: accountToWithdraw to: accountToDeposit 
+	^self new initializeFor: anAmountToTransfer from: accountToWithdraw to: accountToDeposit.
+	! !
+
+!testRun: #TransferTest #test01 stamp: 'am 5/26/2023 20:07:59'!
+ERROR!
+
+!testRun: #TransferTest #test02 stamp: 'am 5/26/2023 20:07:59'!
+ERROR!
+
+!testRun: #TransferTest #test02 stamp: 'am 5/26/2023 20:08:03'!
+ERROR!
+
+!classDefinition: #Transfer category: 'Portfolio-Solucion' stamp: 'am 5/26/2023 20:08:13'!
+Object subclass: #Transfer
+	instanceVariableNames: 'amountToTransfer'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #Transfer category: 'Portfolio-Solucion' stamp: 'am 5/26/2023 20:08:14'!
+Object subclass: #Transfer
+	instanceVariableNames: 'amountToTransfer accountToWithdraw_CHANGE_ME'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #Transfer category: 'Portfolio-Solucion' stamp: 'am 5/26/2023 20:08:14'!
+Object subclass: #Transfer
+	instanceVariableNames: 'amountToTransfer accountToWithdraw_CHANGE_ME accountToDeposit_CHANGE_ME'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!Transfer methodsFor: 'initialize' stamp: 'am 5/26/2023 20:08:14'!
+initializeFor: anAmountToTransfer from: accountToWithdraw to: accountToDeposit 
+	self shouldBeImplemented.
+	amountToTransfer := anAmountToTransfer.
+	accountToWithdraw_CHANGE_ME := accountToWithdraw.
+	accountToDeposit_CHANGE_ME := accountToDeposit.! !
+
+!classDefinition: #Transfer category: 'Portfolio-Solucion' stamp: 'am 5/26/2023 20:10:31'!
+Object subclass: #Transfer
+	instanceVariableNames: 'amountToTransfer accountToWithdraw_CHANGE_ME accountToDeposit_CHANGE_ME amount'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #Transfer category: 'Portfolio-Solucion' stamp: 'am 5/26/2023 20:10:33'!
+Object subclass: #Transfer
+	instanceVariableNames: 'amountToTransfer accountToWithdraw_CHANGE_ME accountToDeposit_CHANGE_ME amount sender'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #Transfer category: 'Portfolio-Solucion' stamp: 'am 5/26/2023 20:10:34'!
+Object subclass: #Transfer
+	instanceVariableNames: 'amountToTransfer accountToWithdraw_CHANGE_ME accountToDeposit_CHANGE_ME amount sender receiver'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!Transfer methodsFor: 'initialize' stamp: 'am 5/26/2023 20:10:25' prior: 50606071!
+initializeFor: anAmountToTransfer from: aAccountToWithdraw to: accountToDeposit 
+
+	amount := anAmountToTransfer.
+	sender := aAccountToWithdraw.
+	receiver := accountToDeposit.! !
+
+!testRun: #TransferTest #test02 stamp: 'am 5/26/2023 20:10:40'!
+ERROR!
+!Transfer methodsFor: 'accesing' stamp: 'am 5/26/2023 20:11:21'!
+sender
+	self shouldBeImplemented.
+	^sender! !
+!Transfer methodsFor: 'accesing' stamp: 'am 5/26/2023 20:11:28' prior: 50606121!
+sender
+	^sender! !
+
+!testRun: #TransferTest #test02 stamp: 'am 5/26/2023 20:11:38'!
+FAILURE!
+
+!testRun: #TransferTest #test01 stamp: 'am 5/26/2023 20:11:49'!
+FAILURE!
+
+!testRun: #TransferTest #test02 stamp: 'am 5/26/2023 20:11:49'!
+FAILURE!
+!Transfer methodsFor: 'initialize' stamp: 'am 5/26/2023 20:13:58' prior: 50606111!
+initializeFor: anAmountToTransfer from: aAccountToWithdraw to: accountToDeposit 
+
+	amount := anAmountToTransfer.
+	sender := Withdraw  register: anAmountToTransfer on: aAccountToWithdraw.
+	receiver := Deposit register: anAmountToTransfer on: accountToDeposit.! !
+
+!testRun: #TransferTest #test01 stamp: 'am 5/26/2023 20:14:05'!
+PASSED!
+
+!testRun: #TransferTest #test02 stamp: 'am 5/26/2023 20:14:05'!
+PASSED!
+!TransferTest methodsFor: 'test' stamp: 'am 5/26/2023 20:16:06'!
+test03
+	| account1 account2 aTransfer|
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	
+	aTransfer := Transfer registrer: 100 from: account1 to: account2.
+	self assert: (account1 hasRegistered: aTransfer sender).! !
+!TransferTest methodsFor: 'test' stamp: 'am 5/26/2023 20:16:22' prior: 50606151!
+test03
+	| account1 account2 aTransfer|
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	
+	aTransfer := Transfer registrer: 100 from: account1 to: account2.
+	self assert: (account2 hasRegistered: aTransfer receiver).! !
+
+!testRun: #TransferTest #test03 stamp: 'am 5/26/2023 20:16:23'!
+ERROR!
+!Transfer methodsFor: 'accesing' stamp: 'am 5/26/2023 20:16:29'!
+receiver
+	self shouldBeImplemented.
+	^receiver! !
+!Transfer methodsFor: 'accesing' stamp: 'am 5/26/2023 20:16:36' prior: 50606173!
+receiver
+	^receiver! !
+
+!testRun: #TransferTest #test03 stamp: 'am 5/26/2023 20:16:38'!
+PASSED!
+
+!testRun: #TransferTest #test01 stamp: 'am 5/26/2023 20:16:38'!
+PASSED!
+
+!testRun: #TransferTest #test02 stamp: 'am 5/26/2023 20:16:38'!
+PASSED!
+
+!testRun: #TransferTest #test03 stamp: 'am 5/26/2023 20:16:38'!
+PASSED!
+!TransferTest methodsFor: 'test' stamp: 'am 5/26/2023 20:20:57'!
+test04
+	| account1 account2 aTransfer|
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	
+	aTransfer := Transfer registrer: 100 from: account1 to: account2.
+	self assert: (account2 hasRegistered: aTransfer receiver).! !
+!TransferTest methodsFor: 'test' stamp: 'am 5/26/2023 20:21:45' prior: 50606190!
+test04
+	| account1 account2 aTransfer|
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	
+	aTransfer := Transfer registrer: 100 from: account1 to: account2.
+	self assert: aTransfer sender transfer equals: aTransfer.! !
+!TransferTest methodsFor: 'test' stamp: 'am 5/26/2023 20:22:42' prior: 50606201!
+test04
+	| account1 account2 aTransfer|
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	
+	aTransfer := Transfer registrer: 100 from: account1 to: account2.
+	self assert: aTransfer equals: aTransfer sender transfer.! !
+
+!testRun: #TransferTest #test04 stamp: 'am 5/26/2023 20:22:56'!
+ERROR!
+!Withdraw methodsFor: 'as yet unclassified' stamp: 'am 5/26/2023 20:23:41'!
+transfer
+	self shouldBeImplemented.! !
+
+!classDefinition: #Withdraw category: 'Portfolio-Solucion' stamp: 'am 5/26/2023 20:24:04'!
+AccountTransaction subclass: #Withdraw
+	instanceVariableNames: 'value transfer'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!Withdraw methodsFor: 'as yet unclassified' stamp: 'am 5/26/2023 20:24:02' prior: 50606225!
+transfer
+	transfer! !
+!Withdraw methodsFor: 'as yet unclassified' stamp: 'am 5/26/2023 20:24:10' prior: 50606237!
+transfer
+	^transfer.! !
+
+!testRun: #TransferTest #test04 stamp: 'am 5/26/2023 20:24:14'!
+FAILURE!
+!Transfer methodsFor: 'initialize' stamp: 'am 5/26/2023 20:24:53' prior: 50606136!
+initializeFor: anAmountToTransfer from: aAccountToWithdraw to: accountToDeposit 
+
+	amount := anAmountToTransfer.
+	sender := Withdraw  register: anAmountToTransfer on: aAccountToWithdraw.
+	sender transfer: self.
+	receiver := Deposit register: anAmountToTransfer on: accountToDeposit.! !
+!Withdraw methodsFor: 'as yet unclassified' stamp: 'am 5/26/2023 20:25:58'!
+transfer: aTransfer
+	transfer := aTransfer.! !
+!Withdraw methodsFor: 'as yet unclassified' stamp: 'am 5/26/2023 20:26:02' prior: 50606259!
+transfer: aTransfer
+	transfer := aTransfer. ! !
+
+!testRun: #TransferTest #test01 stamp: 'am 5/26/2023 20:26:07'!
+PASSED!
+
+!testRun: #TransferTest #test02 stamp: 'am 5/26/2023 20:26:07'!
+PASSED!
+
+!testRun: #TransferTest #test03 stamp: 'am 5/26/2023 20:26:07'!
+PASSED!
+
+!testRun: #TransferTest #test04 stamp: 'am 5/26/2023 20:26:07'!
+PASSED!
+
+!testRun: #TransferTest #test04 stamp: 'am 5/26/2023 20:26:12'!
+PASSED!
+
+!testRun: #TransferTest #test01 stamp: 'am 5/26/2023 20:26:16'!
+PASSED!
+
+!testRun: #TransferTest #test02 stamp: 'am 5/26/2023 20:26:16'!
+PASSED!
+
+!testRun: #TransferTest #test03 stamp: 'am 5/26/2023 20:26:16'!
+PASSED!
+
+!testRun: #TransferTest #test04 stamp: 'am 5/26/2023 20:26:16'!
+PASSED!
+!TransferTest methodsFor: 'test' stamp: 'am 5/26/2023 20:26:48'!
+test05
+	| account1 account2 aTransfer|
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	
+	aTransfer := Transfer registrer: 100 from: account1 to: account2.
+	self assert: aTransfer equals: aTransfer receiver transfer.! !
+
+!testRun: #TransferTest #test05 stamp: 'am 5/26/2023 20:26:50'!
+ERROR!
+!Deposit methodsFor: 'as yet unclassified' stamp: 'am 5/26/2023 20:27:07'!
+transfer
+	self shouldBeImplemented.! !
+
+!classDefinition: #Deposit category: 'Portfolio-Solucion' stamp: 'am 5/26/2023 20:27:24'!
+AccountTransaction subclass: #Deposit
+	instanceVariableNames: 'value transfer'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!Deposit methodsFor: 'as yet unclassified' stamp: 'am 5/26/2023 20:27:22' prior: 50606302!
+transfer
+	 ^transfer! !
+!Deposit methodsFor: 'as yet unclassified' stamp: 'am 5/26/2023 20:27:56'!
+transfer: aTransfer
+	 ^aTransfer.! !
+!Deposit methodsFor: 'as yet unclassified' stamp: 'am 5/26/2023 20:28:04' prior: 50606318!
+transfer: aTransfer
+	 transfer := aTransfer.! !
+
+!testRun: #TransferTest #test01 stamp: 'am 5/26/2023 20:28:07'!
+PASSED!
+
+!testRun: #TransferTest #test02 stamp: 'am 5/26/2023 20:28:07'!
+PASSED!
+
+!testRun: #TransferTest #test03 stamp: 'am 5/26/2023 20:28:07'!
+PASSED!
+
+!testRun: #TransferTest #test04 stamp: 'am 5/26/2023 20:28:07'!
+PASSED!
+
+!testRun: #TransferTest #test05 stamp: 'am 5/26/2023 20:28:07'!
+FAILURE!
+
+!testRun: #TransferTest #test05 stamp: 'am 5/26/2023 20:28:07'!
+FAILURE!
+!Transfer methodsFor: 'initialize' stamp: 'am 5/26/2023 20:28:43' prior: 50606247!
+initializeFor: anAmountToTransfer from: aAccountToWithdraw to: accountToDeposit 
+
+	amount := anAmountToTransfer.
+	sender := Withdraw  register: anAmountToTransfer on: aAccountToWithdraw.
+	sender transfer: self.
+	receiver := Deposit register: anAmountToTransfer on: accountToDeposit.
+	receiver transfer: self.! !
+
+!testRun: #TransferTest #test01 stamp: 'am 5/26/2023 20:28:56'!
+PASSED!
+
+!testRun: #TransferTest #test02 stamp: 'am 5/26/2023 20:28:56'!
+PASSED!
+
+!testRun: #TransferTest #test03 stamp: 'am 5/26/2023 20:28:56'!
+PASSED!
+
+!testRun: #TransferTest #test04 stamp: 'am 5/26/2023 20:28:56'!
+PASSED!
+
+!testRun: #TransferTest #test05 stamp: 'am 5/26/2023 20:28:56'!
+PASSED!
+
+!testRun: #TransferTest #test05 stamp: 'am 5/26/2023 20:29:01'!
+PASSED!
+
+----SNAPSHOT----(26 May 2023 20:29:48) CuisUniversity-5706.image priorSource: 8713034!
+
+!classDefinition: #TransferSender category: 'Portfolio-Solucion' stamp: 'am 5/26/2023 20:37:51'!
+Object subclass: #TransferSender
+	instanceVariableNames: 'account transfer'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!Transfer methodsFor: 'initialize' stamp: 'am 5/26/2023 20:37:23' prior: 50606340!
+initializeFor: anAmountToTransfer from: aAccountToWithdraw to: accountToDeposit 
+
+	amount := anAmountToTransfer.
+	sender := TransferSender  register: self on: aAccountToWithdraw.
+	sender transfer: self.
+	receiver := Deposit register: anAmountToTransfer on: accountToDeposit.
+	receiver transfer: self.! !
+!TransferSender class methodsFor: 'no messages' stamp: 'am 5/26/2023 20:38:33'!
+register: aTransfer on: aSenderAccount! !
+!TransferSender class methodsFor: 'as yet unclassified' stamp: 'am 5/26/2023 20:39:13' prior: 50606389!
+register: aTransfer on: aSenderAccount
+	^ self new initializeWith: aTransfer for: aSenderAccount! !
+!TransferSender methodsFor: 'no messages' stamp: 'am 5/26/2023 20:40:04'!
+initializeWith: aTransfer for: aSenderAccount
+	transfer:= aTransfer.
+	account := aSenderAccount! !
+!TransferSender methodsFor: 'as yet unclassified' stamp: 'am 5/26/2023 20:40:05' prior: 50606400!
+initializeWith: aTransfer for: aSenderAccount
+	transfer:= aTransfer.
+	account := aSenderAccount.! !
+!Transfer methodsFor: 'initialize' stamp: 'am 5/26/2023 20:40:45' prior: 50606377!
+initializeFor: anAmountToTransfer from: aAccountToWithdraw to: accountToDeposit 
+
+	amount := anAmountToTransfer.
+	sender := TransferSender  register: self on: aAccountToWithdraw.
+	receiver := Deposit register: anAmountToTransfer on: accountToDeposit.
+	receiver transfer: self.! !
+!TransferSender methodsFor: 'as yet unclassified' stamp: 'am 5/26/2023 20:45:06' prior: 50606407!
+initializeWith: aTransfer for: aSenderAccount
+	transfer:= aTransfer.
+	account := aSenderAccount.
+	account register: self.! !
+!TransferSender methodsFor: 'as yet unclassified' stamp: 'am 5/26/2023 20:46:56'!
+affectBalance: aBalance
+
+	^aBalance + transfer amount. ! !
+!Transfer methodsFor: 'accesing' stamp: 'am 5/26/2023 20:47:11'!
+amount
+	^amount.! !
+!TransferSender methodsFor: 'as yet unclassified' stamp: 'am 5/26/2023 20:47:40' prior: 50606432!
+affectBalance: aBalance
+
+	^aBalance - transfer amount. ! !
+
+!testRun: #TransferTest #test01 stamp: 'am 5/26/2023 20:48:01'!
+PASSED!
+
+!testRun: #TransferTest #test02 stamp: 'am 5/26/2023 20:48:01'!
+PASSED!
+
+!testRun: #TransferTest #test03 stamp: 'am 5/26/2023 20:48:01'!
+PASSED!
+
+!testRun: #TransferTest #test04 stamp: 'am 5/26/2023 20:48:01'!
+ERROR!
+
+!testRun: #TransferTest #test05 stamp: 'am 5/26/2023 20:48:01'!
+PASSED!
+
+!testRun: #TransferTest #test04 stamp: 'am 5/26/2023 20:48:01'!
+ERROR!
+!TransferSender methodsFor: 'accessing' stamp: 'am 5/26/2023 20:48:32'!
+transfer
+	self shouldBeImplemented.
+	^transfer! !
+!TransferSender methodsFor: 'accessing' stamp: 'am 5/26/2023 20:48:38' prior: 50606458!
+transfer
+	^transfer.! !
+
+!testRun: #TransferTest #test01 stamp: 'am 5/26/2023 20:48:53'!
+PASSED!
+
+!testRun: #TransferTest #test02 stamp: 'am 5/26/2023 20:48:53'!
+PASSED!
+
+!testRun: #TransferTest #test03 stamp: 'am 5/26/2023 20:48:53'!
+PASSED!
+
+!testRun: #TransferTest #test04 stamp: 'am 5/26/2023 20:48:53'!
+PASSED!
+
+!testRun: #TransferTest #test05 stamp: 'am 5/26/2023 20:48:53'!
+PASSED!
+
+----SNAPSHOT----(26 May 2023 20:50:33) CuisUniversity-5706.image priorSource: 8790893!
+
+Object subclass: #TransferReciver
+	instanceVariableNames: 'account transfer'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #TransferReciver category: 'Portfolio-Solucion' stamp: 'am 5/26/2023 20:50:50'!
+Object subclass: #TransferReciver
+	instanceVariableNames: 'account transfer'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+Object subclass: #TransferReceiver
+	instanceVariableNames: 'account transfer'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #TransferReceiver category: 'Portfolio-Solucion' stamp: 'am 5/26/2023 20:50:55'!
+Object subclass: #TransferReceiver
+	instanceVariableNames: 'account transfer'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #TransferReciver stamp: 'am 5/26/2023 20:51:03'!
+Object subclass: #TransferReciver
+	instanceVariableNames: 'account transfer'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!TransferReceiver methodsFor: 'no messages' stamp: 'am 5/26/2023 20:51:29'!
+affectBalance: aBalance
+
+	^aBalance + transfer amount. ! !
+!TransferReceiver methodsFor: 'as yet unclassified' stamp: 'am 5/26/2023 20:51:39'!
+initializeWith: aTransfer for: aSenderAccount
+	transfer:= aTransfer.
+	account := aSenderAccount.
+	account register: self.! !
+!TransferReceiver methodsFor: 'as yet unclassified' stamp: 'am 5/26/2023 20:52:00'!
+transfer
+	^transfer.! !
+!TransferReceiver class methodsFor: 'no messages' stamp: 'am 5/26/2023 20:52:37'!
+register: aTransfer on: aSenderAccount
+	^ self new initializeWith: aTransfer for: aSenderAccount! !
+
+!testRun: #TransferTest #test01 stamp: 'am 5/26/2023 20:53:07'!
+PASSED!
+
+!testRun: #TransferTest #test02 stamp: 'am 5/26/2023 20:53:07'!
+PASSED!
+
+!testRun: #TransferTest #test03 stamp: 'am 5/26/2023 20:53:07'!
+PASSED!
+
+!testRun: #TransferTest #test04 stamp: 'am 5/26/2023 20:53:07'!
+PASSED!
+
+!testRun: #TransferTest #test05 stamp: 'am 5/26/2023 20:53:07'!
+PASSED!
+!Transfer methodsFor: 'initialize' stamp: 'am 5/26/2023 20:53:42' prior: 50606413!
+initializeFor: anAmountToTransfer from: aAccountToWithdraw to: accountToDeposit 
+
+	amount := anAmountToTransfer.
+	sender := TransferSender  register: self on: aAccountToWithdraw.
+	receiver := TransferReceiver  register: self on: aAccountToWithdraw.
+	! !
+!Transfer methodsFor: 'initialize' stamp: 'am 5/26/2023 20:54:05' prior: 50606548!
+initializeFor: anAmountToTransfer from: aAccountToWithdraw to: accountToDeposit 
+
+	amount := anAmountToTransfer.
+	sender := TransferSender  register: self on: aAccountToWithdraw.
+	receiver := TransferReceiver  register: self on: accountToDeposit.
+	! !
+
+!testRun: #TransferTest #test01 stamp: 'am 5/26/2023 20:54:09'!
+PASSED!
+
+!testRun: #TransferTest #test02 stamp: 'am 5/26/2023 20:54:09'!
+PASSED!
+
+!testRun: #TransferTest #test03 stamp: 'am 5/26/2023 20:54:09'!
+PASSED!
+
+!testRun: #TransferTest #test04 stamp: 'am 5/26/2023 20:54:09'!
+PASSED!
+
+!testRun: #TransferTest #test05 stamp: 'am 5/26/2023 20:54:09'!
+PASSED!
+
+----SNAPSHOT----(26 May 2023 20:54:13) CuisUniversity-5706.image priorSource: 8794468!
