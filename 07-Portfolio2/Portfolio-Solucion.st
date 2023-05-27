@@ -305,58 +305,90 @@ test07AccountKnowsItsTransactions
 ! !
 
 
-!classDefinition: #TransferTest category: 'Portfolio-Solucion'!
-TestCase subclass: #TransferTest
+!classDefinition: #ReportTest category: 'Portfolio-Solucion'!
+TestCase subclass: #ReportTest
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Portfolio-Solucion'!
 
-!TransferTest methodsFor: 'test' stamp: 'am 5/26/2023 19:33:31'!
+!ReportTest methodsFor: 'tests' stamp: 'NB 5/26/2023 23:43:22'!
 test01
-	| account1 account2|
-	account1 := ReceptiveAccount new.
-	account2 := ReceptiveAccount new.
 	
-	Transfer registrer: 100 from: account1 to: account2.
-	self assert: 100 equals: account2 balance.
-	self assert: -100 equals: account1 balance.! !
+	self assert: (OrderedCollection with: 'Balance = 0') equals: (AccountSummaryReport for: ReceptiveAccount new) generate.! !
 
-!TransferTest methodsFor: 'test' stamp: 'am 5/26/2023 20:05:48'!
+!ReportTest methodsFor: 'tests' stamp: 'NB 5/26/2023 23:53:53'!
 test02
-	| account1 account2 aTransfer|
-	account1 := ReceptiveAccount new.
-	account2 := ReceptiveAccount new.
-	
-	aTransfer := Transfer registrer: 100 from: account1 to: account2.
-	self assert: (account1 hasRegistered: aTransfer sender).! !
 
-!TransferTest methodsFor: 'test' stamp: 'am 5/26/2023 20:16:22'!
-test03
-	| account1 account2 aTransfer|
-	account1 := ReceptiveAccount new.
-	account2 := ReceptiveAccount new.
+	| account1 account2|
 	
-	aTransfer := Transfer registrer: 100 from: account1 to: account2.
-	self assert: (account2 hasRegistered: aTransfer receiver).! !
+	account1:= ReceptiveAccount new.
+	account2:= ReceptiveAccount new.
+	Deposit register: 100 on: account1.
+	Withdraw register: 50 on: account1.
+	Transfer registrer: 20 from: account1 to: account2.
+	Transfer registrer: 30 from: account2 to: account1.
+	
+	self assert: (
+		OrderedCollection
+			with: 'Depósito por 100.'
+			with: 'Extracción por 50.'
+			with: 'Salida por transferencia de 20.'
+			with: 'Entrada por transferencia de 30.'
+			with: 'Balance = 60'
+		)
+	equals: (AccountSummaryReport for: account1) generate.! !
 
-!TransferTest methodsFor: 'test' stamp: 'am 5/26/2023 20:22:42'!
-test04
-	| account1 account2 aTransfer|
-	account1 := ReceptiveAccount new.
-	account2 := ReceptiveAccount new.
-	
-	aTransfer := Transfer registrer: 100 from: account1 to: account2.
-	self assert: aTransfer equals: aTransfer sender transfer.! !
+
+!classDefinition: #TransferTest category: 'Portfolio-Solucion'!
+TestCase subclass: #TransferTest
+	instanceVariableNames: 'transferSenderAccount transferReceiverAccount initialBalanceForAccounts amountTransfered transfer'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
 
-!TransferTest methodsFor: 'test' stamp: 'am 5/26/2023 20:26:48'!
-test05
-	| account1 account2 aTransfer|
-	account1 := ReceptiveAccount new.
-	account2 := ReceptiveAccount new.
+!TransferTest methodsFor: 'setUp' stamp: 'NB 5/26/2023 23:25:46'!
+setUp
+
+	transferSenderAccount:= ReceptiveAccount new.
+	transferReceiverAccount:= ReceptiveAccount new.
+	initialBalanceForAccounts:= 0.
+	amountTransfered:= 100.
+	transfer:= Transfer registrer: amountTransfered from: transferSenderAccount to: transferReceiverAccount.! !
+
+
+!TransferTest methodsFor: 'tests' stamp: 'NB 5/26/2023 23:26:59'!
+test01TransferCorrectlyDecreasesSenderBalanceAndIncreasesReceiverBalanceForTheAmountTransfered
 	
-	aTransfer := Transfer registrer: 100 from: account1 to: account2.
-	self assert: aTransfer equals: aTransfer receiver transfer.! !
+	self assert: initialBalanceForAccounts + amountTransfered equals: transferReceiverAccount balance.
+	self assert: initialBalanceForAccounts - amountTransfered equals: transferSenderAccount balance.! !
+
+!TransferTest methodsFor: 'tests' stamp: 'NB 5/26/2023 23:30:55'!
+test02SenderAccountCorrectlyRegistersATransferSending
+
+	self assert: (transferSenderAccount hasRegistered: transfer sender).! !
+
+!TransferTest methodsFor: 'tests' stamp: 'NB 5/26/2023 23:31:15'!
+test03ReceptionAccountCorrectlyRegistersATransferReception
+	
+	self assert: (transferReceiverAccount hasRegistered: transfer receiver).! !
+
+!TransferTest methodsFor: 'tests' stamp: 'NB 5/26/2023 23:31:45'!
+test04TransferSendingCanReachTheTransfer
+	
+	self assert: transfer equals: transfer sender transfer.! !
+
+!TransferTest methodsFor: 'tests' stamp: 'NB 5/26/2023 23:32:03'!
+test05TransferReceptionCanReachTheTransfer
+	
+	self assert: transfer equals: transfer receiver transfer.! !
+
+!TransferTest methodsFor: 'tests' stamp: 'NB 5/26/2023 23:21:10'!
+test06CannotTransferAnAmountThatItIsNotAStrictlyPositiveNumber
+	
+	self should: [Transfer registrer: -100 from: ReceptiveAccount new to: ReceptiveAccount new. ]
+		raise: Error
+		withMessageText: Transfer cannotTransferAmountLessThanAPositiveNumber.! !
 
 
 !classDefinition: #Account category: 'Portfolio-Solucion'!
@@ -594,24 +626,89 @@ addedTo: aPortfolio
 	
 	! !
 
+
+!ReceptiveAccount methodsFor: 'reports' stamp: 'NB 5/27/2023 00:08:36'!
+summaryReport
+
+	|reportLines|
+	reportLines := OrderedCollection new.
+	transactions do: [:aTransaction | aTransaction addReportLineTo: reportLines].
+	reportLines add: 'Balance = ',self balance asString.
+	^reportLines.! !
+
 
-!classDefinition: #AccountTransaction category: 'Portfolio-Solucion'!
-Object subclass: #AccountTransaction
+!classDefinition: #AccountSummaryReport category: 'Portfolio-Solucion'!
+Object subclass: #AccountSummaryReport
+	instanceVariableNames: 'receptiveAccount'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!AccountSummaryReport methodsFor: 'initialization' stamp: 'NB 5/26/2023 23:44:08'!
+initializeFor: aReceptiveAccount 
+	
+	receptiveAccount := aReceptiveAccount.! !
+
+
+!AccountSummaryReport methodsFor: 'reports' stamp: 'NB 5/26/2023 23:58:08'!
+generate
+	
+	^receptiveAccount summaryReport.! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'AccountSummaryReport class' category: 'Portfolio-Solucion'!
+AccountSummaryReport class
+	instanceVariableNames: ''!
+
+!AccountSummaryReport class methodsFor: 'instance creation' stamp: 'NB 5/26/2023 23:43:48'!
+for: aReceptiveAccount 
+	
+	^self new initializeFor: aReceptiveAccount ! !
+
+
+!classDefinition: #Transaction category: 'Portfolio-Solucion'!
+Object subclass: #Transaction
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Portfolio-Solucion'!
 
-!AccountTransaction methodsFor: 'value' stamp: 'HernanWilkinson 9/12/2011 12:25'!
+!Transaction methodsFor: 'value' stamp: 'HernanWilkinson 9/12/2011 12:25'!
 value 
 
 	self subclassResponsibility ! !
 
 
-!AccountTransaction methodsFor: 'balance' stamp: 'HAW 5/25/2019 11:25:39'!
+!Transaction methodsFor: 'reports' stamp: 'NB 5/27/2023 00:00:18'!
+addReportLineTo: aSequenceOfReportLines
+
+	self subclassResponsibility .! !
+
+
+!Transaction methodsFor: 'balance' stamp: 'HAW 5/25/2019 11:25:39'!
 affectBalance: aBalance
 
 	self subclassResponsibility ! !
+
+
+!classDefinition: #AccountTransaction category: 'Portfolio-Solucion'!
+Transaction subclass: #AccountTransaction
+	instanceVariableNames: 'value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!AccountTransaction methodsFor: 'value' stamp: 'NB 5/26/2023 22:39:55'!
+value
+
+	^ value! !
+
+
+!AccountTransaction methodsFor: 'initialization' stamp: 'NB 5/26/2023 22:40:30'!
+initializeFor: aValue
+
+	value := aValue ! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
@@ -619,7 +716,12 @@ affectBalance: aBalance
 AccountTransaction class
 	instanceVariableNames: ''!
 
-!AccountTransaction class methodsFor: 'instance creation' stamp: 'NR 10/21/2019 18:54:27'!
+!AccountTransaction class methodsFor: 'instance creation' stamp: 'NB 5/26/2023 22:43:38'!
+for: aValue
+
+	^ self new initializeFor: aValue ! !
+
+!AccountTransaction class methodsFor: 'instance creation' stamp: 'NB 5/26/2023 22:42:48'!
 register: aValue on: account
 
 	| transaction |
@@ -632,92 +734,121 @@ register: aValue on: account
 
 !classDefinition: #Deposit category: 'Portfolio-Solucion'!
 AccountTransaction subclass: #Deposit
-	instanceVariableNames: 'value transfer'
+	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Portfolio-Solucion'!
 
-!Deposit methodsFor: 'initialization' stamp: 'HernanWilkinson 7/13/2011 18:45'!
-initializeFor: aValue
+!Deposit methodsFor: 'balance' stamp: 'NB 5/27/2023 00:07:48'!
+addReportLineTo: aSequenceOfReportLines
 
-	value := aValue ! !
+	aSequenceOfReportLines add: 'Depósito por ', self value asString ,'.'.! !
 
-
-!Deposit methodsFor: 'value' stamp: 'HernanWilkinson 7/13/2011 18:38'!
-value
-
-	^ value! !
-
-
-!Deposit methodsFor: 'balance' stamp: 'HAW 5/25/2019 11:25:02'!
+!Deposit methodsFor: 'balance' stamp: 'NB 5/26/2023 22:46:27'!
 affectBalance: aBalance
 
-	^aBalance + value ! !
-
-
-!Deposit methodsFor: 'as yet unclassified' stamp: 'am 5/26/2023 20:27:22'!
-transfer
-	 ^transfer! !
-
-!Deposit methodsFor: 'as yet unclassified' stamp: 'am 5/26/2023 20:28:04'!
-transfer: aTransfer
-	 transfer := aTransfer.! !
-
-"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
-
-!classDefinition: 'Deposit class' category: 'Portfolio-Solucion'!
-Deposit class
-	instanceVariableNames: ''!
-
-!Deposit class methodsFor: 'instance creation' stamp: 'HernanWilkinson 7/13/2011 18:38'!
-for: aValue
-
-	^ self new initializeFor: aValue ! !
+	^aBalance + self value ! !
 
 
 !classDefinition: #Withdraw category: 'Portfolio-Solucion'!
 AccountTransaction subclass: #Withdraw
-	instanceVariableNames: 'value transfer'
+	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Portfolio-Solucion'!
 
-!Withdraw methodsFor: 'initialization' stamp: 'HernanWilkinson 7/13/2011 18:46'!
-initializeFor: aValue
+!Withdraw methodsFor: 'reports' stamp: 'NB 5/27/2023 00:07:54'!
+addReportLineTo: aSequenceOfReportLines
 
-	value := aValue ! !
-
-
-!Withdraw methodsFor: 'value' stamp: 'HernanWilkinson 7/13/2011 18:33'!
-value
-
-	^ value! !
+	aSequenceOfReportLines add: 'Extracción por ', self value asString,'.'.! !
 
 
-!Withdraw methodsFor: 'balance' stamp: 'HAW 5/25/2019 11:25:15'!
+!Withdraw methodsFor: 'balance' stamp: 'NB 5/26/2023 22:46:32'!
 affectBalance: aBalance
 
-	^aBalance - value! !
+	^aBalance - self value! !
 
+
+!classDefinition: #TransferTransaction category: 'Portfolio-Solucion'!
+Transaction subclass: #TransferTransaction
+	instanceVariableNames: 'account transfer'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
 
-!Withdraw methodsFor: 'as yet unclassified' stamp: 'am 5/26/2023 20:24:10'!
+!TransferTransaction methodsFor: 'transfer' stamp: 'NB 5/26/2023 21:50:39'!
 transfer
 	^transfer.! !
 
-!Withdraw methodsFor: 'as yet unclassified' stamp: 'am 5/26/2023 20:26:02'!
-transfer: aTransfer
-	transfer := aTransfer. ! !
+
+!TransferTransaction methodsFor: 'initialization' stamp: 'NB 5/26/2023 22:47:42'!
+initializeWith: aTransfer for: anAccount
+
+	transfer:= aTransfer.
+	account := anAccount.! !
+
+
+!TransferTransaction methodsFor: 'value' stamp: 'NB 5/26/2023 21:51:50'!
+value
+
+	^self transfer amount. ! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
-!classDefinition: 'Withdraw class' category: 'Portfolio-Solucion'!
-Withdraw class
+!classDefinition: 'TransferTransaction class' category: 'Portfolio-Solucion'!
+TransferTransaction class
 	instanceVariableNames: ''!
 
-!Withdraw class methodsFor: 'instance creation' stamp: 'HernanWilkinson 7/13/2011 18:33'!
-for: aValue
+!TransferTransaction class methodsFor: 'instance creation' stamp: 'NB 5/26/2023 22:47:34'!
+register: aTransfer on: anAccount
 
-	^ self new initializeFor: aValue ! !
+
+	| transferTransaction |
+	
+	transferTransaction := self new initializeWith: aTransfer for: anAccount.
+	anAccount register: transferTransaction.
+		
+	^ transferTransaction.
+
+	! !
+
+
+!classDefinition: #TransferReception category: 'Portfolio-Solucion'!
+TransferTransaction subclass: #TransferReception
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!TransferReception methodsFor: 'balance' stamp: 'NB 5/26/2023 22:46:04'!
+affectBalance: aBalance
+
+	^aBalance + self value. ! !
+
+
+!TransferReception methodsFor: 'reports' stamp: 'NB 5/27/2023 00:08:00'!
+addReportLineTo: aSequenceOfReportLines
+
+	aSequenceOfReportLines add: 'Entrada por transferencia de ', self value asString,'.'.! !
+
+
+!classDefinition: #TransferSending category: 'Portfolio-Solucion'!
+TransferTransaction subclass: #TransferSending
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!TransferSending methodsFor: 'balance' stamp: 'NB 5/26/2023 22:46:11'!
+affectBalance: aBalance
+
+	^aBalance - self value. ! !
+
+
+!TransferSending methodsFor: 'reports' stamp: 'NB 5/27/2023 00:08:04'!
+addReportLineTo: aSequenceOfReportLines
+
+	aSequenceOfReportLines add: 'Salida por transferencia de ', self value asString,'.'.! !
 
 
 !classDefinition: #Transfer category: 'Portfolio-Solucion'!
@@ -727,12 +858,12 @@ Object subclass: #Transfer
 	poolDictionaries: ''
 	category: 'Portfolio-Solucion'!
 
-!Transfer methodsFor: 'initialize' stamp: 'am 5/26/2023 20:54:05'!
+!Transfer methodsFor: 'initialize' stamp: 'NB 5/26/2023 22:37:45'!
 initializeFor: anAmountToTransfer from: aAccountToWithdraw to: accountToDeposit 
 
 	amount := anAmountToTransfer.
-	sender := TransferSender  register: self on: aAccountToWithdraw.
-	receiver := TransferReceiver  register: self on: accountToDeposit.
+	sender := TransferSending  register: self on: aAccountToWithdraw.
+	receiver := TransferReception  register: self on: accountToDeposit.
 	! !
 
 
@@ -754,75 +885,21 @@ sender
 Transfer class
 	instanceVariableNames: ''!
 
-!Transfer class methodsFor: 'transfer' stamp: 'am 5/26/2023 20:07:52'!
+!Transfer class methodsFor: 'assertions' stamp: 'NB 5/26/2023 22:58:11'!
+assertAmountIsStrictlyPositive: anAmountToTransfer
+
+	^ anAmountToTransfer strictlyPositive ifFalse: [self error: self cannotTransferAmountLessThanAPositiveNumber ]! !
+
+
+!Transfer class methodsFor: 'transfer' stamp: 'NB 5/26/2023 22:58:11'!
 registrer: anAmountToTransfer from: accountToWithdraw to: accountToDeposit 
+	self assertAmountIsStrictlyPositive: anAmountToTransfer.
+	
 	^self new initializeFor: anAmountToTransfer from: accountToWithdraw to: accountToDeposit.
 	! !
 
-
-!classDefinition: #TransferReceiver category: 'Portfolio-Solucion'!
-Object subclass: #TransferReceiver
-	instanceVariableNames: 'account transfer'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Portfolio-Solucion'!
 
-!TransferReceiver methodsFor: 'accessing' stamp: 'am 5/26/2023 20:52:00'!
-transfer
-	^transfer.! !
-
-
-!TransferReceiver methodsFor: 'as yet unclassified' stamp: 'am 5/26/2023 20:51:29'!
-affectBalance: aBalance
-
-	^aBalance + transfer amount. ! !
-
-!TransferReceiver methodsFor: 'as yet unclassified' stamp: 'am 5/26/2023 20:51:39'!
-initializeWith: aTransfer for: aSenderAccount
-	transfer:= aTransfer.
-	account := aSenderAccount.
-	account register: self.! !
-
-"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
-
-!classDefinition: 'TransferReceiver class' category: 'Portfolio-Solucion'!
-TransferReceiver class
-	instanceVariableNames: ''!
-
-!TransferReceiver class methodsFor: 'as yet unclassified' stamp: 'am 5/26/2023 20:52:37'!
-register: aTransfer on: aSenderAccount
-	^ self new initializeWith: aTransfer for: aSenderAccount! !
-
-
-!classDefinition: #TransferSender category: 'Portfolio-Solucion'!
-Object subclass: #TransferSender
-	instanceVariableNames: 'account transfer'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Portfolio-Solucion'!
-
-!TransferSender methodsFor: 'as yet unclassified' stamp: 'am 5/26/2023 20:47:40'!
-affectBalance: aBalance
-
-	^aBalance - transfer amount. ! !
-
-!TransferSender methodsFor: 'as yet unclassified' stamp: 'am 5/26/2023 20:45:06'!
-initializeWith: aTransfer for: aSenderAccount
-	transfer:= aTransfer.
-	account := aSenderAccount.
-	account register: self.! !
-
-
-!TransferSender methodsFor: 'accessing' stamp: 'am 5/26/2023 20:48:38'!
-transfer
-	^transfer.! !
-
-"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
-
-!classDefinition: 'TransferSender class' category: 'Portfolio-Solucion'!
-TransferSender class
-	instanceVariableNames: ''!
-
-!TransferSender class methodsFor: 'as yet unclassified' stamp: 'am 5/26/2023 20:39:13'!
-register: aTransfer on: aSenderAccount
-	^ self new initializeWith: aTransfer for: aSenderAccount! !
+!Transfer class methodsFor: 'error description' stamp: 'NB 5/26/2023 22:54:28'!
+cannotTransferAmountLessThanAPositiveNumber
+	
+	^'Cannot transfer an amount that it lower or equal to 0'.! !
