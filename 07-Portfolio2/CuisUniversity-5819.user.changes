@@ -1471,3 +1471,2163 @@ PASSED!
 PASSED!
 
 ----SNAPSHOT----(27 May 2023 00:25:22) CuisUniversity-5819.image priorSource: 9386665!
+
+----STARTUP---- (28 May 2023 15:27:52) as /Users/nico/Documents/inge1/cuis-images/macos64/CuisUniversity-5819.image!
+
+!ReceptiveAccount methodsFor: 'reports' stamp: 'NB 5/28/2023 15:34:56' prior: 50624970!
+summaryReport
+
+	|reportLines|
+	reportLines := OrderedCollection new.
+	transactions do: [:aTransaction | 
+		(aTransaction isKindOf: Deposit) ifTrue: [].
+		 
+		
+		
+		
+		
+		].
+	reportLines add: 'Balance = ',self balance asString.
+	^reportLines.! !
+!ReceptiveAccount methodsFor: 'reports' stamp: 'NB 5/28/2023 15:35:21' prior: 50624996!
+summaryReport
+
+	|reportLines|
+	reportLines := OrderedCollection new.
+	transactions do: [:aTransaction | 
+		(aTransaction isKindOf: Deposit) ifTrue: [reportLines add: 'Depósito por ', self value asString ,'.'.].
+		 
+		
+		
+		
+		
+		].
+	reportLines add: 'Balance = ',self balance asString.
+	^reportLines.! !
+!ReceptiveAccount methodsFor: 'reports' stamp: 'NB 5/28/2023 15:35:31' prior: 50625007!
+summaryReport
+
+	|reportLines|
+	reportLines := OrderedCollection new.
+	transactions do: [:aTransaction | 
+		(aTransaction isKindOf: Deposit) ifTrue: [reportLines add: 'Depósito por ', self value asString ,'.'.].
+		(aTransaction isKindOf: Withdraw ) ifTrue: [reportLines add: 'Depósito por ', self value asString ,'.'.].
+		 
+		
+		
+		
+		
+		].
+	reportLines add: 'Balance = ',self balance asString.
+	^reportLines.! !
+!ReceptiveAccount methodsFor: 'reports' stamp: 'NB 5/28/2023 15:36:06' prior: 50625020!
+summaryReport
+
+	|reportLines|
+	reportLines := OrderedCollection new.
+	transactions do: [:aTransaction | 
+		(aTransaction isKindOf: Deposit) ifTrue: [reportLines add: 'Depósito por ', self value asString ,'.'.].
+		(aTransaction isKindOf: Withdraw ) ifTrue: [reportLines add: 'Extracción por ', self value asString,'.'].
+		(aTransaction isKindOf: TransferReception ) ifTrue: [reportLines add: 'Extracción por ', self value asString,'.'].
+		 
+		
+		
+		
+		
+		].
+	reportLines add: 'Balance = ',self balance asString.
+	^reportLines.! !
+!ReceptiveAccount methodsFor: 'reports' stamp: 'NB 5/28/2023 15:36:30' prior: 50625036!
+summaryReport
+
+	|reportLines|
+	reportLines := OrderedCollection new.
+	transactions do: [:aTransaction | 
+		(aTransaction isKindOf: Deposit) ifTrue: [reportLines add: 'Depósito por ', self value asString ,'.'.].
+		(aTransaction isKindOf: Withdraw ) ifTrue: [reportLines add: 'Extracción por ', self value asString,'.'].
+		(aTransaction isKindOf: TransferReception ) ifTrue: [reportLines add: 'Entrada por transferencia de ', self value asString,'.'.].
+		
+		
+		 
+		
+		
+		
+		
+		].
+	reportLines add: 'Balance = ',self balance asString.
+	^reportLines.! !
+!ReceptiveAccount methodsFor: 'reports' stamp: 'NB 5/28/2023 15:36:53' prior: 50625056!
+summaryReport
+
+	|reportLines|
+	reportLines := OrderedCollection new.
+	transactions do: [:aTransaction | 
+		(aTransaction isKindOf: Deposit) ifTrue: [reportLines add: 'Depósito por ', self value asString ,'.'.].
+		(aTransaction isKindOf: Withdraw ) ifTrue: [reportLines add: 'Extracción por ', self value asString,'.'].
+		(aTransaction isKindOf: TransferReception ) ifTrue: [reportLines add: 'Entrada por transferencia de ', self value asString,'.'.].
+		(aTransaction isKindOf: TransferSending ) ifTrue: [reportLines add: 'Entrada por transferencia de ', self value asString,'.'.].
+		
+		].
+	reportLines add: 'Balance = ',self balance asString.
+	^reportLines.! !
+!ReceptiveAccount methodsFor: 'reports' stamp: 'NB 5/28/2023 15:37:09' prior: 50625076!
+summaryReport
+
+	|reportLines|
+	reportLines := OrderedCollection new.
+	transactions do: [:aTransaction | 
+		(aTransaction isKindOf: Deposit) ifTrue: [reportLines add: 'Depósito por ', self value asString ,'.'.].
+		(aTransaction isKindOf: Withdraw ) ifTrue: [reportLines add: 'Extracción por ', self value asString,'.'].
+		(aTransaction isKindOf: TransferReception ) ifTrue: [reportLines add: 'Entrada por transferencia de ', self value asString,'.'.].
+		(aTransaction isKindOf: TransferSending ) ifTrue: [reportLines add: 'Salida por transferencia de ', self value asString,'.'.].
+		
+		].
+	reportLines add: 'Balance = ',self balance asString.
+	^reportLines.! !
+!ReceptiveAccount methodsFor: 'reports' stamp: 'NB 5/28/2023 15:37:21' prior: 50625100!
+summaryReport
+
+	|reportLines|
+	reportLines := OrderedCollection new.
+	transactions do: [:aTransaction | 
+		(aTransaction isKindOf: Deposit) ifTrue: [reportLines add: 'Depósito por ', aTransaction value asString ,'.'.].
+		(aTransaction isKindOf: Withdraw ) ifTrue: [reportLines add: 'Extracción por ', aTransaction value asString,'.'].
+		(aTransaction isKindOf: TransferReception ) ifTrue: [reportLines add: 'Entrada por transferencia de ', aTransaction value asString,'.'.].
+		(aTransaction isKindOf: TransferSending ) ifTrue: [reportLines add: 'Salida por transferencia de ', aTransaction value asString,'.'.].
+		
+		].
+	reportLines add: 'Balance = ',self balance asString.
+	^reportLines.! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'NB 5/28/2023 15:37:47'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'NB 5/28/2023 15:37:47'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'NB 5/28/2023 15:37:47'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'NB 5/28/2023 15:37:47'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'NB 5/28/2023 15:37:47'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'NB 5/28/2023 15:37:47'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'NB 5/28/2023 15:37:47'!
+PASSED!
+
+!testRun: #ReportTest #test01 stamp: 'NB 5/28/2023 15:38:04'!
+PASSED!
+
+!testRun: #ReportTest #test02 stamp: 'NB 5/28/2023 15:38:04'!
+PASSED!
+!ReceptiveAccount methodsFor: 'reports' stamp: 'NB 5/27/2023 00:08:36' prior: 50625124!
+summaryReport
+
+	|reportLines|
+	reportLines := OrderedCollection new.
+	transactions do: [:aTransaction | aTransaction addReportLineTo: reportLines].
+	reportLines add: 'Balance = ',self balance asString.
+	^reportLines.! !
+
+!testRun: #ReportTest #test01 stamp: 'NB 5/28/2023 15:40:51'!
+PASSED!
+
+!testRun: #ReportTest #test02 stamp: 'NB 5/28/2023 15:40:51'!
+PASSED!
+!ReportTest methodsFor: 'tests' stamp: 'NB 5/28/2023 15:42:13'!
+test03
+
+	| portfolio |
+	
+	portfolio:= Portfolio new.
+	
+	self assert: (
+		OrderedCollection
+			with: 'Balance = 0'
+		)
+	equals: (AccountSummaryReport for: portfolio) generate.! !
+
+!testRun: #ReportTest #test03 stamp: 'NB 5/28/2023 15:42:15'!
+ERROR!
+!Portfolio methodsFor: 'reports' stamp: 'NB 5/28/2023 15:42:24'!
+summaryReport
+	self shouldBeImplemented.! !
+!Portfolio methodsFor: 'reports' stamp: 'NB 5/28/2023 15:42:39' prior: 50625204!
+summaryReport
+	
+	^OrderedCollection with: 'Balance = 0'.! !
+
+!testRun: #ReportTest #test03 stamp: 'NB 5/28/2023 15:42:40'!
+PASSED!
+
+!testRun: #ReportTest #test01 stamp: 'NB 5/28/2023 15:42:40'!
+PASSED!
+
+!testRun: #ReportTest #test02 stamp: 'NB 5/28/2023 15:42:40'!
+PASSED!
+
+!testRun: #ReportTest #test03 stamp: 'NB 5/28/2023 15:42:40'!
+PASSED!
+!ReportTest methodsFor: 'tests' stamp: 'NB 5/28/2023 15:43:06'!
+test04
+
+	| portfolio |
+	
+	portfolio:= Portfolio new.
+	
+	self assert: (
+		OrderedCollection
+			with: 'Balance = 0'
+		)
+	equals: (AccountSummaryReport for: portfolio) generate.! !
+!ReportTest methodsFor: 'tests' stamp: 'NB 5/28/2023 15:43:22' prior: 50625221!
+test04
+
+	| portfolio account1 account2|
+	
+	portfolio:= Portfolio new.
+	account1:= ReceptiveAccount new.
+	account2:= ReceptiveAccount new.
+	Deposit register: 100 on: account1.
+	Withdraw register: 50 on: account1.
+	Transfer registrer: 20 from: account1 to: account2.
+	Transfer registrer: 30 from: account2 to: account1.
+	
+	self assert: (
+		OrderedCollection
+			with: 'Balance = 0'
+		)
+	equals: (AccountSummaryReport for: portfolio) generate.! !
+!ReportTest methodsFor: 'tests' stamp: 'NB 5/28/2023 15:43:39' prior: 50625230!
+test04
+
+	| portfolio account1 account2|
+	
+	portfolio:= Portfolio new.
+	account1:= ReceptiveAccount new.
+	account2:= ReceptiveAccount new.
+	Deposit register: 100 on: account1.
+	Withdraw register: 50 on: account1.
+	Transfer registrer: 20 from: account1 to: account2.
+	Transfer registrer: 30 from: account2 to: account1.
+	
+	self assert: (
+		OrderedCollection
+			with: 'Depósito por 100.'
+			with: 'Extracción por 50.'
+			with: 'Salida por transferencia de 20.'
+			with: 'Entrada por transferencia de 30.'
+			with: 'Balance = 60'
+		)
+	equals: (AccountSummaryReport for: portfolio) generate.! !
+!ReportTest methodsFor: 'tests' stamp: 'NB 5/28/2023 15:43:54' prior: 50625247!
+test04
+
+	| portfolio account1 account2|
+	
+	
+	account1:= ReceptiveAccount new.
+	account2:= ReceptiveAccount new.
+	Deposit register: 100 on: account1.
+	Withdraw register: 50 on: account1.
+	Transfer registrer: 20 from: account1 to: account2.
+	Transfer registrer: 30 from: account2 to: account1.
+	
+	portfolio:= Portfolio with: account1.
+	
+	self assert: (
+		OrderedCollection
+			with: 'Depósito por 100.'
+			with: 'Extracción por 50.'
+			with: 'Salida por transferencia de 20.'
+			with: 'Entrada por transferencia de 30.'
+			with: 'Balance = 60'
+		)
+	equals: (AccountSummaryReport for: portfolio) generate.! !
+
+!testRun: #ReportTest #test04 stamp: 'NB 5/28/2023 15:43:58'!
+FAILURE!
+
+!testRun: #ReportTest #test04 stamp: 'NB 5/28/2023 15:44:30'!
+FAILURE!
+!Portfolio methodsFor: 'reports' stamp: 'NB 5/28/2023 15:46:54'!
+addReportTo: reportLines! !
+!Portfolio methodsFor: 'reports' stamp: 'NB 5/28/2023 15:47:49' prior: 50625208!
+summaryReport
+	
+	|reportLines|
+	reportLines := OrderedCollection new.
+	accounts do: [:anAccount | anAccount addReportTo: reportLines].
+	reportLines add: 'Balance = ',self balance asString.
+	^reportLines.! !
+!Portfolio methodsFor: 'reports' stamp: 'NB 5/28/2023 15:48:12' prior: 50625294!
+addReportTo: reportLines
+
+	accounts do: [:anAccount | anAccount addReportTo: reportLines].! !
+!ReceptiveAccount methodsFor: 'reports' stamp: 'NB 5/28/2023 15:49:34'!
+addReportTo: reportLines
+
+	! !
+!ReceptiveAccount methodsFor: 'reports' stamp: 'NB 5/28/2023 15:50:47' prior: 50625313!
+addReportTo: reportLines
+
+	transactions do: [:aTransaction | aTransaction addReportLineTo: reportLines].! !
+
+!testRun: #ReportTest #test01 stamp: 'NB 5/28/2023 15:50:58'!
+PASSED!
+
+!testRun: #ReportTest #test02 stamp: 'NB 5/28/2023 15:50:58'!
+PASSED!
+
+!testRun: #ReportTest #test03 stamp: 'NB 5/28/2023 15:50:58'!
+PASSED!
+
+!testRun: #ReportTest #test04 stamp: 'NB 5/28/2023 15:50:58'!
+PASSED!
+
+----SNAPSHOT----(28 May 2023 15:51:01) CuisUniversity-5819.image priorSource: 9386824!
+!ReportTest methodsFor: 'tests' stamp: 'NB 5/28/2023 15:52:47'!
+test05
+
+	| portfolio account1 account2 portfolio2|
+	
+	
+	account1:= ReceptiveAccount new.
+	account2:= ReceptiveAccount new.
+	Deposit register: 100 on: account1.
+	Withdraw register: 50 on: account1.
+	Transfer registrer: 20 from: account1 to: account2.
+	Transfer registrer: 30 from: account2 to: account1.
+	
+	portfolio2 := Portfolio with: account1.
+	portfolio:= Portfolio with: portfolio2 .
+	
+	self assert: (
+		OrderedCollection
+			with: 'Depósito por 100.'
+			with: 'Extracción por 50.'
+			with: 'Salida por transferencia de 20.'
+			with: 'Entrada por transferencia de 30.'
+			with: 'Balance = 60'
+		)
+	equals: (AccountSummaryReport for: portfolio) generate.! !
+
+!testRun: #ReportTest #test05 stamp: 'NB 5/28/2023 15:52:50'!
+PASSED!
+
+!testRun: #ReportTest #test01 stamp: 'NB 5/28/2023 15:52:50'!
+PASSED!
+
+!testRun: #ReportTest #test02 stamp: 'NB 5/28/2023 15:52:50'!
+PASSED!
+
+!testRun: #ReportTest #test03 stamp: 'NB 5/28/2023 15:52:50'!
+PASSED!
+
+!testRun: #ReportTest #test04 stamp: 'NB 5/28/2023 15:52:50'!
+PASSED!
+
+!testRun: #ReportTest #test05 stamp: 'NB 5/28/2023 15:52:50'!
+PASSED!
+!ReportTest methodsFor: 'tests' stamp: 'NB 5/28/2023 15:55:46' prior: 50625334!
+test05
+
+	| portfolio account1 account2 portfolio2|
+	
+	
+	account1:= ReceptiveAccount new.
+	account2:= ReceptiveAccount new.
+	Deposit register: 100 on: account1.
+	Withdraw register: 50 on: account1.
+	Transfer registrer: 20 from: account1 to: account2.
+	Transfer registrer: 30 from: account2 to: account1.
+	
+	portfolio2 := Portfolio with: account1.
+	portfolio:= Portfolio with: portfolio2 with: account2.
+	
+	self assert: (
+		OrderedCollection
+			with: 'Depósito por 100.'
+			with: 'Extracción por 50.'
+			with: 'Salida por transferencia de 20.'
+			with: 'Entrada por transferencia de 30.'
+			with: 'Balance = 60'
+		)
+	equals: (AccountSummaryReport for: portfolio) generate.! !
+
+!testRun: #ReportTest #test05 stamp: 'NB 5/28/2023 15:55:47'!
+FAILURE!
+
+!testRun: #ReportTest #test05 stamp: 'NB 5/28/2023 15:56:06'!
+FAILURE!
+
+!testRun: #ReportTest #test05 stamp: 'NB 5/28/2023 15:56:22'!
+PASSED!
+!ReportTest methodsFor: 'tests' stamp: 'NB 5/28/2023 16:00:42' prior: 50625371!
+test05
+
+	| portfolio account1 account2 portfolio2 expectedSummaryReport|
+	
+	
+	account1:= ReceptiveAccount new.
+	account2:= ReceptiveAccount new.
+	Deposit register: 100 on: account1.
+	Withdraw register: 50 on: account1.
+	Transfer registrer: 20 from: account1 to: account2.
+	Transfer registrer: 30 from: account2 to: account1.
+	
+	portfolio2 := Portfolio with: account1.
+	portfolio:= Portfolio with: portfolio2 with: account2.
+	
+	expectedSummaryReport:= OrderedCollection
+			with: 'Depósito por 100.'
+			with: 'Extracción por 50.'
+			with: 'Salida por transferencia de 20.'
+			with: 'Entrada por transferencia de 30.'
+			with: 'Salida por transferencia de 30.'
+			with: 'Entrada por transferencia de 20.'.
+	
+	expectedSummaryReport 	add: 'Balance = 50'.
+	
+	self assert: expectedSummaryReport equals: (AccountSummaryReport for: portfolio) generate.! !
+
+!testRun: #ReportTest #test05 stamp: 'NB 5/28/2023 16:00:43'!
+FAILURE!
+!ReportTest methodsFor: 'tests' stamp: 'NB 5/28/2023 16:03:11' prior: 50625402!
+test05
+
+	| portfolio account1 account2 portfolio2 expectedSummaryReport|
+	
+	
+	account1:= ReceptiveAccount new.
+	account2:= ReceptiveAccount new.
+	Deposit register: 100 on: account1.
+	Withdraw register: 50 on: account1.
+	Transfer registrer: 20 from: account1 to: account2.
+	Transfer registrer: 30 from: account2 to: account1.
+	
+	portfolio2 := Portfolio with: account1.
+	portfolio:= Portfolio with: portfolio2 with: account2.
+	
+	expectedSummaryReport:= OrderedCollection
+			with: 'Depósito por 100.'
+			with: 'Extracción por 50.'
+			with: 'Salida por transferencia de 20.'
+			with: 'Entrada por transferencia de 30.'
+			with: 'Entrada por transferencia de 20.'
+			with: 'Salida por transferencia de 30.'.
+			
+	
+	expectedSummaryReport 	add: 'Balance = 50'.
+	
+	self assert: expectedSummaryReport equals: (AccountSummaryReport for: portfolio) generate.! !
+
+!testRun: #ReportTest #test05 stamp: 'NB 5/28/2023 16:03:13'!
+PASSED!
+
+!testRun: #ReportTest #test01 stamp: 'NB 5/28/2023 16:03:13'!
+PASSED!
+
+!testRun: #ReportTest #test02 stamp: 'NB 5/28/2023 16:03:13'!
+PASSED!
+
+!testRun: #ReportTest #test03 stamp: 'NB 5/28/2023 16:03:13'!
+PASSED!
+
+!testRun: #ReportTest #test04 stamp: 'NB 5/28/2023 16:03:13'!
+PASSED!
+
+!testRun: #ReportTest #test05 stamp: 'NB 5/28/2023 16:03:13'!
+PASSED!
+
+----SNAPSHOT----(28 May 2023 16:03:20) CuisUniversity-5819.image priorSource: 9397799!
+
+!classDefinition: #TransferNetReport category: 'Portfolio-Solucion' stamp: 'NB 5/28/2023 16:04:47'!
+Object subclass: #TransferNetReport
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!ReportTest methodsFor: 'tests' stamp: 'NB 5/28/2023 16:04:41'!
+test06
+	
+	self assert: 0 equals: (TransferNetReport for: ReceptiveAccount new) generate.! !
+
+!testRun: #ReportTest #test06 stamp: 'NB 5/28/2023 16:04:50'!
+ERROR!
+!TransferNetReport class methodsFor: 'instance creation' stamp: 'NB 5/28/2023 16:04:58'!
+for: aReceptiveAccount 
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+	self shouldBeImplemented.
+	^self new initializeFor: aReceptiveAccount ! !
+!TransferNetReport class methodsFor: 'instance creation' stamp: 'NB 5/28/2023 16:05:06' prior: 50625495!
+for: aReceptiveAccount 
+	
+	^self new initializeFor: aReceptiveAccount ! !
+
+!testRun: #ReportTest #test06 stamp: 'NB 5/28/2023 16:05:06'!
+ERROR!
+
+!classDefinition: #TransferNetReport category: 'Portfolio-Solucion' stamp: 'NB 5/28/2023 16:05:18'!
+Object subclass: #TransferNetReport
+	instanceVariableNames: 'receptiveAccount'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!TransferNetReport methodsFor: 'initialization' stamp: 'NB 5/28/2023 16:05:18'!
+initializeFor: aReceptiveAccount 
+	self shouldBeImplemented.
+	receptiveAccount := aReceptiveAccount.! !
+!TransferNetReport methodsFor: 'initialization' stamp: 'NB 5/28/2023 16:05:23' prior: 50625520!
+initializeFor: aReceptiveAccount 
+	
+	receptiveAccount := aReceptiveAccount.! !
+
+!testRun: #ReportTest #test06 stamp: 'NB 5/28/2023 16:05:26'!
+ERROR!
+!TransferNetReport methodsFor: 'reports' stamp: 'NB 5/28/2023 16:05:34'!
+generate
+	self shouldBeImplemented.! !
+!TransferNetReport methodsFor: 'reports' stamp: 'NB 5/28/2023 16:05:39' prior: 50625534!
+generate
+	^0.! !
+
+!testRun: #ReportTest #test06 stamp: 'NB 5/28/2023 16:05:40'!
+PASSED!
+
+!testRun: #ReportTest #test01 stamp: 'NB 5/28/2023 16:05:40'!
+PASSED!
+
+!testRun: #ReportTest #test02 stamp: 'NB 5/28/2023 16:05:40'!
+PASSED!
+
+!testRun: #ReportTest #test03 stamp: 'NB 5/28/2023 16:05:40'!
+PASSED!
+
+!testRun: #ReportTest #test04 stamp: 'NB 5/28/2023 16:05:40'!
+PASSED!
+
+!testRun: #ReportTest #test05 stamp: 'NB 5/28/2023 16:05:40'!
+PASSED!
+
+!testRun: #ReportTest #test06 stamp: 'NB 5/28/2023 16:05:40'!
+PASSED!
+!ReportTest methodsFor: 'tests' stamp: 'NB 5/28/2023 16:06:33'!
+test07
+
+	| account1 account2|
+	
+	account1:= ReceptiveAccount new.
+	account2:= ReceptiveAccount new.
+	Deposit register: 100 on: account1.
+	Withdraw register: 50 on: account1.
+	Transfer registrer: 20 from: account1 to: account2.
+	Transfer registrer: 30 from: account2 to: account1.
+	
+	self assert: 10 equals: (AccountSummaryReport for: account1) generate.! !
+
+!testRun: #ReportTest #test07 stamp: 'NB 5/28/2023 16:06:35'!
+FAILURE!
+!ReportTest methodsFor: 'tests' stamp: 'NB 5/28/2023 16:07:01' prior: 50625557!
+test07
+
+	| account1 account2|
+	
+	account1:= ReceptiveAccount new.
+	account2:= ReceptiveAccount new.
+	Deposit register: 100 on: account1.
+	Withdraw register: 50 on: account1.
+	Transfer registrer: 20 from: account1 to: account2.
+	Transfer registrer: 30 from: account2 to: account1.
+	
+	self assert: 10 equals: (TransferNetReport for: account1) generate.! !
+
+!testRun: #ReportTest #test07 stamp: 'NB 5/28/2023 16:07:02'!
+FAILURE!
+!TransferNetReport methodsFor: 'reports' stamp: 'NB 5/28/2023 16:08:07' prior: 50625538!
+generate
+	
+	^receptiveAccount transferNetReport.! !
+!ReceptiveAccount methodsFor: 'reports' stamp: 'NB 5/28/2023 16:09:05'!
+transferNetReport
+
+	|reportLines|
+	reportLines := OrderedCollection new.
+	transactions do: [:aTransaction | aTransaction addReportLineTo: reportLines].
+	reportLines add: 'Balance = ',self balance asString.
+	^reportLines.! !
+!ReceptiveAccount methodsFor: 'reports' stamp: 'NB 5/28/2023 16:11:07' prior: 50625594!
+transferNetReport
+
+	
+	^transactions inject: 0 into: [:aTransferNet :aTransaction |       ].
+	! !
+!ReceptiveAccount methodsFor: 'reports' stamp: 'NB 5/28/2023 16:13:18' prior: 50625604!
+transferNetReport
+
+	
+	^transactions inject: 0 into: [:aTransferNet :aTransaction | 
+		(aTransaction isKindOf: TransferReception ) ifTrue: [aTransferNet + aTransaction value].
+		(aTransaction isKindOf: TransferSending ) ifTrue: [aTransferNet - aTransaction value].    
+		aTransferNet.
+		 ].
+	! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'NB 5/28/2023 16:13:22'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'NB 5/28/2023 16:13:22'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'NB 5/28/2023 16:13:22'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'NB 5/28/2023 16:13:22'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'NB 5/28/2023 16:13:22'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'NB 5/28/2023 16:13:22'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'NB 5/28/2023 16:13:22'!
+PASSED!
+
+!testRun: #ReportTest #test01 stamp: 'NB 5/28/2023 16:13:26'!
+PASSED!
+
+!testRun: #ReportTest #test02 stamp: 'NB 5/28/2023 16:13:26'!
+PASSED!
+
+!testRun: #ReportTest #test03 stamp: 'NB 5/28/2023 16:13:26'!
+PASSED!
+
+!testRun: #ReportTest #test04 stamp: 'NB 5/28/2023 16:13:26'!
+PASSED!
+
+!testRun: #ReportTest #test05 stamp: 'NB 5/28/2023 16:13:26'!
+PASSED!
+
+!testRun: #ReportTest #test06 stamp: 'NB 5/28/2023 16:13:26'!
+PASSED!
+
+!testRun: #ReportTest #test07 stamp: 'NB 5/28/2023 16:13:26'!
+FAILURE!
+
+!testRun: #ReportTest #test07 stamp: 'NB 5/28/2023 16:13:26'!
+FAILURE!
+!ReceptiveAccount methodsFor: 'reports' stamp: 'NB 5/28/2023 16:14:36' prior: 50625610!
+transferNetReport
+
+	
+	^transactions inject: 0 into: [:aTransferNet :aTransaction | 
+		(aTransaction isKindOf: TransferReception ) ifTrue: [aTransferNet + aTransaction value].
+		(aTransaction isKindOf: TransferSending ) ifTrue: [aTransferNet - aTransaction value].    
+		aTransferNet.
+		 ].
+	! !
+!ReceptiveAccount methodsFor: 'reports' stamp: 'NB 5/28/2023 16:15:27' prior: 50625667!
+transferNetReport
+
+	
+	^transactions inject: 0 into: [:aTransferNet :aTransaction | 
+		(aTransaction isKindOf: TransferReception ) ifTrue: [aTransferNet + aTransaction value] ifFalse:[
+		(aTransaction isKindOf: TransferSending ) ifTrue: [aTransferNet - aTransaction value] ifFalse: [  
+		aTransferNet.
+		]
+		]
+		 ].
+	! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'NB 5/28/2023 16:15:28'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'NB 5/28/2023 16:15:28'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'NB 5/28/2023 16:15:28'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'NB 5/28/2023 16:15:28'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'NB 5/28/2023 16:15:28'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'NB 5/28/2023 16:15:28'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'NB 5/28/2023 16:15:28'!
+PASSED!
+
+!testRun: #ReportTest #test01 stamp: 'NB 5/28/2023 16:15:33'!
+PASSED!
+
+!testRun: #ReportTest #test02 stamp: 'NB 5/28/2023 16:15:33'!
+PASSED!
+
+!testRun: #ReportTest #test03 stamp: 'NB 5/28/2023 16:15:33'!
+PASSED!
+
+!testRun: #ReportTest #test04 stamp: 'NB 5/28/2023 16:15:33'!
+PASSED!
+
+!testRun: #ReportTest #test05 stamp: 'NB 5/28/2023 16:15:33'!
+PASSED!
+
+!testRun: #ReportTest #test06 stamp: 'NB 5/28/2023 16:15:33'!
+PASSED!
+
+!testRun: #ReportTest #test07 stamp: 'NB 5/28/2023 16:15:33'!
+PASSED!
+
+----SNAPSHOT----(28 May 2023 16:15:38) CuisUniversity-5819.image priorSource: 9402430!
+
+!testRun: #ReportTest #test07 stamp: 'NB 5/28/2023 16:15:46'!
+PASSED!
+!ReportTest methodsFor: 'tests' stamp: 'NB 5/28/2023 16:16:53'!
+test08
+
+	self assert: 0 equals: (TransferNetReport for: Portfolio new) generate.! !
+
+!testRun: #ReportTest #test08 stamp: 'NB 5/28/2023 16:16:53'!
+ERROR!
+!Portfolio methodsFor: 'reports' stamp: 'NB 5/28/2023 16:17:00'!
+transferNetReport
+	self shouldBeImplemented.! !
+!Portfolio methodsFor: 'reports' stamp: 'NB 5/28/2023 16:17:04' prior: 50625745!
+transferNetReport
+	^0.! !
+
+!testRun: #ReportTest #test08 stamp: 'NB 5/28/2023 16:17:06'!
+PASSED!
+
+!testRun: #ReportTest #test01 stamp: 'NB 5/28/2023 16:17:06'!
+PASSED!
+
+!testRun: #ReportTest #test02 stamp: 'NB 5/28/2023 16:17:06'!
+PASSED!
+
+!testRun: #ReportTest #test03 stamp: 'NB 5/28/2023 16:17:06'!
+PASSED!
+
+!testRun: #ReportTest #test04 stamp: 'NB 5/28/2023 16:17:06'!
+PASSED!
+
+!testRun: #ReportTest #test05 stamp: 'NB 5/28/2023 16:17:06'!
+PASSED!
+
+!testRun: #ReportTest #test06 stamp: 'NB 5/28/2023 16:17:06'!
+PASSED!
+
+!testRun: #ReportTest #test07 stamp: 'NB 5/28/2023 16:17:06'!
+PASSED!
+
+!testRun: #ReportTest #test08 stamp: 'NB 5/28/2023 16:17:06'!
+PASSED!
+!ReportTest methodsFor: 'tests' stamp: 'NB 5/28/2023 16:17:42'!
+test09
+
+	| portfolio account1 account2|
+	
+	
+	account1:= ReceptiveAccount new.
+	account2:= ReceptiveAccount new.
+	Deposit register: 100 on: account1.
+	Withdraw register: 50 on: account1.
+	Transfer registrer: 20 from: account1 to: account2.
+	Transfer registrer: 30 from: account2 to: account1.
+	
+	portfolio:= Portfolio with: account1.
+	
+	self assert: 10 equals: (AccountSummaryReport for: portfolio) generate.! !
+
+!testRun: #ReportTest #test09 stamp: 'NB 5/28/2023 16:17:44'!
+FAILURE!
+!ReportTest methodsFor: 'tests' stamp: 'NB 5/28/2023 16:17:55' prior: 50625773!
+test09
+
+	| portfolio account1 account2|
+	
+	
+	account1:= ReceptiveAccount new.
+	account2:= ReceptiveAccount new.
+	Deposit register: 100 on: account1.
+	Withdraw register: 50 on: account1.
+	Transfer registrer: 20 from: account1 to: account2.
+	Transfer registrer: 30 from: account2 to: account1.
+	
+	portfolio:= Portfolio with: account1.
+	
+	self assert: 10 equals: (TransferNetReport for: portfolio) generate.! !
+
+!testRun: #ReportTest #test09 stamp: 'NB 5/28/2023 16:17:56'!
+FAILURE!
+!Portfolio methodsFor: 'reports' stamp: 'NB 5/28/2023 16:20:11' prior: 50625750!
+transferNetReport
+	
+	^ accounts sum: [:anAccount | anAccount transferNetReportToFathersReport]! !
+!ReceptiveAccount methodsFor: 'reports' stamp: 'NB 5/28/2023 16:20:21'!
+transferNetReportToFathersReport
+
+	
+	^transactions inject: 0 into: [:aTransferNet :aTransaction | 
+		(aTransaction isKindOf: TransferReception ) ifTrue: [aTransferNet + aTransaction value] ifFalse:[
+		(aTransaction isKindOf: TransferSending ) ifTrue: [aTransferNet - aTransaction value] ifFalse: [  
+		aTransferNet.
+		]
+		]
+		 ].
+	! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'NB 5/28/2023 16:20:23'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'NB 5/28/2023 16:20:23'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'NB 5/28/2023 16:20:23'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'NB 5/28/2023 16:20:23'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'NB 5/28/2023 16:20:23'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'NB 5/28/2023 16:20:23'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'NB 5/28/2023 16:20:23'!
+PASSED!
+
+!testRun: #ReportTest #test01 stamp: 'NB 5/28/2023 16:20:26'!
+PASSED!
+
+!testRun: #ReportTest #test02 stamp: 'NB 5/28/2023 16:20:26'!
+PASSED!
+
+!testRun: #ReportTest #test03 stamp: 'NB 5/28/2023 16:20:26'!
+PASSED!
+
+!testRun: #ReportTest #test04 stamp: 'NB 5/28/2023 16:20:26'!
+PASSED!
+
+!testRun: #ReportTest #test05 stamp: 'NB 5/28/2023 16:20:26'!
+PASSED!
+
+!testRun: #ReportTest #test06 stamp: 'NB 5/28/2023 16:20:26'!
+PASSED!
+
+!testRun: #ReportTest #test07 stamp: 'NB 5/28/2023 16:20:26'!
+PASSED!
+
+!testRun: #ReportTest #test08 stamp: 'NB 5/28/2023 16:20:26'!
+ERROR!
+
+!testRun: #ReportTest #test09 stamp: 'NB 5/28/2023 16:20:26'!
+PASSED!
+
+!testRun: #ReportTest #test08 stamp: 'NB 5/28/2023 16:20:26'!
+ERROR!
+!Portfolio methodsFor: 'reports' stamp: 'NB 5/28/2023 16:20:47' prior: 50625809!
+transferNetReport
+	
+	^ accounts sum: [:anAccount | anAccount transferNetReportToFathersReport] ifEmpty: 0.! !
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'NB 5/28/2023 16:20:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithAccountsIsSumOfAccountsBalance stamp: 'NB 5/28/2023 16:20:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'NB 5/28/2023 16:20:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'NB 5/28/2023 16:20:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'NB 5/28/2023 16:20:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'NB 5/28/2023 16:20:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'NB 5/28/2023 16:20:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'NB 5/28/2023 16:20:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'NB 5/28/2023 16:20:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'NB 5/28/2023 16:20:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'NB 5/28/2023 16:20:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'NB 5/28/2023 16:20:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'NB 5/28/2023 16:20:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'NB 5/28/2023 16:20:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'NB 5/28/2023 16:20:48'!
+PASSED!
+
+!testRun: #ReportTest #test01 stamp: 'NB 5/28/2023 16:20:50'!
+PASSED!
+
+!testRun: #ReportTest #test02 stamp: 'NB 5/28/2023 16:20:50'!
+PASSED!
+
+!testRun: #ReportTest #test03 stamp: 'NB 5/28/2023 16:20:51'!
+PASSED!
+
+!testRun: #ReportTest #test04 stamp: 'NB 5/28/2023 16:20:51'!
+PASSED!
+
+!testRun: #ReportTest #test05 stamp: 'NB 5/28/2023 16:20:51'!
+PASSED!
+
+!testRun: #ReportTest #test06 stamp: 'NB 5/28/2023 16:20:51'!
+PASSED!
+
+!testRun: #ReportTest #test07 stamp: 'NB 5/28/2023 16:20:51'!
+PASSED!
+
+!testRun: #ReportTest #test08 stamp: 'NB 5/28/2023 16:20:51'!
+PASSED!
+
+!testRun: #ReportTest #test09 stamp: 'NB 5/28/2023 16:20:51'!
+PASSED!
+!ReportTest methodsFor: 'tests' stamp: 'NB 5/28/2023 16:23:23'!
+test10
+
+	| portfolio account1 account2 portfolio2 |
+	
+	
+	account1:= ReceptiveAccount new.
+	account2:= ReceptiveAccount new.
+	Deposit register: 100 on: account1.
+	Withdraw register: 50 on: account1.
+	Transfer registrer: 20 from: account1 to: account2.
+	Transfer registrer: 30 from: account2 to: account1.
+	
+	portfolio2 := Portfolio with: account1.
+	portfolio:= Portfolio with: portfolio2.
+	
+	self assert: 10 equals: (TransferNetReport for: portfolio) generate.! !
+
+!testRun: #ReportTest #test10 stamp: 'NB 5/28/2023 16:23:29'!
+ERROR!
+
+!methodRemoval: ReceptiveAccount #transferNetReportToFathersReport stamp: 'NB 5/28/2023 16:23:41'!
+transferNetReportToFathersReport
+
+	
+	^transactions inject: 0 into: [:aTransferNet :aTransaction | 
+		(aTransaction isKindOf: TransferReception ) ifTrue: [aTransferNet + aTransaction value] ifFalse:[
+		(aTransaction isKindOf: TransferSending ) ifTrue: [aTransferNet - aTransaction value] ifFalse: [  
+		aTransferNet.
+		]
+		]
+		 ].
+	!
+!Portfolio methodsFor: 'reports' stamp: 'NB 5/28/2023 16:23:48' prior: 50625877!
+transferNetReport
+	
+	^ accounts sum: [:anAccount | anAccount transferNetReport] ifEmpty: 0.! !
+
+!testRun: #ReportTest #test01 stamp: 'NB 5/28/2023 16:23:52'!
+PASSED!
+
+!testRun: #ReportTest #test02 stamp: 'NB 5/28/2023 16:23:52'!
+PASSED!
+
+!testRun: #ReportTest #test03 stamp: 'NB 5/28/2023 16:23:52'!
+PASSED!
+
+!testRun: #ReportTest #test04 stamp: 'NB 5/28/2023 16:23:52'!
+PASSED!
+
+!testRun: #ReportTest #test05 stamp: 'NB 5/28/2023 16:23:52'!
+PASSED!
+
+!testRun: #ReportTest #test06 stamp: 'NB 5/28/2023 16:23:52'!
+PASSED!
+
+!testRun: #ReportTest #test07 stamp: 'NB 5/28/2023 16:23:52'!
+PASSED!
+
+!testRun: #ReportTest #test08 stamp: 'NB 5/28/2023 16:23:52'!
+PASSED!
+
+!testRun: #ReportTest #test09 stamp: 'NB 5/28/2023 16:23:52'!
+PASSED!
+
+!testRun: #ReportTest #test10 stamp: 'NB 5/28/2023 16:23:52'!
+PASSED!
+
+----SNAPSHOT----(28 May 2023 16:23:55) CuisUniversity-5819.image priorSource: 9410649!
+!Transaction methodsFor: 'reports' stamp: 'NB 5/28/2023 16:31:16'!
+addToTransferNet: aNetAmount
+
+	self subclassResponsibility .! !
+!AccountTransaction methodsFor: 'reports' stamp: 'NB 5/28/2023 16:31:42' overrides: 50626023!
+addToTransferNet: aNetAmount! !
+!TransferReception methodsFor: 'reports' stamp: 'NB 5/28/2023 16:32:00' overrides: 50626023!
+addToTransferNet: aNetAmount
+
+	aNetAmount + self value.! !
+!TransferSending methodsFor: 'reports' stamp: 'NB 5/28/2023 16:32:08' overrides: 50626023!
+addToTransferNet: aNetAmount
+
+	aNetAmount - self value.! !
+!AccountTransaction methodsFor: 'reports' stamp: 'NB 5/28/2023 16:32:38' prior: 50626028 overrides: 50626023!
+addToTransferNet: aNetAmount
+
+	^aNetAmount .! !
+!ReceptiveAccount methodsFor: 'reports' stamp: 'NB 5/28/2023 16:33:10' prior: 50625679!
+transferNetReport
+
+	
+	^transactions inject: 0 into: [:aTransferNet :aTransaction | aTransaction addToTransferNet: aTransferNet		 ].
+	! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'NB 5/28/2023 16:33:11'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'NB 5/28/2023 16:33:11'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'NB 5/28/2023 16:33:11'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'NB 5/28/2023 16:33:11'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'NB 5/28/2023 16:33:11'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'NB 5/28/2023 16:33:12'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'NB 5/28/2023 16:33:12'!
+PASSED!
+
+!testRun: #ReportTest #test01 stamp: 'NB 5/28/2023 16:33:14'!
+PASSED!
+
+!testRun: #ReportTest #test02 stamp: 'NB 5/28/2023 16:33:14'!
+PASSED!
+
+!testRun: #ReportTest #test03 stamp: 'NB 5/28/2023 16:33:14'!
+PASSED!
+
+!testRun: #ReportTest #test04 stamp: 'NB 5/28/2023 16:33:14'!
+PASSED!
+
+!testRun: #ReportTest #test05 stamp: 'NB 5/28/2023 16:33:15'!
+PASSED!
+
+!testRun: #ReportTest #test06 stamp: 'NB 5/28/2023 16:33:15'!
+PASSED!
+
+!testRun: #ReportTest #test07 stamp: 'NB 5/28/2023 16:33:15'!
+ERROR!
+
+!testRun: #ReportTest #test08 stamp: 'NB 5/28/2023 16:33:15'!
+PASSED!
+
+!testRun: #ReportTest #test09 stamp: 'NB 5/28/2023 16:33:15'!
+ERROR!
+
+!testRun: #ReportTest #test10 stamp: 'NB 5/28/2023 16:33:15'!
+ERROR!
+
+!testRun: #ReportTest #test07 stamp: 'NB 5/28/2023 16:33:17'!
+ERROR!
+!TransferReception methodsFor: 'reports' stamp: 'NB 5/28/2023 16:33:30' prior: 50626032 overrides: 50626023!
+addToTransferNet: aNetAmount
+
+	^aNetAmount + self value.! !
+!TransferSending methodsFor: 'reports' stamp: 'NB 5/28/2023 16:33:35' prior: 50626037 overrides: 50626023!
+addToTransferNet: aNetAmount
+
+	^aNetAmount - self value.! !
+
+!testRun: #ReportTest #test01 stamp: 'NB 5/28/2023 16:33:38'!
+PASSED!
+
+!testRun: #ReportTest #test02 stamp: 'NB 5/28/2023 16:33:38'!
+PASSED!
+
+!testRun: #ReportTest #test03 stamp: 'NB 5/28/2023 16:33:38'!
+PASSED!
+
+!testRun: #ReportTest #test04 stamp: 'NB 5/28/2023 16:33:38'!
+PASSED!
+
+!testRun: #ReportTest #test05 stamp: 'NB 5/28/2023 16:33:38'!
+PASSED!
+
+!testRun: #ReportTest #test06 stamp: 'NB 5/28/2023 16:33:38'!
+PASSED!
+
+!testRun: #ReportTest #test07 stamp: 'NB 5/28/2023 16:33:38'!
+PASSED!
+
+!testRun: #ReportTest #test08 stamp: 'NB 5/28/2023 16:33:38'!
+PASSED!
+
+!testRun: #ReportTest #test09 stamp: 'NB 5/28/2023 16:33:38'!
+PASSED!
+
+!testRun: #ReportTest #test10 stamp: 'NB 5/28/2023 16:33:38'!
+PASSED!
+
+----SNAPSHOT----(28 May 2023 16:33:42) CuisUniversity-5819.image priorSource: 9419844!
+!AccountSummaryReport methodsFor: 'reports' stamp: 'NB 5/28/2023 16:40:44' prior: 50624729!
+generate
+	
+	^receptiveAccount summaryReport: self.! !
+!ReceptiveAccount methodsFor: 'reports' stamp: 'NB 5/28/2023 16:41:11'!
+summaryReport: aReport
+
+	|reportLines|
+	reportLines := OrderedCollection new.
+	transactions do: [:aTransaction | aTransaction addReportLineTo: aReport].
+	reportLines add: 'Balance = ',self balance asString.
+	^reportLines.! !
+
+!methodRemoval: ReceptiveAccount #summaryReport stamp: 'NB 5/28/2023 16:41:15'!
+summaryReport
+
+	|reportLines|
+	reportLines := OrderedCollection new.
+	transactions do: [:aTransaction | aTransaction addReportLineTo: reportLines].
+	reportLines add: 'Balance = ',self balance asString.
+	^reportLines.!
+
+!classDefinition: #AccountSummaryReport category: 'Portfolio-Solucion' stamp: 'NB 5/28/2023 16:42:17'!
+Object subclass: #AccountSummaryReport
+	instanceVariableNames: 'receptiveAccount reportLines'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!AccountSummaryReport methodsFor: 'reports' stamp: 'NB 5/28/2023 16:42:16' prior: 50626143!
+generate
+
+	reportLines:= OrderedCollection new.
+	receptiveAccount summaryReport: self.
+	reportLines add: 'Balance = ',self balance asString.
+	^reportLines.
+	
+	! !
+!AccountSummaryReport methodsFor: 'reports' stamp: 'NB 5/28/2023 16:43:40' prior: 50626175!
+generate
+
+	reportLines:= OrderedCollection new.
+	receptiveAccount summaryReport: self.
+	reportLines add: 'Balance = ',receptiveAccount balance asString.
+	^reportLines.
+	
+	! !
+!ReceptiveAccount methodsFor: 'reports' stamp: 'NB 5/28/2023 16:44:10' prior: 50626147!
+summaryReport: aReport
+	
+	transactions do: [:aTransaction | aTransaction addReportLineTo: aReport].! !
+!Transaction methodsFor: 'reports' stamp: 'NB 5/28/2023 16:44:26' prior: 50624741!
+addReportLineTo: aReport
+
+	self subclassResponsibility .! !
+!Deposit methodsFor: 'balance' stamp: 'NB 5/28/2023 16:44:53' prior: 50624923 overrides: 50626198!
+addReportLineTo: aReport
+
+	aReport add: 'Depósito por ', self value asString ,'.'.! !
+!Deposit methodsFor: 'balance' stamp: 'NB 5/28/2023 16:45:41' prior: 50626203 overrides: 50626198!
+addReportLineTo: aReport
+
+	aReport addDeposit: self.
+	! !
+!AccountSummaryReport methodsFor: 'reports' stamp: 'NB 5/28/2023 16:46:13'!
+addDeposit: aDeposit
+
+	reportLines add: 'Depósito por ', aDeposit value asString ,'.'.
+	
+	! !
+!Withdraw methodsFor: 'reports' stamp: 'NB 5/28/2023 16:46:40' prior: 50624930 overrides: 50626198!
+addReportLineTo: aReport
+
+	aReport addWithdraw: self.
+	
+
+	! !
+!AccountSummaryReport methodsFor: 'reports' stamp: 'NB 5/28/2023 16:47:08'!
+addWithdraw: aWithdraw
+
+	reportLines add: 'Extracción por ', aWithdraw value asString,'.'.
+	
+	! !
+!TransferReception methodsFor: 'reports' stamp: 'NB 5/28/2023 16:47:37' prior: 50624938 overrides: 50626198!
+addReportLineTo: aReport
+
+	aReport addTransferReception: self.
+	
+! !
+!AccountSummaryReport methodsFor: 'reports' stamp: 'NB 5/28/2023 16:48:11'!
+addTransferReception: aTransferReception
+
+	reportLines add: 'Entrada por transferencia de ', aTransferReception value asString,'.'.
+	
+	! !
+!TransferSending methodsFor: 'reports' stamp: 'NB 5/28/2023 16:48:58' prior: 50624946 overrides: 50626198!
+addReportLineTo: aReport
+
+	aReport addTransferSending: self.
+	! !
+!AccountSummaryReport methodsFor: 'reports' stamp: 'NB 5/28/2023 16:49:26'!
+addTransferSending: aTransferSending
+
+	reportLines add: 'Salida por transferencia de ', aTransferSending value asString,'.'.
+	
+	! !
+!Portfolio methodsFor: 'reports' stamp: 'NB 5/28/2023 16:56:03'!
+summaryReport: aReport
+	
+	accounts do: [:anAccount | anAccount summaryReport: aReport].
+	! !
+
+!methodRemoval: Portfolio #summaryReport stamp: 'NB 5/28/2023 16:56:06'!
+summaryReport
+	
+	|reportLines|
+	reportLines := OrderedCollection new.
+	accounts do: [:anAccount | anAccount addReportTo: reportLines].
+	reportLines add: 'Balance = ',self balance asString.
+	^reportLines.!
+!AccountSummaryReport methodsFor: 'reports' stamp: 'NB 5/28/2023 16:57:32'!
+addBalanceLine
+
+	^ reportLines add: 'Balance = ',receptiveAccount balance asString! !
+!AccountSummaryReport methodsFor: 'reports' stamp: 'NB 5/28/2023 16:57:32' prior: 50626183!
+generate
+
+	reportLines:= OrderedCollection new.
+	receptiveAccount summaryReport: self.
+	self addBalanceLine.
+	^reportLines.
+	
+	! !
+
+!testRun: #ReportTest #test01 stamp: 'NB 5/28/2023 16:57:38'!
+PASSED!
+
+!testRun: #ReportTest #test02 stamp: 'NB 5/28/2023 16:57:38'!
+PASSED!
+
+!testRun: #ReportTest #test03 stamp: 'NB 5/28/2023 16:57:38'!
+PASSED!
+
+!testRun: #ReportTest #test04 stamp: 'NB 5/28/2023 16:57:38'!
+PASSED!
+
+!testRun: #ReportTest #test05 stamp: 'NB 5/28/2023 16:57:38'!
+PASSED!
+
+!testRun: #ReportTest #test06 stamp: 'NB 5/28/2023 16:57:38'!
+PASSED!
+
+!testRun: #ReportTest #test07 stamp: 'NB 5/28/2023 16:57:38'!
+PASSED!
+
+!testRun: #ReportTest #test08 stamp: 'NB 5/28/2023 16:57:38'!
+PASSED!
+
+!testRun: #ReportTest #test09 stamp: 'NB 5/28/2023 16:57:38'!
+PASSED!
+
+!testRun: #ReportTest #test10 stamp: 'NB 5/28/2023 16:57:38'!
+PASSED!
+
+----SNAPSHOT----(28 May 2023 16:57:42) CuisUniversity-5819.image priorSource: 9423649!
+
+!testRun: #ReportTest #test01 stamp: 'NB 5/28/2023 16:57:57'!
+PASSED!
+
+!testRun: #ReportTest #test02 stamp: 'NB 5/28/2023 16:57:57'!
+PASSED!
+
+!testRun: #ReportTest #test03 stamp: 'NB 5/28/2023 16:57:57'!
+PASSED!
+
+!testRun: #ReportTest #test04 stamp: 'NB 5/28/2023 16:57:57'!
+PASSED!
+
+!testRun: #ReportTest #test05 stamp: 'NB 5/28/2023 16:57:57'!
+PASSED!
+
+!testRun: #ReportTest #test06 stamp: 'NB 5/28/2023 16:57:57'!
+PASSED!
+
+!testRun: #ReportTest #test07 stamp: 'NB 5/28/2023 16:57:57'!
+PASSED!
+
+!testRun: #ReportTest #test08 stamp: 'NB 5/28/2023 16:57:57'!
+PASSED!
+
+!testRun: #ReportTest #test09 stamp: 'NB 5/28/2023 16:57:57'!
+PASSED!
+
+!testRun: #ReportTest #test10 stamp: 'NB 5/28/2023 16:57:57'!
+PASSED!
+!TransferNetReport methodsFor: 'reports' stamp: 'NB 5/28/2023 16:59:14' prior: 50625590!
+generate
+	
+	^receptiveAccount summaryReport: self.! !
+
+Object subclass: #Report
+	instanceVariableNames: 'receptiveAccount reportLines'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #Report category: 'Portfolio-Solucion' stamp: 'NB 5/28/2023 17:00:32'!
+Object subclass: #Report
+	instanceVariableNames: 'receptiveAccount reportLines'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+Object subclass: #Report
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #Report category: 'Portfolio-Solucion' stamp: 'NB 5/28/2023 17:00:48'!
+Object subclass: #Report
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+Report subclass: #AccountSummaryReport
+	instanceVariableNames: 'receptiveAccount reportLines'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #AccountSummaryReport category: 'Portfolio-Solucion' stamp: 'NB 5/28/2023 17:00:58'!
+Report subclass: #AccountSummaryReport
+	instanceVariableNames: 'receptiveAccount reportLines'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+Report subclass: #TransferNetReport
+	instanceVariableNames: 'receptiveAccount'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #TransferNetReport category: 'Portfolio-Solucion' stamp: 'NB 5/28/2023 17:01:05'!
+Report subclass: #TransferNetReport
+	instanceVariableNames: 'receptiveAccount'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!TransferNetReport methodsFor: 'reports' stamp: 'NB 5/28/2023 17:01:43'!
+addDeposit: aDeposit
+
+	! !
+!TransferNetReport methodsFor: 'reports' stamp: 'NB 5/28/2023 17:02:01'!
+addWithdraw: aWithdraw
+
+	
+	! !
+
+Report subclass: #TransferNetReport
+	instanceVariableNames: 'receptiveAccount transferNetAmount'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #TransferNetReport category: 'Portfolio-Solucion' stamp: 'NB 5/28/2023 17:02:14'!
+Report subclass: #TransferNetReport
+	instanceVariableNames: 'receptiveAccount transferNetAmount'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!TransferNetReport methodsFor: 'initialization' stamp: 'NB 5/28/2023 17:02:26' prior: 50625527!
+initializeFor: aReceptiveAccount 
+	
+	transferNetAmount := 0.
+	receptiveAccount := aReceptiveAccount.! !
+!TransferNetReport methodsFor: 'initialization' stamp: 'NB 5/28/2023 17:02:42' prior: 50626410!
+initializeFor: aReceptiveAccount 
+	
+	receptiveAccount := aReceptiveAccount.! !
+!TransferNetReport methodsFor: 'reports' stamp: 'NB 5/28/2023 17:02:59' prior: 50626332!
+generate
+	
+	transferNetAmount := 0.
+	receptiveAccount summaryReport: self.
+	^transferNetAmount.! !
+!TransferNetReport methodsFor: 'reports' stamp: 'NB 5/28/2023 17:03:28'!
+addTransferReception: aTransferReception
+
+	transferNetAmount + aTransferReception value.
+	
+	! !
+!TransferNetReport methodsFor: 'reports' stamp: 'NB 5/28/2023 17:03:50'!
+addTransferSending: aTransferSending
+
+	transferNetAmount - aTransferSending value.
+	
+	! !
+
+----SNAPSHOT----(28 May 2023 17:04:14) CuisUniversity-5819.image priorSource: 9429000!
+
+!testRun: #ReportTest #test01 stamp: 'NB 5/28/2023 17:04:35'!
+PASSED!
+
+!testRun: #ReportTest #test02 stamp: 'NB 5/28/2023 17:04:35'!
+PASSED!
+
+!testRun: #ReportTest #test03 stamp: 'NB 5/28/2023 17:04:35'!
+PASSED!
+
+!testRun: #ReportTest #test04 stamp: 'NB 5/28/2023 17:04:35'!
+PASSED!
+
+!testRun: #ReportTest #test05 stamp: 'NB 5/28/2023 17:04:35'!
+PASSED!
+
+!testRun: #ReportTest #test06 stamp: 'NB 5/28/2023 17:04:35'!
+PASSED!
+
+!testRun: #ReportTest #test07 stamp: 'NB 5/28/2023 17:04:35'!
+FAILURE!
+
+!testRun: #ReportTest #test08 stamp: 'NB 5/28/2023 17:04:35'!
+PASSED!
+
+!testRun: #ReportTest #test09 stamp: 'NB 5/28/2023 17:04:35'!
+FAILURE!
+
+!testRun: #ReportTest #test10 stamp: 'NB 5/28/2023 17:04:35'!
+FAILURE!
+
+!testRun: #ReportTest #test07 stamp: 'NB 5/28/2023 17:04:40'!
+FAILURE!
+
+!testRun: #ReportTest #test09 stamp: 'NB 5/28/2023 17:04:49'!
+FAILURE!
+
+!testRun: #ReportTest #test10 stamp: 'NB 5/28/2023 17:04:53'!
+FAILURE!
+!TransferNetReport methodsFor: 'reports' stamp: 'NB 5/28/2023 17:05:12' prior: 50626435!
+addTransferSending: aTransferSending
+
+	transferNetAmount:= transferNetAmount - aTransferSending value.
+	
+	! !
+!TransferNetReport methodsFor: 'reports' stamp: 'NB 5/28/2023 17:05:20' prior: 50626429!
+addTransferReception: aTransferReception
+
+	transferNetAmount:= transferNetAmount + aTransferReception value.
+	
+	! !
+
+!testRun: #ReportTest #test01 stamp: 'NB 5/28/2023 17:05:31'!
+PASSED!
+
+!testRun: #ReportTest #test02 stamp: 'NB 5/28/2023 17:05:31'!
+PASSED!
+
+!testRun: #ReportTest #test03 stamp: 'NB 5/28/2023 17:05:31'!
+PASSED!
+
+!testRun: #ReportTest #test04 stamp: 'NB 5/28/2023 17:05:31'!
+PASSED!
+
+!testRun: #ReportTest #test05 stamp: 'NB 5/28/2023 17:05:31'!
+PASSED!
+
+!testRun: #ReportTest #test06 stamp: 'NB 5/28/2023 17:05:31'!
+PASSED!
+
+!testRun: #ReportTest #test07 stamp: 'NB 5/28/2023 17:05:31'!
+PASSED!
+
+!testRun: #ReportTest #test08 stamp: 'NB 5/28/2023 17:05:31'!
+PASSED!
+
+!testRun: #ReportTest #test09 stamp: 'NB 5/28/2023 17:05:31'!
+PASSED!
+
+!testRun: #ReportTest #test10 stamp: 'NB 5/28/2023 17:05:31'!
+PASSED!
+
+----SNAPSHOT----(28 May 2023 17:05:39) CuisUniversity-5819.image priorSource: 9433273!
+
+----SNAPSHOT----(28 May 2023 17:06:10) CuisUniversity-5819.image priorSource: 9435449!
+
+!methodRemoval: Portfolio #transferNetReport stamp: 'NB 5/28/2023 17:08:01'!
+transferNetReport
+	
+	^ accounts sum: [:anAccount | anAccount transferNetReport] ifEmpty: 0.!
+
+!methodRemoval: ReceptiveAccount #transferNetReport stamp: 'NB 5/28/2023 17:08:08'!
+transferNetReport
+
+	
+	^transactions inject: 0 into: [:aTransferNet :aTransaction | aTransaction addToTransferNet: aTransferNet		 ].
+	!
+
+!methodRemoval: ReceptiveAccount #addReportTo: stamp: 'NB 5/28/2023 17:08:52'!
+addReportTo: reportLines
+
+	transactions do: [:aTransaction | aTransaction addReportLineTo: reportLines].!
+!Portfolio methodsFor: 'reports' stamp: 'NB 5/28/2023 17:09:25'!
+addToReport: aReport
+	
+	accounts do: [:anAccount | anAccount summaryReport: aReport].
+	! !
+!ReceptiveAccount methodsFor: 'reports' stamp: 'NB 5/28/2023 17:09:25'!
+addToReport: aReport
+	
+	transactions do: [:aTransaction | aTransaction addReportLineTo: aReport].! !
+!AccountSummaryReport methodsFor: 'as yet unclassified' stamp: 'NB 5/28/2023 17:09:25' prior: 50626278!
+generate
+
+	reportLines:= OrderedCollection new.
+	receptiveAccount addToReport: self.
+	self addBalanceLine.
+	^reportLines.
+	
+	! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'NB 5/28/2023 17:09:25' prior: 50626258!
+summaryReport: aReport
+	
+	accounts do: [:anAccount | anAccount addToReport: aReport].
+	! !
+!TransferNetReport methodsFor: 'as yet unclassified' stamp: 'NB 5/28/2023 17:09:25' prior: 50626423!
+generate
+	
+	transferNetAmount := 0.
+	receptiveAccount addToReport: self.
+	^transferNetAmount.! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'NB 5/28/2023 17:09:25' prior: 50626532!
+addToReport: aReport
+	
+	accounts do: [:anAccount | anAccount addToReport: aReport].
+	! !
+
+!methodRemoval: Portfolio #summaryReport: stamp: 'NB 5/28/2023 17:09:25'!
+summaryReport: aReport
+	
+	accounts do: [:anAccount | anAccount addToReport: aReport].
+	!
+
+!methodRemoval: ReceptiveAccount #summaryReport: stamp: 'NB 5/28/2023 17:09:25'!
+summaryReport: aReport
+	
+	transactions do: [:aTransaction | aTransaction addReportLineTo: aReport].!
+
+!methodRemoval: AccountTransaction #addToTransferNet: stamp: 'NB 5/28/2023 17:10:16'!
+addToTransferNet: aNetAmount
+
+	^aNetAmount .!
+
+!methodRemoval: Transaction #addToTransferNet: stamp: 'NB 5/28/2023 17:10:26'!
+addToTransferNet: aNetAmount
+
+	self subclassResponsibility .!
+
+!methodRemoval: TransferReception #addToTransferNet: stamp: 'NB 5/28/2023 17:10:43'!
+addToTransferNet: aNetAmount
+
+	^aNetAmount + self value.!
+
+!methodRemoval: TransferSending #addToTransferNet: stamp: 'NB 5/28/2023 17:10:50'!
+addToTransferNet: aNetAmount
+
+	^aNetAmount - self value.!
+
+!testRun: #ReportTest #test01 stamp: 'NB 5/28/2023 17:11:00'!
+PASSED!
+
+!testRun: #ReportTest #test02 stamp: 'NB 5/28/2023 17:11:00'!
+PASSED!
+
+!testRun: #ReportTest #test03 stamp: 'NB 5/28/2023 17:11:00'!
+PASSED!
+
+!testRun: #ReportTest #test04 stamp: 'NB 5/28/2023 17:11:00'!
+PASSED!
+
+!testRun: #ReportTest #test05 stamp: 'NB 5/28/2023 17:11:00'!
+PASSED!
+
+!testRun: #ReportTest #test06 stamp: 'NB 5/28/2023 17:11:00'!
+PASSED!
+
+!testRun: #ReportTest #test07 stamp: 'NB 5/28/2023 17:11:00'!
+PASSED!
+
+!testRun: #ReportTest #test08 stamp: 'NB 5/28/2023 17:11:00'!
+PASSED!
+
+!testRun: #ReportTest #test09 stamp: 'NB 5/28/2023 17:11:00'!
+PASSED!
+
+!testRun: #ReportTest #test10 stamp: 'NB 5/28/2023 17:11:00'!
+PASSED!
+
+----SNAPSHOT----(28 May 2023 17:11:04) CuisUniversity-5819.image priorSource: 9435537!
+
+----SNAPSHOT----(28 May 2023 17:11:35) CuisUniversity-5819.image priorSource: 9439018!
+
+TestCase subclass: #PortfolioReportTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #PortfolioReportTest category: 'Portfolio-Solucion' stamp: 'NB 5/28/2023 17:15:56'!
+TestCase subclass: #PortfolioReportTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+----SNAPSHOT----(28 May 2023 17:16:05) CuisUniversity-5819.image priorSource: 9439106!
+
+!classDefinition: #PortfolioReport category: 'Portfolio-Solucion' stamp: 'NB 5/28/2023 17:18:00'!
+Object subclass: #PortfolioReport
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!PortfolioReportTest methodsFor: 'tests' stamp: 'NB 5/28/2023 17:17:55'!
+test01
+
+	self assert: (OrderedCollection with:'Portfolio de la familia') equals: PortfolioReport generate.! !
+!PortfolioReportTest methodsFor: 'tests' stamp: 'NB 5/28/2023 17:19:07' prior: 50626648!
+test01
+
+	self assert: (OrderedCollection with:'Portfolio de la familia')
+		 equals: (PortfolioReport for: (Portfolio named: 'Portfolio de la familia') generate).! !
+
+!testRun: #PortfolioReportTest #test01 stamp: 'NB 5/28/2023 17:19:08'!
+ERROR!
+!Portfolio class methodsFor: 'instance creation' stamp: 'NB 5/28/2023 17:19:16'!
+named: aString 
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+	self shouldBeImplemented.
+	^self new initializeNamed: aString ! !
+!Portfolio class methodsFor: 'instance creation' stamp: 'NB 5/28/2023 17:19:26' prior: 50626666!
+named: aString 
+	
+	^self new initializeNamed: aString ! !
+!Portfolio class methodsFor: 'instance creation' stamp: 'NB 5/28/2023 17:19:38' prior: 50626674!
+named: aName 
+	
+	^self new initializeNamed: aName ! !
+
+!testRun: #PortfolioReportTest #test01 stamp: 'NB 5/28/2023 17:19:39'!
+ERROR!
+
+!classDefinition: #Portfolio category: 'Portfolio-Solucion' stamp: 'NB 5/28/2023 17:19:50'!
+Account subclass: #Portfolio
+	instanceVariableNames: 'accounts parents name'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!Portfolio methodsFor: 'initialization' stamp: 'NB 5/28/2023 17:19:50'!
+initializeNamed: aName 
+	self shouldBeImplemented.
+	name := aName.! !
+!Portfolio methodsFor: 'initialization' stamp: 'NB 5/28/2023 17:19:56' prior: 50626694!
+initializeNamed: aName 
+	
+	name := aName.! !
+
+!testRun: #PortfolioReportTest #test01 stamp: 'NB 5/28/2023 17:19:57'!
+ERROR!
+!PortfolioReportTest methodsFor: 'tests' stamp: 'NB 5/28/2023 17:20:16' prior: 50626655!
+test01
+
+	self assert: (OrderedCollection with:'Portfolio de la familia')
+		 equals: (PortfolioReport for: (Portfolio named: 'Portfolio de la familia')) generate.! !
+
+!testRun: #PortfolioReportTest #test01 stamp: 'NB 5/28/2023 17:20:20'!
+ERROR!
+!PortfolioReport class methodsFor: 'instance creation' stamp: 'NB 5/28/2023 17:20:28'!
+for: aPortfolio 
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+	self shouldBeImplemented.
+	^self new initializeFor: aPortfolio ! !
+!PortfolioReport class methodsFor: 'instance creation' stamp: 'NB 5/28/2023 17:20:35' prior: 50626717!
+for: aPortfolio 
+	
+	^self new initializeFor: aPortfolio ! !
+
+!testRun: #PortfolioReportTest #test01 stamp: 'NB 5/28/2023 17:20:36'!
+ERROR!
+
+!classDefinition: #PortfolioReport category: 'Portfolio-Solucion' stamp: 'NB 5/28/2023 17:20:47'!
+Object subclass: #PortfolioReport
+	instanceVariableNames: 'portfolio'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!PortfolioReport methodsFor: 'initialization' stamp: 'NB 5/28/2023 17:20:47'!
+initializeFor: aPortfolio 
+	self shouldBeImplemented.
+	portfolio := aPortfolio.! !
+!PortfolioReport methodsFor: 'initialization' stamp: 'NB 5/28/2023 17:20:52' prior: 50626741!
+initializeFor: aPortfolio 
+	
+	portfolio := aPortfolio.! !
+
+!testRun: #PortfolioReportTest #test01 stamp: 'NB 5/28/2023 17:20:53'!
+ERROR!
+!PortfolioReport methodsFor: 'reports' stamp: 'NB 5/28/2023 17:21:04'!
+generate
+	self shouldBeImplemented.! !
+!PortfolioReport methodsFor: 'reports' stamp: 'NB 5/28/2023 17:21:39' prior: 50626754!
+generate
+	^OrderedCollection with: portfolio name.! !
+
+!testRun: #PortfolioReportTest #test01 stamp: 'NB 5/28/2023 17:21:40'!
+FAILURE!
+!Portfolio methodsFor: 'initialization' stamp: 'NB 5/28/2023 17:22:19' prior: 50626699!
+initializeNamed: aName 
+	
+	self initialize .
+	name := aName.! !
+!Portfolio methodsFor: 'accessing' stamp: 'NB 5/28/2023 17:22:46' overrides: 16903442!
+name
+
+	^name! !
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'NB 5/28/2023 17:22:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithAccountsIsSumOfAccountsBalance stamp: 'NB 5/28/2023 17:22:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'NB 5/28/2023 17:22:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'NB 5/28/2023 17:22:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'NB 5/28/2023 17:22:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'NB 5/28/2023 17:22:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'NB 5/28/2023 17:22:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'NB 5/28/2023 17:22:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'NB 5/28/2023 17:22:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'NB 5/28/2023 17:22:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'NB 5/28/2023 17:22:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'NB 5/28/2023 17:22:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'NB 5/28/2023 17:22:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'NB 5/28/2023 17:22:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'NB 5/28/2023 17:22:47'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test01 stamp: 'NB 5/28/2023 17:22:52'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test01 stamp: 'NB 5/28/2023 17:22:55'!
+PASSED!
+!PortfolioReportTest methodsFor: 'tests' stamp: 'NB 5/28/2023 17:25:00'!
+test02
+
+
+	|myAccount familyPortfolio|
+	myAccount := ReceptiveAccount named: 'Cuenta mia'.
+	familyPortfolio := Portfolio named: 'Portfolio de la familia' with: myAccount.
+
+	self assert: (OrderedCollection with:'Portfolio de la familia' with: ' Cuenta mia')
+		 equals: (PortfolioReport for: (Portfolio named: 'Portfolio de la familia')) generate.! !
+!PortfolioReportTest methodsFor: 'tests' stamp: 'NB 5/28/2023 17:25:18' prior: 50626835!
+test02
+
+
+	|myAccount familyPortfolio|
+	myAccount := ReceptiveAccount named: 'Cuenta mia'.
+	familyPortfolio := Portfolio named: 'Portfolio de la familia' with: myAccount.
+
+	self assert: (OrderedCollection with:'Portfolio de la familia' with: ' Cuenta mia')
+		 equals: (PortfolioReport for: familyPortfolio) generate.! !
+
+!testRun: #PortfolioReportTest #test02 stamp: 'NB 5/28/2023 17:25:24'!
+ERROR!
+!ReceptiveAccount class methodsFor: 'instance creation' stamp: 'NB 5/28/2023 17:25:33'!
+named: aString 
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+	self shouldBeImplemented.
+	^self new initializeNamed: aString ! !
+!ReceptiveAccount class methodsFor: 'instance creation' stamp: 'NB 5/28/2023 17:25:39' prior: 50626865!
+named: aString 
+	
+	^self new initializeNamed: aString ! !
+!ReceptiveAccount class methodsFor: 'instance creation' stamp: 'NB 5/28/2023 17:25:48' prior: 50626873!
+named: aName 
+	
+	^self new initializeNamed: aName ! !
+
+!testRun: #PortfolioReportTest #test02 stamp: 'NB 5/28/2023 17:25:51'!
+ERROR!
+
+!classDefinition: #ReceptiveAccount category: 'Portfolio-Solucion' stamp: 'NB 5/28/2023 17:25:57'!
+Account subclass: #ReceptiveAccount
+	instanceVariableNames: 'transactions name'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!ReceptiveAccount methodsFor: 'initialization' stamp: 'NB 5/28/2023 17:25:57'!
+initializeNamed: aName 
+	self shouldBeImplemented.
+	name := aName.! !
+!ReceptiveAccount methodsFor: 'initialization' stamp: 'NB 5/28/2023 17:26:05' prior: 50626894!
+initializeNamed: aName 
+
+	self initialize .
+	name := aName.! !
+
+!testRun: #PortfolioReportTest #test02 stamp: 'NB 5/28/2023 17:26:06'!
+ERROR!
+!Portfolio class methodsFor: 'instance creation' stamp: 'NB 5/28/2023 17:26:12'!
+named: aString with: aReceptiveAccount 
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+	self shouldBeImplemented.
+	^self new initializeNamed: aString with: aReceptiveAccount ! !
+!Portfolio class methodsFor: 'instance creation' stamp: 'NB 5/28/2023 17:26:21' prior: 50626907!
+named: aString with: aReceptiveAccount 
+	
+	^self new initializeNamed: aString with: aReceptiveAccount ! !
+!Portfolio class methodsFor: 'instance creation' stamp: 'NB 5/28/2023 17:26:28' prior: 50626917!
+named: aName with: aReceptiveAccount 
+	
+	^self new initializeNamed: aName with: aReceptiveAccount ! !
+!Portfolio class methodsFor: 'instance creation' stamp: 'NB 5/28/2023 17:26:38' prior: 50626924!
+named: aName with: anAccount 
+	
+	^self new initializeNamed: aName with: anAccount ! !
+
+!testRun: #PortfolioReportTest #test02 stamp: 'NB 5/28/2023 17:26:40'!
+ERROR!
+
+!classDefinition: #Portfolio category: 'Portfolio-Solucion' stamp: 'NB 5/28/2023 17:26:47'!
+Account subclass: #Portfolio
+	instanceVariableNames: 'accounts parents name account'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!Portfolio methodsFor: 'initialization' stamp: 'NB 5/28/2023 17:26:47'!
+initializeNamed: aName with: anAccount 
+	self shouldBeImplemented.
+	name := aName.
+	account := anAccount.! !
+!Portfolio methodsFor: 'initialization' stamp: 'NB 5/28/2023 17:27:37' prior: 50626947!
+initializeNamed: aName with: anAccount 
+	
+	self initializeNamed: aName.
+	accounts add: anAccount.! !
+
+!testRun: #PortfolioReportTest #test02 stamp: 'NB 5/28/2023 17:27:38'!
+FAILURE!
+!Portfolio class methodsFor: 'instance creation' stamp: 'NB 5/28/2023 17:28:52' prior: 50626931!
+named: aName with: anAccount 
+	
+	^(self new initializeNamed: aName) add: anAccount;yourself! !
+
+!methodRemoval: Portfolio #initializeNamed:with: stamp: 'NB 5/28/2023 17:29:22'!
+initializeNamed: aName with: anAccount 
+	
+	self initializeNamed: aName.
+	accounts add: anAccount.!
+
+!classDefinition: #Portfolio category: 'Portfolio-Solucion' stamp: 'NB 5/28/2023 17:29:46'!
+Account subclass: #Portfolio
+	instanceVariableNames: 'accounts parents name'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+----SNAPSHOT----(28 May 2023 17:29:49) CuisUniversity-5819.image priorSource: 9439590!
+
+----SNAPSHOT----(28 May 2023 17:29:54) CuisUniversity-5819.image priorSource: 9450604!
+!PortfolioReport methodsFor: 'reports' stamp: 'NB 5/28/2023 17:33:32' prior: 50626758!
+generate
+! !
+
+!classDefinition: #PortfolioReport category: 'Portfolio-Solucion' stamp: 'NB 5/28/2023 17:33:58'!
+Object subclass: #PortfolioReport
+	instanceVariableNames: 'portfolio reportLines'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!PortfolioReport methodsFor: 'reports' stamp: 'NB 5/28/2023 17:33:57' prior: 50626988!
+generate
+
+	reportLines:= OrderedCollection new.
+	portfolio addToReport: self.
+	^reportLines.! !
+!PortfolioReport methodsFor: 'reports' stamp: 'NB 5/28/2023 17:36:43' prior: 50627000!
+generate
+
+	reportLines:= OrderedCollection new.
+	portfolio addToPortfolioReport: self.
+	^reportLines.! !
+!Portfolio methodsFor: 'reports' stamp: 'NB 5/28/2023 17:37:48'!
+addToPortfolioReport: aReport
+
+	accounts do: [:anAccount | anAccount addToThePortfolioReport: aReport].! !
+
+!methodRemoval: Portfolio #addReportTo: stamp: 'NB 5/28/2023 17:39:19'!
+addReportTo: reportLines
+
+	accounts do: [:anAccount | anAccount addReportTo: reportLines].!
+
+----SNAPSHOT----(28 May 2023 17:39:23) CuisUniversity-5819.image priorSource: 9450692!
+!Portfolio methodsFor: 'reports' stamp: 'NB 5/28/2023 17:40:36' prior: 50627012!
+addToPortfolioReport: aReport
+
+	aReport addPortolio: self.
+	accounts do: [:anAccount | anAccount addToThePortfolioReport: aReport].! !
+!PortfolioReport methodsFor: 'reports' stamp: 'NB 5/28/2023 17:41:10'!
+addPortolio: aPortfolio
+
+	reportLines add: aPortfolio name.! !
+!ReceptiveAccount methodsFor: 'reports' stamp: 'NB 5/28/2023 17:41:59'!
+addToThePortfolioReport: aReport
+	
+	aReport addReceptiveAccount: self.! !
+!PortfolioReport methodsFor: 'reports' stamp: 'NB 5/28/2023 17:42:23'!
+addReceptiveAccount: aReceptiveAccount
+
+	reportLines add: ' ', aReceptiveAccount name.! !
+
+!testRun: #PortfolioReportTest #test01 stamp: 'NB 5/28/2023 17:42:26'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test02 stamp: 'NB 5/28/2023 17:42:26'!
+FAILURE!
+
+!testRun: #PortfolioReportTest #test02 stamp: 'NB 5/28/2023 17:42:26'!
+FAILURE!
+
+!testRun: #PortfolioReportTest #test01 stamp: 'NB 5/28/2023 17:42:34'!
+PASSED!
+!PortfolioReportTest methodsFor: 'tests' stamp: 'NB 5/28/2023 17:42:41' prior: 50626849!
+test02
+
+
+	|myAccount familyPortfolio|
+	myAccount := ReceptiveAccount named: 'Cuenta mia'.
+	familyPortfolio := Portfolio named: 'Portfolio de la familia' with: myAccount.
+
+	self assert: (OrderedCollection with:'Portfolio de la familia' with: ' Cuenta mia')
+		 equals: (PortfolioReport for: familyPortfolio) generate.! !
+!ReceptiveAccount methodsFor: 'accessing' stamp: 'NB 5/28/2023 17:43:02' overrides: 16903442!
+name
+
+	^name! !
+
+!testRun: #PortfolioReportTest #test01 stamp: 'NB 5/28/2023 17:43:06'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test02 stamp: 'NB 5/28/2023 17:43:06'!
+PASSED!
+
+----SNAPSHOT----(28 May 2023 17:43:09) CuisUniversity-5819.image priorSource: 9451919!
+!Portfolio methodsFor: 'reports' stamp: 'NB 5/28/2023 17:45:55' prior: 50627026!
+addToPortfolioReport: aReport
+
+	aReport addPortolio: self.
+	accounts do: [:anAccount | anAccount addToThePortfolioReport: aReport ].! !
+!PortfolioReportTest methodsFor: 'tests' stamp: 'NB 5/28/2023 17:47:33'!
+test03
+
+
+	|myAccount familyPortfolio johnsAccount angiesAccount childrenPortfolio|
+	johnsAccount := ReceptiveAccount named: 'Cuenta de Juan'.
+	angiesAccount := ReceptiveAccount named: 'Cuenta de Angeles'.
+	childrenPortfolio := Portfolio named: 'Portfolio de hijos' with: johnsAccount with: angiesAccount.
+	myAccount := ReceptiveAccount named: 'Cuenta mia'.
+	familyPortfolio := Portfolio named: 'Portfolio de la familia' with: myAccount with: childrenPortfolio.
+
+	self assert: (OrderedCollection with:'Portfolio de la familia' with: ' Cuenta mia')
+		 equals: (PortfolioReport for: familyPortfolio) generate.! !
+!Portfolio class methodsFor: 'instance creation' stamp: 'NB 5/28/2023 17:48:09'!
+named: aName with: anAccount with: anotherAccount 
+	
+	^(self new initializeNamed: aName) add: anAccount; add: anotherAccount ;yourself! !
+!PortfolioReportTest methodsFor: 'tests' stamp: 'NB 5/28/2023 17:49:20' prior: 50627090!
+test03
+
+
+	|myAccount familyPortfolio johnsAccount angiesAccount childrenPortfolio|
+	johnsAccount := ReceptiveAccount named: 'Cuenta de Juan'.
+	angiesAccount := ReceptiveAccount named: 'Cuenta de Angeles'.
+	childrenPortfolio := Portfolio named: 'Portfolio de hijos' with: johnsAccount with: angiesAccount.
+	myAccount := ReceptiveAccount named: 'Cuenta mia'.
+	familyPortfolio := Portfolio named: 'Portfolio de la familia' with: myAccount with: childrenPortfolio.
+
+	self assert: (OrderedCollection 
+				with:'Portfolio de la familia' 
+				with: ' Cuenta mia'
+				with: ' Portfolio de hijos'
+				with: '  Cuenta de Juan'
+				with: '  Cuenta de Angeles'
+		)
+		 equals: (PortfolioReport for: familyPortfolio) generate.! !
+
+!testRun: #PortfolioReportTest #test03 stamp: 'NB 5/28/2023 17:49:22'!
+ERROR!
+!Portfolio methodsFor: 'reports' stamp: 'NB 5/28/2023 17:50:39'!
+addToPortfolioReport: aReport with: aSeparator
+
+	aReport addPortolio: self.
+	accounts do: [:anAccount | anAccount addToPortfolioReport: aReport with: aSeparator, ' ' ].! !
+
+!methodRemoval: Portfolio #addToPortfolioReport: stamp: 'NB 5/28/2023 17:50:44'!
+addToPortfolioReport: aReport
+
+	aReport addPortolio: self.
+	accounts do: [:anAccount | anAccount addToThePortfolioReport: aReport ].!
+!PortfolioReport methodsFor: 'reports' stamp: 'NB 5/28/2023 17:50:58' prior: 50627006!
+generate
+
+	reportLines:= OrderedCollection new.
+	portfolio addToPortfolioReport: self with: ''.
+	^reportLines.! !
+!ReceptiveAccount methodsFor: 'reports' stamp: 'NB 5/28/2023 17:51:37'!
+addToPortfolioReport: aReport with: aSeparator
+	
+	aReport addReceptiveAccount: self with: aSeparator.! !
+!Portfolio methodsFor: 'reports' stamp: 'NB 5/28/2023 17:51:48' prior: 50627147!
+addToPortfolioReport: aReport with: aSeparator
+
+	aReport addPortolio: self with: aSeparator.
+	accounts do: [:anAccount | anAccount addToPortfolioReport: aReport with: aSeparator, ' ' ].! !
+!PortfolioReport methodsFor: 'reports' stamp: 'NB 5/28/2023 17:52:11'!
+addPortolio: aPortfolio with: aSeparator
+
+	reportLines add: aSeparator, aPortfolio name.! !
+
+!methodRemoval: PortfolioReport #addPortolio: stamp: 'NB 5/28/2023 17:52:15'!
+addPortolio: aPortfolio
+
+	reportLines add: aPortfolio name.!
+!PortfolioReport methodsFor: 'reports' stamp: 'NB 5/28/2023 17:52:30'!
+addReceptiveAccount: aReceptiveAccount with: aSeparator
+
+	reportLines add: aSeparator, aReceptiveAccount name.! !
+
+!methodRemoval: PortfolioReport #addReceptiveAccount: stamp: 'NB 5/28/2023 17:52:34'!
+addReceptiveAccount: aReceptiveAccount
+
+	reportLines add: ' ', aReceptiveAccount name.!
+
+!testRun: #PortfolioReportTest #test01 stamp: 'NB 5/28/2023 17:52:50'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test02 stamp: 'NB 5/28/2023 17:52:50'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test03 stamp: 'NB 5/28/2023 17:52:50'!
+PASSED!
+
+----SNAPSHOT----(28 May 2023 17:52:53) CuisUniversity-5819.image priorSource: 9453743!
+!PortfolioReport methodsFor: 'reports' stamp: 'NB 5/28/2023 17:53:20'!
+addAccount: aPortfolio with: aSeparator
+
+	reportLines add: aSeparator, aPortfolio name.! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'NB 5/28/2023 17:53:20' prior: 50627174!
+addToPortfolioReport: aReport with: aSeparator
+
+	aReport addAccount: self with: aSeparator.
+	accounts do: [:anAccount | anAccount addToPortfolioReport: aReport with: aSeparator, ' ' ].! !
+
+!methodRemoval: PortfolioReport #addPortolio:with: stamp: 'NB 5/28/2023 17:53:20'!
+addPortolio: aPortfolio with: aSeparator
+
+	reportLines add: aSeparator, aPortfolio name.!
+!PortfolioReport methodsFor: 'reports' stamp: 'NB 5/28/2023 17:53:41' prior: 50627215!
+addAccount: anAccount with: aSeparator
+
+	reportLines add: aSeparator, anAccount name.! !
+
+!methodRemoval: PortfolioReport #addReceptiveAccount:with: stamp: 'NB 5/28/2023 17:53:46'!
+addReceptiveAccount: aReceptiveAccount with: aSeparator
+
+	reportLines add: aSeparator, aReceptiveAccount name.!
+
+!methodRemoval: ReceptiveAccount #addToThePortfolioReport: stamp: 'NB 5/28/2023 17:54:04'!
+addToThePortfolioReport: aReport
+	
+	aReport addReceptiveAccount: self.!
+!ReceptiveAccount methodsFor: 'reports' stamp: 'NB 5/28/2023 17:54:14' prior: 50627168!
+addToPortfolioReport: aReport with: aSeparator
+	
+	aReport addAccount: self with: aSeparator.! !
+
+!testRun: #PortfolioReportTest #test01 stamp: 'NB 5/28/2023 17:54:19'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test02 stamp: 'NB 5/28/2023 17:54:19'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test03 stamp: 'NB 5/28/2023 17:54:19'!
+PASSED!
+
+----SNAPSHOT----(28 May 2023 17:54:21) CuisUniversity-5819.image priorSource: 9457968!
+
+----SNAPSHOT----(28 May 2023 17:55:34) CuisUniversity-5819.image priorSource: 9459727!
+
+----SNAPSHOT----(28 May 2023 17:57:46) CuisUniversity-5819.image priorSource: 9459815!
+
+----SNAPSHOT----(28 May 2023 17:57:49) CuisUniversity-5819.image priorSource: 9459903!
+
+----SNAPSHOT----(28 May 2023 17:58:33) CuisUniversity-5819.image priorSource: 9459991!
+
+----SNAPSHOT----(28 May 2023 17:59:01) CuisUniversity-5819.image priorSource: 9460079!
