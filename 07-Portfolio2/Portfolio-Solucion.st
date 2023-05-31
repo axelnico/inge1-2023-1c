@@ -5,13 +5,13 @@ TestCase subclass: #PortfolioReportTest
 	poolDictionaries: ''
 	category: 'Portfolio-Solucion'!
 
-!PortfolioReportTest methodsFor: 'tests' stamp: 'NB 5/28/2023 17:20:16'!
+!PortfolioReportTest methodsFor: 'tests' stamp: 'NB 5/31/2023 00:29:35'!
 test01
 
 	self assert: (OrderedCollection with:'Portfolio de la familia')
-		 equals: (PortfolioReport for: (Portfolio named: 'Portfolio de la familia')) generate.! !
+		 equals: (PortfolioAccountSummaryReport for: (Portfolio named: 'Portfolio de la familia')) generate.! !
 
-!PortfolioReportTest methodsFor: 'tests' stamp: 'NB 5/28/2023 17:42:41'!
+!PortfolioReportTest methodsFor: 'tests' stamp: 'NB 5/31/2023 00:29:35'!
 test02
 
 
@@ -20,9 +20,9 @@ test02
 	familyPortfolio := Portfolio named: 'Portfolio de la familia' with: myAccount.
 
 	self assert: (OrderedCollection with:'Portfolio de la familia' with: ' Cuenta mia')
-		 equals: (PortfolioReport for: familyPortfolio) generate.! !
+		 equals: (PortfolioAccountSummaryReport for: familyPortfolio) generate.! !
 
-!PortfolioReportTest methodsFor: 'tests' stamp: 'NB 5/28/2023 17:49:20'!
+!PortfolioReportTest methodsFor: 'tests' stamp: 'NB 5/31/2023 00:29:35'!
 test03
 
 
@@ -40,7 +40,7 @@ test03
 				with: '  Cuenta de Juan'
 				with: '  Cuenta de Angeles'
 		)
-		 equals: (PortfolioReport for: familyPortfolio) generate.! !
+		 equals: (PortfolioAccountSummaryReport for: familyPortfolio) generate.! !
 
 
 !classDefinition: #PortfolioTest category: 'Portfolio-Solucion'!
@@ -561,6 +561,15 @@ test06CannotTransferAnAmountThatItIsNotAStrictlyPositiveNumber
 		raise: Error
 		withMessageText: Transfer cannotTransferAmountLessThanAPositiveNumber.! !
 
+!TransferTest methodsFor: 'tests' stamp: 'NB 5/31/2023 00:21:30'!
+test07CannotTransferToTheSameAccount
+	
+	|account|
+	account:= ReceptiveAccount new.
+	self should: [Transfer registrer: 100 from: account to: account. ]
+		raise: Error
+		withMessageText: Transfer cannotTransferToTheSameAccountError.! !
+
 
 !classDefinition: #Account category: 'Portfolio-Solucion'!
 Object subclass: #Account
@@ -601,6 +610,17 @@ transactions
 addedTo: aPortfolio
 
 	self subclassResponsibility ! !
+
+
+!Account methodsFor: 'reports' stamp: 'NB 5/31/2023 00:15:21'!
+addToPortfolioReport: aReport
+	
+	self subclassResponsibility .! !
+
+!Account methodsFor: 'reports' stamp: 'NB 5/31/2023 00:14:56'!
+addToReport: aReport
+	
+	self subclassResponsibility .! !
 
 
 !classDefinition: #Portfolio category: 'Portfolio-Solucion'!
@@ -721,11 +741,16 @@ signalCanNotAddAccount
 	self error: self class canNotAddAccountErrorMessage! !
 
 
-!Portfolio methodsFor: 'reports' stamp: 'NB 5/28/2023 17:53:20'!
-addToPortfolioReport: aReport with: aSeparator
+!Portfolio methodsFor: 'reports' stamp: 'NB 5/31/2023 00:02:13'!
+addAccountsToReport: aReport
 
-	aReport addAccount: self with: aSeparator.
-	accounts do: [:anAccount | anAccount addToPortfolioReport: aReport with: aSeparator, ' ' ].! !
+	accounts do: [:anAccount | anAccount addToPortfolioReport: aReport ].
+	aReport endPortfolio.! !
+
+!Portfolio methodsFor: 'reports' stamp: 'NB 5/30/2023 23:54:57'!
+addToPortfolioReport: aReport
+
+	aReport addPortfolio: self.! !
 
 !Portfolio methodsFor: 'reports' stamp: 'NB 5/28/2023 17:09:25'!
 addToReport: aReport
@@ -845,10 +870,10 @@ addedTo: aPortfolio
 	! !
 
 
-!ReceptiveAccount methodsFor: 'reports' stamp: 'NB 5/28/2023 17:54:14'!
-addToPortfolioReport: aReport with: aSeparator
+!ReceptiveAccount methodsFor: 'reports' stamp: 'NB 5/30/2023 23:56:46'!
+addToPortfolioReport: aReport
 	
-	aReport addAccount: self with: aSeparator.! !
+	aReport addReceptiveAccount: self! !
 
 !ReceptiveAccount methodsFor: 'reports' stamp: 'NB 5/28/2023 17:09:25'!
 addToReport: aReport
@@ -880,23 +905,46 @@ Object subclass: #PortfolioReport
 	poolDictionaries: ''
 	category: 'Portfolio-Solucion'!
 
-!PortfolioReport methodsFor: 'initialization' stamp: 'NB 5/28/2023 17:20:52'!
+!PortfolioReport methodsFor: 'initialization' stamp: 'NB 5/31/2023 00:31:21'!
 initializeFor: aPortfolio 
 	
 	portfolio := aPortfolio.! !
 
 
-!PortfolioReport methodsFor: 'reports' stamp: 'NB 5/28/2023 17:53:41'!
-addAccount: anAccount with: aSeparator
+!PortfolioReport methodsFor: 'reports' stamp: 'NB 5/31/2023 00:36:39'!
+addName: aPortfolio
 
-	reportLines add: aSeparator, anAccount name.! !
+	self subclassResponsibility .
+! !
 
-!PortfolioReport methodsFor: 'reports' stamp: 'NB 5/28/2023 17:50:58'!
+!PortfolioReport methodsFor: 'reports' stamp: 'NB 5/31/2023 00:34:43'!
+addPortfolio: aPortfolio
+
+	self addName: aPortfolio.
+	self initPortfolio.
+	aPortfolio addAccountsToReport: self.
+! !
+
+!PortfolioReport methodsFor: 'reports' stamp: 'NB 5/31/2023 00:35:41'!
+addReceptiveAccount: anAccount
+
+	self subclassResponsibility .
+! !
+
+!PortfolioReport methodsFor: 'reports' stamp: 'NB 5/31/2023 00:37:27'!
+endPortfolio
+
+	self subclassResponsibility .! !
+
+!PortfolioReport methodsFor: 'reports' stamp: 'NB 5/31/2023 00:37:02'!
 generate
 
-	reportLines:= OrderedCollection new.
-	portfolio addToPortfolioReport: self with: ''.
-	^reportLines.! !
+	self subclassResponsibility .! !
+
+!PortfolioReport methodsFor: 'reports' stamp: 'NB 5/31/2023 00:35:06'!
+initPortfolio
+
+	self subclassResponsibility .! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
@@ -904,37 +952,109 @@ generate
 PortfolioReport class
 	instanceVariableNames: ''!
 
-!PortfolioReport class methodsFor: 'instance creation' stamp: 'NB 5/28/2023 17:20:35'!
+!PortfolioReport class methodsFor: 'instance creation' stamp: 'NB 5/31/2023 00:30:45'!
 for: aPortfolio 
 	
 	^self new initializeFor: aPortfolio ! !
 
 
-!classDefinition: #Report category: 'Portfolio-Solucion'!
-Object subclass: #Report
-	instanceVariableNames: ''
+!classDefinition: #PortfolioAccountSummaryReport category: 'Portfolio-Solucion'!
+PortfolioReport subclass: #PortfolioAccountSummaryReport
+	instanceVariableNames: 'separator'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Portfolio-Solucion'!
+
+!PortfolioAccountSummaryReport methodsFor: 'reports' stamp: 'NB 5/31/2023 00:32:15'!
+addName: aPortfolio
+
+	^ reportLines add: separator, aPortfolio name! !
+
+!PortfolioAccountSummaryReport methodsFor: 'reports' stamp: 'NB 5/30/2023 23:57:56'!
+addReceptiveAccount: anAccount
+
+	self addName: anAccount! !
+
+!PortfolioAccountSummaryReport methodsFor: 'reports' stamp: 'NB 5/31/2023 00:32:15'!
+endPortfolio
+
+	separator := separator truncateTo: separator size - 1.! !
+
+!PortfolioAccountSummaryReport methodsFor: 'reports' stamp: 'NB 5/31/2023 00:32:15'!
+generate
+
+	reportLines:= OrderedCollection new.
+	separator:= ''.
+	portfolio addToPortfolioReport: self.
+	^reportLines.! !
+
+!PortfolioAccountSummaryReport methodsFor: 'reports' stamp: 'NB 5/31/2023 00:32:15'!
+initPortfolio
+
+	separator:= separator , ' '.! !
+
+
+!classDefinition: #Report category: 'Portfolio-Solucion'!
+Object subclass: #Report
+	instanceVariableNames: 'account'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!Report methodsFor: 'reports' stamp: 'NB 5/31/2023 00:12:48'!
+addDeposit: aDeposit
+
+	self subclassResponsibility .! !
+
+!Report methodsFor: 'reports' stamp: 'NB 5/31/2023 00:13:03'!
+addTransferReception: aTransferReception
+
+	self subclassResponsibility .! !
+
+!Report methodsFor: 'reports' stamp: 'NB 5/31/2023 00:13:16'!
+addTransferSending: aTransferSending
+
+	self subclassResponsibility .! !
+
+!Report methodsFor: 'reports' stamp: 'NB 5/31/2023 00:13:27'!
+addWithdraw: aWithdraw
+
+	self subclassResponsibility .! !
+
+!Report methodsFor: 'reports' stamp: 'NB 5/31/2023 00:13:35'!
+generate
+
+	self subclassResponsibility .! !
+
+
+!Report methodsFor: 'initialization' stamp: 'NB 5/31/2023 00:11:23'!
+initializeFor: accountForReport 
+	
+	account := accountForReport.! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'Report class' category: 'Portfolio-Solucion'!
+Report class
+	instanceVariableNames: ''!
+
+!Report class methodsFor: 'instance creation' stamp: 'NB 5/31/2023 00:11:59'!
+for: anAccount 
+	
+	^self new initializeFor: anAccount ! !
 
 
 !classDefinition: #AccountSummaryReport category: 'Portfolio-Solucion'!
 Report subclass: #AccountSummaryReport
-	instanceVariableNames: 'receptiveAccount reportLines'
+	instanceVariableNames: 'reportLines'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Portfolio-Solucion'!
 
-!AccountSummaryReport methodsFor: 'initialization' stamp: 'NB 5/26/2023 23:44:08'!
-initializeFor: aReceptiveAccount 
-	
-	receptiveAccount := aReceptiveAccount.! !
-
-
-!AccountSummaryReport methodsFor: 'reports' stamp: 'NB 5/28/2023 16:57:32'!
+!AccountSummaryReport methodsFor: 'reports' stamp: 'NB 5/31/2023 00:11:23'!
 addBalanceLine
 
-	^ reportLines add: 'Balance = ',receptiveAccount balance asString! !
+	^ reportLines add: 'Balance = ',account balance asString! !
 
 !AccountSummaryReport methodsFor: 'reports' stamp: 'NB 5/28/2023 16:46:13'!
 addDeposit: aDeposit
@@ -964,40 +1084,23 @@ addWithdraw: aWithdraw
 	
 	! !
 
-!AccountSummaryReport methodsFor: 'reports' stamp: 'NB 5/28/2023 17:09:25'!
+!AccountSummaryReport methodsFor: 'reports' stamp: 'NB 5/31/2023 00:11:23'!
 generate
 
 	reportLines:= OrderedCollection new.
-	receptiveAccount addToReport: self.
+	account addToReport: self.
 	self addBalanceLine.
 	^reportLines.
 	
 	! !
 
-"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
-
-!classDefinition: 'AccountSummaryReport class' category: 'Portfolio-Solucion'!
-AccountSummaryReport class
-	instanceVariableNames: ''!
-
-!AccountSummaryReport class methodsFor: 'instance creation' stamp: 'NB 5/26/2023 23:43:48'!
-for: aReceptiveAccount 
-	
-	^self new initializeFor: aReceptiveAccount ! !
-
 
 !classDefinition: #TransferNetReport category: 'Portfolio-Solucion'!
 Report subclass: #TransferNetReport
-	instanceVariableNames: 'receptiveAccount transferNetAmount'
+	instanceVariableNames: 'transferNetAmount'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Portfolio-Solucion'!
-
-!TransferNetReport methodsFor: 'initialization' stamp: 'NB 5/28/2023 17:02:42'!
-initializeFor: aReceptiveAccount 
-	
-	receptiveAccount := aReceptiveAccount.! !
-
 
 !TransferNetReport methodsFor: 'reports' stamp: 'NB 5/28/2023 17:01:43'!
 addDeposit: aDeposit
@@ -1024,23 +1127,12 @@ addWithdraw: aWithdraw
 	
 	! !
 
-!TransferNetReport methodsFor: 'reports' stamp: 'NB 5/28/2023 17:09:25'!
+!TransferNetReport methodsFor: 'reports' stamp: 'NB 5/31/2023 00:11:23'!
 generate
 	
 	transferNetAmount := 0.
-	receptiveAccount addToReport: self.
+	account addToReport: self.
 	^transferNetAmount.! !
-
-"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
-
-!classDefinition: 'TransferNetReport class' category: 'Portfolio-Solucion'!
-TransferNetReport class
-	instanceVariableNames: ''!
-
-!TransferNetReport class methodsFor: 'instance creation' stamp: 'NB 5/28/2023 16:05:06'!
-for: aReceptiveAccount 
-	
-	^self new initializeFor: aReceptiveAccount ! !
 
 
 !classDefinition: #Transaction category: 'Portfolio-Solucion'!
@@ -1274,9 +1366,16 @@ assertAmountIsStrictlyPositive: anAmountToTransfer
 	^ anAmountToTransfer strictlyPositive ifFalse: [self error: self cannotTransferAmountLessThanAPositiveNumber ]! !
 
 
-!Transfer class methodsFor: 'transfer' stamp: 'NB 5/26/2023 22:58:11'!
+!Transfer class methodsFor: 'transfer' stamp: 'NB 5/31/2023 00:24:37'!
+assertAccount: accountToDeposit isNotTheSameAs: accountToWithdraw
+
+	^ accountToWithdraw = accountToDeposit ifTrue: [self error: self cannotTransferToTheSameAccountError ]! !
+
+!Transfer class methodsFor: 'transfer' stamp: 'NB 5/31/2023 00:24:37'!
 registrer: anAmountToTransfer from: accountToWithdraw to: accountToDeposit 
 	self assertAmountIsStrictlyPositive: anAmountToTransfer.
+	
+	self assertAccount: accountToDeposit isNotTheSameAs: accountToWithdraw.
 	
 	^self new initializeFor: anAmountToTransfer from: accountToWithdraw to: accountToDeposit.
 	! !
@@ -1286,3 +1385,8 @@ registrer: anAmountToTransfer from: accountToWithdraw to: accountToDeposit
 cannotTransferAmountLessThanAPositiveNumber
 	
 	^'Cannot transfer an amount that it lower or equal to 0'.! !
+
+!Transfer class methodsFor: 'error description' stamp: 'NB 5/31/2023 00:21:57'!
+cannotTransferToTheSameAccountError
+	
+	'No se puede transferir a la misma cuenta'.! !
