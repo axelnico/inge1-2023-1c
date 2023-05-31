@@ -1,0 +1,893 @@
+
+
+----QUIT----(30 May 2023 00:05:32) CuisUniversity-5832.image priorSource: 4928100!
+
+----STARTUP---- (30 May 2023 00:05:33) as /Users/hernan/Documents/Cuis/5.0-64Bits/Cuis-University-Installer/CuisUniversity-5832.image!
+
+
+----QUIT----(30 May 2023 00:05:33) CuisUniversity-5832.image priorSource: 9366537!
+
+----STARTUP---- (31 May 2023 19:44:04) as D:\inge 1 repo\windows64\windows64\CuisUniversity-5832.image!
+
+
+----End fileIn of D:\inge 1 repo\inge1-2023-1c\07-Portfolio2\Portfolio-Solucion.st----!
+!ReportTest methodsFor: 'tests' stamp: 'am 5/31/2023 19:49:47'!
+test01EmptyReceptiveAccountSummaryReportIsOk
+	
+	self assert: (OrderedCollection with: 'Balance = 0') equals: (AccountSummaryReport for: ReceptiveAccount new) generate.! !
+
+!methodRemoval: ReportTest #test01 stamp: 'am 5/31/2023 19:49:47'!
+test01
+	
+	self assert: (OrderedCollection with: 'Balance = 0') equals: (AccountSummaryReport for: ReceptiveAccount new) generate.!
+!ReportTest methodsFor: 'tests' stamp: 'am 5/31/2023 19:50:27'!
+test01NewReceptiveAccountSummaryReportIsOk
+	
+	self assert: (OrderedCollection with: 'Balance = 0') equals: (AccountSummaryReport for: ReceptiveAccount new) generate.! !
+
+!methodRemoval: ReportTest #test01EmptyReceptiveAccountSummaryReportIsOk stamp: 'am 5/31/2023 19:50:27'!
+test01EmptyReceptiveAccountSummaryReportIsOk
+	
+	self assert: (OrderedCollection with: 'Balance = 0') equals: (AccountSummaryReport for: ReceptiveAccount new) generate.!
+!ReportTest methodsFor: 'tests' stamp: 'am 5/31/2023 19:52:07'!
+test02ReceptiveAccountWithOneTransferSummaryReportIsOk
+
+	| account1 account2|
+	
+	account1:= ReceptiveAccount new.
+	account2:= ReceptiveAccount new.
+	Deposit register: 100 on: account1.
+	Withdraw register: 50 on: account1.
+	Transfer registrer: 20 from: account1 to: account2.
+	Transfer registrer: 30 from: account2 to: account1.
+	
+	self assert: (
+		OrderedCollection
+			with: 'Depósito por 100.'
+			with: 'Extracción por 50.'
+			with: 'Salida por transferencia de 20.'
+			with: 'Entrada por transferencia de 30.'
+			with: 'Balance = 60'
+		)
+	equals: (AccountSummaryReport for: account1) generate.! !
+
+!methodRemoval: ReportTest #test02 stamp: 'am 5/31/2023 19:52:07'!
+test02
+
+	| account1 account2|
+	
+	account1:= ReceptiveAccount new.
+	account2:= ReceptiveAccount new.
+	Deposit register: 100 on: account1.
+	Withdraw register: 50 on: account1.
+	Transfer registrer: 20 from: account1 to: account2.
+	Transfer registrer: 30 from: account2 to: account1.
+	
+	self assert: (
+		OrderedCollection
+			with: 'Depósito por 100.'
+			with: 'Extracción por 50.'
+			with: 'Salida por transferencia de 20.'
+			with: 'Entrada por transferencia de 30.'
+			with: 'Balance = 60'
+		)
+	equals: (AccountSummaryReport for: account1) generate.!
+!ReportTest methodsFor: 'tests' stamp: 'am 5/31/2023 19:52:57'!
+test03NewPortfolioSummaryReportIsOk
+
+	| portfolio |
+	
+	portfolio:= Portfolio new.
+	
+	self assert: (
+		OrderedCollection
+			with: 'Balance = 0'
+		)
+	equals: (AccountSummaryReport for: portfolio) generate.! !
+
+!methodRemoval: ReportTest #test03 stamp: 'am 5/31/2023 19:52:57'!
+test03
+
+	| portfolio |
+	
+	portfolio:= Portfolio new.
+	
+	self assert: (
+		OrderedCollection
+			with: 'Balance = 0'
+		)
+	equals: (AccountSummaryReport for: portfolio) generate.!
+!ReportTest methodsFor: 'tests' stamp: 'am 5/31/2023 19:55:54'!
+test02ReceptiveAccountWithOneTransactionSummaryReportIsOk
+
+	| account1 account2|
+	
+	account1:= ReceptiveAccount new.
+	account2:= ReceptiveAccount new.
+	Deposit register: 100 on: account1.
+	Withdraw register: 50 on: account1.
+	Transfer registrer: 20 from: account1 to: account2.
+	Transfer registrer: 30 from: account2 to: account1.
+	
+	self assert: (
+		OrderedCollection
+			with: 'Depósito por 100.'
+			with: 'Extracción por 50.'
+			with: 'Salida por transferencia de 20.'
+			with: 'Entrada por transferencia de 30.'
+			with: 'Balance = 60'
+		)
+	equals: (AccountSummaryReport for: account1) generate.! !
+
+!methodRemoval: ReportTest #test02ReceptiveAccountWithOneTransferSummaryReportIsOk stamp: 'am 5/31/2023 19:55:54'!
+test02ReceptiveAccountWithOneTransferSummaryReportIsOk
+
+	| account1 account2|
+	
+	account1:= ReceptiveAccount new.
+	account2:= ReceptiveAccount new.
+	Deposit register: 100 on: account1.
+	Withdraw register: 50 on: account1.
+	Transfer registrer: 20 from: account1 to: account2.
+	Transfer registrer: 30 from: account2 to: account1.
+	
+	self assert: (
+		OrderedCollection
+			with: 'Depósito por 100.'
+			with: 'Extracción por 50.'
+			with: 'Salida por transferencia de 20.'
+			with: 'Entrada por transferencia de 30.'
+			with: 'Balance = 60'
+		)
+	equals: (AccountSummaryReport for: account1) generate.!
+!ReportTest methodsFor: 'tests' stamp: 'am 5/31/2023 19:56:50'!
+test04PortfolioWithAReceptiveAccountWithmanyTransactionSummaryReportIsOk
+
+	| portfolio account1 account2|
+	
+	
+	account1:= ReceptiveAccount new.
+	account2:= ReceptiveAccount new.
+	Deposit register: 100 on: account1.
+	Withdraw register: 50 on: account1.
+	Transfer registrer: 20 from: account1 to: account2.
+	Transfer registrer: 30 from: account2 to: account1.
+	
+	portfolio:= Portfolio with: account1.
+	
+	self assert: (
+		OrderedCollection
+			with: 'Depósito por 100.'
+			with: 'Extracción por 50.'
+			with: 'Salida por transferencia de 20.'
+			with: 'Entrada por transferencia de 30.'
+			with: 'Balance = 60'
+		)
+	equals: (AccountSummaryReport for: portfolio) generate.! !
+
+!methodRemoval: ReportTest #test04 stamp: 'am 5/31/2023 19:56:50'!
+test04
+
+	| portfolio account1 account2|
+	
+	
+	account1:= ReceptiveAccount new.
+	account2:= ReceptiveAccount new.
+	Deposit register: 100 on: account1.
+	Withdraw register: 50 on: account1.
+	Transfer registrer: 20 from: account1 to: account2.
+	Transfer registrer: 30 from: account2 to: account1.
+	
+	portfolio:= Portfolio with: account1.
+	
+	self assert: (
+		OrderedCollection
+			with: 'Depósito por 100.'
+			with: 'Extracción por 50.'
+			with: 'Salida por transferencia de 20.'
+			with: 'Entrada por transferencia de 30.'
+			with: 'Balance = 60'
+		)
+	equals: (AccountSummaryReport for: portfolio) generate.!
+!ReportTest methodsFor: 'tests' stamp: 'am 5/31/2023 19:59:48'!
+test05AccountWithManyPortfolioLevelsSummaryReportIsOk
+
+	| portfolio account1 account2 portfolio2 expectedSummaryReport|
+	
+	
+	account1:= ReceptiveAccount new.
+	account2:= ReceptiveAccount new.
+	Deposit register: 100 on: account1.
+	Withdraw register: 50 on: account1.
+	Transfer registrer: 20 from: account1 to: account2.
+	Transfer registrer: 30 from: account2 to: account1.
+	
+	portfolio2 := Portfolio with: account1.
+	portfolio:= Portfolio with: portfolio2 with: account2.
+	
+	expectedSummaryReport:= OrderedCollection
+			with: 'Depósito por 100.'
+			with: 'Extracción por 50.'
+			with: 'Salida por transferencia de 20.'
+			with: 'Entrada por transferencia de 30.'
+			with: 'Entrada por transferencia de 20.'
+			with: 'Salida por transferencia de 30.'.
+			
+	
+	expectedSummaryReport 	add: 'Balance = 50'.
+	
+	self assert: expectedSummaryReport equals: (AccountSummaryReport for: portfolio) generate.! !
+
+!methodRemoval: ReportTest #test05 stamp: 'am 5/31/2023 19:59:48'!
+test05
+
+	| portfolio account1 account2 portfolio2 expectedSummaryReport|
+	
+	
+	account1:= ReceptiveAccount new.
+	account2:= ReceptiveAccount new.
+	Deposit register: 100 on: account1.
+	Withdraw register: 50 on: account1.
+	Transfer registrer: 20 from: account1 to: account2.
+	Transfer registrer: 30 from: account2 to: account1.
+	
+	portfolio2 := Portfolio with: account1.
+	portfolio:= Portfolio with: portfolio2 with: account2.
+	
+	expectedSummaryReport:= OrderedCollection
+			with: 'Depósito por 100.'
+			with: 'Extracción por 50.'
+			with: 'Salida por transferencia de 20.'
+			with: 'Entrada por transferencia de 30.'
+			with: 'Entrada por transferencia de 20.'
+			with: 'Salida por transferencia de 30.'.
+			
+	
+	expectedSummaryReport 	add: 'Balance = 50'.
+	
+	self assert: expectedSummaryReport equals: (AccountSummaryReport for: portfolio) generate.!
+!ReportTest methodsFor: 'tests' stamp: 'am 5/31/2023 20:00:41'!
+test04AccountWithAOneLevelPortfolioSummaryReportIsOk
+
+	| portfolio account1 account2|
+	
+	
+	account1:= ReceptiveAccount new.
+	account2:= ReceptiveAccount new.
+	Deposit register: 100 on: account1.
+	Withdraw register: 50 on: account1.
+	Transfer registrer: 20 from: account1 to: account2.
+	Transfer registrer: 30 from: account2 to: account1.
+	
+	portfolio:= Portfolio with: account1.
+	
+	self assert: (
+		OrderedCollection
+			with: 'Depósito por 100.'
+			with: 'Extracción por 50.'
+			with: 'Salida por transferencia de 20.'
+			with: 'Entrada por transferencia de 30.'
+			with: 'Balance = 60'
+		)
+	equals: (AccountSummaryReport for: portfolio) generate.! !
+
+!methodRemoval: ReportTest #test04PortfolioWithAReceptiveAccountWithmanyTransactionSummaryReportIsOk stamp: 'am 5/31/2023 20:00:41'!
+test04PortfolioWithAReceptiveAccountWithmanyTransactionSummaryReportIsOk
+
+	| portfolio account1 account2|
+	
+	
+	account1:= ReceptiveAccount new.
+	account2:= ReceptiveAccount new.
+	Deposit register: 100 on: account1.
+	Withdraw register: 50 on: account1.
+	Transfer registrer: 20 from: account1 to: account2.
+	Transfer registrer: 30 from: account2 to: account1.
+	
+	portfolio:= Portfolio with: account1.
+	
+	self assert: (
+		OrderedCollection
+			with: 'Depósito por 100.'
+			with: 'Extracción por 50.'
+			with: 'Salida por transferencia de 20.'
+			with: 'Entrada por transferencia de 30.'
+			with: 'Balance = 60'
+		)
+	equals: (AccountSummaryReport for: portfolio) generate.!
+!ReportTest methodsFor: 'tests' stamp: 'am 5/31/2023 20:01:38'!
+test06NewReceptiveAccountTransferNetReportIsOk
+	
+	self assert: 0 equals: (TransferNetReport for: ReceptiveAccount new) generate.! !
+
+!methodRemoval: ReportTest #test06 stamp: 'am 5/31/2023 20:01:38'!
+test06
+	
+	self assert: 0 equals: (TransferNetReport for: ReceptiveAccount new) generate.!
+!ReportTest methodsFor: 'tests' stamp: 'am 5/31/2023 20:02:28'!
+test07ReceptiveAccountWithManyTransactionTransferNetReportIsOk
+
+	| account1 account2|
+	
+	account1:= ReceptiveAccount new.
+	account2:= ReceptiveAccount new.
+	Deposit register: 100 on: account1.
+	Withdraw register: 50 on: account1.
+	Transfer registrer: 20 from: account1 to: account2.
+	Transfer registrer: 30 from: account2 to: account1.
+	
+	self assert: 10 equals: (TransferNetReport for: account1) generate.! !
+
+!methodRemoval: ReportTest #test07 stamp: 'am 5/31/2023 20:02:28'!
+test07
+
+	| account1 account2|
+	
+	account1:= ReceptiveAccount new.
+	account2:= ReceptiveAccount new.
+	Deposit register: 100 on: account1.
+	Withdraw register: 50 on: account1.
+	Transfer registrer: 20 from: account1 to: account2.
+	Transfer registrer: 30 from: account2 to: account1.
+	
+	self assert: 10 equals: (TransferNetReport for: account1) generate.!
+!ReportTest methodsFor: 'tests' stamp: 'am 5/31/2023 20:03:37'!
+test08NewPortfolioTransferNetReportIsOk
+
+	self assert: 0 equals: (TransferNetReport for: Portfolio new) generate.! !
+
+!methodRemoval: ReportTest #test08 stamp: 'am 5/31/2023 20:03:37'!
+test08
+
+	self assert: 0 equals: (TransferNetReport for: Portfolio new) generate.!
+!ReportTest methodsFor: 'tests' stamp: 'am 5/31/2023 20:04:46'!
+test09PortfolioOneLevelDeepTransferNetReportIsOk
+
+	| portfolio account1 account2|
+	
+	
+	account1:= ReceptiveAccount new.
+	account2:= ReceptiveAccount new.
+	Deposit register: 100 on: account1.
+	Withdraw register: 50 on: account1.
+	Transfer registrer: 20 from: account1 to: account2.
+	Transfer registrer: 30 from: account2 to: account1.
+	
+	portfolio:= Portfolio with: account1.
+	
+	self assert: 10 equals: (TransferNetReport for: portfolio) generate.! !
+
+!methodRemoval: ReportTest #test09 stamp: 'am 5/31/2023 20:04:46'!
+test09
+
+	| portfolio account1 account2|
+	
+	
+	account1:= ReceptiveAccount new.
+	account2:= ReceptiveAccount new.
+	Deposit register: 100 on: account1.
+	Withdraw register: 50 on: account1.
+	Transfer registrer: 20 from: account1 to: account2.
+	Transfer registrer: 30 from: account2 to: account1.
+	
+	portfolio:= Portfolio with: account1.
+	
+	self assert: 10 equals: (TransferNetReport for: portfolio) generate.!
+!ReportTest methodsFor: 'tests' stamp: 'am 5/31/2023 20:05:07'!
+test10PortfolioManyLevelDeepTransferNetReportIsOk
+
+	| portfolio account1 account2 portfolio2 |
+	
+	
+	account1:= ReceptiveAccount new.
+	account2:= ReceptiveAccount new.
+	Deposit register: 100 on: account1.
+	Withdraw register: 50 on: account1.
+	Transfer registrer: 20 from: account1 to: account2.
+	Transfer registrer: 30 from: account2 to: account1.
+	
+	portfolio2 := Portfolio with: account1.
+	portfolio:= Portfolio with: portfolio2.
+	
+	self assert: 10 equals: (TransferNetReport for: portfolio) generate.! !
+
+!methodRemoval: ReportTest #test10 stamp: 'am 5/31/2023 20:05:07'!
+test10
+
+	| portfolio account1 account2 portfolio2 |
+	
+	
+	account1:= ReceptiveAccount new.
+	account2:= ReceptiveAccount new.
+	Deposit register: 100 on: account1.
+	Withdraw register: 50 on: account1.
+	Transfer registrer: 20 from: account1 to: account2.
+	Transfer registrer: 30 from: account2 to: account1.
+	
+	portfolio2 := Portfolio with: account1.
+	portfolio:= Portfolio with: portfolio2.
+	
+	self assert: 10 equals: (TransferNetReport for: portfolio) generate.!
+!ReportTest methodsFor: 'tests' stamp: 'am 5/31/2023 20:05:37'!
+test05PorfolioManyLevelsDeepSummaryReportIsOk
+
+	| portfolio account1 account2 portfolio2 expectedSummaryReport|
+	
+	
+	account1:= ReceptiveAccount new.
+	account2:= ReceptiveAccount new.
+	Deposit register: 100 on: account1.
+	Withdraw register: 50 on: account1.
+	Transfer registrer: 20 from: account1 to: account2.
+	Transfer registrer: 30 from: account2 to: account1.
+	
+	portfolio2 := Portfolio with: account1.
+	portfolio:= Portfolio with: portfolio2 with: account2.
+	
+	expectedSummaryReport:= OrderedCollection
+			with: 'Depósito por 100.'
+			with: 'Extracción por 50.'
+			with: 'Salida por transferencia de 20.'
+			with: 'Entrada por transferencia de 30.'
+			with: 'Entrada por transferencia de 20.'
+			with: 'Salida por transferencia de 30.'.
+			
+	
+	expectedSummaryReport 	add: 'Balance = 50'.
+	
+	self assert: expectedSummaryReport equals: (AccountSummaryReport for: portfolio) generate.! !
+
+!methodRemoval: ReportTest #test05AccountWithManyPortfolioLevelsSummaryReportIsOk stamp: 'am 5/31/2023 20:05:37'!
+test05AccountWithManyPortfolioLevelsSummaryReportIsOk
+
+	| portfolio account1 account2 portfolio2 expectedSummaryReport|
+	
+	
+	account1:= ReceptiveAccount new.
+	account2:= ReceptiveAccount new.
+	Deposit register: 100 on: account1.
+	Withdraw register: 50 on: account1.
+	Transfer registrer: 20 from: account1 to: account2.
+	Transfer registrer: 30 from: account2 to: account1.
+	
+	portfolio2 := Portfolio with: account1.
+	portfolio:= Portfolio with: portfolio2 with: account2.
+	
+	expectedSummaryReport:= OrderedCollection
+			with: 'Depósito por 100.'
+			with: 'Extracción por 50.'
+			with: 'Salida por transferencia de 20.'
+			with: 'Entrada por transferencia de 30.'
+			with: 'Entrada por transferencia de 20.'
+			with: 'Salida por transferencia de 30.'.
+			
+	
+	expectedSummaryReport 	add: 'Balance = 50'.
+	
+	self assert: expectedSummaryReport equals: (AccountSummaryReport for: portfolio) generate.!
+!ReportTest methodsFor: 'tests' stamp: 'am 5/31/2023 20:05:53'!
+test04OneLevelPortfolioSummaryReportIsOk
+
+	| portfolio account1 account2|
+	
+	
+	account1:= ReceptiveAccount new.
+	account2:= ReceptiveAccount new.
+	Deposit register: 100 on: account1.
+	Withdraw register: 50 on: account1.
+	Transfer registrer: 20 from: account1 to: account2.
+	Transfer registrer: 30 from: account2 to: account1.
+	
+	portfolio:= Portfolio with: account1.
+	
+	self assert: (
+		OrderedCollection
+			with: 'Depósito por 100.'
+			with: 'Extracción por 50.'
+			with: 'Salida por transferencia de 20.'
+			with: 'Entrada por transferencia de 30.'
+			with: 'Balance = 60'
+		)
+	equals: (AccountSummaryReport for: portfolio) generate.! !
+
+!methodRemoval: ReportTest #test04AccountWithAOneLevelPortfolioSummaryReportIsOk stamp: 'am 5/31/2023 20:05:53'!
+test04AccountWithAOneLevelPortfolioSummaryReportIsOk
+
+	| portfolio account1 account2|
+	
+	
+	account1:= ReceptiveAccount new.
+	account2:= ReceptiveAccount new.
+	Deposit register: 100 on: account1.
+	Withdraw register: 50 on: account1.
+	Transfer registrer: 20 from: account1 to: account2.
+	Transfer registrer: 30 from: account2 to: account1.
+	
+	portfolio:= Portfolio with: account1.
+	
+	self assert: (
+		OrderedCollection
+			with: 'Depósito por 100.'
+			with: 'Extracción por 50.'
+			with: 'Salida por transferencia de 20.'
+			with: 'Entrada por transferencia de 30.'
+			with: 'Balance = 60'
+		)
+	equals: (AccountSummaryReport for: portfolio) generate.!
+!ReportTest methodsFor: 'tests' stamp: 'am 5/31/2023 20:06:18'!
+test05ManyLevelsDeepPortfolioSummaryReportIsOk
+
+	| portfolio account1 account2 portfolio2 expectedSummaryReport|
+	
+	
+	account1:= ReceptiveAccount new.
+	account2:= ReceptiveAccount new.
+	Deposit register: 100 on: account1.
+	Withdraw register: 50 on: account1.
+	Transfer registrer: 20 from: account1 to: account2.
+	Transfer registrer: 30 from: account2 to: account1.
+	
+	portfolio2 := Portfolio with: account1.
+	portfolio:= Portfolio with: portfolio2 with: account2.
+	
+	expectedSummaryReport:= OrderedCollection
+			with: 'Depósito por 100.'
+			with: 'Extracción por 50.'
+			with: 'Salida por transferencia de 20.'
+			with: 'Entrada por transferencia de 30.'
+			with: 'Entrada por transferencia de 20.'
+			with: 'Salida por transferencia de 30.'.
+			
+	
+	expectedSummaryReport 	add: 'Balance = 50'.
+	
+	self assert: expectedSummaryReport equals: (AccountSummaryReport for: portfolio) generate.! !
+
+!methodRemoval: ReportTest #test05PorfolioManyLevelsDeepSummaryReportIsOk stamp: 'am 5/31/2023 20:06:18'!
+test05PorfolioManyLevelsDeepSummaryReportIsOk
+
+	| portfolio account1 account2 portfolio2 expectedSummaryReport|
+	
+	
+	account1:= ReceptiveAccount new.
+	account2:= ReceptiveAccount new.
+	Deposit register: 100 on: account1.
+	Withdraw register: 50 on: account1.
+	Transfer registrer: 20 from: account1 to: account2.
+	Transfer registrer: 30 from: account2 to: account1.
+	
+	portfolio2 := Portfolio with: account1.
+	portfolio:= Portfolio with: portfolio2 with: account2.
+	
+	expectedSummaryReport:= OrderedCollection
+			with: 'Depósito por 100.'
+			with: 'Extracción por 50.'
+			with: 'Salida por transferencia de 20.'
+			with: 'Entrada por transferencia de 30.'
+			with: 'Entrada por transferencia de 20.'
+			with: 'Salida por transferencia de 30.'.
+			
+	
+	expectedSummaryReport 	add: 'Balance = 50'.
+	
+	self assert: expectedSummaryReport equals: (AccountSummaryReport for: portfolio) generate.!
+!ReportTest methodsFor: 'tests' stamp: 'am 5/31/2023 20:06:44'!
+test09OneLevelDeepPortfolioTransferNetReportIsOk
+
+	| portfolio account1 account2|
+	
+	
+	account1:= ReceptiveAccount new.
+	account2:= ReceptiveAccount new.
+	Deposit register: 100 on: account1.
+	Withdraw register: 50 on: account1.
+	Transfer registrer: 20 from: account1 to: account2.
+	Transfer registrer: 30 from: account2 to: account1.
+	
+	portfolio:= Portfolio with: account1.
+	
+	self assert: 10 equals: (TransferNetReport for: portfolio) generate.! !
+
+!methodRemoval: ReportTest #test09PortfolioOneLevelDeepTransferNetReportIsOk stamp: 'am 5/31/2023 20:06:44'!
+test09PortfolioOneLevelDeepTransferNetReportIsOk
+
+	| portfolio account1 account2|
+	
+	
+	account1:= ReceptiveAccount new.
+	account2:= ReceptiveAccount new.
+	Deposit register: 100 on: account1.
+	Withdraw register: 50 on: account1.
+	Transfer registrer: 20 from: account1 to: account2.
+	Transfer registrer: 30 from: account2 to: account1.
+	
+	portfolio:= Portfolio with: account1.
+	
+	self assert: 10 equals: (TransferNetReport for: portfolio) generate.!
+!ReportTest methodsFor: 'tests' stamp: 'am 5/31/2023 20:06:58'!
+test10ManyLevelDeepPortfolioTransferNetReportIsOk
+
+	| portfolio account1 account2 portfolio2 |
+	
+	
+	account1:= ReceptiveAccount new.
+	account2:= ReceptiveAccount new.
+	Deposit register: 100 on: account1.
+	Withdraw register: 50 on: account1.
+	Transfer registrer: 20 from: account1 to: account2.
+	Transfer registrer: 30 from: account2 to: account1.
+	
+	portfolio2 := Portfolio with: account1.
+	portfolio:= Portfolio with: portfolio2.
+	
+	self assert: 10 equals: (TransferNetReport for: portfolio) generate.! !
+
+!methodRemoval: ReportTest #test10PortfolioManyLevelDeepTransferNetReportIsOk stamp: 'am 5/31/2023 20:06:58'!
+test10PortfolioManyLevelDeepTransferNetReportIsOk
+
+	| portfolio account1 account2 portfolio2 |
+	
+	
+	account1:= ReceptiveAccount new.
+	account2:= ReceptiveAccount new.
+	Deposit register: 100 on: account1.
+	Withdraw register: 50 on: account1.
+	Transfer registrer: 20 from: account1 to: account2.
+	Transfer registrer: 30 from: account2 to: account1.
+	
+	portfolio2 := Portfolio with: account1.
+	portfolio:= Portfolio with: portfolio2.
+	
+	self assert: 10 equals: (TransferNetReport for: portfolio) generate.!
+!ReportTest methodsFor: 'tests' stamp: 'am 5/31/2023 20:07:17'!
+test04OneLevelDeepPortfolioSummaryReportIsOk
+
+	| portfolio account1 account2|
+	
+	
+	account1:= ReceptiveAccount new.
+	account2:= ReceptiveAccount new.
+	Deposit register: 100 on: account1.
+	Withdraw register: 50 on: account1.
+	Transfer registrer: 20 from: account1 to: account2.
+	Transfer registrer: 30 from: account2 to: account1.
+	
+	portfolio:= Portfolio with: account1.
+	
+	self assert: (
+		OrderedCollection
+			with: 'Depósito por 100.'
+			with: 'Extracción por 50.'
+			with: 'Salida por transferencia de 20.'
+			with: 'Entrada por transferencia de 30.'
+			with: 'Balance = 60'
+		)
+	equals: (AccountSummaryReport for: portfolio) generate.! !
+
+!methodRemoval: ReportTest #test04OneLevelPortfolioSummaryReportIsOk stamp: 'am 5/31/2023 20:07:17'!
+test04OneLevelPortfolioSummaryReportIsOk
+
+	| portfolio account1 account2|
+	
+	
+	account1:= ReceptiveAccount new.
+	account2:= ReceptiveAccount new.
+	Deposit register: 100 on: account1.
+	Withdraw register: 50 on: account1.
+	Transfer registrer: 20 from: account1 to: account2.
+	Transfer registrer: 30 from: account2 to: account1.
+	
+	portfolio:= Portfolio with: account1.
+	
+	self assert: (
+		OrderedCollection
+			with: 'Depósito por 100.'
+			with: 'Extracción por 50.'
+			with: 'Salida por transferencia de 20.'
+			with: 'Entrada por transferencia de 30.'
+			with: 'Balance = 60'
+		)
+	equals: (AccountSummaryReport for: portfolio) generate.!
+
+----SNAPSHOT----(31 May 2023 20:07:27) CuisUniversity-5832.image priorSource: 9366758!
+!PortfolioReportTest methodsFor: 'tests' stamp: 'am 5/31/2023 20:10:51'!
+test01NewPortfolioPortfolioAccountSummaryReportIsOk
+
+	self assert: (OrderedCollection with:'Portfolio de la familia')
+		 equals: (PortfolioAccountSummaryReport for: (Portfolio named: 'Portfolio de la familia')) generate.! !
+
+!methodRemoval: PortfolioReportTest #test01 stamp: 'am 5/31/2023 20:10:52'!
+test01
+
+	self assert: (OrderedCollection with:'Portfolio de la familia')
+		 equals: (PortfolioAccountSummaryReport for: (Portfolio named: 'Portfolio de la familia')) generate.!
+
+!testRun: #PortfolioReportTest #test01NewPortfolioPortfolioAccountSummaryReportIsOk stamp: 'am 5/31/2023 20:11:04'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test02 stamp: 'am 5/31/2023 20:11:04'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test03 stamp: 'am 5/31/2023 20:11:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'am 5/31/2023 20:11:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithAccountsIsSumOfAccountsBalance stamp: 'am 5/31/2023 20:11:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'am 5/31/2023 20:11:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'am 5/31/2023 20:11:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'am 5/31/2023 20:11:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'am 5/31/2023 20:11:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'am 5/31/2023 20:11:05'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'am 5/31/2023 20:11:05'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'am 5/31/2023 20:11:05'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'am 5/31/2023 20:11:05'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'am 5/31/2023 20:11:05'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'am 5/31/2023 20:11:05'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'am 5/31/2023 20:11:05'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'am 5/31/2023 20:11:05'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'am 5/31/2023 20:11:05'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'am 5/31/2023 20:11:05'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'am 5/31/2023 20:11:05'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'am 5/31/2023 20:11:05'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'am 5/31/2023 20:11:05'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'am 5/31/2023 20:11:05'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'am 5/31/2023 20:11:05'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'am 5/31/2023 20:11:05'!
+PASSED!
+
+!testRun: #ReportTest #test01NewReceptiveAccountSummaryReportIsOk stamp: 'am 5/31/2023 20:11:05'!
+PASSED!
+
+!testRun: #ReportTest #test02ReceptiveAccountWithOneTransactionSummaryReportIsOk stamp: 'am 5/31/2023 20:11:05'!
+PASSED!
+
+!testRun: #ReportTest #test03NewPortfolioSummaryReportIsOk stamp: 'am 5/31/2023 20:11:05'!
+PASSED!
+
+!testRun: #ReportTest #test04OneLevelDeepPortfolioSummaryReportIsOk stamp: 'am 5/31/2023 20:11:05'!
+PASSED!
+
+!testRun: #ReportTest #test05ManyLevelsDeepPortfolioSummaryReportIsOk stamp: 'am 5/31/2023 20:11:06'!
+PASSED!
+
+!testRun: #ReportTest #test06NewReceptiveAccountTransferNetReportIsOk stamp: 'am 5/31/2023 20:11:06'!
+PASSED!
+
+!testRun: #ReportTest #test07ReceptiveAccountWithManyTransactionTransferNetReportIsOk stamp: 'am 5/31/2023 20:11:06'!
+PASSED!
+
+!testRun: #ReportTest #test08NewPortfolioTransferNetReportIsOk stamp: 'am 5/31/2023 20:11:06'!
+PASSED!
+
+!testRun: #ReportTest #test09OneLevelDeepPortfolioTransferNetReportIsOk stamp: 'am 5/31/2023 20:11:06'!
+PASSED!
+
+!testRun: #ReportTest #test10ManyLevelDeepPortfolioTransferNetReportIsOk stamp: 'am 5/31/2023 20:11:06'!
+PASSED!
+
+!testRun: #TransferTest #test01TransferCorrectlyDecreasesSenderBalanceAndIncreasesReceiverBalanceForTheAmountTransfered stamp: 'am 5/31/2023 20:11:06'!
+PASSED!
+
+!testRun: #TransferTest #test02SenderAccountCorrectlyRegistersATransferSending stamp: 'am 5/31/2023 20:11:06'!
+PASSED!
+
+!testRun: #TransferTest #test03ReceptionAccountCorrectlyRegistersATransferReception stamp: 'am 5/31/2023 20:11:06'!
+PASSED!
+
+!testRun: #TransferTest #test04TransferSendingCanReachTheTransfer stamp: 'am 5/31/2023 20:11:06'!
+PASSED!
+
+!testRun: #TransferTest #test05TransferReceptionCanReachTheTransfer stamp: 'am 5/31/2023 20:11:06'!
+PASSED!
+
+!testRun: #TransferTest #test06CannotTransferAnAmountThatItIsNotAStrictlyPositiveNumber stamp: 'am 5/31/2023 20:11:06'!
+PASSED!
+
+!testRun: #TransferTest #test07CannotTransferToTheSameAccount stamp: 'am 5/31/2023 20:11:06'!
+PASSED!
+!PortfolioReportTest methodsFor: 'tests' stamp: 'am 5/31/2023 20:11:55'!
+test02OneLevelDeepPortfolioPortfolioAccountSummaryReportIsOk
+
+
+	|myAccount familyPortfolio|
+	myAccount := ReceptiveAccount named: 'Cuenta mia'.
+	familyPortfolio := Portfolio named: 'Portfolio de la familia' with: myAccount.
+
+	self assert: (OrderedCollection with:'Portfolio de la familia' with: ' Cuenta mia')
+		 equals: (PortfolioAccountSummaryReport for: familyPortfolio) generate.! !
+
+!methodRemoval: PortfolioReportTest #test02 stamp: 'am 5/31/2023 20:11:55'!
+test02
+
+
+	|myAccount familyPortfolio|
+	myAccount := ReceptiveAccount named: 'Cuenta mia'.
+	familyPortfolio := Portfolio named: 'Portfolio de la familia' with: myAccount.
+
+	self assert: (OrderedCollection with:'Portfolio de la familia' with: ' Cuenta mia')
+		 equals: (PortfolioAccountSummaryReport for: familyPortfolio) generate.!
+!PortfolioReportTest methodsFor: 'tests' stamp: 'am 5/31/2023 20:12:18'!
+test03ManyLevelDeepPortfolioPortfolioAccountSummaryReportIsOk
+
+
+	|myAccount familyPortfolio johnsAccount angiesAccount childrenPortfolio|
+	johnsAccount := ReceptiveAccount named: 'Cuenta de Juan'.
+	angiesAccount := ReceptiveAccount named: 'Cuenta de Angeles'.
+	childrenPortfolio := Portfolio named: 'Portfolio de hijos' with: johnsAccount with: angiesAccount.
+	myAccount := ReceptiveAccount named: 'Cuenta mia'.
+	familyPortfolio := Portfolio named: 'Portfolio de la familia' with: myAccount with: childrenPortfolio.
+
+	self assert: (OrderedCollection 
+				with:'Portfolio de la familia' 
+				with: ' Cuenta mia'
+				with: ' Portfolio de hijos'
+				with: '  Cuenta de Juan'
+				with: '  Cuenta de Angeles'
+		)
+		 equals: (PortfolioAccountSummaryReport for: familyPortfolio) generate.! !
+
+!methodRemoval: PortfolioReportTest #test03 stamp: 'am 5/31/2023 20:12:18'!
+test03
+
+
+	|myAccount familyPortfolio johnsAccount angiesAccount childrenPortfolio|
+	johnsAccount := ReceptiveAccount named: 'Cuenta de Juan'.
+	angiesAccount := ReceptiveAccount named: 'Cuenta de Angeles'.
+	childrenPortfolio := Portfolio named: 'Portfolio de hijos' with: johnsAccount with: angiesAccount.
+	myAccount := ReceptiveAccount named: 'Cuenta mia'.
+	familyPortfolio := Portfolio named: 'Portfolio de la familia' with: myAccount with: childrenPortfolio.
+
+	self assert: (OrderedCollection 
+				with:'Portfolio de la familia' 
+				with: ' Cuenta mia'
+				with: ' Portfolio de hijos'
+				with: '  Cuenta de Juan'
+				with: '  Cuenta de Angeles'
+		)
+		 equals: (PortfolioAccountSummaryReport for: familyPortfolio) generate.!
+
+----SNAPSHOT----(31 May 2023 20:12:37) CuisUniversity-5832.image priorSource: 9437897!
+
+----QUIT----(31 May 2023 20:13:03) CuisUniversity-5832.image priorSource: 9446069!

@@ -5,14 +5,14 @@ TestCase subclass: #PortfolioReportTest
 	poolDictionaries: ''
 	category: 'Portfolio-Solucion'!
 
-!PortfolioReportTest methodsFor: 'tests' stamp: 'NB 5/31/2023 00:29:35'!
-test01
+!PortfolioReportTest methodsFor: 'tests' stamp: 'am 5/31/2023 20:10:51'!
+test01NewPortfolioPortfolioAccountSummaryReportIsOk
 
 	self assert: (OrderedCollection with:'Portfolio de la familia')
 		 equals: (PortfolioAccountSummaryReport for: (Portfolio named: 'Portfolio de la familia')) generate.! !
 
-!PortfolioReportTest methodsFor: 'tests' stamp: 'NB 5/31/2023 00:29:35'!
-test02
+!PortfolioReportTest methodsFor: 'tests' stamp: 'am 5/31/2023 20:11:55'!
+test02OneLevelDeepPortfolioPortfolioAccountSummaryReportIsOk
 
 
 	|myAccount familyPortfolio|
@@ -22,8 +22,8 @@ test02
 	self assert: (OrderedCollection with:'Portfolio de la familia' with: ' Cuenta mia')
 		 equals: (PortfolioAccountSummaryReport for: familyPortfolio) generate.! !
 
-!PortfolioReportTest methodsFor: 'tests' stamp: 'NB 5/31/2023 00:29:35'!
-test03
+!PortfolioReportTest methodsFor: 'tests' stamp: 'am 5/31/2023 20:12:18'!
+test03ManyLevelDeepPortfolioPortfolioAccountSummaryReportIsOk
 
 
 	|myAccount familyPortfolio johnsAccount angiesAccount childrenPortfolio|
@@ -357,13 +357,13 @@ TestCase subclass: #ReportTest
 	poolDictionaries: ''
 	category: 'Portfolio-Solucion'!
 
-!ReportTest methodsFor: 'tests' stamp: 'NB 5/26/2023 23:43:22'!
-test01
+!ReportTest methodsFor: 'tests' stamp: 'am 5/31/2023 19:50:27'!
+test01NewReceptiveAccountSummaryReportIsOk
 	
 	self assert: (OrderedCollection with: 'Balance = 0') equals: (AccountSummaryReport for: ReceptiveAccount new) generate.! !
 
-!ReportTest methodsFor: 'tests' stamp: 'NB 5/26/2023 23:53:53'!
-test02
+!ReportTest methodsFor: 'tests' stamp: 'am 5/31/2023 19:55:54'!
+test02ReceptiveAccountWithOneTransactionSummaryReportIsOk
 
 	| account1 account2|
 	
@@ -384,8 +384,8 @@ test02
 		)
 	equals: (AccountSummaryReport for: account1) generate.! !
 
-!ReportTest methodsFor: 'tests' stamp: 'NB 5/28/2023 15:42:13'!
-test03
+!ReportTest methodsFor: 'tests' stamp: 'am 5/31/2023 19:52:57'!
+test03NewPortfolioSummaryReportIsOk
 
 	| portfolio |
 	
@@ -397,8 +397,8 @@ test03
 		)
 	equals: (AccountSummaryReport for: portfolio) generate.! !
 
-!ReportTest methodsFor: 'tests' stamp: 'NB 5/28/2023 15:43:54'!
-test04
+!ReportTest methodsFor: 'tests' stamp: 'am 5/31/2023 20:07:17'!
+test04OneLevelDeepPortfolioSummaryReportIsOk
 
 	| portfolio account1 account2|
 	
@@ -422,8 +422,8 @@ test04
 		)
 	equals: (AccountSummaryReport for: portfolio) generate.! !
 
-!ReportTest methodsFor: 'tests' stamp: 'NB 5/28/2023 16:03:11'!
-test05
+!ReportTest methodsFor: 'tests' stamp: 'am 5/31/2023 20:06:18'!
+test05ManyLevelsDeepPortfolioSummaryReportIsOk
 
 	| portfolio account1 account2 portfolio2 expectedSummaryReport|
 	
@@ -451,13 +451,13 @@ test05
 	
 	self assert: expectedSummaryReport equals: (AccountSummaryReport for: portfolio) generate.! !
 
-!ReportTest methodsFor: 'tests' stamp: 'NB 5/28/2023 16:04:41'!
-test06
+!ReportTest methodsFor: 'tests' stamp: 'am 5/31/2023 20:01:38'!
+test06NewReceptiveAccountTransferNetReportIsOk
 	
 	self assert: 0 equals: (TransferNetReport for: ReceptiveAccount new) generate.! !
 
-!ReportTest methodsFor: 'tests' stamp: 'NB 5/28/2023 16:07:01'!
-test07
+!ReportTest methodsFor: 'tests' stamp: 'am 5/31/2023 20:02:28'!
+test07ReceptiveAccountWithManyTransactionTransferNetReportIsOk
 
 	| account1 account2|
 	
@@ -470,13 +470,13 @@ test07
 	
 	self assert: 10 equals: (TransferNetReport for: account1) generate.! !
 
-!ReportTest methodsFor: 'tests' stamp: 'NB 5/28/2023 16:16:53'!
-test08
+!ReportTest methodsFor: 'tests' stamp: 'am 5/31/2023 20:03:37'!
+test08NewPortfolioTransferNetReportIsOk
 
 	self assert: 0 equals: (TransferNetReport for: Portfolio new) generate.! !
 
-!ReportTest methodsFor: 'tests' stamp: 'NB 5/28/2023 16:17:55'!
-test09
+!ReportTest methodsFor: 'tests' stamp: 'am 5/31/2023 20:06:44'!
+test09OneLevelDeepPortfolioTransferNetReportIsOk
 
 	| portfolio account1 account2|
 	
@@ -492,8 +492,8 @@ test09
 	
 	self assert: 10 equals: (TransferNetReport for: portfolio) generate.! !
 
-!ReportTest methodsFor: 'tests' stamp: 'NB 5/28/2023 16:23:23'!
-test10
+!ReportTest methodsFor: 'tests' stamp: 'am 5/31/2023 20:06:58'!
+test10ManyLevelDeepPortfolioTransferNetReportIsOk
 
 	| portfolio account1 account2 portfolio2 |
 	
