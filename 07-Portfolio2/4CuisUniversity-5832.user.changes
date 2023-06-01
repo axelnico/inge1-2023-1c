@@ -1,0 +1,3116 @@
+
+
+----QUIT----(30 May 2023 00:05:32) CuisUniversity-5832.image priorSource: 4928100!
+
+----STARTUP---- (30 May 2023 00:05:33) as /Users/hernan/Documents/Cuis/5.0-64Bits/Cuis-University-Installer/CuisUniversity-5832.image!
+
+
+----QUIT----(30 May 2023 00:05:33) CuisUniversity-5832.image priorSource: 9366537!
+
+----STARTUP---- (31 May 2023 22:53:50) as /Users/nico/Documents/inge1/cuis-images/macos64 2/CuisUniversity-5832.image!
+
+
+----End fileIn of /Users/nico/Documents/inge1/inge1-2023-1c/07-Portfolio2/Portfolio-Solucion.st----!
+
+!testRun: #PortfolioReportTest #test01NewPortfolioPortfolioAccountSummaryReportIsOk stamp: 'NB 5/31/2023 22:54:42'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test02OneLevelDeepPortfolioPortfolioAccountSummaryReportIsOk stamp: 'NB 5/31/2023 22:54:42'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test03ManyLevelDeepPortfolioPortfolioAccountSummaryReportIsOk stamp: 'NB 5/31/2023 22:54:42'!
+PASSED!
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'NB 5/31/2023 22:54:42'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithAccountsIsSumOfAccountsBalance stamp: 'NB 5/31/2023 22:54:42'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'NB 5/31/2023 22:54:42'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'NB 5/31/2023 22:54:42'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'NB 5/31/2023 22:54:42'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'NB 5/31/2023 22:54:43'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'NB 5/31/2023 22:54:43'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'NB 5/31/2023 22:54:43'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'NB 5/31/2023 22:54:43'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'NB 5/31/2023 22:54:43'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'NB 5/31/2023 22:54:43'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'NB 5/31/2023 22:54:43'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'NB 5/31/2023 22:54:43'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'NB 5/31/2023 22:54:43'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'NB 5/31/2023 22:54:43'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'NB 5/31/2023 22:54:43'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'NB 5/31/2023 22:54:43'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'NB 5/31/2023 22:54:43'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'NB 5/31/2023 22:54:43'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'NB 5/31/2023 22:54:43'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'NB 5/31/2023 22:54:43'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'NB 5/31/2023 22:54:43'!
+PASSED!
+
+!testRun: #ReportTest #test01NewReceptiveAccountSummaryReportIsOk stamp: 'NB 5/31/2023 22:54:43'!
+PASSED!
+
+!testRun: #ReportTest #test02ReceptiveAccountWithOneTransactionSummaryReportIsOk stamp: 'NB 5/31/2023 22:54:43'!
+PASSED!
+
+!testRun: #ReportTest #test03NewPortfolioSummaryReportIsOk stamp: 'NB 5/31/2023 22:54:43'!
+PASSED!
+
+!testRun: #ReportTest #test04OneLevelDeepPortfolioSummaryReportIsOk stamp: 'NB 5/31/2023 22:54:43'!
+PASSED!
+
+!testRun: #ReportTest #test05ManyLevelsDeepPortfolioSummaryReportIsOk stamp: 'NB 5/31/2023 22:54:43'!
+PASSED!
+
+!testRun: #ReportTest #test06NewReceptiveAccountTransferNetReportIsOk stamp: 'NB 5/31/2023 22:54:43'!
+PASSED!
+
+!testRun: #ReportTest #test07ReceptiveAccountWithManyTransactionTransferNetReportIsOk stamp: 'NB 5/31/2023 22:54:43'!
+PASSED!
+
+!testRun: #ReportTest #test08NewPortfolioTransferNetReportIsOk stamp: 'NB 5/31/2023 22:54:43'!
+PASSED!
+
+!testRun: #ReportTest #test09OneLevelDeepPortfolioTransferNetReportIsOk stamp: 'NB 5/31/2023 22:54:43'!
+PASSED!
+
+!testRun: #ReportTest #test10ManyLevelDeepPortfolioTransferNetReportIsOk stamp: 'NB 5/31/2023 22:54:43'!
+PASSED!
+
+!testRun: #TransferTest #test01TransferCorrectlyDecreasesSenderBalanceAndIncreasesReceiverBalanceForTheAmountTransfered stamp: 'NB 5/31/2023 22:54:43'!
+PASSED!
+
+!testRun: #TransferTest #test02SenderAccountCorrectlyRegistersATransferSending stamp: 'NB 5/31/2023 22:54:43'!
+PASSED!
+
+!testRun: #TransferTest #test03ReceptionAccountCorrectlyRegistersATransferReception stamp: 'NB 5/31/2023 22:54:43'!
+PASSED!
+
+!testRun: #TransferTest #test04TransferSendingCanReachTheTransfer stamp: 'NB 5/31/2023 22:54:43'!
+PASSED!
+
+!testRun: #TransferTest #test05TransferReceptionCanReachTheTransfer stamp: 'NB 5/31/2023 22:54:43'!
+PASSED!
+
+!testRun: #TransferTest #test06CannotTransferAnAmountThatItIsNotAStrictlyPositiveNumber stamp: 'NB 5/31/2023 22:54:43'!
+PASSED!
+
+!testRun: #TransferTest #test07CannotTransferToTheSameAccount stamp: 'NB 5/31/2023 22:54:43'!
+PASSED!
+!Account methodsFor: 'reports' stamp: 'NB 5/31/2023 23:00:01'!
+operateOver: aReport
+	
+	self subclassResponsibility .! !
+!Portfolio methodsFor: 'reports' stamp: 'NB 5/31/2023 23:00:01' overrides: 50626075!
+operateOver: aReport
+	
+	accounts do: [:anAccount | anAccount addToReport: aReport].
+	! !
+!ReceptiveAccount methodsFor: 'reports' stamp: 'NB 5/31/2023 23:00:01' overrides: 50626075!
+operateOver: aReport
+	
+	transactions do: [:aTransaction | aTransaction addReportLineTo: aReport].! !
+!TransferNetReport methodsFor: 'as yet unclassified' stamp: 'NB 5/31/2023 23:00:01' prior: 50625621 overrides: 50625509!
+generate
+	
+	transferNetAmount := 0.
+	account operateOver: self.
+	^transferNetAmount.! !
+!AccountSummaryReport methodsFor: 'as yet unclassified' stamp: 'NB 5/31/2023 23:00:01' prior: 50625579 overrides: 50625509!
+generate
+
+	reportLines:= OrderedCollection new.
+	account operateOver: self.
+	self addBalanceLine.
+	^reportLines.
+	
+	! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'NB 5/31/2023 23:00:01' prior: 50625230 overrides: 50625094!
+addToReport: aReport
+	
+	accounts do: [:anAccount | anAccount operateOver: aReport].
+	! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'NB 5/31/2023 23:00:01' prior: 50626080 overrides: 50626075!
+operateOver: aReport
+	
+	accounts do: [:anAccount | anAccount operateOver: aReport].
+	! !
+
+!methodRemoval: Account #addToReport: stamp: 'NB 5/31/2023 23:00:01'!
+addToReport: aReport
+	
+	self subclassResponsibility .!
+
+!methodRemoval: Portfolio #addToReport: stamp: 'NB 5/31/2023 23:00:01'!
+addToReport: aReport
+	
+	accounts do: [:anAccount | anAccount operateOver: aReport].
+	!
+
+!methodRemoval: ReceptiveAccount #addToReport: stamp: 'NB 5/31/2023 23:00:01'!
+addToReport: aReport
+	
+	transactions do: [:aTransaction | aTransaction addReportLineTo: aReport].!
+!Account methodsFor: 'reports' stamp: 'NB 5/31/2023 23:00:22' prior: 50626075!
+operateOver: anOperationOverAccount
+	
+	self subclassResponsibility .! !
+!Portfolio methodsFor: 'reports' stamp: 'NB 5/31/2023 23:01:20' prior: 50626115 overrides: 50626135!
+operateOver: anOperationOverAccount
+
+	anOperationOverAccount operationOverPortofolio: self.
+	
+	
+	! !
+!AccountSummaryReport methodsFor: 'reports' stamp: 'NB 5/31/2023 23:14:08'!
+operationOverPorfolio: aPortoflio
+
+	aPortoflio traverseWithOperation: self.
+	
+	! !
+!Portfolio methodsFor: 'reports' stamp: 'NB 5/31/2023 23:14:35'!
+traverseWithOperation: anOperationOverAccount
+
+	accounts do: [:anAccount | anAccount operateOver: anOperationOverAccount].
+	
+	
+	! !
+!Portfolio methodsFor: 'reports' stamp: 'NB 5/31/2023 23:14:58' prior: 50626141 overrides: 50626135!
+operateOver: anOperationOverAccount
+
+	anOperationOverAccount operationOverPortfolio: self.
+	
+	
+	! !
+!AccountSummaryReport methodsFor: 'reports' stamp: 'NB 5/31/2023 23:15:18'!
+operationOverPortfolio: aPortoflio
+
+	aPortoflio traverseWithOperation: self.
+	
+	! !
+
+!methodRemoval: AccountSummaryReport #operationOverPorfolio: stamp: 'NB 5/31/2023 23:15:18'!
+operationOverPorfolio: aPortoflio
+
+	aPortoflio traverseWithOperation: self.
+	
+	!
+!ReceptiveAccount methodsFor: 'reports' stamp: 'NB 5/31/2023 23:16:22' prior: 50626086 overrides: 50626135!
+operateOver: anOperationOverAccount
+
+	anOperationOverAccount operationOverReceptiveAccount: self.
+	
+	! !
+!AccountSummaryReport methodsFor: 'reports' stamp: 'NB 5/31/2023 23:16:55'!
+operationOverReceptiveAccount: aReceptiveAccount
+
+	aReceptiveAccount traverseWithOperation: self.
+	
+	! !
+!ReceptiveAccount methodsFor: 'reports' stamp: 'NB 5/31/2023 23:18:05'!
+traverseWithOperation: anOperationOverAccount
+
+	transactions do: [:aTransaction | aTransaction addReportLineTo: anOperationOverAccount].
+	
+	! !
+!ReceptiveAccount methodsFor: 'reports' stamp: 'NB 5/31/2023 23:18:47' prior: 50626190!
+traverseWithOperation: anOperationOverAccount
+
+	transactions do: [:aTransaction | aTransaction operateOver: anOperationOverAccount].
+	
+	! !
+!Transaction methodsFor: 'reports' stamp: 'NB 5/31/2023 23:19:27'!
+operateOver: aReport
+
+	self subclassResponsibility .! !
+!Deposit methodsFor: 'balance' stamp: 'NB 5/31/2023 23:19:27' overrides: 50626205!
+operateOver: aReport
+
+	aReport addDeposit: self.
+	! !
+!Withdraw methodsFor: 'reports' stamp: 'NB 5/31/2023 23:19:27' overrides: 50626205!
+operateOver: aReport
+
+	aReport addWithdraw: self.
+	
+
+	! !
+!TransferReception methodsFor: 'reports' stamp: 'NB 5/31/2023 23:19:27' overrides: 50626205!
+operateOver: aReport
+
+	aReport addTransferReception: self.
+	
+! !
+!TransferSending methodsFor: 'reports' stamp: 'NB 5/31/2023 23:19:27' overrides: 50626205!
+operateOver: aReport
+
+	aReport addTransferSending: self.
+	! !
+
+!methodRemoval: Transaction #addReportLineTo: stamp: 'NB 5/31/2023 23:19:27'!
+addReportLineTo: aReport
+
+	self subclassResponsibility .!
+
+!methodRemoval: Deposit #addReportLineTo: stamp: 'NB 5/31/2023 23:19:27'!
+addReportLineTo: aReport
+
+	aReport addDeposit: self.
+	!
+
+!methodRemoval: Withdraw #addReportLineTo: stamp: 'NB 5/31/2023 23:19:27'!
+addReportLineTo: aReport
+
+	aReport addWithdraw: self.
+	
+
+	!
+
+!methodRemoval: TransferReception #addReportLineTo: stamp: 'NB 5/31/2023 23:19:27'!
+addReportLineTo: aReport
+
+	aReport addTransferReception: self.
+	
+!
+
+!methodRemoval: TransferSending #addReportLineTo: stamp: 'NB 5/31/2023 23:19:27'!
+addReportLineTo: aReport
+
+	aReport addTransferSending: self.
+	!
+!Deposit methodsFor: 'balance' stamp: 'NB 5/31/2023 23:20:10' prior: 50626210 overrides: 50626205!
+operateOver: aReport
+
+	aReport operationOverDeposit: self.
+	! !
+!Withdraw methodsFor: 'reports' stamp: 'NB 5/31/2023 23:20:25' prior: 50626215 overrides: 50626205!
+operateOver: aReport
+
+	aReport operationOverWithdraw: self.
+	
+
+	! !
+!TransferReception methodsFor: 'reports' stamp: 'NB 5/31/2023 23:20:34' prior: 50626220 overrides: 50626205!
+operateOver: aReport
+
+	aReport operationOverTransferReception: self.
+	
+! !
+!TransferSending methodsFor: 'reports' stamp: 'NB 5/31/2023 23:20:45' prior: 50626225 overrides: 50626205!
+operateOver: aReport
+
+	aReport operationOverTransferSending: self.
+	! !
+!Report methodsFor: 'reports' stamp: 'NB 5/31/2023 23:21:16'!
+operationOverDeposit: aDeposit
+
+	self subclassResponsibility .! !
+!AccountSummaryReport methodsFor: 'reports' stamp: 'NB 5/31/2023 23:21:16' overrides: 50626275!
+operationOverDeposit: aDeposit
+
+	reportLines add: 'Depósito por ', aDeposit value asString ,'.'.
+	
+	! !
+!TransferNetReport methodsFor: 'reports' stamp: 'NB 5/31/2023 23:21:16' overrides: 50626275!
+operationOverDeposit: aDeposit
+
+	! !
+
+!methodRemoval: Report #addDeposit: stamp: 'NB 5/31/2023 23:21:16'!
+addDeposit: aDeposit
+
+	self subclassResponsibility .!
+
+!methodRemoval: AccountSummaryReport #addDeposit: stamp: 'NB 5/31/2023 23:21:16'!
+addDeposit: aDeposit
+
+	reportLines add: 'Depósito por ', aDeposit value asString ,'.'.
+	
+	!
+
+!methodRemoval: TransferNetReport #addDeposit: stamp: 'NB 5/31/2023 23:21:16'!
+addDeposit: aDeposit
+
+	!
+!Report methodsFor: 'reports' stamp: 'NB 5/31/2023 23:21:35'!
+operationOverWithdraw: aWithdraw
+
+	self subclassResponsibility .! !
+!AccountSummaryReport methodsFor: 'reports' stamp: 'NB 5/31/2023 23:21:35' overrides: 50626304!
+operationOverWithdraw: aWithdraw
+
+	reportLines add: 'Extracción por ', aWithdraw value asString,'.'.
+	
+	! !
+!TransferNetReport methodsFor: 'reports' stamp: 'NB 5/31/2023 23:21:35' overrides: 50626304!
+operationOverWithdraw: aWithdraw
+
+	
+	! !
+
+!methodRemoval: Report #addWithdraw: stamp: 'NB 5/31/2023 23:21:35'!
+addWithdraw: aWithdraw
+
+	self subclassResponsibility .!
+
+!methodRemoval: AccountSummaryReport #addWithdraw: stamp: 'NB 5/31/2023 23:21:35'!
+addWithdraw: aWithdraw
+
+	reportLines add: 'Extracción por ', aWithdraw value asString,'.'.
+	
+	!
+
+!methodRemoval: TransferNetReport #addWithdraw: stamp: 'NB 5/31/2023 23:21:35'!
+addWithdraw: aWithdraw
+
+	
+	!
+!Report methodsFor: 'reports' stamp: 'NB 5/31/2023 23:21:52'!
+operationOverTransferReception: aTransferReception
+
+	self subclassResponsibility .! !
+!AccountSummaryReport methodsFor: 'reports' stamp: 'NB 5/31/2023 23:21:52' overrides: 50626334!
+operationOverTransferReception: aTransferReception
+
+	reportLines add: 'Entrada por transferencia de ', aTransferReception value asString,'.'.
+	
+	! !
+!TransferNetReport methodsFor: 'reports' stamp: 'NB 5/31/2023 23:21:52' overrides: 50626334!
+operationOverTransferReception: aTransferReception
+
+	transferNetAmount:= transferNetAmount + aTransferReception value.
+	
+	! !
+
+!methodRemoval: Report #addTransferReception: stamp: 'NB 5/31/2023 23:21:52'!
+addTransferReception: aTransferReception
+
+	self subclassResponsibility .!
+
+!methodRemoval: AccountSummaryReport #addTransferReception: stamp: 'NB 5/31/2023 23:21:52'!
+addTransferReception: aTransferReception
+
+	reportLines add: 'Entrada por transferencia de ', aTransferReception value asString,'.'.
+	
+	!
+
+!methodRemoval: TransferNetReport #addTransferReception: stamp: 'NB 5/31/2023 23:21:52'!
+addTransferReception: aTransferReception
+
+	transferNetAmount:= transferNetAmount + aTransferReception value.
+	
+	!
+!Report methodsFor: 'reports' stamp: 'NB 5/31/2023 23:22:04'!
+operationOverTransferSending: aTransferSending
+
+	self subclassResponsibility .! !
+!AccountSummaryReport methodsFor: 'reports' stamp: 'NB 5/31/2023 23:22:04' overrides: 50626373!
+operationOverTransferSending: aTransferSending
+
+	reportLines add: 'Salida por transferencia de ', aTransferSending value asString,'.'.
+	
+	! !
+!TransferNetReport methodsFor: 'reports' stamp: 'NB 5/31/2023 23:22:04' overrides: 50626373!
+operationOverTransferSending: aTransferSending
+
+	transferNetAmount:= transferNetAmount - aTransferSending value.
+	
+	! !
+
+!methodRemoval: Report #addTransferSending: stamp: 'NB 5/31/2023 23:22:04'!
+addTransferSending: aTransferSending
+
+	self subclassResponsibility .!
+
+!methodRemoval: AccountSummaryReport #addTransferSending: stamp: 'NB 5/31/2023 23:22:04'!
+addTransferSending: aTransferSending
+
+	reportLines add: 'Salida por transferencia de ', aTransferSending value asString,'.'.
+	
+	!
+
+!methodRemoval: TransferNetReport #addTransferSending: stamp: 'NB 5/31/2023 23:22:04'!
+addTransferSending: aTransferSending
+
+	transferNetAmount:= transferNetAmount - aTransferSending value.
+	
+	!
+!PortfolioReport methodsFor: 'reports' stamp: 'NB 5/31/2023 23:22:54'!
+compute
+
+	self subclassResponsibility .! !
+!PortfolioAccountSummaryReport methodsFor: 'reports' stamp: 'NB 5/31/2023 23:22:54' overrides: 50626411!
+compute
+
+	reportLines:= OrderedCollection new.
+	separator:= ''.
+	portfolio addToPortfolioReport: self.
+	^reportLines.! !
+!Report methodsFor: 'reports' stamp: 'NB 5/31/2023 23:22:54'!
+compute
+
+	self subclassResponsibility .! !
+!AccountSummaryReport methodsFor: 'reports' stamp: 'NB 5/31/2023 23:22:54' overrides: 50626422!
+compute
+
+	reportLines:= OrderedCollection new.
+	account operateOver: self.
+	self addBalanceLine.
+	^reportLines.
+	
+	! !
+!TransferNetReport methodsFor: 'reports' stamp: 'NB 5/31/2023 23:22:54' overrides: 50626422!
+compute
+	
+	transferNetAmount := 0.
+	account operateOver: self.
+	^transferNetAmount.! !
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'NB 5/31/2023 23:22:54' prior: 50624811!
+test01NewReceptiveAccountSummaryReportIsOk
+	
+	self assert: (OrderedCollection with: 'Balance = 0') equals: (AccountSummaryReport for: ReceptiveAccount new) compute.! !
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'NB 5/31/2023 23:22:54' prior: 50624872!
+test05ManyLevelsDeepPortfolioSummaryReportIsOk
+
+	| portfolio account1 account2 portfolio2 expectedSummaryReport|
+	
+	
+	account1:= ReceptiveAccount new.
+	account2:= ReceptiveAccount new.
+	Deposit register: 100 on: account1.
+	Withdraw register: 50 on: account1.
+	Transfer registrer: 20 from: account1 to: account2.
+	Transfer registrer: 30 from: account2 to: account1.
+	
+	portfolio2 := Portfolio with: account1.
+	portfolio:= Portfolio with: portfolio2 with: account2.
+	
+	expectedSummaryReport:= OrderedCollection
+			with: 'Depósito por 100.'
+			with: 'Extracción por 50.'
+			with: 'Salida por transferencia de 20.'
+			with: 'Entrada por transferencia de 30.'
+			with: 'Entrada por transferencia de 20.'
+			with: 'Salida por transferencia de 30.'.
+			
+	
+	expectedSummaryReport 	add: 'Balance = 50'.
+	
+	self assert: expectedSummaryReport equals: (AccountSummaryReport for: portfolio) compute.! !
+!PortfolioReportTest methodsFor: 'as yet unclassified' stamp: 'NB 5/31/2023 23:22:54' prior: 50624391!
+test02OneLevelDeepPortfolioPortfolioAccountSummaryReportIsOk
+
+
+	|myAccount familyPortfolio|
+	myAccount := ReceptiveAccount named: 'Cuenta mia'.
+	familyPortfolio := Portfolio named: 'Portfolio de la familia' with: myAccount.
+
+	self assert: (OrderedCollection with:'Portfolio de la familia' with: ' Cuenta mia')
+		 equals: (PortfolioAccountSummaryReport for: familyPortfolio) compute.! !
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'NB 5/31/2023 23:22:54' prior: 50624849!
+test04OneLevelDeepPortfolioSummaryReportIsOk
+
+	| portfolio account1 account2|
+	
+	
+	account1:= ReceptiveAccount new.
+	account2:= ReceptiveAccount new.
+	Deposit register: 100 on: account1.
+	Withdraw register: 50 on: account1.
+	Transfer registrer: 20 from: account1 to: account2.
+	Transfer registrer: 30 from: account2 to: account1.
+	
+	portfolio:= Portfolio with: account1.
+	
+	self assert: (
+		OrderedCollection
+			with: 'Depósito por 100.'
+			with: 'Extracción por 50.'
+			with: 'Salida por transferencia de 20.'
+			with: 'Entrada por transferencia de 30.'
+			with: 'Balance = 60'
+		)
+	equals: (AccountSummaryReport for: portfolio) compute.! !
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'NB 5/31/2023 23:22:54' prior: 50624947!
+test10ManyLevelDeepPortfolioTransferNetReportIsOk
+
+	| portfolio account1 account2 portfolio2 |
+	
+	
+	account1:= ReceptiveAccount new.
+	account2:= ReceptiveAccount new.
+	Deposit register: 100 on: account1.
+	Withdraw register: 50 on: account1.
+	Transfer registrer: 20 from: account1 to: account2.
+	Transfer registrer: 30 from: account2 to: account1.
+	
+	portfolio2 := Portfolio with: account1.
+	portfolio:= Portfolio with: portfolio2.
+	
+	self assert: 10 equals: (TransferNetReport for: portfolio) compute.! !
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'NB 5/31/2023 23:22:54' prior: 50624930!
+test09OneLevelDeepPortfolioTransferNetReportIsOk
+
+	| portfolio account1 account2|
+	
+	
+	account1:= ReceptiveAccount new.
+	account2:= ReceptiveAccount new.
+	Deposit register: 100 on: account1.
+	Withdraw register: 50 on: account1.
+	Transfer registrer: 20 from: account1 to: account2.
+	Transfer registrer: 30 from: account2 to: account1.
+	
+	portfolio:= Portfolio with: account1.
+	
+	self assert: 10 equals: (TransferNetReport for: portfolio) compute.! !
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'NB 5/31/2023 23:22:54' prior: 50624840!
+test03NewPortfolioSummaryReportIsOk
+
+	| portfolio |
+	
+	portfolio:= Portfolio new.
+	
+	self assert: (
+		OrderedCollection
+			with: 'Balance = 0'
+		)
+	equals: (AccountSummaryReport for: portfolio) compute.! !
+!PortfolioReportTest methodsFor: 'as yet unclassified' stamp: 'NB 5/31/2023 23:22:54' prior: 50624406!
+test03ManyLevelDeepPortfolioPortfolioAccountSummaryReportIsOk
+
+
+	|myAccount familyPortfolio johnsAccount angiesAccount childrenPortfolio|
+	johnsAccount := ReceptiveAccount named: 'Cuenta de Juan'.
+	angiesAccount := ReceptiveAccount named: 'Cuenta de Angeles'.
+	childrenPortfolio := Portfolio named: 'Portfolio de hijos' with: johnsAccount with: angiesAccount.
+	myAccount := ReceptiveAccount named: 'Cuenta mia'.
+	familyPortfolio := Portfolio named: 'Portfolio de la familia' with: myAccount with: childrenPortfolio.
+
+	self assert: (OrderedCollection 
+				with:'Portfolio de la familia' 
+				with: ' Cuenta mia'
+				with: ' Portfolio de hijos'
+				with: '  Cuenta de Juan'
+				with: '  Cuenta de Angeles'
+		)
+		 equals: (PortfolioAccountSummaryReport for: familyPortfolio) compute.! !
+!PortfolioReportTest methodsFor: 'as yet unclassified' stamp: 'NB 5/31/2023 23:22:54' prior: 50624381!
+test01NewPortfolioPortfolioAccountSummaryReportIsOk
+
+	self assert: (OrderedCollection with:'Portfolio de la familia')
+		 equals: (PortfolioAccountSummaryReport for: (Portfolio named: 'Portfolio de la familia')) compute.! !
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'NB 5/31/2023 23:22:54' prior: 50624924!
+test08NewPortfolioTransferNetReportIsOk
+
+	self assert: 0 equals: (TransferNetReport for: Portfolio new) compute.! !
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'NB 5/31/2023 23:22:54' prior: 50624819!
+test02ReceptiveAccountWithOneTransactionSummaryReportIsOk
+
+	| account1 account2|
+	
+	account1:= ReceptiveAccount new.
+	account2:= ReceptiveAccount new.
+	Deposit register: 100 on: account1.
+	Withdraw register: 50 on: account1.
+	Transfer registrer: 20 from: account1 to: account2.
+	Transfer registrer: 30 from: account2 to: account1.
+	
+	self assert: (
+		OrderedCollection
+			with: 'Depósito por 100.'
+			with: 'Extracción por 50.'
+			with: 'Salida por transferencia de 20.'
+			with: 'Entrada por transferencia de 30.'
+			with: 'Balance = 60'
+		)
+	equals: (AccountSummaryReport for: account1) compute.! !
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'NB 5/31/2023 23:22:54' prior: 50624902!
+test06NewReceptiveAccountTransferNetReportIsOk
+	
+	self assert: 0 equals: (TransferNetReport for: ReceptiveAccount new) compute.! !
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'NB 5/31/2023 23:22:54' prior: 50624909!
+test07ReceptiveAccountWithManyTransactionTransferNetReportIsOk
+
+	| account1 account2|
+	
+	account1:= ReceptiveAccount new.
+	account2:= ReceptiveAccount new.
+	Deposit register: 100 on: account1.
+	Withdraw register: 50 on: account1.
+	Transfer registrer: 20 from: account1 to: account2.
+	Transfer registrer: 30 from: account2 to: account1.
+	
+	self assert: 10 equals: (TransferNetReport for: account1) compute.! !
+
+!methodRemoval: PortfolioReport #generate stamp: 'NB 5/31/2023 23:22:54'!
+generate
+
+	self subclassResponsibility .!
+
+!methodRemoval: PortfolioAccountSummaryReport #generate stamp: 'NB 5/31/2023 23:22:54'!
+generate
+
+	reportLines:= OrderedCollection new.
+	separator:= ''.
+	portfolio addToPortfolioReport: self.
+	^reportLines.!
+
+!methodRemoval: Report #generate stamp: 'NB 5/31/2023 23:22:54'!
+generate
+
+	self subclassResponsibility .!
+
+!methodRemoval: AccountSummaryReport #generate stamp: 'NB 5/31/2023 23:22:54'!
+generate
+
+	reportLines:= OrderedCollection new.
+	account operateOver: self.
+	self addBalanceLine.
+	^reportLines.
+	
+	!
+
+!methodRemoval: TransferNetReport #generate stamp: 'NB 5/31/2023 23:22:54'!
+generate
+	
+	transferNetAmount := 0.
+	account operateOver: self.
+	^transferNetAmount.!
+
+!testRun: #ReportTest #test01NewReceptiveAccountSummaryReportIsOk stamp: 'NB 5/31/2023 23:24:11'!
+PASSED!
+
+!testRun: #ReportTest #test02ReceptiveAccountWithOneTransactionSummaryReportIsOk stamp: 'NB 5/31/2023 23:24:11'!
+PASSED!
+
+!testRun: #ReportTest #test03NewPortfolioSummaryReportIsOk stamp: 'NB 5/31/2023 23:24:11'!
+PASSED!
+
+!testRun: #ReportTest #test04OneLevelDeepPortfolioSummaryReportIsOk stamp: 'NB 5/31/2023 23:24:11'!
+PASSED!
+
+!testRun: #ReportTest #test05ManyLevelsDeepPortfolioSummaryReportIsOk stamp: 'NB 5/31/2023 23:24:11'!
+PASSED!
+
+!testRun: #ReportTest #test06NewReceptiveAccountTransferNetReportIsOk stamp: 'NB 5/31/2023 23:24:11'!
+ERROR!
+
+!testRun: #ReportTest #test07ReceptiveAccountWithManyTransactionTransferNetReportIsOk stamp: 'NB 5/31/2023 23:24:11'!
+ERROR!
+
+!testRun: #ReportTest #test08NewPortfolioTransferNetReportIsOk stamp: 'NB 5/31/2023 23:24:11'!
+ERROR!
+
+!testRun: #ReportTest #test09OneLevelDeepPortfolioTransferNetReportIsOk stamp: 'NB 5/31/2023 23:24:11'!
+ERROR!
+
+!testRun: #ReportTest #test10ManyLevelDeepPortfolioTransferNetReportIsOk stamp: 'NB 5/31/2023 23:24:11'!
+ERROR!
+
+!testRun: #ReportTest #test06NewReceptiveAccountTransferNetReportIsOk stamp: 'NB 5/31/2023 23:24:14'!
+ERROR!
+
+!testRun: #ReportTest #test01NewReceptiveAccountSummaryReportIsOk stamp: 'NB 5/31/2023 23:24:50'!
+PASSED!
+
+!testRun: #ReportTest #test02ReceptiveAccountWithOneTransactionSummaryReportIsOk stamp: 'NB 5/31/2023 23:24:50'!
+PASSED!
+
+!testRun: #ReportTest #test03NewPortfolioSummaryReportIsOk stamp: 'NB 5/31/2023 23:24:50'!
+PASSED!
+
+!testRun: #ReportTest #test04OneLevelDeepPortfolioSummaryReportIsOk stamp: 'NB 5/31/2023 23:24:50'!
+PASSED!
+
+!testRun: #ReportTest #test05ManyLevelsDeepPortfolioSummaryReportIsOk stamp: 'NB 5/31/2023 23:24:50'!
+PASSED!
+
+!testRun: #ReportTest #test06NewReceptiveAccountTransferNetReportIsOk stamp: 'NB 5/31/2023 23:24:50'!
+ERROR!
+
+!testRun: #ReportTest #test07ReceptiveAccountWithManyTransactionTransferNetReportIsOk stamp: 'NB 5/31/2023 23:24:50'!
+ERROR!
+
+!testRun: #ReportTest #test08NewPortfolioTransferNetReportIsOk stamp: 'NB 5/31/2023 23:24:50'!
+ERROR!
+
+!testRun: #ReportTest #test09OneLevelDeepPortfolioTransferNetReportIsOk stamp: 'NB 5/31/2023 23:24:50'!
+ERROR!
+
+!testRun: #ReportTest #test10ManyLevelDeepPortfolioTransferNetReportIsOk stamp: 'NB 5/31/2023 23:24:50'!
+ERROR!
+
+!testRun: #ReportTest #test06NewReceptiveAccountTransferNetReportIsOk stamp: 'NB 5/31/2023 23:24:52'!
+ERROR!
+!TransferNetReport methodsFor: 'reports' stamp: 'NB 5/31/2023 23:25:46'!
+operationOverPortfolio: aPortoflio
+
+	aPortoflio traverseWithOperation: self.
+	
+	! !
+!TransferNetReport methodsFor: 'reports' stamp: 'NB 5/31/2023 23:25:55'!
+operationOverReceptiveAccount: aReceptiveAccount
+
+	aReceptiveAccount traverseWithOperation: self.
+	
+	! !
+
+!testRun: #ReportTest #test01NewReceptiveAccountSummaryReportIsOk stamp: 'NB 5/31/2023 23:25:58'!
+PASSED!
+
+!testRun: #ReportTest #test02ReceptiveAccountWithOneTransactionSummaryReportIsOk stamp: 'NB 5/31/2023 23:25:58'!
+PASSED!
+
+!testRun: #ReportTest #test03NewPortfolioSummaryReportIsOk stamp: 'NB 5/31/2023 23:25:58'!
+PASSED!
+
+!testRun: #ReportTest #test04OneLevelDeepPortfolioSummaryReportIsOk stamp: 'NB 5/31/2023 23:25:58'!
+PASSED!
+
+!testRun: #ReportTest #test05ManyLevelsDeepPortfolioSummaryReportIsOk stamp: 'NB 5/31/2023 23:25:58'!
+PASSED!
+
+!testRun: #ReportTest #test06NewReceptiveAccountTransferNetReportIsOk stamp: 'NB 5/31/2023 23:25:58'!
+PASSED!
+
+!testRun: #ReportTest #test07ReceptiveAccountWithManyTransactionTransferNetReportIsOk stamp: 'NB 5/31/2023 23:25:58'!
+PASSED!
+
+!testRun: #ReportTest #test08NewPortfolioTransferNetReportIsOk stamp: 'NB 5/31/2023 23:25:58'!
+PASSED!
+
+!testRun: #ReportTest #test09OneLevelDeepPortfolioTransferNetReportIsOk stamp: 'NB 5/31/2023 23:25:58'!
+PASSED!
+
+!testRun: #ReportTest #test10ManyLevelDeepPortfolioTransferNetReportIsOk stamp: 'NB 5/31/2023 23:25:58'!
+PASSED!
+
+----SNAPSHOT----(31 May 2023 23:26:00) CuisUniversity-5832.image priorSource: 9366758!
+
+----SNAPSHOT----(31 May 2023 23:27:58) CuisUniversity-5832.image priorSource: 9444902!
+
+!testRun: #PortfolioReportTest #test01NewPortfolioPortfolioAccountSummaryReportIsOk stamp: 'NB 5/31/2023 23:28:00'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test02OneLevelDeepPortfolioPortfolioAccountSummaryReportIsOk stamp: 'NB 5/31/2023 23:28:00'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test03ManyLevelDeepPortfolioPortfolioAccountSummaryReportIsOk stamp: 'NB 5/31/2023 23:28:00'!
+PASSED!
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'NB 5/31/2023 23:28:00'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithAccountsIsSumOfAccountsBalance stamp: 'NB 5/31/2023 23:28:00'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'NB 5/31/2023 23:28:00'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'NB 5/31/2023 23:28:00'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'NB 5/31/2023 23:28:00'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'NB 5/31/2023 23:28:00'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'NB 5/31/2023 23:28:00'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'NB 5/31/2023 23:28:00'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'NB 5/31/2023 23:28:00'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'NB 5/31/2023 23:28:00'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'NB 5/31/2023 23:28:00'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'NB 5/31/2023 23:28:00'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'NB 5/31/2023 23:28:00'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'NB 5/31/2023 23:28:00'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'NB 5/31/2023 23:28:00'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'NB 5/31/2023 23:28:00'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'NB 5/31/2023 23:28:00'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'NB 5/31/2023 23:28:00'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'NB 5/31/2023 23:28:00'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'NB 5/31/2023 23:28:00'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'NB 5/31/2023 23:28:00'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'NB 5/31/2023 23:28:00'!
+PASSED!
+
+!testRun: #ReportTest #test01NewReceptiveAccountSummaryReportIsOk stamp: 'NB 5/31/2023 23:28:00'!
+PASSED!
+
+!testRun: #ReportTest #test02ReceptiveAccountWithOneTransactionSummaryReportIsOk stamp: 'NB 5/31/2023 23:28:00'!
+PASSED!
+
+!testRun: #ReportTest #test03NewPortfolioSummaryReportIsOk stamp: 'NB 5/31/2023 23:28:00'!
+PASSED!
+
+!testRun: #ReportTest #test04OneLevelDeepPortfolioSummaryReportIsOk stamp: 'NB 5/31/2023 23:28:00'!
+PASSED!
+
+!testRun: #ReportTest #test05ManyLevelsDeepPortfolioSummaryReportIsOk stamp: 'NB 5/31/2023 23:28:00'!
+PASSED!
+
+!testRun: #ReportTest #test06NewReceptiveAccountTransferNetReportIsOk stamp: 'NB 5/31/2023 23:28:00'!
+PASSED!
+
+!testRun: #ReportTest #test07ReceptiveAccountWithManyTransactionTransferNetReportIsOk stamp: 'NB 5/31/2023 23:28:00'!
+PASSED!
+
+!testRun: #ReportTest #test08NewPortfolioTransferNetReportIsOk stamp: 'NB 5/31/2023 23:28:00'!
+PASSED!
+
+!testRun: #ReportTest #test09OneLevelDeepPortfolioTransferNetReportIsOk stamp: 'NB 5/31/2023 23:28:00'!
+PASSED!
+
+!testRun: #ReportTest #test10ManyLevelDeepPortfolioTransferNetReportIsOk stamp: 'NB 5/31/2023 23:28:00'!
+PASSED!
+
+!testRun: #TransferTest #test01TransferCorrectlyDecreasesSenderBalanceAndIncreasesReceiverBalanceForTheAmountTransfered stamp: 'NB 5/31/2023 23:28:00'!
+PASSED!
+
+!testRun: #TransferTest #test02SenderAccountCorrectlyRegistersATransferSending stamp: 'NB 5/31/2023 23:28:00'!
+PASSED!
+
+!testRun: #TransferTest #test03ReceptionAccountCorrectlyRegistersATransferReception stamp: 'NB 5/31/2023 23:28:00'!
+PASSED!
+
+!testRun: #TransferTest #test04TransferSendingCanReachTheTransfer stamp: 'NB 5/31/2023 23:28:00'!
+PASSED!
+
+!testRun: #TransferTest #test05TransferReceptionCanReachTheTransfer stamp: 'NB 5/31/2023 23:28:00'!
+PASSED!
+
+!testRun: #TransferTest #test06CannotTransferAnAmountThatItIsNotAStrictlyPositiveNumber stamp: 'NB 5/31/2023 23:28:00'!
+PASSED!
+
+!testRun: #TransferTest #test07CannotTransferToTheSameAccount stamp: 'NB 5/31/2023 23:28:00'!
+PASSED!
+!PortfolioAccountSummaryReport methodsFor: 'reports' stamp: 'NB 5/31/2023 23:28:37'!
+operationOverPortfolio: aPortoflio
+
+	aPortoflio traverseWithOperation: self.! !
+!PortfolioAccountSummaryReport methodsFor: 'reports' stamp: 'NB 5/31/2023 23:29:06' prior: 50626967!
+operationOverPortfolio: aPortoflio
+
+	self addName: aPortoflio name.
+	aPortoflio traverseWithOperation: self.! !
+!PortfolioAccountSummaryReport methodsFor: 'reports' stamp: 'NB 5/31/2023 23:29:15' prior: 50626973!
+operationOverPortfolio: aPortoflio
+
+	self addName: aPortoflio name.
+	separator:= separator , ' '.
+	aPortoflio traverseWithOperation: self.! !
+!PortfolioAccountSummaryReport methodsFor: 'reports' stamp: 'NB 5/31/2023 23:29:41' prior: 50626980!
+operationOverPortfolio: aPortoflio
+
+	self addName: aPortoflio name.
+	separator:= separator , ' '.
+	aPortoflio traverseWithOperation: self.
+	separator := separator truncateTo: separator size - 1.! !
+!PortfolioAccountSummaryReport methodsFor: 'reports' stamp: 'NB 5/31/2023 23:30:58'!
+operationOverReceptiveAccount: aReceptiveAccount
+
+	self addName: aReceptiveAccount name.! !
+!PortfolioAccountSummaryReport methodsFor: 'reports' stamp: 'NB 5/31/2023 23:31:34' prior: 50626416 overrides: 50626411!
+compute
+
+	reportLines:= OrderedCollection new.
+	separator:= ''.
+	portfolio operateOver: self.
+	^reportLines.! !
+
+!testRun: #PortfolioReportTest #test01NewPortfolioPortfolioAccountSummaryReportIsOk stamp: 'NB 5/31/2023 23:32:05'!
+FAILURE!
+
+!testRun: #PortfolioReportTest #test02OneLevelDeepPortfolioPortfolioAccountSummaryReportIsOk stamp: 'NB 5/31/2023 23:32:05'!
+FAILURE!
+
+!testRun: #PortfolioReportTest #test03ManyLevelDeepPortfolioPortfolioAccountSummaryReportIsOk stamp: 'NB 5/31/2023 23:32:05'!
+FAILURE!
+
+!testRun: #PortfolioReportTest #test01NewPortfolioPortfolioAccountSummaryReportIsOk stamp: 'NB 5/31/2023 23:32:07'!
+FAILURE!
+
+!testRun: #PortfolioReportTest #test01NewPortfolioPortfolioAccountSummaryReportIsOk stamp: 'NB 5/31/2023 23:33:24'!
+FAILURE!
+!PortfolioAccountSummaryReport methodsFor: 'reports' stamp: 'NB 5/31/2023 23:34:22' prior: 50625450 overrides: 50625394!
+addName: aPortfolio
+
+	reportLines add: separator, aPortfolio name! !
+
+!testRun: #PortfolioReportTest #test01NewPortfolioPortfolioAccountSummaryReportIsOk stamp: 'NB 5/31/2023 23:39:12'!
+FAILURE!
+!PortfolioAccountSummaryReport methodsFor: 'reports' stamp: 'NB 5/31/2023 23:40:01' prior: 50627032 overrides: 50625394!
+addName: aPortfolio
+
+	reportLines add: (separator, aPortfolio name)! !
+
+'a' padded: #left to: 2  with: ''. !
+
+'a' padded: #left to: 2  with: ' '. !
+
+Character separators !
+
+Character separators first!
+
+Character separators first!
+
+Character separators!
+
+'a' padded: #left to: 2  with: Character separators first!
+
+'a' padded: #left to: 1  with: Character separators first!
+
+'a' padded: #left to: 3  with: Character separators first!
+
+'a' padded: #left to: 0  with: Character separators first!
+
+!classDefinition: #PortfolioAccountSummaryReport category: 'Portfolio-Solucion' stamp: 'NB 5/31/2023 23:50:43'!
+PortfolioReport subclass: #PortfolioAccountSummaryReport
+	instanceVariableNames: 'separator portfolioLevel'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!PortfolioAccountSummaryReport methodsFor: 'reports' stamp: 'NB 5/31/2023 23:50:56' prior: 50627042 overrides: 50625394!
+addName: aPortfolio
+
+	reportLines add: (aPortfolio name padded: #left to: portfolioLevel with: Character separators first).! !
+!PortfolioAccountSummaryReport methodsFor: 'reports' stamp: 'NB 5/31/2023 23:51:17' prior: 50627004 overrides: 50626411!
+compute
+
+	reportLines:= OrderedCollection new.
+	portfolioLevel := 0.
+	portfolio operateOver: self.
+	^reportLines.! !
+!PortfolioAccountSummaryReport methodsFor: 'reports' stamp: 'NB 5/31/2023 23:53:35' prior: 50626988!
+operationOverPortfolio: aPortoflio
+
+	self addName: aPortoflio name.
+	portfolioLevel:= portfolioLevel + 1.
+	aPortoflio traverseWithOperation: self.
+	portfolioLevel:= portfolioLevel - 1.! !
+
+!testRun: #PortfolioReportTest #test01NewPortfolioPortfolioAccountSummaryReportIsOk stamp: 'NB 5/31/2023 23:53:41'!
+FAILURE!
+
+!testRun: #PortfolioReportTest #test02OneLevelDeepPortfolioPortfolioAccountSummaryReportIsOk stamp: 'NB 5/31/2023 23:53:41'!
+FAILURE!
+
+!testRun: #PortfolioReportTest #test03ManyLevelDeepPortfolioPortfolioAccountSummaryReportIsOk stamp: 'NB 5/31/2023 23:53:41'!
+FAILURE!
+
+!testRun: #PortfolioReportTest #test01NewPortfolioPortfolioAccountSummaryReportIsOk stamp: 'NB 5/31/2023 23:53:43'!
+FAILURE!
+!PortfolioAccountSummaryReport methodsFor: 'reports' stamp: 'NB 5/31/2023 23:55:20' prior: 50627071 overrides: 50625394!
+addName: aPortfolio
+
+	|test|
+	test:= (aPortfolio name padded: #left to: portfolioLevel with: Character separators first).
+	self halt.
+	reportLines add: (aPortfolio name padded: #left to: portfolioLevel with: Character separators first).! !
+!PortfolioAccountSummaryReport methodsFor: 'reports' stamp: 'NB 5/31/2023 23:56:49' prior: 50627112 overrides: 50625394!
+addName: aPortfolio
+
+	reportLines add: (aPortfolio name padded: #left to: portfolioLevel with: Character separators first).! !
+!PortfolioAccountSummaryReport methodsFor: 'reports' stamp: 'NB 5/31/2023 23:56:57' prior: 50627086!
+operationOverPortfolio: aPortoflio
+
+	self addName: aPortoflio.
+	portfolioLevel:= portfolioLevel + 1.
+	aPortoflio traverseWithOperation: self.
+	portfolioLevel:= portfolioLevel - 1.! !
+
+!testRun: #PortfolioReportTest #test01NewPortfolioPortfolioAccountSummaryReportIsOk stamp: 'NB 5/31/2023 23:56:59'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test02OneLevelDeepPortfolioPortfolioAccountSummaryReportIsOk stamp: 'NB 5/31/2023 23:56:59'!
+FAILURE!
+
+!testRun: #PortfolioReportTest #test03ManyLevelDeepPortfolioPortfolioAccountSummaryReportIsOk stamp: 'NB 5/31/2023 23:56:59'!
+FAILURE!
+
+!testRun: #PortfolioReportTest #test02OneLevelDeepPortfolioPortfolioAccountSummaryReportIsOk stamp: 'NB 5/31/2023 23:57:01'!
+FAILURE!
+
+!testRun: #PortfolioReportTest #test01NewPortfolioPortfolioAccountSummaryReportIsOk stamp: 'NB 5/31/2023 23:57:14'!
+PASSED!
+!PortfolioAccountSummaryReport methodsFor: 'reports' stamp: 'NB 5/31/2023 23:57:55' prior: 50626997!
+operationOverReceptiveAccount: aReceptiveAccount
+
+	self addName: aReceptiveAccount.! !
+
+!testRun: #PortfolioReportTest #test01NewPortfolioPortfolioAccountSummaryReportIsOk stamp: 'NB 5/31/2023 23:57:58'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test02OneLevelDeepPortfolioPortfolioAccountSummaryReportIsOk stamp: 'NB 5/31/2023 23:57:58'!
+FAILURE!
+
+!testRun: #PortfolioReportTest #test03ManyLevelDeepPortfolioPortfolioAccountSummaryReportIsOk stamp: 'NB 5/31/2023 23:57:58'!
+FAILURE!
+!PortfolioAccountSummaryReport methodsFor: 'reports' stamp: 'NB 5/31/2023 23:58:42' prior: 50627124 overrides: 50625394!
+addName: anAccount
+
+	reportLines add: (anAccount name padded: #left to: portfolioLevel with: Character separators first).! !
+!PortfolioAccountSummaryReport methodsFor: 'reports' stamp: 'NB 5/31/2023 23:59:55' prior: 50627181 overrides: 50625394!
+addName: anAccount
+
+	self halt.
+	reportLines add: (anAccount name padded: #left to: portfolioLevel with: Character separators first).! !
+
+'a' padded: #left to: 1 with: Character separators first!
+
+'a' padded: #left to: 2 with: Character separators first!
+
+'a' padded: #left to: 1 with: Character separators first!
+
+'a' padded: #left to: 0 with: Character separators first!
+!PortfolioAccountSummaryReport methodsFor: 'reports' stamp: 'NB 6/1/2023 00:02:05' prior: 50627189 overrides: 50625394!
+addName: anAccount
+
+	reportLines add: (anAccount name padded: #left to: portfolioLevel with: Character separators first).! !
+!PortfolioAccountSummaryReport methodsFor: 'reports' stamp: 'NB 6/1/2023 00:02:11' prior: 50627079 overrides: 50626411!
+compute
+
+	reportLines:= OrderedCollection new.
+	portfolioLevel := 1.
+	portfolio operateOver: self.
+	^reportLines.! !
+
+!testRun: #PortfolioReportTest #test01NewPortfolioPortfolioAccountSummaryReportIsOk stamp: 'NB 6/1/2023 00:02:13'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test02OneLevelDeepPortfolioPortfolioAccountSummaryReportIsOk stamp: 'NB 6/1/2023 00:02:13'!
+FAILURE!
+
+!testRun: #PortfolioReportTest #test03ManyLevelDeepPortfolioPortfolioAccountSummaryReportIsOk stamp: 'NB 6/1/2023 00:02:13'!
+FAILURE!
+
+!testRun: #PortfolioReportTest #test02OneLevelDeepPortfolioPortfolioAccountSummaryReportIsOk stamp: 'NB 6/1/2023 00:02:15'!
+FAILURE!
+!PortfolioAccountSummaryReport methodsFor: 'reports' stamp: 'NB 6/1/2023 00:02:35' prior: 50627205 overrides: 50625394!
+addName: anAccount
+
+	self halt.
+	reportLines add: (anAccount name padded: #left to: portfolioLevel with: Character separators first).! !
+
+'aasdad' padded: #left to: 1 with: Character separators first!
+
+'aasdad' padded: #left to: 2 with: Character separators first!
+
+'aasdad' padded: #left to: 4 with: Character separators first!
+
+'aasdad' padded: #right to: 4 with: Character separators first!
+
+'aasdad' padded: #right to: 4 with: Character separators first!
+
+'aasdad' padded: #right to: 6 with: Character separators first!
+
+'aasdad' padded: #right to: 7 with: Character separators first !
+
+'aasdad' padded: #left to: 7 with: Character separators first!
+!PortfolioAccountSummaryReport methodsFor: 'reports' stamp: 'NB 6/1/2023 00:06:52' prior: 50627237 overrides: 50625394!
+addName: anAccount
+
+	|nameLength|
+	nameLength:= anAccount name size.
+	reportLines add: (anAccount name padded: #left to: portfolioLevel + nameLength with: Character separators first).! !
+!PortfolioAccountSummaryReport methodsFor: 'reports' stamp: 'NB 6/1/2023 00:06:59' prior: 50627213 overrides: 50626411!
+compute
+
+	reportLines:= OrderedCollection new.
+	portfolioLevel := 0.
+	portfolio operateOver: self.
+	^reportLines.! !
+
+!testRun: #PortfolioReportTest #test01NewPortfolioPortfolioAccountSummaryReportIsOk stamp: 'NB 6/1/2023 00:07:02'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test02OneLevelDeepPortfolioPortfolioAccountSummaryReportIsOk stamp: 'NB 6/1/2023 00:07:02'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test03ManyLevelDeepPortfolioPortfolioAccountSummaryReportIsOk stamp: 'NB 6/1/2023 00:07:02'!
+PASSED!
+
+----SNAPSHOT----(1 June 2023 00:07:05) CuisUniversity-5832.image priorSource: 9444990!
+
+!testRun: #PortfolioReportTest #test01NewPortfolioPortfolioAccountSummaryReportIsOk stamp: 'NB 6/1/2023 00:07:07'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test02OneLevelDeepPortfolioPortfolioAccountSummaryReportIsOk stamp: 'NB 6/1/2023 00:07:07'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test03ManyLevelDeepPortfolioPortfolioAccountSummaryReportIsOk stamp: 'NB 6/1/2023 00:07:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'NB 6/1/2023 00:07:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithAccountsIsSumOfAccountsBalance stamp: 'NB 6/1/2023 00:07:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'NB 6/1/2023 00:07:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'NB 6/1/2023 00:07:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'NB 6/1/2023 00:07:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'NB 6/1/2023 00:07:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'NB 6/1/2023 00:07:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'NB 6/1/2023 00:07:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'NB 6/1/2023 00:07:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'NB 6/1/2023 00:07:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'NB 6/1/2023 00:07:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'NB 6/1/2023 00:07:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'NB 6/1/2023 00:07:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'NB 6/1/2023 00:07:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'NB 6/1/2023 00:07:07'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'NB 6/1/2023 00:07:07'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'NB 6/1/2023 00:07:07'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'NB 6/1/2023 00:07:07'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'NB 6/1/2023 00:07:07'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'NB 6/1/2023 00:07:07'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'NB 6/1/2023 00:07:07'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'NB 6/1/2023 00:07:07'!
+PASSED!
+
+!testRun: #ReportTest #test01NewReceptiveAccountSummaryReportIsOk stamp: 'NB 6/1/2023 00:07:07'!
+PASSED!
+
+!testRun: #ReportTest #test02ReceptiveAccountWithOneTransactionSummaryReportIsOk stamp: 'NB 6/1/2023 00:07:07'!
+PASSED!
+
+!testRun: #ReportTest #test03NewPortfolioSummaryReportIsOk stamp: 'NB 6/1/2023 00:07:07'!
+PASSED!
+
+!testRun: #ReportTest #test04OneLevelDeepPortfolioSummaryReportIsOk stamp: 'NB 6/1/2023 00:07:07'!
+PASSED!
+
+!testRun: #ReportTest #test05ManyLevelsDeepPortfolioSummaryReportIsOk stamp: 'NB 6/1/2023 00:07:07'!
+PASSED!
+
+!testRun: #ReportTest #test06NewReceptiveAccountTransferNetReportIsOk stamp: 'NB 6/1/2023 00:07:07'!
+PASSED!
+
+!testRun: #ReportTest #test07ReceptiveAccountWithManyTransactionTransferNetReportIsOk stamp: 'NB 6/1/2023 00:07:07'!
+PASSED!
+
+!testRun: #ReportTest #test08NewPortfolioTransferNetReportIsOk stamp: 'NB 6/1/2023 00:07:07'!
+PASSED!
+
+!testRun: #ReportTest #test09OneLevelDeepPortfolioTransferNetReportIsOk stamp: 'NB 6/1/2023 00:07:07'!
+PASSED!
+
+!testRun: #ReportTest #test10ManyLevelDeepPortfolioTransferNetReportIsOk stamp: 'NB 6/1/2023 00:07:07'!
+PASSED!
+
+!testRun: #TransferTest #test01TransferCorrectlyDecreasesSenderBalanceAndIncreasesReceiverBalanceForTheAmountTransfered stamp: 'NB 6/1/2023 00:07:07'!
+PASSED!
+
+!testRun: #TransferTest #test02SenderAccountCorrectlyRegistersATransferSending stamp: 'NB 6/1/2023 00:07:07'!
+PASSED!
+
+!testRun: #TransferTest #test03ReceptionAccountCorrectlyRegistersATransferReception stamp: 'NB 6/1/2023 00:07:07'!
+PASSED!
+
+!testRun: #TransferTest #test04TransferSendingCanReachTheTransfer stamp: 'NB 6/1/2023 00:07:07'!
+PASSED!
+
+!testRun: #TransferTest #test05TransferReceptionCanReachTheTransfer stamp: 'NB 6/1/2023 00:07:07'!
+PASSED!
+
+!testRun: #TransferTest #test06CannotTransferAnAmountThatItIsNotAStrictlyPositiveNumber stamp: 'NB 6/1/2023 00:07:07'!
+PASSED!
+
+!testRun: #TransferTest #test07CannotTransferToTheSameAccount stamp: 'NB 6/1/2023 00:07:07'!
+PASSED!
+
+!methodRemoval: Portfolio #addToPortfolioReport: stamp: 'NB 6/1/2023 00:09:37'!
+addToPortfolioReport: aReport
+
+	aReport addPortfolio: self.!
+
+!methodRemoval: Portfolio #addAccountsToReport: stamp: 'NB 6/1/2023 00:09:44'!
+addAccountsToReport: aReport
+
+	accounts do: [:anAccount | anAccount addToPortfolioReport: aReport ].
+	aReport endPortfolio.!
+
+!testRun: #PortfolioReportTest #test01NewPortfolioPortfolioAccountSummaryReportIsOk stamp: 'NB 6/1/2023 00:10:04'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test02OneLevelDeepPortfolioPortfolioAccountSummaryReportIsOk stamp: 'NB 6/1/2023 00:10:04'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test03ManyLevelDeepPortfolioPortfolioAccountSummaryReportIsOk stamp: 'NB 6/1/2023 00:10:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'NB 6/1/2023 00:10:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithAccountsIsSumOfAccountsBalance stamp: 'NB 6/1/2023 00:10:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'NB 6/1/2023 00:10:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'NB 6/1/2023 00:10:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'NB 6/1/2023 00:10:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'NB 6/1/2023 00:10:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'NB 6/1/2023 00:10:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'NB 6/1/2023 00:10:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'NB 6/1/2023 00:10:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'NB 6/1/2023 00:10:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'NB 6/1/2023 00:10:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'NB 6/1/2023 00:10:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'NB 6/1/2023 00:10:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'NB 6/1/2023 00:10:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'NB 6/1/2023 00:10:04'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'NB 6/1/2023 00:10:04'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'NB 6/1/2023 00:10:04'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'NB 6/1/2023 00:10:04'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'NB 6/1/2023 00:10:04'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'NB 6/1/2023 00:10:04'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'NB 6/1/2023 00:10:04'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'NB 6/1/2023 00:10:04'!
+PASSED!
+
+!testRun: #ReportTest #test01NewReceptiveAccountSummaryReportIsOk stamp: 'NB 6/1/2023 00:10:04'!
+PASSED!
+
+!testRun: #ReportTest #test02ReceptiveAccountWithOneTransactionSummaryReportIsOk stamp: 'NB 6/1/2023 00:10:04'!
+PASSED!
+
+!testRun: #ReportTest #test03NewPortfolioSummaryReportIsOk stamp: 'NB 6/1/2023 00:10:04'!
+PASSED!
+
+!testRun: #ReportTest #test04OneLevelDeepPortfolioSummaryReportIsOk stamp: 'NB 6/1/2023 00:10:04'!
+PASSED!
+
+!testRun: #ReportTest #test05ManyLevelsDeepPortfolioSummaryReportIsOk stamp: 'NB 6/1/2023 00:10:04'!
+PASSED!
+
+!testRun: #ReportTest #test06NewReceptiveAccountTransferNetReportIsOk stamp: 'NB 6/1/2023 00:10:04'!
+PASSED!
+
+!testRun: #ReportTest #test07ReceptiveAccountWithManyTransactionTransferNetReportIsOk stamp: 'NB 6/1/2023 00:10:04'!
+PASSED!
+
+!testRun: #ReportTest #test08NewPortfolioTransferNetReportIsOk stamp: 'NB 6/1/2023 00:10:04'!
+PASSED!
+
+!testRun: #ReportTest #test09OneLevelDeepPortfolioTransferNetReportIsOk stamp: 'NB 6/1/2023 00:10:04'!
+PASSED!
+
+!testRun: #ReportTest #test10ManyLevelDeepPortfolioTransferNetReportIsOk stamp: 'NB 6/1/2023 00:10:04'!
+PASSED!
+
+!testRun: #TransferTest #test01TransferCorrectlyDecreasesSenderBalanceAndIncreasesReceiverBalanceForTheAmountTransfered stamp: 'NB 6/1/2023 00:10:04'!
+PASSED!
+
+!testRun: #TransferTest #test02SenderAccountCorrectlyRegistersATransferSending stamp: 'NB 6/1/2023 00:10:04'!
+PASSED!
+
+!testRun: #TransferTest #test03ReceptionAccountCorrectlyRegistersATransferReception stamp: 'NB 6/1/2023 00:10:04'!
+PASSED!
+
+!testRun: #TransferTest #test04TransferSendingCanReachTheTransfer stamp: 'NB 6/1/2023 00:10:04'!
+PASSED!
+
+!testRun: #TransferTest #test05TransferReceptionCanReachTheTransfer stamp: 'NB 6/1/2023 00:10:04'!
+PASSED!
+
+!testRun: #TransferTest #test06CannotTransferAnAmountThatItIsNotAStrictlyPositiveNumber stamp: 'NB 6/1/2023 00:10:04'!
+PASSED!
+
+!testRun: #TransferTest #test07CannotTransferToTheSameAccount stamp: 'NB 6/1/2023 00:10:04'!
+PASSED!
+
+!methodRemoval: ReceptiveAccount #addToPortfolioReport: stamp: 'NB 6/1/2023 00:10:09'!
+addToPortfolioReport: aReport
+	
+	aReport addReceptiveAccount: self!
+!Account methodsFor: 'reports' stamp: 'NB 6/1/2023 00:10:43'!
+traverseWithOperation: anOperationOverAccount
+	
+	self subclassResponsibility .! !
+
+!methodRemoval: Account #addToPortfolioReport: stamp: 'NB 6/1/2023 00:10:47'!
+addToPortfolioReport: aReport
+	
+	self subclassResponsibility .!
+
+----SNAPSHOT----(1 June 2023 00:10:50) CuisUniversity-5832.image priorSource: 9460475!
+
+!testRun: #PortfolioReportTest #test01NewPortfolioPortfolioAccountSummaryReportIsOk stamp: 'NB 6/1/2023 00:10:54'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test02OneLevelDeepPortfolioPortfolioAccountSummaryReportIsOk stamp: 'NB 6/1/2023 00:10:54'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test03ManyLevelDeepPortfolioPortfolioAccountSummaryReportIsOk stamp: 'NB 6/1/2023 00:10:54'!
+PASSED!
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'NB 6/1/2023 00:10:54'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithAccountsIsSumOfAccountsBalance stamp: 'NB 6/1/2023 00:10:54'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'NB 6/1/2023 00:10:54'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'NB 6/1/2023 00:10:54'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'NB 6/1/2023 00:10:54'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'NB 6/1/2023 00:10:54'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'NB 6/1/2023 00:10:54'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'NB 6/1/2023 00:10:54'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'NB 6/1/2023 00:10:54'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'NB 6/1/2023 00:10:54'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'NB 6/1/2023 00:10:54'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'NB 6/1/2023 00:10:54'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'NB 6/1/2023 00:10:54'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'NB 6/1/2023 00:10:54'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'NB 6/1/2023 00:10:54'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'NB 6/1/2023 00:10:54'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'NB 6/1/2023 00:10:54'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'NB 6/1/2023 00:10:54'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'NB 6/1/2023 00:10:54'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'NB 6/1/2023 00:10:54'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'NB 6/1/2023 00:10:54'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'NB 6/1/2023 00:10:54'!
+PASSED!
+
+!testRun: #ReportTest #test01NewReceptiveAccountSummaryReportIsOk stamp: 'NB 6/1/2023 00:10:54'!
+PASSED!
+
+!testRun: #ReportTest #test02ReceptiveAccountWithOneTransactionSummaryReportIsOk stamp: 'NB 6/1/2023 00:10:54'!
+PASSED!
+
+!testRun: #ReportTest #test03NewPortfolioSummaryReportIsOk stamp: 'NB 6/1/2023 00:10:54'!
+PASSED!
+
+!testRun: #ReportTest #test04OneLevelDeepPortfolioSummaryReportIsOk stamp: 'NB 6/1/2023 00:10:54'!
+PASSED!
+
+!testRun: #ReportTest #test05ManyLevelsDeepPortfolioSummaryReportIsOk stamp: 'NB 6/1/2023 00:10:54'!
+PASSED!
+
+!testRun: #ReportTest #test06NewReceptiveAccountTransferNetReportIsOk stamp: 'NB 6/1/2023 00:10:54'!
+PASSED!
+
+!testRun: #ReportTest #test07ReceptiveAccountWithManyTransactionTransferNetReportIsOk stamp: 'NB 6/1/2023 00:10:54'!
+PASSED!
+
+!testRun: #ReportTest #test08NewPortfolioTransferNetReportIsOk stamp: 'NB 6/1/2023 00:10:54'!
+PASSED!
+
+!testRun: #ReportTest #test09OneLevelDeepPortfolioTransferNetReportIsOk stamp: 'NB 6/1/2023 00:10:54'!
+PASSED!
+
+!testRun: #ReportTest #test10ManyLevelDeepPortfolioTransferNetReportIsOk stamp: 'NB 6/1/2023 00:10:54'!
+PASSED!
+
+!testRun: #TransferTest #test01TransferCorrectlyDecreasesSenderBalanceAndIncreasesReceiverBalanceForTheAmountTransfered stamp: 'NB 6/1/2023 00:10:54'!
+PASSED!
+
+!testRun: #TransferTest #test02SenderAccountCorrectlyRegistersATransferSending stamp: 'NB 6/1/2023 00:10:54'!
+PASSED!
+
+!testRun: #TransferTest #test03ReceptionAccountCorrectlyRegistersATransferReception stamp: 'NB 6/1/2023 00:10:54'!
+PASSED!
+
+!testRun: #TransferTest #test04TransferSendingCanReachTheTransfer stamp: 'NB 6/1/2023 00:10:54'!
+PASSED!
+
+!testRun: #TransferTest #test05TransferReceptionCanReachTheTransfer stamp: 'NB 6/1/2023 00:10:54'!
+PASSED!
+
+!testRun: #TransferTest #test06CannotTransferAnAmountThatItIsNotAStrictlyPositiveNumber stamp: 'NB 6/1/2023 00:10:54'!
+PASSED!
+
+!testRun: #TransferTest #test07CannotTransferToTheSameAccount stamp: 'NB 6/1/2023 00:10:54'!
+PASSED!
+
+!methodRemoval: PortfolioAccountSummaryReport #endPortfolio stamp: 'NB 6/1/2023 00:11:36'!
+endPortfolio
+
+	separator := separator truncateTo: separator size - 1.!
+
+!methodRemoval: PortfolioReport #addPortfolio: stamp: 'NB 6/1/2023 00:12:02'!
+addPortfolio: aPortfolio
+
+	self addName: aPortfolio.
+	self initPortfolio.
+	aPortfolio addAccountsToReport: self.
+!
+
+!methodRemoval: PortfolioAccountSummaryReport #initPortfolio stamp: 'NB 6/1/2023 00:12:11'!
+initPortfolio
+
+	separator:= separator , ' '.!
+
+!methodRemoval: PortfolioAccountSummaryReport #addReceptiveAccount: stamp: 'NB 6/1/2023 00:12:24'!
+addReceptiveAccount: anAccount
+
+	self addName: anAccount!
+
+!methodRemoval: PortfolioReport #endPortfolio stamp: 'NB 6/1/2023 00:12:47'!
+endPortfolio
+
+	self subclassResponsibility .!
+
+!methodRemoval: PortfolioReport #initPortfolio stamp: 'NB 6/1/2023 00:12:50'!
+initPortfolio
+
+	self subclassResponsibility .!
+
+!methodRemoval: PortfolioReport #addReceptiveAccount: stamp: 'NB 6/1/2023 00:12:56'!
+addReceptiveAccount: anAccount
+
+	self subclassResponsibility .
+!
+
+----SNAPSHOT----(1 June 2023 00:15:33) CuisUniversity-5832.image priorSource: 9471360!
+
+!classRenamed: #Report as: #OperationOverAccount stamp: 'NB 6/1/2023 00:17:05'!
+Smalltalk renameClassNamed: #Report as: #OperationOverAccount!
+
+!classRenamed: #OperationOverAccount as: #AccountReport stamp: 'NB 6/1/2023 00:18:16'!
+Smalltalk renameClassNamed: #OperationOverAccount as: #AccountReport!
+
+!classRenamed: #AccountSummaryReport as: #SummaryReport stamp: 'NB 6/1/2023 00:18:28'!
+Smalltalk renameClassNamed: #AccountSummaryReport as: #SummaryReport!
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'NB 6/1/2023 00:18:28' prior: 50626611!
+test02ReceptiveAccountWithOneTransactionSummaryReportIsOk
+
+	| account1 account2|
+	
+	account1:= ReceptiveAccount new.
+	account2:= ReceptiveAccount new.
+	Deposit register: 100 on: account1.
+	Withdraw register: 50 on: account1.
+	Transfer registrer: 20 from: account1 to: account2.
+	Transfer registrer: 30 from: account2 to: account1.
+	
+	self assert: (
+		OrderedCollection
+			with: 'Depósito por 100.'
+			with: 'Extracción por 50.'
+			with: 'Salida por transferencia de 20.'
+			with: 'Entrada por transferencia de 30.'
+			with: 'Balance = 60'
+		)
+	equals: (SummaryReport for: account1) compute.! !
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'NB 6/1/2023 00:18:28' prior: 50626496!
+test04OneLevelDeepPortfolioSummaryReportIsOk
+
+	| portfolio account1 account2|
+	
+	
+	account1:= ReceptiveAccount new.
+	account2:= ReceptiveAccount new.
+	Deposit register: 100 on: account1.
+	Withdraw register: 50 on: account1.
+	Transfer registrer: 20 from: account1 to: account2.
+	Transfer registrer: 30 from: account2 to: account1.
+	
+	portfolio:= Portfolio with: account1.
+	
+	self assert: (
+		OrderedCollection
+			with: 'Depósito por 100.'
+			with: 'Extracción por 50.'
+			with: 'Salida por transferencia de 20.'
+			with: 'Entrada por transferencia de 30.'
+			with: 'Balance = 60'
+		)
+	equals: (SummaryReport for: portfolio) compute.! !
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'NB 6/1/2023 00:18:28' prior: 50626556!
+test03NewPortfolioSummaryReportIsOk
+
+	| portfolio |
+	
+	portfolio:= Portfolio new.
+	
+	self assert: (
+		OrderedCollection
+			with: 'Balance = 0'
+		)
+	equals: (SummaryReport for: portfolio) compute.! !
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'NB 6/1/2023 00:18:28' prior: 50626440!
+test01NewReceptiveAccountSummaryReportIsOk
+	
+	self assert: (OrderedCollection with: 'Balance = 0') equals: (SummaryReport for: ReceptiveAccount new) compute.! !
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'NB 6/1/2023 00:18:28' prior: 50626449!
+test05ManyLevelsDeepPortfolioSummaryReportIsOk
+
+	| portfolio account1 account2 portfolio2 expectedSummaryReport|
+	
+	
+	account1:= ReceptiveAccount new.
+	account2:= ReceptiveAccount new.
+	Deposit register: 100 on: account1.
+	Withdraw register: 50 on: account1.
+	Transfer registrer: 20 from: account1 to: account2.
+	Transfer registrer: 30 from: account2 to: account1.
+	
+	portfolio2 := Portfolio with: account1.
+	portfolio:= Portfolio with: portfolio2 with: account2.
+	
+	expectedSummaryReport:= OrderedCollection
+			with: 'Depósito por 100.'
+			with: 'Extracción por 50.'
+			with: 'Salida por transferencia de 20.'
+			with: 'Entrada por transferencia de 30.'
+			with: 'Entrada por transferencia de 20.'
+			with: 'Salida por transferencia de 30.'.
+			
+	
+	expectedSummaryReport 	add: 'Balance = 50'.
+	
+	self assert: expectedSummaryReport equals: (SummaryReport for: portfolio) compute.! !
+
+Object subclass: #OperationOverAccount
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #OperationOverAccount category: 'Portfolio-Solucion' stamp: 'NB 6/1/2023 00:19:07'!
+Object subclass: #OperationOverAccount
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!OperationOverAccount methodsFor: 'no messages' stamp: 'NB 6/1/2023 00:19:54'!
+compute
+	
+	self subclassResponsibility .! !
+!OperationOverAccount methodsFor: 'as yet unclassified' stamp: 'NB 6/1/2023 00:20:18'!
+operationOverPortfolio: aPortoflio
+	
+	self subclassResponsibility .! !
+!OperationOverAccount methodsFor: 'as yet unclassified' stamp: 'NB 6/1/2023 00:20:31'!
+operationOverReceptiveAccount: aReceptiveAccount
+	
+	self subclassResponsibility .! !
+
+OperationOverAccount subclass: #PortfolioAccountSummaryReport
+	instanceVariableNames: 'separator portfolioLevel'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #PortfolioAccountSummaryReport category: 'Portfolio-Solucion' stamp: 'NB 6/1/2023 00:22:19'!
+OperationOverAccount subclass: #PortfolioAccountSummaryReport
+	instanceVariableNames: 'separator portfolioLevel'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #PortfolioAccountSummaryReport category: 'Portfolio-Solucion' stamp: 'NB 6/1/2023 00:22:54'!
+OperationOverAccount subclass: #PortfolioAccountSummaryReport
+	instanceVariableNames: 'portfolioLevel'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+----SNAPSHOT----(1 June 2023 00:22:57) CuisUniversity-5832.image priorSource: 9477499!
+
+----STARTUP---- (1 June 2023 00:26:34) as /Users/nico/Documents/inge1/cuis-images/macos64 2/CuisUniversity-5832.image!
+
+
+OperationOverAccount subclass: #PortfolioAccountSummaryReport
+	instanceVariableNames: 'portfolioLevel reportLines'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #PortfolioAccountSummaryReport category: 'Portfolio-Solucion' stamp: 'NB 6/1/2023 00:27:07'!
+OperationOverAccount subclass: #PortfolioAccountSummaryReport
+	instanceVariableNames: 'portfolioLevel reportLines'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #OperationOverAccount category: 'Portfolio-Solucion' stamp: 'NB 6/1/2023 00:28:50'!
+Object subclass: #OperationOverAccount
+	instanceVariableNames: 'account'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!OperationOverAccount methodsFor: 'as yet unclassified' stamp: 'NB 6/1/2023 00:28:48'!
+initializeFor: accountForReport 
+	
+	account := accountForReport.! !
+!OperationOverAccount class methodsFor: 'no messages' stamp: 'NB 6/1/2023 00:29:33'!
+for: anAccount 
+	
+	^self new initializeFor: anAccount ! !
+!PortfolioAccountSummaryReport methodsFor: 'reports' stamp: 'NB 6/1/2023 00:30:08' prior: 50627272 overrides: 50627946!
+compute
+
+	reportLines:= OrderedCollection new.
+	portfolioLevel := 0.
+	account operateOver: self.
+	^reportLines.! !
+
+----SNAPSHOT----(1 June 2023 00:30:43) CuisUniversity-5832.image priorSource: 9482731!
+
+Object subclass: #AccountReport
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #AccountReport category: 'Portfolio-Solucion' stamp: 'NB 6/1/2023 00:30:48'!
+Object subclass: #AccountReport
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+OperationOverAccount subclass: #AccountReport
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #AccountReport category: 'Portfolio-Solucion' stamp: 'NB 6/1/2023 00:31:09'!
+OperationOverAccount subclass: #AccountReport
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!methodRemoval: AccountReport #compute stamp: 'NB 6/1/2023 00:31:27'!
+compute
+
+	self subclassResponsibility .!
+
+!methodRemoval: AccountReport #initializeFor: stamp: 'NB 6/1/2023 00:31:34'!
+initializeFor: accountForReport 
+	
+	account := accountForReport.!
+
+----SNAPSHOT----(1 June 2023 00:33:56) CuisUniversity-5832.image priorSource: 9484274!
+
+----SNAPSHOT----(1 June 2023 00:34:30) CuisUniversity-5832.image priorSource: 9485392!
+!PortfolioAccountSummaryReport class methodsFor: 'no messages' stamp: 'NB 6/1/2023 00:36:28' overrides: 50628022!
+for: aPortfolio
+	
+	(aPortfolio isKindOf: Portfolio) ifFalse: [self error: self operationExclusiveToPortfolioErrorDescription].
+	
+	^self new initializeFor: aPortfolio ! !
+!PortfolioAccountSummaryReport class methodsFor: 'instance creation' stamp: 'NB 6/1/2023 00:37:13'!
+operationExclusiveToPortfolioErrorDescription
+	
+	'El reporte solo puede ser realizado sobre portfolios'.! !
+!PortfolioAccountSummaryReport class methodsFor: 'instance creation' stamp: 'NB 6/1/2023 00:37:48'!
+assertAccountIsAPortfolio: aPortfolio
+
+	^ (aPortfolio isKindOf: Portfolio) ifFalse: [self error: self operationExclusiveToPortfolioErrorDescription]! !
+!PortfolioAccountSummaryReport class methodsFor: 'instance creation' stamp: 'NB 6/1/2023 00:37:48' prior: 50628076 overrides: 50628022!
+for: aPortfolio
+	
+	self assertAccountIsAPortfolio: aPortfolio.
+	
+	^self new initializeFor: aPortfolio ! !
+
+!methodRemoval: AccountReport class #for: stamp: 'NB 6/1/2023 00:38:36'!
+for: anAccount 
+	
+	^self new initializeFor: anAccount !
+
+!testRun: #PortfolioReportTest #test01NewPortfolioPortfolioAccountSummaryReportIsOk stamp: 'NB 6/1/2023 00:39:11'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test02OneLevelDeepPortfolioPortfolioAccountSummaryReportIsOk stamp: 'NB 6/1/2023 00:39:11'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test03ManyLevelDeepPortfolioPortfolioAccountSummaryReportIsOk stamp: 'NB 6/1/2023 00:39:11'!
+PASSED!
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'NB 6/1/2023 00:39:11'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithAccountsIsSumOfAccountsBalance stamp: 'NB 6/1/2023 00:39:11'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'NB 6/1/2023 00:39:11'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'NB 6/1/2023 00:39:11'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'NB 6/1/2023 00:39:11'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'NB 6/1/2023 00:39:11'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'NB 6/1/2023 00:39:11'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'NB 6/1/2023 00:39:11'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'NB 6/1/2023 00:39:11'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'NB 6/1/2023 00:39:11'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'NB 6/1/2023 00:39:11'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'NB 6/1/2023 00:39:11'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'NB 6/1/2023 00:39:11'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'NB 6/1/2023 00:39:11'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'NB 6/1/2023 00:39:11'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'NB 6/1/2023 00:39:11'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'NB 6/1/2023 00:39:11'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'NB 6/1/2023 00:39:11'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'NB 6/1/2023 00:39:11'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'NB 6/1/2023 00:39:11'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'NB 6/1/2023 00:39:11'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'NB 6/1/2023 00:39:11'!
+PASSED!
+
+!testRun: #ReportTest #test01NewReceptiveAccountSummaryReportIsOk stamp: 'NB 6/1/2023 00:39:11'!
+PASSED!
+
+!testRun: #ReportTest #test02ReceptiveAccountWithOneTransactionSummaryReportIsOk stamp: 'NB 6/1/2023 00:39:11'!
+PASSED!
+
+!testRun: #ReportTest #test03NewPortfolioSummaryReportIsOk stamp: 'NB 6/1/2023 00:39:11'!
+PASSED!
+
+!testRun: #ReportTest #test04OneLevelDeepPortfolioSummaryReportIsOk stamp: 'NB 6/1/2023 00:39:11'!
+PASSED!
+
+!testRun: #ReportTest #test05ManyLevelsDeepPortfolioSummaryReportIsOk stamp: 'NB 6/1/2023 00:39:11'!
+PASSED!
+
+!testRun: #ReportTest #test06NewReceptiveAccountTransferNetReportIsOk stamp: 'NB 6/1/2023 00:39:11'!
+PASSED!
+
+!testRun: #ReportTest #test07ReceptiveAccountWithManyTransactionTransferNetReportIsOk stamp: 'NB 6/1/2023 00:39:11'!
+PASSED!
+
+!testRun: #ReportTest #test08NewPortfolioTransferNetReportIsOk stamp: 'NB 6/1/2023 00:39:11'!
+PASSED!
+
+!testRun: #ReportTest #test09OneLevelDeepPortfolioTransferNetReportIsOk stamp: 'NB 6/1/2023 00:39:11'!
+PASSED!
+
+!testRun: #ReportTest #test10ManyLevelDeepPortfolioTransferNetReportIsOk stamp: 'NB 6/1/2023 00:39:11'!
+PASSED!
+
+!testRun: #TransferTest #test01TransferCorrectlyDecreasesSenderBalanceAndIncreasesReceiverBalanceForTheAmountTransfered stamp: 'NB 6/1/2023 00:39:11'!
+PASSED!
+
+!testRun: #TransferTest #test02SenderAccountCorrectlyRegistersATransferSending stamp: 'NB 6/1/2023 00:39:11'!
+PASSED!
+
+!testRun: #TransferTest #test03ReceptionAccountCorrectlyRegistersATransferReception stamp: 'NB 6/1/2023 00:39:11'!
+PASSED!
+
+!testRun: #TransferTest #test04TransferSendingCanReachTheTransfer stamp: 'NB 6/1/2023 00:39:11'!
+PASSED!
+
+!testRun: #TransferTest #test05TransferReceptionCanReachTheTransfer stamp: 'NB 6/1/2023 00:39:11'!
+PASSED!
+
+!testRun: #TransferTest #test06CannotTransferAnAmountThatItIsNotAStrictlyPositiveNumber stamp: 'NB 6/1/2023 00:39:11'!
+PASSED!
+
+!testRun: #TransferTest #test07CannotTransferToTheSameAccount stamp: 'NB 6/1/2023 00:39:11'!
+PASSED!
+
+----SNAPSHOT----(1 June 2023 00:39:14) CuisUniversity-5832.image priorSource: 9485480!
+
+!classRemoval: #PortfolioReport stamp: 'NB 6/1/2023 00:40:25'!
+Object subclass: #PortfolioReport
+	instanceVariableNames: 'portfolio reportLines'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!PortfolioReportTest methodsFor: 'tests' stamp: 'NB 6/1/2023 00:42:48'!
+test04CannotGeneratePortfolioReportForAReceptiveAccount
+
+
+	self should: [PortfolioAccountSummaryReport for: ReceptiveAccount new] 
+		raise: Error
+	  withMessageText: [:anError| self assert: anError equals: PortfolioAccountSummaryReport]! !
+!PortfolioReportTest methodsFor: 'tests' stamp: 'NB 6/1/2023 00:43:00' prior: 50628277!
+test04CannotGeneratePortfolioReportForAReceptiveAccount
+
+
+	self should: [PortfolioAccountSummaryReport for: ReceptiveAccount new] 
+		raise: Error
+	  withMessageText: [:anError| self assert: anError equals: PortfolioAccountSummaryReport operationExclusiveToPortfolioErrorDescription ]! !
+!PortfolioReportTest methodsFor: 'tests' stamp: 'NB 6/1/2023 00:43:35' prior: 50628288!
+test04CannotGeneratePortfolioReportForAReceptiveAccount
+
+
+	self should: [PortfolioAccountSummaryReport for: ReceptiveAccount new] 
+		raise: Error
+	  withMessageText: PortfolioAccountSummaryReport operationExclusiveToPortfolioErrorDescription.! !
+
+!testRun: #PortfolioReportTest #test04CannotGeneratePortfolioReportForAReceptiveAccount stamp: 'NB 6/1/2023 00:43:37'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test01NewPortfolioPortfolioAccountSummaryReportIsOk stamp: 'NB 6/1/2023 00:43:37'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test02OneLevelDeepPortfolioPortfolioAccountSummaryReportIsOk stamp: 'NB 6/1/2023 00:43:37'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test03ManyLevelDeepPortfolioPortfolioAccountSummaryReportIsOk stamp: 'NB 6/1/2023 00:43:37'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test04CannotGeneratePortfolioReportForAReceptiveAccount stamp: 'NB 6/1/2023 00:43:37'!
+PASSED!
+
+----SNAPSHOT----(1 June 2023 00:43:44) CuisUniversity-5832.image priorSource: 9491727!
+
+----SNAPSHOT----(1 June 2023 00:43:48) CuisUniversity-5832.image priorSource: 9493756!
+
+!testRun: #PortfolioReportTest #test01NewPortfolioPortfolioAccountSummaryReportIsOk stamp: 'NB 6/1/2023 00:43:50'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test02OneLevelDeepPortfolioPortfolioAccountSummaryReportIsOk stamp: 'NB 6/1/2023 00:43:50'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test03ManyLevelDeepPortfolioPortfolioAccountSummaryReportIsOk stamp: 'NB 6/1/2023 00:43:50'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test04CannotGeneratePortfolioReportForAReceptiveAccount stamp: 'NB 6/1/2023 00:43:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'NB 6/1/2023 00:43:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithAccountsIsSumOfAccountsBalance stamp: 'NB 6/1/2023 00:43:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'NB 6/1/2023 00:43:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'NB 6/1/2023 00:43:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'NB 6/1/2023 00:43:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'NB 6/1/2023 00:43:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'NB 6/1/2023 00:43:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'NB 6/1/2023 00:43:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'NB 6/1/2023 00:43:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'NB 6/1/2023 00:43:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'NB 6/1/2023 00:43:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'NB 6/1/2023 00:43:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'NB 6/1/2023 00:43:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'NB 6/1/2023 00:43:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'NB 6/1/2023 00:43:50'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'NB 6/1/2023 00:43:50'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'NB 6/1/2023 00:43:50'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'NB 6/1/2023 00:43:50'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'NB 6/1/2023 00:43:50'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'NB 6/1/2023 00:43:50'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'NB 6/1/2023 00:43:50'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'NB 6/1/2023 00:43:50'!
+PASSED!
+
+!testRun: #ReportTest #test01NewReceptiveAccountSummaryReportIsOk stamp: 'NB 6/1/2023 00:43:50'!
+PASSED!
+
+!testRun: #ReportTest #test02ReceptiveAccountWithOneTransactionSummaryReportIsOk stamp: 'NB 6/1/2023 00:43:50'!
+PASSED!
+
+!testRun: #ReportTest #test03NewPortfolioSummaryReportIsOk stamp: 'NB 6/1/2023 00:43:50'!
+PASSED!
+
+!testRun: #ReportTest #test04OneLevelDeepPortfolioSummaryReportIsOk stamp: 'NB 6/1/2023 00:43:50'!
+PASSED!
+
+!testRun: #ReportTest #test05ManyLevelsDeepPortfolioSummaryReportIsOk stamp: 'NB 6/1/2023 00:43:50'!
+PASSED!
+
+!testRun: #ReportTest #test06NewReceptiveAccountTransferNetReportIsOk stamp: 'NB 6/1/2023 00:43:50'!
+PASSED!
+
+!testRun: #ReportTest #test07ReceptiveAccountWithManyTransactionTransferNetReportIsOk stamp: 'NB 6/1/2023 00:43:50'!
+PASSED!
+
+!testRun: #ReportTest #test08NewPortfolioTransferNetReportIsOk stamp: 'NB 6/1/2023 00:43:50'!
+PASSED!
+
+!testRun: #ReportTest #test09OneLevelDeepPortfolioTransferNetReportIsOk stamp: 'NB 6/1/2023 00:43:50'!
+PASSED!
+
+!testRun: #ReportTest #test10ManyLevelDeepPortfolioTransferNetReportIsOk stamp: 'NB 6/1/2023 00:43:50'!
+PASSED!
+
+!testRun: #TransferTest #test01TransferCorrectlyDecreasesSenderBalanceAndIncreasesReceiverBalanceForTheAmountTransfered stamp: 'NB 6/1/2023 00:43:50'!
+PASSED!
+
+!testRun: #TransferTest #test02SenderAccountCorrectlyRegistersATransferSending stamp: 'NB 6/1/2023 00:43:50'!
+PASSED!
+
+!testRun: #TransferTest #test03ReceptionAccountCorrectlyRegistersATransferReception stamp: 'NB 6/1/2023 00:43:50'!
+PASSED!
+
+!testRun: #TransferTest #test04TransferSendingCanReachTheTransfer stamp: 'NB 6/1/2023 00:43:50'!
+PASSED!
+
+!testRun: #TransferTest #test05TransferReceptionCanReachTheTransfer stamp: 'NB 6/1/2023 00:43:50'!
+PASSED!
+
+!testRun: #TransferTest #test06CannotTransferAnAmountThatItIsNotAStrictlyPositiveNumber stamp: 'NB 6/1/2023 00:43:50'!
+PASSED!
+
+!testRun: #TransferTest #test07CannotTransferToTheSameAccount stamp: 'NB 6/1/2023 00:43:50'!
+PASSED!
+
+!classRenamed: #PortfolioAccountSummaryReport as: #PortfolioSummaryReport stamp: 'NB 6/1/2023 00:44:20'!
+Smalltalk renameClassNamed: #PortfolioAccountSummaryReport as: #PortfolioSummaryReport!
+!PortfolioReportTest methodsFor: 'as yet unclassified' stamp: 'NB 6/1/2023 00:44:20' prior: 50626481!
+test02OneLevelDeepPortfolioPortfolioAccountSummaryReportIsOk
+
+
+	|myAccount familyPortfolio|
+	myAccount := ReceptiveAccount named: 'Cuenta mia'.
+	familyPortfolio := Portfolio named: 'Portfolio de la familia' with: myAccount.
+
+	self assert: (OrderedCollection with:'Portfolio de la familia' with: ' Cuenta mia')
+		 equals: (PortfolioSummaryReport for: familyPortfolio) compute.! !
+!PortfolioReportTest methodsFor: 'as yet unclassified' stamp: 'NB 6/1/2023 00:44:20' prior: 50626566!
+test03ManyLevelDeepPortfolioPortfolioAccountSummaryReportIsOk
+
+
+	|myAccount familyPortfolio johnsAccount angiesAccount childrenPortfolio|
+	johnsAccount := ReceptiveAccount named: 'Cuenta de Juan'.
+	angiesAccount := ReceptiveAccount named: 'Cuenta de Angeles'.
+	childrenPortfolio := Portfolio named: 'Portfolio de hijos' with: johnsAccount with: angiesAccount.
+	myAccount := ReceptiveAccount named: 'Cuenta mia'.
+	familyPortfolio := Portfolio named: 'Portfolio de la familia' with: myAccount with: childrenPortfolio.
+
+	self assert: (OrderedCollection 
+				with:'Portfolio de la familia' 
+				with: ' Cuenta mia'
+				with: ' Portfolio de hijos'
+				with: '  Cuenta de Juan'
+				with: '  Cuenta de Angeles'
+		)
+		 equals: (PortfolioSummaryReport for: familyPortfolio) compute.! !
+!PortfolioReportTest methodsFor: 'as yet unclassified' stamp: 'NB 6/1/2023 00:44:20' prior: 50626594!
+test01NewPortfolioPortfolioAccountSummaryReportIsOk
+
+	self assert: (OrderedCollection with:'Portfolio de la familia')
+		 equals: (PortfolioSummaryReport for: (Portfolio named: 'Portfolio de la familia')) compute.! !
+!PortfolioReportTest methodsFor: 'as yet unclassified' stamp: 'NB 6/1/2023 00:44:20' prior: 50628300!
+test04CannotGeneratePortfolioReportForAReceptiveAccount
+
+
+	self should: [PortfolioSummaryReport for: ReceptiveAccount new] 
+		raise: Error
+	  withMessageText: PortfolioSummaryReport operationExclusiveToPortfolioErrorDescription.! !
+
+----SNAPSHOT----(1 June 2023 00:46:21) CuisUniversity-5832.image priorSource: 9493844!
+
+!testRun: #PortfolioReportTest #test01NewPortfolioPortfolioAccountSummaryReportIsOk stamp: 'NB 6/1/2023 00:46:24'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test02OneLevelDeepPortfolioPortfolioAccountSummaryReportIsOk stamp: 'NB 6/1/2023 00:46:24'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test03ManyLevelDeepPortfolioPortfolioAccountSummaryReportIsOk stamp: 'NB 6/1/2023 00:46:24'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test04CannotGeneratePortfolioReportForAReceptiveAccount stamp: 'NB 6/1/2023 00:46:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'NB 6/1/2023 00:46:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithAccountsIsSumOfAccountsBalance stamp: 'NB 6/1/2023 00:46:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'NB 6/1/2023 00:46:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'NB 6/1/2023 00:46:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'NB 6/1/2023 00:46:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'NB 6/1/2023 00:46:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'NB 6/1/2023 00:46:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'NB 6/1/2023 00:46:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'NB 6/1/2023 00:46:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'NB 6/1/2023 00:46:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'NB 6/1/2023 00:46:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'NB 6/1/2023 00:46:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'NB 6/1/2023 00:46:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'NB 6/1/2023 00:46:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'NB 6/1/2023 00:46:24'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'NB 6/1/2023 00:46:24'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'NB 6/1/2023 00:46:24'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'NB 6/1/2023 00:46:24'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'NB 6/1/2023 00:46:24'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'NB 6/1/2023 00:46:24'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'NB 6/1/2023 00:46:24'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'NB 6/1/2023 00:46:24'!
+PASSED!
+
+!testRun: #ReportTest #test01NewReceptiveAccountSummaryReportIsOk stamp: 'NB 6/1/2023 00:46:24'!
+PASSED!
+
+!testRun: #ReportTest #test02ReceptiveAccountWithOneTransactionSummaryReportIsOk stamp: 'NB 6/1/2023 00:46:24'!
+PASSED!
+
+!testRun: #ReportTest #test03NewPortfolioSummaryReportIsOk stamp: 'NB 6/1/2023 00:46:24'!
+PASSED!
+
+!testRun: #ReportTest #test04OneLevelDeepPortfolioSummaryReportIsOk stamp: 'NB 6/1/2023 00:46:24'!
+PASSED!
+
+!testRun: #ReportTest #test05ManyLevelsDeepPortfolioSummaryReportIsOk stamp: 'NB 6/1/2023 00:46:24'!
+PASSED!
+
+!testRun: #ReportTest #test06NewReceptiveAccountTransferNetReportIsOk stamp: 'NB 6/1/2023 00:46:24'!
+PASSED!
+
+!testRun: #ReportTest #test07ReceptiveAccountWithManyTransactionTransferNetReportIsOk stamp: 'NB 6/1/2023 00:46:24'!
+PASSED!
+
+!testRun: #ReportTest #test08NewPortfolioTransferNetReportIsOk stamp: 'NB 6/1/2023 00:46:24'!
+PASSED!
+
+!testRun: #ReportTest #test09OneLevelDeepPortfolioTransferNetReportIsOk stamp: 'NB 6/1/2023 00:46:24'!
+PASSED!
+
+!testRun: #ReportTest #test10ManyLevelDeepPortfolioTransferNetReportIsOk stamp: 'NB 6/1/2023 00:46:24'!
+PASSED!
+
+!testRun: #TransferTest #test01TransferCorrectlyDecreasesSenderBalanceAndIncreasesReceiverBalanceForTheAmountTransfered stamp: 'NB 6/1/2023 00:46:24'!
+PASSED!
+
+!testRun: #TransferTest #test02SenderAccountCorrectlyRegistersATransferSending stamp: 'NB 6/1/2023 00:46:24'!
+PASSED!
+
+!testRun: #TransferTest #test03ReceptionAccountCorrectlyRegistersATransferReception stamp: 'NB 6/1/2023 00:46:24'!
+PASSED!
+
+!testRun: #TransferTest #test04TransferSendingCanReachTheTransfer stamp: 'NB 6/1/2023 00:46:24'!
+PASSED!
+
+!testRun: #TransferTest #test05TransferReceptionCanReachTheTransfer stamp: 'NB 6/1/2023 00:46:24'!
+PASSED!
+
+!testRun: #TransferTest #test06CannotTransferAnAmountThatItIsNotAStrictlyPositiveNumber stamp: 'NB 6/1/2023 00:46:24'!
+PASSED!
+
+!testRun: #TransferTest #test07CannotTransferToTheSameAccount stamp: 'NB 6/1/2023 00:46:24'!
+PASSED!
+!AccountReport methodsFor: 'operations' stamp: 'NB 6/1/2023 00:59:17' overrides: 50627951!
+operationOverPortfolio: aPortoflio
+
+	aPortoflio traverseWithOperation: self.! !
+!AccountReport methodsFor: 'operations' stamp: 'NB 6/1/2023 00:59:40' overrides: 50627956!
+operationOverReceptiveAccount: aReceptiveAccount
+
+	aReceptiveAccount traverseWithOperation: self.! !
+
+!testRun: #PortfolioReportTest #test01NewPortfolioPortfolioAccountSummaryReportIsOk stamp: 'NB 6/1/2023 01:00:00'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test02OneLevelDeepPortfolioPortfolioAccountSummaryReportIsOk stamp: 'NB 6/1/2023 01:00:00'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test03ManyLevelDeepPortfolioPortfolioAccountSummaryReportIsOk stamp: 'NB 6/1/2023 01:00:00'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test04CannotGeneratePortfolioReportForAReceptiveAccount stamp: 'NB 6/1/2023 01:00:00'!
+PASSED!
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'NB 6/1/2023 01:00:00'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithAccountsIsSumOfAccountsBalance stamp: 'NB 6/1/2023 01:00:00'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'NB 6/1/2023 01:00:00'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'NB 6/1/2023 01:00:00'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'NB 6/1/2023 01:00:00'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'NB 6/1/2023 01:00:00'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'NB 6/1/2023 01:00:00'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'NB 6/1/2023 01:00:00'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'NB 6/1/2023 01:00:00'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'NB 6/1/2023 01:00:00'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'NB 6/1/2023 01:00:00'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'NB 6/1/2023 01:00:00'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'NB 6/1/2023 01:00:00'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'NB 6/1/2023 01:00:00'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'NB 6/1/2023 01:00:00'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'NB 6/1/2023 01:00:00'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'NB 6/1/2023 01:00:00'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'NB 6/1/2023 01:00:00'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'NB 6/1/2023 01:00:00'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'NB 6/1/2023 01:00:00'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'NB 6/1/2023 01:00:00'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'NB 6/1/2023 01:00:00'!
+PASSED!
+
+!testRun: #ReportTest #test01NewReceptiveAccountSummaryReportIsOk stamp: 'NB 6/1/2023 01:00:00'!
+PASSED!
+
+!testRun: #ReportTest #test02ReceptiveAccountWithOneTransactionSummaryReportIsOk stamp: 'NB 6/1/2023 01:00:00'!
+PASSED!
+
+!testRun: #ReportTest #test03NewPortfolioSummaryReportIsOk stamp: 'NB 6/1/2023 01:00:00'!
+PASSED!
+
+!testRun: #ReportTest #test04OneLevelDeepPortfolioSummaryReportIsOk stamp: 'NB 6/1/2023 01:00:00'!
+PASSED!
+
+!testRun: #ReportTest #test05ManyLevelsDeepPortfolioSummaryReportIsOk stamp: 'NB 6/1/2023 01:00:00'!
+PASSED!
+
+!testRun: #ReportTest #test06NewReceptiveAccountTransferNetReportIsOk stamp: 'NB 6/1/2023 01:00:00'!
+PASSED!
+
+!testRun: #ReportTest #test07ReceptiveAccountWithManyTransactionTransferNetReportIsOk stamp: 'NB 6/1/2023 01:00:00'!
+PASSED!
+
+!testRun: #ReportTest #test08NewPortfolioTransferNetReportIsOk stamp: 'NB 6/1/2023 01:00:00'!
+PASSED!
+
+!testRun: #ReportTest #test09OneLevelDeepPortfolioTransferNetReportIsOk stamp: 'NB 6/1/2023 01:00:00'!
+PASSED!
+
+!testRun: #ReportTest #test10ManyLevelDeepPortfolioTransferNetReportIsOk stamp: 'NB 6/1/2023 01:00:00'!
+PASSED!
+
+!testRun: #TransferTest #test01TransferCorrectlyDecreasesSenderBalanceAndIncreasesReceiverBalanceForTheAmountTransfered stamp: 'NB 6/1/2023 01:00:00'!
+PASSED!
+
+!testRun: #TransferTest #test02SenderAccountCorrectlyRegistersATransferSending stamp: 'NB 6/1/2023 01:00:00'!
+PASSED!
+
+!testRun: #TransferTest #test03ReceptionAccountCorrectlyRegistersATransferReception stamp: 'NB 6/1/2023 01:00:00'!
+PASSED!
+
+!testRun: #TransferTest #test04TransferSendingCanReachTheTransfer stamp: 'NB 6/1/2023 01:00:00'!
+PASSED!
+
+!testRun: #TransferTest #test05TransferReceptionCanReachTheTransfer stamp: 'NB 6/1/2023 01:00:00'!
+PASSED!
+
+!testRun: #TransferTest #test06CannotTransferAnAmountThatItIsNotAStrictlyPositiveNumber stamp: 'NB 6/1/2023 01:00:00'!
+PASSED!
+
+!testRun: #TransferTest #test07CannotTransferToTheSameAccount stamp: 'NB 6/1/2023 01:00:00'!
+PASSED!
+
+!methodRemoval: SummaryReport #operationOverPortfolio: stamp: 'NB 6/1/2023 01:00:07'!
+operationOverPortfolio: aPortoflio
+
+	aPortoflio traverseWithOperation: self.
+	
+	!
+
+!methodRemoval: SummaryReport #operationOverReceptiveAccount: stamp: 'NB 6/1/2023 01:00:11'!
+operationOverReceptiveAccount: aReceptiveAccount
+
+	aReceptiveAccount traverseWithOperation: self.
+	
+	!
+
+!methodRemoval: TransferNetReport #operationOverPortfolio: stamp: 'NB 6/1/2023 01:00:17'!
+operationOverPortfolio: aPortoflio
+
+	aPortoflio traverseWithOperation: self.
+	
+	!
+
+!methodRemoval: TransferNetReport #operationOverReceptiveAccount: stamp: 'NB 6/1/2023 01:00:21'!
+operationOverReceptiveAccount: aReceptiveAccount
+
+	aReceptiveAccount traverseWithOperation: self.
+	
+	!
+!Deposit methodsFor: 'balance' stamp: 'NB 6/1/2023 01:04:18' prior: 50626252 overrides: 50626205!
+operateOver: anOperationOverAccount
+
+	anOperationOverAccount operationOverDeposit: self.
+	! !
+!Withdraw methodsFor: 'reports' stamp: 'NB 6/1/2023 01:04:32' prior: 50626258 overrides: 50626205!
+operateOver: anOperationOverAccount
+
+	anOperationOverAccount operationOverWithdraw: self.
+	
+
+	! !
+!TransferReception methodsFor: 'reports' stamp: 'NB 6/1/2023 01:04:39' prior: 50626264 overrides: 50626205!
+operateOver: anOperationOverAccount
+
+	anOperationOverAccount operationOverTransferReception: self.
+	
+! !
+!TransferSending methodsFor: 'reports' stamp: 'NB 6/1/2023 01:04:45' prior: 50626270 overrides: 50626205!
+operateOver: anOperationOverAccount
+
+	anOperationOverAccount operationOverTransferSending: self.
+	! !
+!Transaction methodsFor: 'reports' stamp: 'NB 6/1/2023 01:05:24' prior: 50626205!
+operateOver: anOperationOverAccount
+
+	self subclassResponsibility .! !
+
+----SNAPSHOT----(1 June 2023 01:06:54) CuisUniversity-5832.image priorSource: 9501319!
+
+!testRun: #PortfolioReportTest #test01NewPortfolioPortfolioAccountSummaryReportIsOk stamp: 'NB 6/1/2023 01:06:58'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test02OneLevelDeepPortfolioPortfolioAccountSummaryReportIsOk stamp: 'NB 6/1/2023 01:06:58'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test03ManyLevelDeepPortfolioPortfolioAccountSummaryReportIsOk stamp: 'NB 6/1/2023 01:06:58'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test04CannotGeneratePortfolioReportForAReceptiveAccount stamp: 'NB 6/1/2023 01:06:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'NB 6/1/2023 01:07:01'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithAccountsIsSumOfAccountsBalance stamp: 'NB 6/1/2023 01:07:01'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'NB 6/1/2023 01:07:01'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'NB 6/1/2023 01:07:01'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'NB 6/1/2023 01:07:01'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'NB 6/1/2023 01:07:01'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'NB 6/1/2023 01:07:01'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'NB 6/1/2023 01:07:01'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'NB 6/1/2023 01:07:01'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'NB 6/1/2023 01:07:01'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'NB 6/1/2023 01:07:01'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'NB 6/1/2023 01:07:01'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'NB 6/1/2023 01:07:01'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'NB 6/1/2023 01:07:01'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'NB 6/1/2023 01:07:01'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'NB 6/1/2023 01:07:03'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'NB 6/1/2023 01:07:03'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'NB 6/1/2023 01:07:03'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'NB 6/1/2023 01:07:03'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'NB 6/1/2023 01:07:03'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'NB 6/1/2023 01:07:03'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'NB 6/1/2023 01:07:03'!
+PASSED!
+
+!testRun: #ReportTest #test01NewReceptiveAccountSummaryReportIsOk stamp: 'NB 6/1/2023 01:07:05'!
+PASSED!
+
+!testRun: #ReportTest #test02ReceptiveAccountWithOneTransactionSummaryReportIsOk stamp: 'NB 6/1/2023 01:07:05'!
+PASSED!
+
+!testRun: #ReportTest #test03NewPortfolioSummaryReportIsOk stamp: 'NB 6/1/2023 01:07:05'!
+PASSED!
+
+!testRun: #ReportTest #test04OneLevelDeepPortfolioSummaryReportIsOk stamp: 'NB 6/1/2023 01:07:05'!
+PASSED!
+
+!testRun: #ReportTest #test05ManyLevelsDeepPortfolioSummaryReportIsOk stamp: 'NB 6/1/2023 01:07:05'!
+PASSED!
+
+!testRun: #ReportTest #test06NewReceptiveAccountTransferNetReportIsOk stamp: 'NB 6/1/2023 01:07:05'!
+PASSED!
+
+!testRun: #ReportTest #test07ReceptiveAccountWithManyTransactionTransferNetReportIsOk stamp: 'NB 6/1/2023 01:07:05'!
+PASSED!
+
+!testRun: #ReportTest #test08NewPortfolioTransferNetReportIsOk stamp: 'NB 6/1/2023 01:07:05'!
+PASSED!
+
+!testRun: #ReportTest #test09OneLevelDeepPortfolioTransferNetReportIsOk stamp: 'NB 6/1/2023 01:07:05'!
+PASSED!
+
+!testRun: #ReportTest #test10ManyLevelDeepPortfolioTransferNetReportIsOk stamp: 'NB 6/1/2023 01:07:05'!
+PASSED!
+
+!testRun: #TransferTest #test01TransferCorrectlyDecreasesSenderBalanceAndIncreasesReceiverBalanceForTheAmountTransfered stamp: 'NB 6/1/2023 01:07:08'!
+PASSED!
+
+!testRun: #TransferTest #test02SenderAccountCorrectlyRegistersATransferSending stamp: 'NB 6/1/2023 01:07:08'!
+PASSED!
+
+!testRun: #TransferTest #test03ReceptionAccountCorrectlyRegistersATransferReception stamp: 'NB 6/1/2023 01:07:09'!
+PASSED!
+
+!testRun: #TransferTest #test04TransferSendingCanReachTheTransfer stamp: 'NB 6/1/2023 01:07:09'!
+PASSED!
+
+!testRun: #TransferTest #test05TransferReceptionCanReachTheTransfer stamp: 'NB 6/1/2023 01:07:09'!
+PASSED!
+
+!testRun: #TransferTest #test06CannotTransferAnAmountThatItIsNotAStrictlyPositiveNumber stamp: 'NB 6/1/2023 01:07:09'!
+PASSED!
+
+!testRun: #TransferTest #test07CannotTransferToTheSameAccount stamp: 'NB 6/1/2023 01:07:09'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test01NewPortfolioPortfolioAccountSummaryReportIsOk stamp: 'NB 6/1/2023 01:07:11'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test02OneLevelDeepPortfolioPortfolioAccountSummaryReportIsOk stamp: 'NB 6/1/2023 01:07:11'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test03ManyLevelDeepPortfolioPortfolioAccountSummaryReportIsOk stamp: 'NB 6/1/2023 01:07:11'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test04CannotGeneratePortfolioReportForAReceptiveAccount stamp: 'NB 6/1/2023 01:07:11'!
+PASSED!
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'NB 6/1/2023 01:07:11'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithAccountsIsSumOfAccountsBalance stamp: 'NB 6/1/2023 01:07:11'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'NB 6/1/2023 01:07:11'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'NB 6/1/2023 01:07:11'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'NB 6/1/2023 01:07:11'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'NB 6/1/2023 01:07:11'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'NB 6/1/2023 01:07:11'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'NB 6/1/2023 01:07:11'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'NB 6/1/2023 01:07:11'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'NB 6/1/2023 01:07:11'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'NB 6/1/2023 01:07:11'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'NB 6/1/2023 01:07:11'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'NB 6/1/2023 01:07:11'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'NB 6/1/2023 01:07:11'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'NB 6/1/2023 01:07:11'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'NB 6/1/2023 01:07:11'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'NB 6/1/2023 01:07:11'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'NB 6/1/2023 01:07:11'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'NB 6/1/2023 01:07:11'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'NB 6/1/2023 01:07:11'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'NB 6/1/2023 01:07:11'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'NB 6/1/2023 01:07:11'!
+PASSED!
+
+!testRun: #ReportTest #test01NewReceptiveAccountSummaryReportIsOk stamp: 'NB 6/1/2023 01:07:11'!
+PASSED!
+
+!testRun: #ReportTest #test02ReceptiveAccountWithOneTransactionSummaryReportIsOk stamp: 'NB 6/1/2023 01:07:11'!
+PASSED!
+
+!testRun: #ReportTest #test03NewPortfolioSummaryReportIsOk stamp: 'NB 6/1/2023 01:07:11'!
+PASSED!
+
+!testRun: #ReportTest #test04OneLevelDeepPortfolioSummaryReportIsOk stamp: 'NB 6/1/2023 01:07:11'!
+PASSED!
+
+!testRun: #ReportTest #test05ManyLevelsDeepPortfolioSummaryReportIsOk stamp: 'NB 6/1/2023 01:07:11'!
+PASSED!
+
+!testRun: #ReportTest #test06NewReceptiveAccountTransferNetReportIsOk stamp: 'NB 6/1/2023 01:07:11'!
+PASSED!
+
+!testRun: #ReportTest #test07ReceptiveAccountWithManyTransactionTransferNetReportIsOk stamp: 'NB 6/1/2023 01:07:11'!
+PASSED!
+
+!testRun: #ReportTest #test08NewPortfolioTransferNetReportIsOk stamp: 'NB 6/1/2023 01:07:11'!
+PASSED!
+
+!testRun: #ReportTest #test09OneLevelDeepPortfolioTransferNetReportIsOk stamp: 'NB 6/1/2023 01:07:11'!
+PASSED!
+
+!testRun: #ReportTest #test10ManyLevelDeepPortfolioTransferNetReportIsOk stamp: 'NB 6/1/2023 01:07:11'!
+PASSED!
+
+!testRun: #TransferTest #test01TransferCorrectlyDecreasesSenderBalanceAndIncreasesReceiverBalanceForTheAmountTransfered stamp: 'NB 6/1/2023 01:07:11'!
+PASSED!
+
+!testRun: #TransferTest #test02SenderAccountCorrectlyRegistersATransferSending stamp: 'NB 6/1/2023 01:07:11'!
+PASSED!
+
+!testRun: #TransferTest #test03ReceptionAccountCorrectlyRegistersATransferReception stamp: 'NB 6/1/2023 01:07:11'!
+PASSED!
+
+!testRun: #TransferTest #test04TransferSendingCanReachTheTransfer stamp: 'NB 6/1/2023 01:07:11'!
+PASSED!
+
+!testRun: #TransferTest #test05TransferReceptionCanReachTheTransfer stamp: 'NB 6/1/2023 01:07:11'!
+PASSED!
+
+!testRun: #TransferTest #test06CannotTransferAnAmountThatItIsNotAStrictlyPositiveNumber stamp: 'NB 6/1/2023 01:07:11'!
+PASSED!
+
+!testRun: #TransferTest #test07CannotTransferToTheSameAccount stamp: 'NB 6/1/2023 01:07:11'!
+PASSED!
+
+----SNAPSHOT----(1 June 2023 01:07:16) CuisUniversity-5832.image priorSource: 9513830!
+
+!classDefinition: #Portfolio category: 'Portfolio-Solucion' stamp: 'NB 6/1/2023 01:07:47'!
+Account subclass: #Portfolio
+	instanceVariableNames: 'accounts parents'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #ReceptiveAccount category: 'Portfolio-Solucion' stamp: 'NB 6/1/2023 01:07:47'!
+Account subclass: #ReceptiveAccount
+	instanceVariableNames: 'transactions'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #Account category: 'Portfolio-Solucion' stamp: 'NB 6/1/2023 01:07:47'!
+Object subclass: #Account
+	instanceVariableNames: 'name'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!testRun: #PortfolioReportTest #test01NewPortfolioPortfolioAccountSummaryReportIsOk stamp: 'NB 6/1/2023 01:07:53'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test02OneLevelDeepPortfolioPortfolioAccountSummaryReportIsOk stamp: 'NB 6/1/2023 01:07:53'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test03ManyLevelDeepPortfolioPortfolioAccountSummaryReportIsOk stamp: 'NB 6/1/2023 01:07:53'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test04CannotGeneratePortfolioReportForAReceptiveAccount stamp: 'NB 6/1/2023 01:07:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'NB 6/1/2023 01:07:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithAccountsIsSumOfAccountsBalance stamp: 'NB 6/1/2023 01:07:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'NB 6/1/2023 01:07:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'NB 6/1/2023 01:07:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'NB 6/1/2023 01:07:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'NB 6/1/2023 01:07:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'NB 6/1/2023 01:07:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'NB 6/1/2023 01:07:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'NB 6/1/2023 01:07:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'NB 6/1/2023 01:07:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'NB 6/1/2023 01:07:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'NB 6/1/2023 01:07:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'NB 6/1/2023 01:07:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'NB 6/1/2023 01:07:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'NB 6/1/2023 01:07:53'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'NB 6/1/2023 01:07:53'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'NB 6/1/2023 01:07:53'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'NB 6/1/2023 01:07:53'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'NB 6/1/2023 01:07:53'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'NB 6/1/2023 01:07:53'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'NB 6/1/2023 01:07:53'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'NB 6/1/2023 01:07:53'!
+PASSED!
+
+!testRun: #ReportTest #test01NewReceptiveAccountSummaryReportIsOk stamp: 'NB 6/1/2023 01:07:53'!
+PASSED!
+
+!testRun: #ReportTest #test02ReceptiveAccountWithOneTransactionSummaryReportIsOk stamp: 'NB 6/1/2023 01:07:53'!
+PASSED!
+
+!testRun: #ReportTest #test03NewPortfolioSummaryReportIsOk stamp: 'NB 6/1/2023 01:07:53'!
+PASSED!
+
+!testRun: #ReportTest #test04OneLevelDeepPortfolioSummaryReportIsOk stamp: 'NB 6/1/2023 01:07:53'!
+PASSED!
+
+!testRun: #ReportTest #test05ManyLevelsDeepPortfolioSummaryReportIsOk stamp: 'NB 6/1/2023 01:07:53'!
+PASSED!
+
+!testRun: #ReportTest #test06NewReceptiveAccountTransferNetReportIsOk stamp: 'NB 6/1/2023 01:07:53'!
+PASSED!
+
+!testRun: #ReportTest #test07ReceptiveAccountWithManyTransactionTransferNetReportIsOk stamp: 'NB 6/1/2023 01:07:53'!
+PASSED!
+
+!testRun: #ReportTest #test08NewPortfolioTransferNetReportIsOk stamp: 'NB 6/1/2023 01:07:53'!
+PASSED!
+
+!testRun: #ReportTest #test09OneLevelDeepPortfolioTransferNetReportIsOk stamp: 'NB 6/1/2023 01:07:53'!
+PASSED!
+
+!testRun: #ReportTest #test10ManyLevelDeepPortfolioTransferNetReportIsOk stamp: 'NB 6/1/2023 01:07:53'!
+PASSED!
+
+!testRun: #TransferTest #test01TransferCorrectlyDecreasesSenderBalanceAndIncreasesReceiverBalanceForTheAmountTransfered stamp: 'NB 6/1/2023 01:07:53'!
+PASSED!
+
+!testRun: #TransferTest #test02SenderAccountCorrectlyRegistersATransferSending stamp: 'NB 6/1/2023 01:07:53'!
+PASSED!
+
+!testRun: #TransferTest #test03ReceptionAccountCorrectlyRegistersATransferReception stamp: 'NB 6/1/2023 01:07:53'!
+PASSED!
+
+!testRun: #TransferTest #test04TransferSendingCanReachTheTransfer stamp: 'NB 6/1/2023 01:07:53'!
+PASSED!
+
+!testRun: #TransferTest #test05TransferReceptionCanReachTheTransfer stamp: 'NB 6/1/2023 01:07:53'!
+PASSED!
+
+!testRun: #TransferTest #test06CannotTransferAnAmountThatItIsNotAStrictlyPositiveNumber stamp: 'NB 6/1/2023 01:07:53'!
+PASSED!
+
+!testRun: #TransferTest #test07CannotTransferToTheSameAccount stamp: 'NB 6/1/2023 01:07:53'!
+PASSED!
+
+----SNAPSHOT----(1 June 2023 01:08:16) CuisUniversity-5832.image priorSource: 9524166!
+
+----SNAPSHOT----(1 June 2023 01:08:19) CuisUniversity-5832.image priorSource: 9530100!
+
+!testRun: #PortfolioReportTest #test01NewPortfolioPortfolioAccountSummaryReportIsOk stamp: 'NB 6/1/2023 01:08:23'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test02OneLevelDeepPortfolioPortfolioAccountSummaryReportIsOk stamp: 'NB 6/1/2023 01:08:23'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test03ManyLevelDeepPortfolioPortfolioAccountSummaryReportIsOk stamp: 'NB 6/1/2023 01:08:23'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test04CannotGeneratePortfolioReportForAReceptiveAccount stamp: 'NB 6/1/2023 01:08:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'NB 6/1/2023 01:08:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithAccountsIsSumOfAccountsBalance stamp: 'NB 6/1/2023 01:08:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'NB 6/1/2023 01:08:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'NB 6/1/2023 01:08:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'NB 6/1/2023 01:08:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'NB 6/1/2023 01:08:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'NB 6/1/2023 01:08:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'NB 6/1/2023 01:08:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'NB 6/1/2023 01:08:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'NB 6/1/2023 01:08:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'NB 6/1/2023 01:08:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'NB 6/1/2023 01:08:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'NB 6/1/2023 01:08:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'NB 6/1/2023 01:08:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'NB 6/1/2023 01:08:23'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'NB 6/1/2023 01:08:23'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'NB 6/1/2023 01:08:23'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'NB 6/1/2023 01:08:23'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'NB 6/1/2023 01:08:23'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'NB 6/1/2023 01:08:23'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'NB 6/1/2023 01:08:23'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'NB 6/1/2023 01:08:23'!
+PASSED!
+
+!testRun: #ReportTest #test01NewReceptiveAccountSummaryReportIsOk stamp: 'NB 6/1/2023 01:08:23'!
+PASSED!
+
+!testRun: #ReportTest #test02ReceptiveAccountWithOneTransactionSummaryReportIsOk stamp: 'NB 6/1/2023 01:08:23'!
+PASSED!
+
+!testRun: #ReportTest #test03NewPortfolioSummaryReportIsOk stamp: 'NB 6/1/2023 01:08:23'!
+PASSED!
+
+!testRun: #ReportTest #test04OneLevelDeepPortfolioSummaryReportIsOk stamp: 'NB 6/1/2023 01:08:23'!
+PASSED!
+
+!testRun: #ReportTest #test05ManyLevelsDeepPortfolioSummaryReportIsOk stamp: 'NB 6/1/2023 01:08:23'!
+PASSED!
+
+!testRun: #ReportTest #test06NewReceptiveAccountTransferNetReportIsOk stamp: 'NB 6/1/2023 01:08:23'!
+PASSED!
+
+!testRun: #ReportTest #test07ReceptiveAccountWithManyTransactionTransferNetReportIsOk stamp: 'NB 6/1/2023 01:08:23'!
+PASSED!
+
+!testRun: #ReportTest #test08NewPortfolioTransferNetReportIsOk stamp: 'NB 6/1/2023 01:08:23'!
+PASSED!
+
+!testRun: #ReportTest #test09OneLevelDeepPortfolioTransferNetReportIsOk stamp: 'NB 6/1/2023 01:08:23'!
+PASSED!
+
+!testRun: #ReportTest #test10ManyLevelDeepPortfolioTransferNetReportIsOk stamp: 'NB 6/1/2023 01:08:23'!
+PASSED!
+
+!testRun: #TransferTest #test01TransferCorrectlyDecreasesSenderBalanceAndIncreasesReceiverBalanceForTheAmountTransfered stamp: 'NB 6/1/2023 01:08:23'!
+PASSED!
+
+!testRun: #TransferTest #test02SenderAccountCorrectlyRegistersATransferSending stamp: 'NB 6/1/2023 01:08:23'!
+PASSED!
+
+!testRun: #TransferTest #test03ReceptionAccountCorrectlyRegistersATransferReception stamp: 'NB 6/1/2023 01:08:23'!
+PASSED!
+
+!testRun: #TransferTest #test04TransferSendingCanReachTheTransfer stamp: 'NB 6/1/2023 01:08:23'!
+PASSED!
+
+!testRun: #TransferTest #test05TransferReceptionCanReachTheTransfer stamp: 'NB 6/1/2023 01:08:23'!
+PASSED!
+
+!testRun: #TransferTest #test06CannotTransferAnAmountThatItIsNotAStrictlyPositiveNumber stamp: 'NB 6/1/2023 01:08:23'!
+PASSED!
+
+!testRun: #TransferTest #test07CannotTransferToTheSameAccount stamp: 'NB 6/1/2023 01:08:23'!
+PASSED!

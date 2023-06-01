@@ -5,13 +5,13 @@ TestCase subclass: #PortfolioReportTest
 	poolDictionaries: ''
 	category: 'Portfolio-Solucion'!
 
-!PortfolioReportTest methodsFor: 'tests' stamp: 'am 5/31/2023 20:10:51'!
+!PortfolioReportTest methodsFor: 'tests' stamp: 'NB 6/1/2023 00:44:20'!
 test01NewPortfolioPortfolioAccountSummaryReportIsOk
 
 	self assert: (OrderedCollection with:'Portfolio de la familia')
-		 equals: (PortfolioAccountSummaryReport for: (Portfolio named: 'Portfolio de la familia')) generate.! !
+		 equals: (PortfolioSummaryReport for: (Portfolio named: 'Portfolio de la familia')) compute.! !
 
-!PortfolioReportTest methodsFor: 'tests' stamp: 'am 5/31/2023 20:11:55'!
+!PortfolioReportTest methodsFor: 'tests' stamp: 'NB 6/1/2023 00:44:20'!
 test02OneLevelDeepPortfolioPortfolioAccountSummaryReportIsOk
 
 
@@ -20,9 +20,9 @@ test02OneLevelDeepPortfolioPortfolioAccountSummaryReportIsOk
 	familyPortfolio := Portfolio named: 'Portfolio de la familia' with: myAccount.
 
 	self assert: (OrderedCollection with:'Portfolio de la familia' with: ' Cuenta mia')
-		 equals: (PortfolioAccountSummaryReport for: familyPortfolio) generate.! !
+		 equals: (PortfolioSummaryReport for: familyPortfolio) compute.! !
 
-!PortfolioReportTest methodsFor: 'tests' stamp: 'am 5/31/2023 20:12:18'!
+!PortfolioReportTest methodsFor: 'tests' stamp: 'NB 6/1/2023 00:44:20'!
 test03ManyLevelDeepPortfolioPortfolioAccountSummaryReportIsOk
 
 
@@ -40,7 +40,15 @@ test03ManyLevelDeepPortfolioPortfolioAccountSummaryReportIsOk
 				with: '  Cuenta de Juan'
 				with: '  Cuenta de Angeles'
 		)
-		 equals: (PortfolioAccountSummaryReport for: familyPortfolio) generate.! !
+		 equals: (PortfolioSummaryReport for: familyPortfolio) compute.! !
+
+!PortfolioReportTest methodsFor: 'tests' stamp: 'NB 6/1/2023 00:44:20'!
+test04CannotGeneratePortfolioReportForAReceptiveAccount
+
+
+	self should: [PortfolioSummaryReport for: ReceptiveAccount new] 
+		raise: Error
+	  withMessageText: PortfolioSummaryReport operationExclusiveToPortfolioErrorDescription.! !
 
 
 !classDefinition: #PortfolioTest category: 'Portfolio-Solucion'!
@@ -357,12 +365,12 @@ TestCase subclass: #ReportTest
 	poolDictionaries: ''
 	category: 'Portfolio-Solucion'!
 
-!ReportTest methodsFor: 'tests' stamp: 'am 5/31/2023 19:50:27'!
+!ReportTest methodsFor: 'tests' stamp: 'NB 6/1/2023 00:18:28'!
 test01NewReceptiveAccountSummaryReportIsOk
 	
-	self assert: (OrderedCollection with: 'Balance = 0') equals: (AccountSummaryReport for: ReceptiveAccount new) generate.! !
+	self assert: (OrderedCollection with: 'Balance = 0') equals: (SummaryReport for: ReceptiveAccount new) compute.! !
 
-!ReportTest methodsFor: 'tests' stamp: 'am 5/31/2023 19:55:54'!
+!ReportTest methodsFor: 'tests' stamp: 'NB 6/1/2023 00:18:28'!
 test02ReceptiveAccountWithOneTransactionSummaryReportIsOk
 
 	| account1 account2|
@@ -382,9 +390,9 @@ test02ReceptiveAccountWithOneTransactionSummaryReportIsOk
 			with: 'Entrada por transferencia de 30.'
 			with: 'Balance = 60'
 		)
-	equals: (AccountSummaryReport for: account1) generate.! !
+	equals: (SummaryReport for: account1) compute.! !
 
-!ReportTest methodsFor: 'tests' stamp: 'am 5/31/2023 19:52:57'!
+!ReportTest methodsFor: 'tests' stamp: 'NB 6/1/2023 00:18:28'!
 test03NewPortfolioSummaryReportIsOk
 
 	| portfolio |
@@ -395,9 +403,9 @@ test03NewPortfolioSummaryReportIsOk
 		OrderedCollection
 			with: 'Balance = 0'
 		)
-	equals: (AccountSummaryReport for: portfolio) generate.! !
+	equals: (SummaryReport for: portfolio) compute.! !
 
-!ReportTest methodsFor: 'tests' stamp: 'am 5/31/2023 20:07:17'!
+!ReportTest methodsFor: 'tests' stamp: 'NB 6/1/2023 00:18:28'!
 test04OneLevelDeepPortfolioSummaryReportIsOk
 
 	| portfolio account1 account2|
@@ -420,9 +428,9 @@ test04OneLevelDeepPortfolioSummaryReportIsOk
 			with: 'Entrada por transferencia de 30.'
 			with: 'Balance = 60'
 		)
-	equals: (AccountSummaryReport for: portfolio) generate.! !
+	equals: (SummaryReport for: portfolio) compute.! !
 
-!ReportTest methodsFor: 'tests' stamp: 'am 5/31/2023 20:06:18'!
+!ReportTest methodsFor: 'tests' stamp: 'NB 6/1/2023 00:18:28'!
 test05ManyLevelsDeepPortfolioSummaryReportIsOk
 
 	| portfolio account1 account2 portfolio2 expectedSummaryReport|
@@ -449,14 +457,14 @@ test05ManyLevelsDeepPortfolioSummaryReportIsOk
 	
 	expectedSummaryReport 	add: 'Balance = 50'.
 	
-	self assert: expectedSummaryReport equals: (AccountSummaryReport for: portfolio) generate.! !
+	self assert: expectedSummaryReport equals: (SummaryReport for: portfolio) compute.! !
 
-!ReportTest methodsFor: 'tests' stamp: 'am 5/31/2023 20:01:38'!
+!ReportTest methodsFor: 'tests' stamp: 'NB 5/31/2023 23:22:54'!
 test06NewReceptiveAccountTransferNetReportIsOk
 	
-	self assert: 0 equals: (TransferNetReport for: ReceptiveAccount new) generate.! !
+	self assert: 0 equals: (TransferNetReport for: ReceptiveAccount new) compute.! !
 
-!ReportTest methodsFor: 'tests' stamp: 'am 5/31/2023 20:02:28'!
+!ReportTest methodsFor: 'tests' stamp: 'NB 5/31/2023 23:22:54'!
 test07ReceptiveAccountWithManyTransactionTransferNetReportIsOk
 
 	| account1 account2|
@@ -468,14 +476,14 @@ test07ReceptiveAccountWithManyTransactionTransferNetReportIsOk
 	Transfer registrer: 20 from: account1 to: account2.
 	Transfer registrer: 30 from: account2 to: account1.
 	
-	self assert: 10 equals: (TransferNetReport for: account1) generate.! !
+	self assert: 10 equals: (TransferNetReport for: account1) compute.! !
 
-!ReportTest methodsFor: 'tests' stamp: 'am 5/31/2023 20:03:37'!
+!ReportTest methodsFor: 'tests' stamp: 'NB 5/31/2023 23:22:54'!
 test08NewPortfolioTransferNetReportIsOk
 
-	self assert: 0 equals: (TransferNetReport for: Portfolio new) generate.! !
+	self assert: 0 equals: (TransferNetReport for: Portfolio new) compute.! !
 
-!ReportTest methodsFor: 'tests' stamp: 'am 5/31/2023 20:06:44'!
+!ReportTest methodsFor: 'tests' stamp: 'NB 5/31/2023 23:22:54'!
 test09OneLevelDeepPortfolioTransferNetReportIsOk
 
 	| portfolio account1 account2|
@@ -490,9 +498,9 @@ test09OneLevelDeepPortfolioTransferNetReportIsOk
 	
 	portfolio:= Portfolio with: account1.
 	
-	self assert: 10 equals: (TransferNetReport for: portfolio) generate.! !
+	self assert: 10 equals: (TransferNetReport for: portfolio) compute.! !
 
-!ReportTest methodsFor: 'tests' stamp: 'am 5/31/2023 20:06:58'!
+!ReportTest methodsFor: 'tests' stamp: 'NB 5/31/2023 23:22:54'!
 test10ManyLevelDeepPortfolioTransferNetReportIsOk
 
 	| portfolio account1 account2 portfolio2 |
@@ -508,7 +516,7 @@ test10ManyLevelDeepPortfolioTransferNetReportIsOk
 	portfolio2 := Portfolio with: account1.
 	portfolio:= Portfolio with: portfolio2.
 	
-	self assert: 10 equals: (TransferNetReport for: portfolio) generate.! !
+	self assert: 10 equals: (TransferNetReport for: portfolio) compute.! !
 
 
 !classDefinition: #TransferTest category: 'Portfolio-Solucion'!
@@ -573,7 +581,7 @@ test07CannotTransferToTheSameAccount
 
 !classDefinition: #Account category: 'Portfolio-Solucion'!
 Object subclass: #Account
-	instanceVariableNames: ''
+	instanceVariableNames: 'name'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Portfolio-Solucion'!
@@ -612,20 +620,20 @@ addedTo: aPortfolio
 	self subclassResponsibility ! !
 
 
-!Account methodsFor: 'reports' stamp: 'NB 5/31/2023 00:15:21'!
-addToPortfolioReport: aReport
+!Account methodsFor: 'operations' stamp: 'NB 5/31/2023 23:00:22'!
+operateOver: anOperationOverAccount
 	
 	self subclassResponsibility .! !
 
-!Account methodsFor: 'reports' stamp: 'NB 5/31/2023 00:14:56'!
-addToReport: aReport
+!Account methodsFor: 'operations' stamp: 'NB 6/1/2023 00:10:43'!
+traverseWithOperation: anOperationOverAccount
 	
 	self subclassResponsibility .! !
 
 
 !classDefinition: #Portfolio category: 'Portfolio-Solucion'!
 Account subclass: #Portfolio
-	instanceVariableNames: 'accounts parents name'
+	instanceVariableNames: 'accounts parents'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Portfolio-Solucion'!
@@ -741,21 +749,20 @@ signalCanNotAddAccount
 	self error: self class canNotAddAccountErrorMessage! !
 
 
-!Portfolio methodsFor: 'reports' stamp: 'NB 5/31/2023 00:02:13'!
-addAccountsToReport: aReport
+!Portfolio methodsFor: 'operations' stamp: 'NB 5/31/2023 23:14:58'!
+operateOver: anOperationOverAccount
 
-	accounts do: [:anAccount | anAccount addToPortfolioReport: aReport ].
-	aReport endPortfolio.! !
-
-!Portfolio methodsFor: 'reports' stamp: 'NB 5/30/2023 23:54:57'!
-addToPortfolioReport: aReport
-
-	aReport addPortfolio: self.! !
-
-!Portfolio methodsFor: 'reports' stamp: 'NB 5/28/2023 17:09:25'!
-addToReport: aReport
+	anOperationOverAccount operationOverPortfolio: self.
 	
-	accounts do: [:anAccount | anAccount addToReport: aReport].
+	
+	! !
+
+!Portfolio methodsFor: 'operations' stamp: 'NB 5/31/2023 23:14:35'!
+traverseWithOperation: anOperationOverAccount
+
+	accounts do: [:anAccount | anAccount operateOver: anOperationOverAccount].
+	
+	
 	! !
 
 
@@ -809,7 +816,7 @@ named: aName with: anAccount with: anotherAccount
 
 !classDefinition: #ReceptiveAccount category: 'Portfolio-Solucion'!
 Account subclass: #ReceptiveAccount
-	instanceVariableNames: 'transactions name'
+	instanceVariableNames: 'transactions'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Portfolio-Solucion'!
@@ -870,15 +877,19 @@ addedTo: aPortfolio
 	! !
 
 
-!ReceptiveAccount methodsFor: 'reports' stamp: 'NB 5/30/2023 23:56:46'!
-addToPortfolioReport: aReport
-	
-	aReport addReceptiveAccount: self! !
+!ReceptiveAccount methodsFor: 'operations' stamp: 'NB 5/31/2023 23:16:22'!
+operateOver: anOperationOverAccount
 
-!ReceptiveAccount methodsFor: 'reports' stamp: 'NB 5/28/2023 17:09:25'!
-addToReport: aReport
+	anOperationOverAccount operationOverReceptiveAccount: self.
 	
-	transactions do: [:aTransaction | aTransaction addReportLineTo: aReport].! !
+	! !
+
+!ReceptiveAccount methodsFor: 'operations' stamp: 'NB 5/31/2023 23:18:47'!
+traverseWithOperation: anOperationOverAccount
+
+	transactions do: [:aTransaction | aTransaction operateOver: anOperationOverAccount].
+	
+	! !
 
 
 !ReceptiveAccount methodsFor: 'accessing' stamp: 'NB 5/28/2023 17:43:02'!
@@ -898,241 +909,236 @@ named: aName
 	^self new initializeNamed: aName ! !
 
 
-!classDefinition: #PortfolioReport category: 'Portfolio-Solucion'!
-Object subclass: #PortfolioReport
-	instanceVariableNames: 'portfolio reportLines'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Portfolio-Solucion'!
-
-!PortfolioReport methodsFor: 'initialization' stamp: 'NB 5/31/2023 00:31:21'!
-initializeFor: aPortfolio 
-	
-	portfolio := aPortfolio.! !
-
-
-!PortfolioReport methodsFor: 'reports' stamp: 'NB 5/31/2023 00:36:39'!
-addName: aPortfolio
-
-	self subclassResponsibility .
-! !
-
-!PortfolioReport methodsFor: 'reports' stamp: 'NB 5/31/2023 00:34:43'!
-addPortfolio: aPortfolio
-
-	self addName: aPortfolio.
-	self initPortfolio.
-	aPortfolio addAccountsToReport: self.
-! !
-
-!PortfolioReport methodsFor: 'reports' stamp: 'NB 5/31/2023 00:35:41'!
-addReceptiveAccount: anAccount
-
-	self subclassResponsibility .
-! !
-
-!PortfolioReport methodsFor: 'reports' stamp: 'NB 5/31/2023 00:37:27'!
-endPortfolio
-
-	self subclassResponsibility .! !
-
-!PortfolioReport methodsFor: 'reports' stamp: 'NB 5/31/2023 00:37:02'!
-generate
-
-	self subclassResponsibility .! !
-
-!PortfolioReport methodsFor: 'reports' stamp: 'NB 5/31/2023 00:35:06'!
-initPortfolio
-
-	self subclassResponsibility .! !
-
-"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
-
-!classDefinition: 'PortfolioReport class' category: 'Portfolio-Solucion'!
-PortfolioReport class
-	instanceVariableNames: ''!
-
-!PortfolioReport class methodsFor: 'instance creation' stamp: 'NB 5/31/2023 00:30:45'!
-for: aPortfolio 
-	
-	^self new initializeFor: aPortfolio ! !
-
-
-!classDefinition: #PortfolioAccountSummaryReport category: 'Portfolio-Solucion'!
-PortfolioReport subclass: #PortfolioAccountSummaryReport
-	instanceVariableNames: 'separator'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Portfolio-Solucion'!
-
-!PortfolioAccountSummaryReport methodsFor: 'reports' stamp: 'NB 5/31/2023 00:32:15'!
-addName: aPortfolio
-
-	^ reportLines add: separator, aPortfolio name! !
-
-!PortfolioAccountSummaryReport methodsFor: 'reports' stamp: 'NB 5/30/2023 23:57:56'!
-addReceptiveAccount: anAccount
-
-	self addName: anAccount! !
-
-!PortfolioAccountSummaryReport methodsFor: 'reports' stamp: 'NB 5/31/2023 00:32:15'!
-endPortfolio
-
-	separator := separator truncateTo: separator size - 1.! !
-
-!PortfolioAccountSummaryReport methodsFor: 'reports' stamp: 'NB 5/31/2023 00:32:15'!
-generate
-
-	reportLines:= OrderedCollection new.
-	separator:= ''.
-	portfolio addToPortfolioReport: self.
-	^reportLines.! !
-
-!PortfolioAccountSummaryReport methodsFor: 'reports' stamp: 'NB 5/31/2023 00:32:15'!
-initPortfolio
-
-	separator:= separator , ' '.! !
-
-
-!classDefinition: #Report category: 'Portfolio-Solucion'!
-Object subclass: #Report
+!classDefinition: #OperationOverAccount category: 'Portfolio-Solucion'!
+Object subclass: #OperationOverAccount
 	instanceVariableNames: 'account'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Portfolio-Solucion'!
 
-!Report methodsFor: 'reports' stamp: 'NB 5/31/2023 00:12:48'!
-addDeposit: aDeposit
-
-	self subclassResponsibility .! !
-
-!Report methodsFor: 'reports' stamp: 'NB 5/31/2023 00:13:03'!
-addTransferReception: aTransferReception
-
-	self subclassResponsibility .! !
-
-!Report methodsFor: 'reports' stamp: 'NB 5/31/2023 00:13:16'!
-addTransferSending: aTransferSending
-
-	self subclassResponsibility .! !
-
-!Report methodsFor: 'reports' stamp: 'NB 5/31/2023 00:13:27'!
-addWithdraw: aWithdraw
-
-	self subclassResponsibility .! !
-
-!Report methodsFor: 'reports' stamp: 'NB 5/31/2023 00:13:35'!
-generate
-
-	self subclassResponsibility .! !
-
-
-!Report methodsFor: 'initialization' stamp: 'NB 5/31/2023 00:11:23'!
+!OperationOverAccount methodsFor: 'initialization' stamp: 'NB 6/1/2023 00:28:48'!
 initializeFor: accountForReport 
 	
 	account := accountForReport.! !
 
+
+!OperationOverAccount methodsFor: 'operations' stamp: 'NB 6/1/2023 00:19:54'!
+compute
+	
+	self subclassResponsibility .! !
+
+!OperationOverAccount methodsFor: 'operations' stamp: 'NB 6/1/2023 00:20:18'!
+operationOverPortfolio: aPortoflio
+	
+	self subclassResponsibility .! !
+
+!OperationOverAccount methodsFor: 'operations' stamp: 'NB 6/1/2023 00:20:31'!
+operationOverReceptiveAccount: aReceptiveAccount
+	
+	self subclassResponsibility .! !
+
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
-!classDefinition: 'Report class' category: 'Portfolio-Solucion'!
-Report class
+!classDefinition: 'OperationOverAccount class' category: 'Portfolio-Solucion'!
+OperationOverAccount class
 	instanceVariableNames: ''!
 
-!Report class methodsFor: 'instance creation' stamp: 'NB 5/31/2023 00:11:59'!
+!OperationOverAccount class methodsFor: 'instance creation' stamp: 'NB 6/1/2023 00:29:33'!
 for: anAccount 
 	
 	^self new initializeFor: anAccount ! !
 
 
-!classDefinition: #AccountSummaryReport category: 'Portfolio-Solucion'!
-Report subclass: #AccountSummaryReport
+!classDefinition: #AccountReport category: 'Portfolio-Solucion'!
+OperationOverAccount subclass: #AccountReport
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!AccountReport methodsFor: 'operations' stamp: 'NB 5/31/2023 23:21:16'!
+operationOverDeposit: aDeposit
+
+	self subclassResponsibility .! !
+
+!AccountReport methodsFor: 'operations' stamp: 'NB 6/1/2023 00:59:17'!
+operationOverPortfolio: aPortoflio
+
+	aPortoflio traverseWithOperation: self.! !
+
+!AccountReport methodsFor: 'operations' stamp: 'NB 6/1/2023 00:59:40'!
+operationOverReceptiveAccount: aReceptiveAccount
+
+	aReceptiveAccount traverseWithOperation: self.! !
+
+!AccountReport methodsFor: 'operations' stamp: 'NB 5/31/2023 23:21:52'!
+operationOverTransferReception: aTransferReception
+
+	self subclassResponsibility .! !
+
+!AccountReport methodsFor: 'operations' stamp: 'NB 5/31/2023 23:22:04'!
+operationOverTransferSending: aTransferSending
+
+	self subclassResponsibility .! !
+
+!AccountReport methodsFor: 'operations' stamp: 'NB 5/31/2023 23:21:35'!
+operationOverWithdraw: aWithdraw
+
+	self subclassResponsibility .! !
+
+
+!classDefinition: #SummaryReport category: 'Portfolio-Solucion'!
+AccountReport subclass: #SummaryReport
 	instanceVariableNames: 'reportLines'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Portfolio-Solucion'!
 
-!AccountSummaryReport methodsFor: 'reports' stamp: 'NB 5/31/2023 00:11:23'!
+!SummaryReport methodsFor: 'operations - private' stamp: 'NB 5/31/2023 00:11:23'!
 addBalanceLine
 
 	^ reportLines add: 'Balance = ',account balance asString! !
 
-!AccountSummaryReport methodsFor: 'reports' stamp: 'NB 5/28/2023 16:46:13'!
-addDeposit: aDeposit
 
-	reportLines add: 'Depósito por ', aDeposit value asString ,'.'.
-	
-	! !
-
-!AccountSummaryReport methodsFor: 'reports' stamp: 'NB 5/28/2023 16:48:11'!
-addTransferReception: aTransferReception
-
-	reportLines add: 'Entrada por transferencia de ', aTransferReception value asString,'.'.
-	
-	! !
-
-!AccountSummaryReport methodsFor: 'reports' stamp: 'NB 5/28/2023 16:49:26'!
-addTransferSending: aTransferSending
-
-	reportLines add: 'Salida por transferencia de ', aTransferSending value asString,'.'.
-	
-	! !
-
-!AccountSummaryReport methodsFor: 'reports' stamp: 'NB 5/28/2023 16:47:08'!
-addWithdraw: aWithdraw
-
-	reportLines add: 'Extracción por ', aWithdraw value asString,'.'.
-	
-	! !
-
-!AccountSummaryReport methodsFor: 'reports' stamp: 'NB 5/31/2023 00:11:23'!
-generate
+!SummaryReport methodsFor: 'operations' stamp: 'NB 5/31/2023 23:22:54'!
+compute
 
 	reportLines:= OrderedCollection new.
-	account addToReport: self.
+	account operateOver: self.
 	self addBalanceLine.
 	^reportLines.
 	
 	! !
 
+!SummaryReport methodsFor: 'operations' stamp: 'NB 5/31/2023 23:21:16'!
+operationOverDeposit: aDeposit
+
+	reportLines add: 'Depósito por ', aDeposit value asString ,'.'.
+	
+	! !
+
+!SummaryReport methodsFor: 'operations' stamp: 'NB 5/31/2023 23:21:52'!
+operationOverTransferReception: aTransferReception
+
+	reportLines add: 'Entrada por transferencia de ', aTransferReception value asString,'.'.
+	
+	! !
+
+!SummaryReport methodsFor: 'operations' stamp: 'NB 5/31/2023 23:22:04'!
+operationOverTransferSending: aTransferSending
+
+	reportLines add: 'Salida por transferencia de ', aTransferSending value asString,'.'.
+	
+	! !
+
+!SummaryReport methodsFor: 'operations' stamp: 'NB 5/31/2023 23:21:35'!
+operationOverWithdraw: aWithdraw
+
+	reportLines add: 'Extracción por ', aWithdraw value asString,'.'.
+	
+	! !
+
 
 !classDefinition: #TransferNetReport category: 'Portfolio-Solucion'!
-Report subclass: #TransferNetReport
+AccountReport subclass: #TransferNetReport
 	instanceVariableNames: 'transferNetAmount'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Portfolio-Solucion'!
 
-!TransferNetReport methodsFor: 'reports' stamp: 'NB 5/28/2023 17:01:43'!
-addDeposit: aDeposit
+!TransferNetReport methodsFor: 'operations' stamp: 'NB 5/31/2023 23:22:54'!
+compute
+	
+	transferNetAmount := 0.
+	account operateOver: self.
+	^transferNetAmount.! !
+
+!TransferNetReport methodsFor: 'operations' stamp: 'NB 5/31/2023 23:21:16'!
+operationOverDeposit: aDeposit
 
 	! !
 
-!TransferNetReport methodsFor: 'reports' stamp: 'NB 5/28/2023 17:05:20'!
-addTransferReception: aTransferReception
+!TransferNetReport methodsFor: 'operations' stamp: 'NB 5/31/2023 23:21:52'!
+operationOverTransferReception: aTransferReception
 
 	transferNetAmount:= transferNetAmount + aTransferReception value.
 	
 	! !
 
-!TransferNetReport methodsFor: 'reports' stamp: 'NB 5/28/2023 17:05:12'!
-addTransferSending: aTransferSending
+!TransferNetReport methodsFor: 'operations' stamp: 'NB 5/31/2023 23:22:04'!
+operationOverTransferSending: aTransferSending
 
 	transferNetAmount:= transferNetAmount - aTransferSending value.
 	
 	! !
 
-!TransferNetReport methodsFor: 'reports' stamp: 'NB 5/28/2023 17:02:01'!
-addWithdraw: aWithdraw
+!TransferNetReport methodsFor: 'operations' stamp: 'NB 5/31/2023 23:21:35'!
+operationOverWithdraw: aWithdraw
 
 	
 	! !
 
-!TransferNetReport methodsFor: 'reports' stamp: 'NB 5/31/2023 00:11:23'!
-generate
+
+!classDefinition: #PortfolioSummaryReport category: 'Portfolio-Solucion'!
+OperationOverAccount subclass: #PortfolioSummaryReport
+	instanceVariableNames: 'portfolioLevel reportLines'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!PortfolioSummaryReport methodsFor: 'operations - private' stamp: 'NB 6/1/2023 00:06:52'!
+addName: anAccount
+
+	|nameLength|
+	nameLength:= anAccount name size.
+	reportLines add: (anAccount name padded: #left to: portfolioLevel + nameLength with: Character separators first).! !
+
+
+!PortfolioSummaryReport methodsFor: 'operations' stamp: 'NB 6/1/2023 00:30:08'!
+compute
+
+	reportLines:= OrderedCollection new.
+	portfolioLevel := 0.
+	account operateOver: self.
+	^reportLines.! !
+
+!PortfolioSummaryReport methodsFor: 'operations' stamp: 'NB 5/31/2023 23:56:57'!
+operationOverPortfolio: aPortoflio
+
+	self addName: aPortoflio.
+	portfolioLevel:= portfolioLevel + 1.
+	aPortoflio traverseWithOperation: self.
+	portfolioLevel:= portfolioLevel - 1.! !
+
+!PortfolioSummaryReport methodsFor: 'operations' stamp: 'NB 5/31/2023 23:57:55'!
+operationOverReceptiveAccount: aReceptiveAccount
+
+	self addName: aReceptiveAccount.! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'PortfolioSummaryReport class' category: 'Portfolio-Solucion'!
+PortfolioSummaryReport class
+	instanceVariableNames: ''!
+
+!PortfolioSummaryReport class methodsFor: 'error description' stamp: 'NB 6/1/2023 00:37:13'!
+operationExclusiveToPortfolioErrorDescription
 	
-	transferNetAmount := 0.
-	account addToReport: self.
-	^transferNetAmount.! !
+	'El reporte solo puede ser realizado sobre portfolios'.! !
+
+
+!PortfolioSummaryReport class methodsFor: 'assertions' stamp: 'NB 6/1/2023 00:37:48'!
+assertAccountIsAPortfolio: aPortfolio
+
+	^ (aPortfolio isKindOf: Portfolio) ifFalse: [self error: self operationExclusiveToPortfolioErrorDescription]! !
+
+
+!PortfolioSummaryReport class methodsFor: 'instance creation' stamp: 'NB 6/1/2023 00:37:48'!
+for: aPortfolio
+	
+	self assertAccountIsAPortfolio: aPortfolio.
+	
+	^self new initializeFor: aPortfolio ! !
 
 
 !classDefinition: #Transaction category: 'Portfolio-Solucion'!
@@ -1148,8 +1154,8 @@ value
 	self subclassResponsibility ! !
 
 
-!Transaction methodsFor: 'reports' stamp: 'NB 5/28/2023 16:44:26'!
-addReportLineTo: aReport
+!Transaction methodsFor: 'operations' stamp: 'NB 6/1/2023 01:05:24'!
+operateOver: anOperationOverAccount
 
 	self subclassResponsibility .! !
 
@@ -1207,16 +1213,17 @@ AccountTransaction subclass: #Deposit
 	poolDictionaries: ''
 	category: 'Portfolio-Solucion'!
 
-!Deposit methodsFor: 'balance' stamp: 'NB 5/28/2023 16:45:41'!
-addReportLineTo: aReport
-
-	aReport addDeposit: self.
-	! !
-
 !Deposit methodsFor: 'balance' stamp: 'NB 5/26/2023 22:46:27'!
 affectBalance: aBalance
 
 	^aBalance + self value ! !
+
+
+!Deposit methodsFor: 'operations' stamp: 'NB 6/1/2023 01:04:18'!
+operateOver: anOperationOverAccount
+
+	anOperationOverAccount operationOverDeposit: self.
+	! !
 
 
 !classDefinition: #Withdraw category: 'Portfolio-Solucion'!
@@ -1226,10 +1233,10 @@ AccountTransaction subclass: #Withdraw
 	poolDictionaries: ''
 	category: 'Portfolio-Solucion'!
 
-!Withdraw methodsFor: 'reports' stamp: 'NB 5/28/2023 16:46:40'!
-addReportLineTo: aReport
+!Withdraw methodsFor: 'operations' stamp: 'NB 6/1/2023 01:04:32'!
+operateOver: anOperationOverAccount
 
-	aReport addWithdraw: self.
+	anOperationOverAccount operationOverWithdraw: self.
 	
 
 	! !
@@ -1298,10 +1305,10 @@ affectBalance: aBalance
 	^aBalance + self value. ! !
 
 
-!TransferReception methodsFor: 'reports' stamp: 'NB 5/28/2023 16:47:37'!
-addReportLineTo: aReport
+!TransferReception methodsFor: 'operations' stamp: 'NB 6/1/2023 01:04:39'!
+operateOver: anOperationOverAccount
 
-	aReport addTransferReception: self.
+	anOperationOverAccount operationOverTransferReception: self.
 	
 ! !
 
@@ -1319,10 +1326,10 @@ affectBalance: aBalance
 	^aBalance - self value. ! !
 
 
-!TransferSending methodsFor: 'reports' stamp: 'NB 5/28/2023 16:48:58'!
-addReportLineTo: aReport
+!TransferSending methodsFor: 'operations' stamp: 'NB 6/1/2023 01:04:45'!
+operateOver: anOperationOverAccount
 
-	aReport addTransferSending: self.
+	anOperationOverAccount operationOverTransferSending: self.
 	! !
 
 
