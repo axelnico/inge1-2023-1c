@@ -1,3 +1,132 @@
+!classDefinition: #MarsRoverObserverTest category: 'MarsRover-WithHeading'!
+TestCase subclass: #MarsRoverObserverTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+!MarsRoverObserverTest methodsFor: 'tests' stamp: 'NB 6/3/2023 17:53:46'!
+test01MarsRoverLogPositionObservingWithOneMove
+	
+	|marsRover logTracer|
+	marsRover:= MarsRover at: 1@1 heading: MarsRoverHeadingNorth .
+	logTracer:= MarsRoverPositionLogObserver for: marsRover.
+	marsRover process: 'f'.
+	self assert: (OrderedCollection with: 1@2) equals: logTracer show.! !
+
+!MarsRoverObserverTest methodsFor: 'tests' stamp: 'NB 6/3/2023 17:54:16'!
+test02MarsRoverWindowPositionObservingWithOneMove
+	
+	|marsRover windowTracer|
+	marsRover:= MarsRover at: 1@1 heading: MarsRoverHeadingNorth .
+	windowTracer:= MarsRoverWindowPositionObserver for: marsRover.
+	marsRover process: 'f'.
+	self assert: 1@2 equals: windowTracer show.! !
+
+!MarsRoverObserverTest methodsFor: 'tests' stamp: 'NB 6/3/2023 17:53:46'!
+test03MarsRoverLogPositionObservingManyMoves
+	
+	|marsRover logTracer|
+	marsRover:= MarsRover at: 1@1 heading: MarsRoverHeadingNorth .
+	logTracer:= MarsRoverPositionLogObserver for: marsRover.
+	marsRover process: 'ff'.
+	self assert: (OrderedCollection with: 1@2 with: 1@3) equals: logTracer show.! !
+
+!MarsRoverObserverTest methodsFor: 'tests' stamp: 'NB 6/3/2023 17:53:46'!
+test04MarsRoverLogPositionObservingManyMovesWithDifferentMove
+	
+	|marsRover logTracer|
+	marsRover:= MarsRover at: 1@1 heading: MarsRoverHeadingNorth .
+	logTracer:= MarsRoverPositionLogObserver for: marsRover.
+	marsRover process: 'bb'.
+	self assert: (OrderedCollection with: 1@0 with: 1@-1) equals: logTracer show.! !
+
+!MarsRoverObserverTest methodsFor: 'tests' stamp: 'NB 6/3/2023 17:54:16'!
+test05MarsRoverWindowPositionObservingManyMoves
+	
+	|marsRover windowTracer|
+	marsRover:= MarsRover at: 1@1 heading: MarsRoverHeadingNorth .
+	windowTracer:= MarsRoverWindowPositionObserver for: marsRover.
+	marsRover process: 'ff'.
+	self assert: 1@3 equals: windowTracer show.! !
+
+!MarsRoverObserverTest methodsFor: 'tests' stamp: 'NB 6/3/2023 17:53:36'!
+test06MarsRoverLogHeadingObservingManyHeadsChanges
+	
+	|marsRover logTracer|
+	marsRover:= MarsRover at: 1@1 heading: MarsRoverHeadingNorth .
+	logTracer:= MarsRoverHeadingLogObserver for: marsRover.
+	marsRover process: 'rlll'.
+	self assert: (OrderedCollection 
+				with: MarsRoverHeadingEast 
+				with: MarsRoverHeadingNorth 
+				with: MarsRoverHeadingWest 
+				with: MarsRoverHeadingSouth) 
+	    equals: logTracer show.! !
+
+!MarsRoverObserverTest methodsFor: 'tests' stamp: 'NB 6/3/2023 17:53:25'!
+test07MarsRoverHeadingAndLogObservingManyMoves
+	
+	|marsRover logTracer|
+	marsRover:= MarsRover at: 1@1 heading: MarsRoverHeadingNorth .
+	logTracer:= MarsRoverHeadingAndMovingLogObserver for: marsRover.
+	marsRover process: 'fr'.
+	self assert: (OrderedCollection 
+				with: 1@2
+				with: MarsRoverHeadingEast)
+	    equals: logTracer show.! !
+
+!MarsRoverObserverTest methodsFor: 'tests' stamp: 'NB 6/3/2023 17:54:05'!
+test08MarsRoverWindowHeadingObservingManyMoves
+	
+	|marsRover windowTracer|
+	marsRover:= MarsRover at: 1@1 heading: MarsRoverHeadingNorth .
+	windowTracer:= MarsRoverWindowHeadingObserver for: marsRover.
+	marsRover process: 'rlll'.
+	self assert: MarsRoverHeadingSouth equals: windowTracer show.! !
+
+!MarsRoverObserverTest methodsFor: 'tests' stamp: 'NB 6/3/2023 17:53:56'!
+test09MarsRoverWindowPostionObservingManyMoves
+	
+	|marsRover windowTracer|
+	marsRover:= MarsRover at: 1@1 heading: MarsRoverHeadingNorth .
+	windowTracer:= MarsRoverWindowHeadingAndMovingObserver for: marsRover.
+	marsRover process: 'frf'.
+	self assert: MarsRoverHeadingEast equals: windowTracer heading.
+	self assert: 2@2 equals: windowTracer position.! !
+
+!MarsRoverObserverTest methodsFor: 'tests' stamp: 'NB 6/3/2023 17:53:46'!
+test10MarsRoverCanObservePositionEvenIfMarsRoverRotates
+	
+	|marsRover logTracer|
+	marsRover:= MarsRover at: 1@1 heading: MarsRoverHeadingNorth .
+	logTracer:= MarsRoverPositionLogObserver for: marsRover.
+	marsRover process: 'fr'.
+	self assert: (OrderedCollection with: 1@2) equals: logTracer show.! !
+
+!MarsRoverObserverTest methodsFor: 'tests' stamp: 'NB 6/3/2023 17:54:05'!
+test11MarsRoverCanObserveLogAndWindowAtSameTime
+	
+	|marsRover logTracer windowTracer|
+	marsRover:= MarsRover at: 1@1 heading: MarsRoverHeadingNorth .
+	logTracer:= MarsRoverPositionLogObserver for: marsRover.
+	windowTracer:= MarsRoverWindowHeadingObserver for: marsRover.
+	marsRover process: 'fr'.
+	self assert: (OrderedCollection with: 1@2) equals: logTracer show.
+	self assert: MarsRoverHeadingEast equals: windowTracer show.! !
+
+!MarsRoverObserverTest methodsFor: 'tests' stamp: 'NB 6/3/2023 17:54:16'!
+test12MarsRoverCanStopObserving
+	
+	|marsRover windowTracer|
+	marsRover:= MarsRover at: 1@1 heading: MarsRoverHeadingNorth .
+	windowTracer:= MarsRoverWindowPositionObserver for: marsRover.
+	marsRover process: 'ff'.
+	windowTracer stopObserving.
+	marsRover process: 'f'.
+	self assert: 1@3 equals: windowTracer show.! !
+
+
 !classDefinition: #MarsRoverTest category: 'MarsRover-WithHeading'!
 TestCase subclass: #MarsRoverTest
 	instanceVariableNames: ''
@@ -203,59 +332,6 @@ assertIsAt: newPosition heading: newHeadingType afterProcessing: commands whenSt
 	self assert: (marsRover isAt: newPosition heading: newHeadingType)! !
 
 
-!classDefinition: #MarsRoverTracingTest category: 'MarsRover-WithHeading'!
-TestCase subclass: #MarsRoverTracingTest
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'MarsRover-WithHeading'!
-
-!MarsRoverTracingTest methodsFor: 'tests' stamp: 'NB 6/1/2023 20:48:37'!
-test01
-	
-	|marsRover logTracer|
-	marsRover:= MarsRover at: 1@1 heading: MarsRoverHeadingNorth .
-	logTracer:= MarsRoverLogTracing for: marsRover.
-	marsRover process: 'f'.
-	self assert: (OrderedCollection with: 1@2) equals: logTracer show.! !
-
-!MarsRoverTracingTest methodsFor: 'tests' stamp: 'NB 6/1/2023 20:46:41'!
-test02
-	
-	|marsRover windowTracer|
-	marsRover:= MarsRover at: 1@1 heading: MarsRoverHeadingNorth .
-	windowTracer:= MarsRoverWindowTracing for: marsRover.
-	marsRover process: 'f'.
-	self assert: 1@2 equals: windowTracer show.! !
-
-!MarsRoverTracingTest methodsFor: 'tests' stamp: 'NB 6/1/2023 21:33:53'!
-test03
-	
-	|marsRover logTracer|
-	marsRover:= MarsRover at: 1@1 heading: MarsRoverHeadingNorth .
-	logTracer:= MarsRoverLogTracing for: marsRover.
-	marsRover process: 'ff'.
-	self assert: (OrderedCollection with: 1@2 with: 1@3) equals: logTracer show.! !
-
-!MarsRoverTracingTest methodsFor: 'tests' stamp: 'NB 6/1/2023 21:34:08'!
-test04
-	
-	|marsRover logTracer|
-	marsRover:= MarsRover at: 1@1 heading: MarsRoverHeadingNorth .
-	logTracer:= MarsRoverLogTracing for: marsRover.
-	marsRover process: 'bb'.
-	self assert: (OrderedCollection with: 1@0 with: 1@-1) equals: logTracer show.! !
-
-!MarsRoverTracingTest methodsFor: 'tests' stamp: 'NB 6/1/2023 21:37:20'!
-test05
-	
-	|marsRover windowTracer|
-	marsRover:= MarsRover at: 1@1 heading: MarsRoverHeadingNorth .
-	windowTracer:= MarsRoverWindowTracing for: marsRover.
-	marsRover process: 'ff'.
-	self assert: 1@3 equals: windowTracer show.! !
-
-
 !classDefinition: #MarsRover category: 'MarsRover-WithHeading'!
 Object subclass: #MarsRover
 	instanceVariableNames: 'position head observers'
@@ -282,25 +358,29 @@ initializeAt: aPosition heading: aHeadingType
 	observers:= OrderedCollection new.! !
 
 
-!MarsRover methodsFor: 'heading' stamp: 'HAW 10/7/2021 20:17:02'!
+!MarsRover methodsFor: 'heading' stamp: 'NB 6/3/2023 15:26:52'!
 headEast
 	
-	head := MarsRoverHeadingEast for: self! !
+	head := MarsRoverHeadingEast for: self.
+	self notifyHeadingChange: MarsRoverHeadingEast.! !
 
-!MarsRover methodsFor: 'heading' stamp: 'HAW 10/7/2021 20:17:12'!
+!MarsRover methodsFor: 'heading' stamp: 'NB 6/3/2023 15:27:09'!
 headNorth
 	
-	head := MarsRoverHeadingNorth for: self ! !
+	head := MarsRoverHeadingNorth for: self.
+	self notifyHeadingChange: MarsRoverHeadingNorth.! !
 
-!MarsRover methodsFor: 'heading' stamp: 'HAW 10/7/2021 20:17:17'!
+!MarsRover methodsFor: 'heading' stamp: 'NB 6/3/2023 15:27:20'!
 headSouth
 	
-	head := MarsRoverHeadingSouth for: self! !
+	head := MarsRoverHeadingSouth for: self.
+	self notifyHeadingChange: MarsRoverHeadingSouth.! !
 
-!MarsRover methodsFor: 'heading' stamp: 'HAW 10/7/2021 20:17:24'!
+!MarsRover methodsFor: 'heading' stamp: 'NB 6/3/2023 15:25:47'!
 headWest
 	
-	head := MarsRoverHeadingWest for: self ! !
+	head := MarsRoverHeadingWest for: self.
+	self notifyHeadingChange: MarsRoverHeadingWest.! !
 
 !MarsRover methodsFor: 'heading' stamp: 'HAW 10/7/2021 20:14:20'!
 rotateLeft
@@ -339,22 +419,23 @@ isRotateRightCommand: aCommand
 	^aCommand = $r! !
 
 
-!MarsRover methodsFor: 'moving' stamp: 'NB 6/1/2023 21:46:21'!
+!MarsRover methodsFor: 'moving' stamp: 'NB 6/3/2023 16:30:24'!
 moveBackward
 	
 	head moveBackward.
-	observers do: [:aMarsRoverObserver | aMarsRoverObserver  notifyMove: position].! !
+	self notifyPositionChange.
+	! !
 
 !MarsRover methodsFor: 'moving' stamp: 'HAW 8/22/2019 12:15:01'!
 moveEast
 	
 	position := position + (1@0)! !
 
-!MarsRover methodsFor: 'moving' stamp: 'NB 6/1/2023 21:46:13'!
+!MarsRover methodsFor: 'moving' stamp: 'NB 6/3/2023 16:30:24'!
 moveForward
 	
 	head moveForward.
-	observers do: [:aMarsRoverObserver | aMarsRoverObserver  notifyMove: position].! !
+	self notifyPositionChange.! !
 
 !MarsRover methodsFor: 'moving' stamp: 'NB 6/1/2023 21:35:45'!
 moveNorth
@@ -372,11 +453,26 @@ moveWest
 	position := position + (-1@0)! !
 
 
-!MarsRover methodsFor: 'tracing' stamp: 'NB 6/1/2023 21:44:04'!
+!MarsRover methodsFor: 'observing' stamp: 'NB 6/1/2023 21:44:04'!
 attach: aMarsRoverObserver
 	
 	observers add: aMarsRoverObserver.
 	! !
+
+!MarsRover methodsFor: 'observing' stamp: 'NB 6/3/2023 17:33:13'!
+dettach: aMarsRoverWindowPositionTracing 
+	
+	observers remove: aMarsRoverWindowPositionTracing ifAbsent: []. ! !
+
+!MarsRover methodsFor: 'observing' stamp: 'NB 6/3/2023 17:52:10'!
+notifyHeadingChange: aMarsRoverHeading
+
+	^ observers do: [:aMarsRoverObserver | aMarsRoverObserver  updateHeading: aMarsRoverHeading]! !
+
+!MarsRover methodsFor: 'observing' stamp: 'NB 6/3/2023 17:52:35'!
+notifyPositionChange
+
+	^ observers do: [:aMarsRoverObserver | aMarsRoverObserver  updatePosition: position]! !
 
 
 !MarsRover methodsFor: 'command processing' stamp: 'HAW 6/30/2018 19:48:26'!
@@ -575,14 +671,113 @@ rotateRight
 	^marsRover headNorth! !
 
 
-!classDefinition: #MarsRoverLogTracing category: 'MarsRover-WithHeading'!
-Object subclass: #MarsRoverLogTracing
-	instanceVariableNames: 'marsRover positions'
+!classDefinition: #MarsRoverObserver category: 'MarsRover-WithHeading'!
+Object subclass: #MarsRoverObserver
+	instanceVariableNames: 'marsRover'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'MarsRover-WithHeading'!
 
-!MarsRoverLogTracing methodsFor: 'initialization' stamp: 'NB 6/1/2023 21:47:20'!
+!MarsRoverObserver methodsFor: 'observing' stamp: 'NB 6/3/2023 17:50:30'!
+stopObserving
+	marsRover dettach: self.! !
+
+!MarsRoverObserver methodsFor: 'observing' stamp: 'NB 6/3/2023 17:52:10'!
+updateHeading: aMarsRoverHeading! !
+
+!MarsRoverObserver methodsFor: 'observing' stamp: 'NB 6/3/2023 17:52:35'!
+updatePosition: aPosition ! !
+
+
+!classDefinition: #MarsRoverHeadingAndMovingLogObserver category: 'MarsRover-WithHeading'!
+MarsRoverObserver subclass: #MarsRoverHeadingAndMovingLogObserver
+	instanceVariableNames: 'positionsAndHeadings'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+!MarsRoverHeadingAndMovingLogObserver methodsFor: 'initialization' stamp: 'NB 6/3/2023 15:48:42'!
+initializeFor: aMarsRover 
+	
+	positionsAndHeadings := OrderedCollection new.
+	marsRover := aMarsRover.
+	marsRover attach: self.! !
+
+
+!MarsRoverHeadingAndMovingLogObserver methodsFor: 'observing' stamp: 'NB 6/3/2023 15:48:05'!
+show
+	
+	^positionsAndHeadings.! !
+
+!MarsRoverHeadingAndMovingLogObserver methodsFor: 'observing' stamp: 'NB 6/3/2023 17:52:10'!
+updateHeading: aMarsRoverHeading 
+	
+	positionsAndHeadings add: aMarsRoverHeading .! !
+
+!MarsRoverHeadingAndMovingLogObserver methodsFor: 'observing' stamp: 'NB 6/3/2023 17:52:35'!
+updatePosition: aPosition 
+	
+	positionsAndHeadings add: aPosition .! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'MarsRoverHeadingAndMovingLogObserver class' category: 'MarsRover-WithHeading'!
+MarsRoverHeadingAndMovingLogObserver class
+	instanceVariableNames: ''!
+
+!MarsRoverHeadingAndMovingLogObserver class methodsFor: 'instance creation' stamp: 'NB 6/3/2023 15:47:19'!
+for: aMarsRover 
+	
+	^self new initializeFor: aMarsRover ! !
+
+
+!classDefinition: #MarsRoverHeadingLogObserver category: 'MarsRover-WithHeading'!
+MarsRoverObserver subclass: #MarsRoverHeadingLogObserver
+	instanceVariableNames: 'headings'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+!MarsRoverHeadingLogObserver methodsFor: 'initialization' stamp: 'NB 6/3/2023 15:23:13'!
+initializeFor: aMarsRover 
+	
+	headings:= OrderedCollection new.
+	marsRover := aMarsRover.
+	marsRover attach: self.! !
+
+
+!MarsRoverHeadingLogObserver methodsFor: 'observing' stamp: 'NB 6/3/2023 15:23:44'!
+show
+	
+	^headings .! !
+
+!MarsRoverHeadingLogObserver methodsFor: 'observing' stamp: 'NB 6/3/2023 17:52:10'!
+updateHeading: aMarsRoverHeading
+
+
+	headings add: aMarsRoverHeading.
+	! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'MarsRoverHeadingLogObserver class' category: 'MarsRover-WithHeading'!
+MarsRoverHeadingLogObserver class
+	instanceVariableNames: ''!
+
+!MarsRoverHeadingLogObserver class methodsFor: 'instance creation' stamp: 'NB 6/3/2023 15:13:41'!
+for: aMarsRover 
+	
+	^self new initializeFor: aMarsRover ! !
+
+
+!classDefinition: #MarsRoverPositionLogObserver category: 'MarsRover-WithHeading'!
+MarsRoverObserver subclass: #MarsRoverPositionLogObserver
+	instanceVariableNames: 'positions'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+!MarsRoverPositionLogObserver methodsFor: 'initialization' stamp: 'NB 6/1/2023 21:47:20'!
 initializeFor: aMarsRover 
 	
 	positions:= OrderedCollection new.
@@ -590,58 +785,140 @@ initializeFor: aMarsRover
 	marsRover attach: self.! !
 
 
-!MarsRoverLogTracing methodsFor: 'log' stamp: 'NB 6/1/2023 21:23:04'!
-notifyMove: aPosition
-	
-	^positions add: aPosition.! !
-
-!MarsRoverLogTracing methodsFor: 'log' stamp: 'NB 6/1/2023 21:25:47'!
+!MarsRoverPositionLogObserver methodsFor: 'observing' stamp: 'NB 6/1/2023 21:25:47'!
 show
 	
 	^positions.! !
 
+!MarsRoverPositionLogObserver methodsFor: 'observing' stamp: 'NB 6/3/2023 17:52:35'!
+updatePosition: aPosition
+	
+	^positions add: aPosition.! !
+
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
-!classDefinition: 'MarsRoverLogTracing class' category: 'MarsRover-WithHeading'!
-MarsRoverLogTracing class
+!classDefinition: 'MarsRoverPositionLogObserver class' category: 'MarsRover-WithHeading'!
+MarsRoverPositionLogObserver class
 	instanceVariableNames: ''!
 
-!MarsRoverLogTracing class methodsFor: 'instance creation' stamp: 'NB 6/1/2023 20:36:00'!
+!MarsRoverPositionLogObserver class methodsFor: 'instance creation' stamp: 'NB 6/1/2023 20:36:00'!
 for: aMarsRover 
 	
 	^self new initializeFor: aMarsRover ! !
 
 
-!classDefinition: #MarsRoverWindowTracing category: 'MarsRover-WithHeading'!
-Object subclass: #MarsRoverWindowTracing
-	instanceVariableNames: 'marsRover already position'
+!classDefinition: #MarsRoverWindowHeadingAndMovingObserver category: 'MarsRover-WithHeading'!
+MarsRoverObserver subclass: #MarsRoverWindowHeadingAndMovingObserver
+	instanceVariableNames: 'position heading'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'MarsRover-WithHeading'!
 
-!MarsRoverWindowTracing methodsFor: 'initialization' stamp: 'NB 6/1/2023 21:47:33'!
+!MarsRoverWindowHeadingAndMovingObserver methodsFor: 'initialization' stamp: 'NB 6/3/2023 16:01:28'!
+initializeFor: aMarsRover 
+	
+	marsRover := aMarsRover.
+	marsRover attach: self.! !
+
+
+!MarsRoverWindowHeadingAndMovingObserver methodsFor: 'observing' stamp: 'NB 6/3/2023 16:03:25'!
+heading
+	
+	^heading! !
+
+!MarsRoverWindowHeadingAndMovingObserver methodsFor: 'observing' stamp: 'NB 6/3/2023 16:03:37'!
+position
+	
+	^position! !
+
+!MarsRoverWindowHeadingAndMovingObserver methodsFor: 'observing' stamp: 'NB 6/3/2023 17:52:10'!
+updateHeading: aMarsRoverHeading 
+	
+	heading:= aMarsRoverHeading! !
+
+!MarsRoverWindowHeadingAndMovingObserver methodsFor: 'observing' stamp: 'NB 6/3/2023 17:52:35'!
+updatePosition: aPosition 
+	
+	position:= aPosition.! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'MarsRoverWindowHeadingAndMovingObserver class' category: 'MarsRover-WithHeading'!
+MarsRoverWindowHeadingAndMovingObserver class
+	instanceVariableNames: ''!
+
+!MarsRoverWindowHeadingAndMovingObserver class methodsFor: 'instance creation' stamp: 'NB 6/3/2023 16:01:07'!
+for: aMarsRover 
+	
+	^self new initializeFor: aMarsRover ! !
+
+
+!classDefinition: #MarsRoverWindowHeadingObserver category: 'MarsRover-WithHeading'!
+MarsRoverObserver subclass: #MarsRoverWindowHeadingObserver
+	instanceVariableNames: 'heading'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+!MarsRoverWindowHeadingObserver methodsFor: 'initialization' stamp: 'NB 6/3/2023 15:54:35'!
+initializeFor: aMarsRover 
+	
+	marsRover := aMarsRover.
+	marsRover attach: self.! !
+
+
+!MarsRoverWindowHeadingObserver methodsFor: 'observing' stamp: 'NB 6/3/2023 15:55:14'!
+show
+	
+	^heading .! !
+
+!MarsRoverWindowHeadingObserver methodsFor: 'observing' stamp: 'NB 6/3/2023 17:52:10'!
+updateHeading: aMarsRoverHeading 
+	
+	heading:= aMarsRoverHeading .! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'MarsRoverWindowHeadingObserver class' category: 'MarsRover-WithHeading'!
+MarsRoverWindowHeadingObserver class
+	instanceVariableNames: ''!
+
+!MarsRoverWindowHeadingObserver class methodsFor: 'instance creation' stamp: 'NB 6/3/2023 15:54:08'!
+for: aMarsRover 
+	
+	^self new initializeFor: aMarsRover ! !
+
+
+!classDefinition: #MarsRoverWindowPositionObserver category: 'MarsRover-WithHeading'!
+MarsRoverObserver subclass: #MarsRoverWindowPositionObserver
+	instanceVariableNames: 'position'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+!MarsRoverWindowPositionObserver methodsFor: 'initialization' stamp: 'NB 6/1/2023 21:47:33'!
 initializeFor: aMarsRover 
 
 	marsRover := aMarsRover.
 	marsRover attach: self.! !
 
 
-!MarsRoverWindowTracing methodsFor: 'window' stamp: 'NB 6/1/2023 21:41:48'!
-notifyMove: aPosition
-
-	position:= aPosition.! !
-
-!MarsRoverWindowTracing methodsFor: 'window' stamp: 'NB 6/1/2023 21:41:56'!
+!MarsRoverWindowPositionObserver methodsFor: 'observing' stamp: 'NB 6/1/2023 21:41:56'!
 show
 	^position.! !
 
+!MarsRoverWindowPositionObserver methodsFor: 'observing' stamp: 'NB 6/3/2023 17:52:35'!
+updatePosition: aPosition
+
+	position:= aPosition.! !
+
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
-!classDefinition: 'MarsRoverWindowTracing class' category: 'MarsRover-WithHeading'!
-MarsRoverWindowTracing class
+!classDefinition: 'MarsRoverWindowPositionObserver class' category: 'MarsRover-WithHeading'!
+MarsRoverWindowPositionObserver class
 	instanceVariableNames: ''!
 
-!MarsRoverWindowTracing class methodsFor: 'instance creation' stamp: 'NB 6/1/2023 20:46:56'!
+!MarsRoverWindowPositionObserver class methodsFor: 'instance creation' stamp: 'NB 6/1/2023 20:46:56'!
 for: aMarsRover 
 	
 	^self new initializeFor: aMarsRover ! !
