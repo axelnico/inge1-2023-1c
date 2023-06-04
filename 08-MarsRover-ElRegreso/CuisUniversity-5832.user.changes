@@ -2435,3 +2435,50 @@ PASSED!
 ----SNAPSHOT----(3 June 2023 17:54:33) CuisUniversity-5832.image priorSource: 9465573!
 
 ----SNAPSHOT----(3 June 2023 17:54:57) CuisUniversity-5832.image priorSource: 9474353!
+
+----STARTUP---- (4 June 2023 17:53:48) as /Users/nico/Documents/inge1/cuis-images/macos64 3/CuisUniversity-5832.image!
+
+!MarsRover methodsFor: 'observing' stamp: 'NB 6/4/2023 17:58:21' prior: 50626878!
+dettach: aMarsRoverObserver 
+	
+	observers remove: aMarsRoverObserver ifAbsent: []. ! !
+
+!testRun: #MarsRoverObserverTest #test01MarsRoverLogPositionObservingWithOneMove stamp: 'NB 6/4/2023 17:58:25'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test02MarsRoverWindowPositionObservingWithOneMove stamp: 'NB 6/4/2023 17:58:25'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test03MarsRoverLogPositionObservingManyMoves stamp: 'NB 6/4/2023 17:58:25'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test04MarsRoverLogPositionObservingManyMovesWithDifferentMove stamp: 'NB 6/4/2023 17:58:25'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test05MarsRoverWindowPositionObservingManyMoves stamp: 'NB 6/4/2023 17:58:25'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test06MarsRoverLogHeadingObservingManyHeadsChanges stamp: 'NB 6/4/2023 17:58:25'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test07MarsRoverHeadingAndLogObservingManyMoves stamp: 'NB 6/4/2023 17:58:25'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test08MarsRoverWindowHeadingObservingManyMoves stamp: 'NB 6/4/2023 17:58:25'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test09MarsRoverWindowPostionObservingManyMoves stamp: 'NB 6/4/2023 17:58:25'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test10MarsRoverCanObservePositionEvenIfMarsRoverRotates stamp: 'NB 6/4/2023 17:58:25'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test11MarsRoverCanObserveLogAndWindowAtSameTime stamp: 'NB 6/4/2023 17:58:25'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test12MarsRoverCanStopObserving stamp: 'NB 6/4/2023 17:58:25'!
+PASSED!
+
+----SNAPSHOT----(4 June 2023 17:59:31) CuisUniversity-5832.image priorSource: 9474441!
+
+----SNAPSHOT----(4 June 2023 17:59:33) CuisUniversity-5832.image priorSource: 9476306!

@@ -459,10 +459,10 @@ attach: aMarsRoverObserver
 	observers add: aMarsRoverObserver.
 	! !
 
-!MarsRover methodsFor: 'observing' stamp: 'NB 6/3/2023 17:33:13'!
-dettach: aMarsRoverWindowPositionTracing 
+!MarsRover methodsFor: 'observing' stamp: 'NB 6/4/2023 17:58:21'!
+dettach: aMarsRoverObserver 
 	
-	observers remove: aMarsRoverWindowPositionTracing ifAbsent: []. ! !
+	observers remove: aMarsRoverObserver ifAbsent: []. ! !
 
 !MarsRover methodsFor: 'observing' stamp: 'NB 6/3/2023 17:52:10'!
 notifyHeadingChange: aMarsRoverHeading
