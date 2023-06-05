@@ -2482,3 +2482,853 @@ PASSED!
 ----SNAPSHOT----(4 June 2023 17:59:31) CuisUniversity-5832.image priorSource: 9474441!
 
 ----SNAPSHOT----(4 June 2023 17:59:33) CuisUniversity-5832.image priorSource: 9476306!
+
+----STARTUP---- (5 June 2023 13:06:24) as /Users/nico/Documents/inge1/cuis-images/macos64 3/CuisUniversity-5832.image!
+
+
+MarsRoverObserver subclass: #MarsRoverLogObserver
+	instanceVariableNames: 'log'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+!classDefinition: #MarsRoverLogObserver category: 'MarsRover-WithHeading' stamp: 'NB 6/5/2023 13:08:47'!
+MarsRoverObserver subclass: #MarsRoverLogObserver
+	instanceVariableNames: 'log'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+MarsRoverLogObserver subclass: #MarsRoverHeadingLogObserver
+	instanceVariableNames: 'headings'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+!classDefinition: #MarsRoverHeadingLogObserver category: 'MarsRover-WithHeading' stamp: 'NB 6/5/2023 13:09:01'!
+MarsRoverLogObserver subclass: #MarsRoverHeadingLogObserver
+	instanceVariableNames: 'headings'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+MarsRoverLogObserver subclass: #MarsRoverHeadingAndMovingLogObserver
+	instanceVariableNames: 'positionsAndHeadings'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+!classDefinition: #MarsRoverHeadingAndMovingLogObserver category: 'MarsRover-WithHeading' stamp: 'NB 6/5/2023 13:09:06'!
+MarsRoverLogObserver subclass: #MarsRoverHeadingAndMovingLogObserver
+	instanceVariableNames: 'positionsAndHeadings'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+MarsRoverLogObserver subclass: #MarsRoverPositionLogObserver
+	instanceVariableNames: 'positions'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+!classDefinition: #MarsRoverPositionLogObserver category: 'MarsRover-WithHeading' stamp: 'NB 6/5/2023 13:09:10'!
+MarsRoverLogObserver subclass: #MarsRoverPositionLogObserver
+	instanceVariableNames: 'positions'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+!MarsRoverLogObserver methodsFor: 'observing' stamp: 'NB 6/5/2023 13:09:40'!
+show
+
+	^log.! !
+!MarsRoverLogObserver methodsFor: 'initialization' stamp: 'NB 6/5/2023 13:10:18'!
+initializeFor: aMarsRover 
+	
+	log:= OrderedCollection new.
+	marsRover := aMarsRover.
+	marsRover attach: self.! !
+!MarsRoverHeadingAndMovingLogObserver methodsFor: 'observing' stamp: 'NB 6/5/2023 13:10:30' prior: 50627338 overrides: 50627333!
+updateHeading: aMarsRoverHeading 
+	
+	log add: aMarsRoverHeading .! !
+!MarsRoverHeadingAndMovingLogObserver methodsFor: 'observing' stamp: 'NB 6/5/2023 13:10:35' prior: 50627399 overrides: 50627394!
+updatePosition: aPosition 
+	
+	log add: aPosition .! !
+!MarsRoverObserver methodsFor: 'initialization' stamp: 'NB 6/5/2023 13:11:41'!
+initializeFor: aMarsRover 
+	
+	marsRover := aMarsRover.
+	marsRover attach: self.! !
+!MarsRoverLogObserver methodsFor: 'initialization' stamp: 'NB 6/5/2023 13:12:03' prior: 50627858 overrides: 50627878!
+initializeFor: aMarsRover 
+	
+	super initializeFor: aMarsRover .
+	log:= OrderedCollection new.
+	! !
+
+!methodRemoval: MarsRoverHeadingAndMovingLogObserver #show stamp: 'NB 6/5/2023 13:12:18'!
+show
+	
+	^positionsAndHeadings.!
+
+!methodRemoval: MarsRoverHeadingAndMovingLogObserver #initializeFor: stamp: 'NB 6/5/2023 13:12:28'!
+initializeFor: aMarsRover 
+	
+	positionsAndHeadings := OrderedCollection new.
+	marsRover := aMarsRover.
+	marsRover attach: self.!
+!MarsRoverHeadingLogObserver methodsFor: 'observing' stamp: 'NB 6/5/2023 13:12:40' prior: 50627344 overrides: 50627333!
+updateHeading: aMarsRoverHeading
+
+
+	log add: aMarsRoverHeading.
+	! !
+
+!methodRemoval: MarsRoverHeadingLogObserver #show stamp: 'NB 6/5/2023 13:12:45'!
+show
+	
+	^headings .!
+
+!methodRemoval: MarsRoverHeadingLogObserver #initializeFor: stamp: 'NB 6/5/2023 13:12:53'!
+initializeFor: aMarsRover 
+	
+	headings:= OrderedCollection new.
+	marsRover := aMarsRover.
+	marsRover attach: self.!
+
+MarsRoverLogObserver subclass: #MarsRoverHeadingAndMovingLogObserver
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+!classDefinition: #MarsRoverHeadingAndMovingLogObserver category: 'MarsRover-WithHeading' stamp: 'NB 6/5/2023 13:13:00'!
+MarsRoverLogObserver subclass: #MarsRoverHeadingAndMovingLogObserver
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+MarsRoverLogObserver subclass: #MarsRoverHeadingLogObserver
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+!classDefinition: #MarsRoverHeadingLogObserver category: 'MarsRover-WithHeading' stamp: 'NB 6/5/2023 13:13:04'!
+MarsRoverLogObserver subclass: #MarsRoverHeadingLogObserver
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+!MarsRoverPositionLogObserver methodsFor: 'observing' stamp: 'NB 6/5/2023 13:13:11' prior: 50627405 overrides: 50627394!
+updatePosition: aPosition
+	
+	^log add: aPosition.! !
+
+!methodRemoval: MarsRoverPositionLogObserver #show stamp: 'NB 6/5/2023 13:13:18'!
+show
+	
+	^positions.!
+
+!methodRemoval: MarsRoverPositionLogObserver #initializeFor: stamp: 'NB 6/5/2023 13:13:22'!
+initializeFor: aMarsRover 
+	
+	positions:= OrderedCollection new.
+	marsRover := aMarsRover.
+	marsRover attach: self.!
+
+MarsRoverLogObserver subclass: #MarsRoverPositionLogObserver
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+!classDefinition: #MarsRoverPositionLogObserver category: 'MarsRover-WithHeading' stamp: 'NB 6/5/2023 13:13:33'!
+MarsRoverLogObserver subclass: #MarsRoverPositionLogObserver
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+!testRun: #MarsRoverObserverTest #test01MarsRoverLogPositionObservingWithOneMove stamp: 'NB 6/5/2023 13:13:36'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test02MarsRoverWindowPositionObservingWithOneMove stamp: 'NB 6/5/2023 13:13:36'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test03MarsRoverLogPositionObservingManyMoves stamp: 'NB 6/5/2023 13:13:36'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test04MarsRoverLogPositionObservingManyMovesWithDifferentMove stamp: 'NB 6/5/2023 13:13:36'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test05MarsRoverWindowPositionObservingManyMoves stamp: 'NB 6/5/2023 13:13:36'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test06MarsRoverLogHeadingObservingManyHeadsChanges stamp: 'NB 6/5/2023 13:13:36'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test07MarsRoverHeadingAndLogObservingManyMoves stamp: 'NB 6/5/2023 13:13:36'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test08MarsRoverWindowHeadingObservingManyMoves stamp: 'NB 6/5/2023 13:13:36'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test09MarsRoverWindowPostionObservingManyMoves stamp: 'NB 6/5/2023 13:13:36'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test10MarsRoverCanObservePositionEvenIfMarsRoverRotates stamp: 'NB 6/5/2023 13:13:36'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test11MarsRoverCanObserveLogAndWindowAtSameTime stamp: 'NB 6/5/2023 13:13:36'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test12MarsRoverCanStopObserving stamp: 'NB 6/5/2023 13:13:36'!
+PASSED!
+
+!methodRemoval: MarsRoverWindowHeadingAndMovingObserver #initializeFor: stamp: 'NB 6/5/2023 13:15:06'!
+initializeFor: aMarsRover 
+	
+	marsRover := aMarsRover.
+	marsRover attach: self.!
+
+!testRun: #MarsRoverObserverTest #test01MarsRoverLogPositionObservingWithOneMove stamp: 'NB 6/5/2023 13:15:09'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test02MarsRoverWindowPositionObservingWithOneMove stamp: 'NB 6/5/2023 13:15:09'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test03MarsRoverLogPositionObservingManyMoves stamp: 'NB 6/5/2023 13:15:09'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test04MarsRoverLogPositionObservingManyMovesWithDifferentMove stamp: 'NB 6/5/2023 13:15:09'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test05MarsRoverWindowPositionObservingManyMoves stamp: 'NB 6/5/2023 13:15:09'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test06MarsRoverLogHeadingObservingManyHeadsChanges stamp: 'NB 6/5/2023 13:15:09'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test07MarsRoverHeadingAndLogObservingManyMoves stamp: 'NB 6/5/2023 13:15:09'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test08MarsRoverWindowHeadingObservingManyMoves stamp: 'NB 6/5/2023 13:15:09'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test09MarsRoverWindowPostionObservingManyMoves stamp: 'NB 6/5/2023 13:15:09'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test10MarsRoverCanObservePositionEvenIfMarsRoverRotates stamp: 'NB 6/5/2023 13:15:09'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test11MarsRoverCanObserveLogAndWindowAtSameTime stamp: 'NB 6/5/2023 13:15:09'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test12MarsRoverCanStopObserving stamp: 'NB 6/5/2023 13:15:09'!
+PASSED!
+
+!methodRemoval: MarsRoverWindowHeadingObserver #initializeFor: stamp: 'NB 6/5/2023 13:15:19'!
+initializeFor: aMarsRover 
+	
+	marsRover := aMarsRover.
+	marsRover attach: self.!
+
+!methodRemoval: MarsRoverWindowPositionObserver #initializeFor: stamp: 'NB 6/5/2023 13:15:25'!
+initializeFor: aMarsRover 
+
+	marsRover := aMarsRover.
+	marsRover attach: self.!
+
+!testRun: #MarsRoverObserverTest #test01MarsRoverLogPositionObservingWithOneMove stamp: 'NB 6/5/2023 13:15:26'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test02MarsRoverWindowPositionObservingWithOneMove stamp: 'NB 6/5/2023 13:15:26'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test03MarsRoverLogPositionObservingManyMoves stamp: 'NB 6/5/2023 13:15:26'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test04MarsRoverLogPositionObservingManyMovesWithDifferentMove stamp: 'NB 6/5/2023 13:15:26'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test05MarsRoverWindowPositionObservingManyMoves stamp: 'NB 6/5/2023 13:15:26'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test06MarsRoverLogHeadingObservingManyHeadsChanges stamp: 'NB 6/5/2023 13:15:26'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test07MarsRoverHeadingAndLogObservingManyMoves stamp: 'NB 6/5/2023 13:15:26'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test08MarsRoverWindowHeadingObservingManyMoves stamp: 'NB 6/5/2023 13:15:26'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test09MarsRoverWindowPostionObservingManyMoves stamp: 'NB 6/5/2023 13:15:26'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test10MarsRoverCanObservePositionEvenIfMarsRoverRotates stamp: 'NB 6/5/2023 13:15:26'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test11MarsRoverCanObserveLogAndWindowAtSameTime stamp: 'NB 6/5/2023 13:15:26'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test12MarsRoverCanStopObserving stamp: 'NB 6/5/2023 13:15:26'!
+PASSED!
+
+MarsRoverObserver subclass: #MarsRoverWindowObserver
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+!classDefinition: #MarsRoverWindowObserver category: 'MarsRover-WithHeading' stamp: 'NB 6/5/2023 13:16:15'!
+MarsRoverObserver subclass: #MarsRoverWindowObserver
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+MarsRoverWindowObserver subclass: #MarsRoverWindowHeadingAndMovingObserver
+	instanceVariableNames: 'position heading'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+!classDefinition: #MarsRoverWindowHeadingAndMovingObserver category: 'MarsRover-WithHeading' stamp: 'NB 6/5/2023 13:16:23'!
+MarsRoverWindowObserver subclass: #MarsRoverWindowHeadingAndMovingObserver
+	instanceVariableNames: 'position heading'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+MarsRoverWindowObserver subclass: #MarsRoverWindowPositionObserver
+	instanceVariableNames: 'position'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+!classDefinition: #MarsRoverWindowPositionObserver category: 'MarsRover-WithHeading' stamp: 'NB 6/5/2023 13:16:29'!
+MarsRoverWindowObserver subclass: #MarsRoverWindowPositionObserver
+	instanceVariableNames: 'position'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+MarsRoverWindowObserver subclass: #MarsRoverWindowHeadingObserver
+	instanceVariableNames: 'heading'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+!classDefinition: #MarsRoverWindowHeadingObserver category: 'MarsRover-WithHeading' stamp: 'NB 6/5/2023 13:16:35'!
+MarsRoverWindowObserver subclass: #MarsRoverWindowHeadingObserver
+	instanceVariableNames: 'heading'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+MarsRoverWindowObserver subclass: #MarsRoverWindowHeadingAndMovingObserver
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+!classDefinition: #MarsRoverWindowHeadingAndMovingObserver category: 'MarsRover-WithHeading' stamp: 'NB 6/5/2023 13:17:08'!
+MarsRoverWindowObserver subclass: #MarsRoverWindowHeadingAndMovingObserver
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+MarsRoverWindowObserver subclass: #MarsRoverWindowHeadingObserver
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+!classDefinition: #MarsRoverWindowHeadingObserver category: 'MarsRover-WithHeading' stamp: 'NB 6/5/2023 13:17:14'!
+MarsRoverWindowObserver subclass: #MarsRoverWindowHeadingObserver
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+MarsRoverWindowObserver subclass: #MarsRoverWindowPositionObserver
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+!classDefinition: #MarsRoverWindowPositionObserver category: 'MarsRover-WithHeading' stamp: 'NB 6/5/2023 13:17:18'!
+MarsRoverWindowObserver subclass: #MarsRoverWindowPositionObserver
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+MarsRoverObserver subclass: #MarsRoverWindowObserver
+	instanceVariableNames: 'position heading'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+!classDefinition: #MarsRoverWindowObserver category: 'MarsRover-WithHeading' stamp: 'NB 6/5/2023 13:17:28'!
+MarsRoverObserver subclass: #MarsRoverWindowObserver
+	instanceVariableNames: 'position heading'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+!methodRemoval: MarsRoverWindowPositionObserver #show stamp: 'NB 6/5/2023 13:17:50'!
+show
+	^position.!
+
+!methodRemoval: MarsRoverWindowHeadingObserver #show stamp: 'NB 6/5/2023 13:17:58'!
+show
+	
+	^heading .!
+!MarsRoverWindowObserver methodsFor: 'observing' stamp: 'NB 6/5/2023 13:18:07'!
+heading
+	
+	^heading! !
+
+!methodRemoval: MarsRoverWindowHeadingAndMovingObserver #heading stamp: 'NB 6/5/2023 13:18:07'!
+heading
+	
+	^heading!
+!MarsRoverWindowObserver methodsFor: 'observing' stamp: 'NB 6/5/2023 13:18:12'!
+position
+	
+	^position! !
+
+!methodRemoval: MarsRoverWindowHeadingAndMovingObserver #position stamp: 'NB 6/5/2023 13:18:12'!
+position
+	
+	^position!
+!MarsRoverObserverTest methodsFor: 'tests' stamp: 'NB 6/5/2023 13:18:52' prior: 50627655!
+test02MarsRoverWindowPositionObservingWithOneMove
+	
+	|marsRover windowTracer|
+	marsRover:= MarsRover at: 1@1 heading: MarsRoverHeadingNorth .
+	windowTracer:= MarsRoverWindowPositionObserver for: marsRover.
+	marsRover process: 'f'.
+	self assert: 1@2 equals: windowTracer position.! !
+!MarsRoverObserverTest methodsFor: 'tests' stamp: 'NB 6/5/2023 13:19:06' prior: 50627667!
+test05MarsRoverWindowPositionObservingManyMoves
+	
+	|marsRover windowTracer|
+	marsRover:= MarsRover at: 1@1 heading: MarsRoverHeadingNorth .
+	windowTracer:= MarsRoverWindowPositionObserver for: marsRover.
+	marsRover process: 'ff'.
+	self assert: 1@3 equals: windowTracer position.! !
+!MarsRoverObserverTest methodsFor: 'tests' stamp: 'NB 6/5/2023 13:19:25' prior: 50627604!
+test08MarsRoverWindowHeadingObservingManyMoves
+	
+	|marsRover windowTracer|
+	marsRover:= MarsRover at: 1@1 heading: MarsRoverHeadingNorth .
+	windowTracer:= MarsRoverWindowHeadingObserver for: marsRover.
+	marsRover process: 'rlll'.
+	self assert: MarsRoverHeadingSouth equals: windowTracer heading.! !
+!MarsRoverObserverTest methodsFor: 'tests' stamp: 'NB 6/5/2023 13:19:39' prior: 50627617!
+test11MarsRoverCanObserveLogAndWindowAtSameTime
+	
+	|marsRover logTracer windowTracer|
+	marsRover:= MarsRover at: 1@1 heading: MarsRoverHeadingNorth .
+	logTracer:= MarsRoverPositionLogObserver for: marsRover.
+	windowTracer:= MarsRoverWindowHeadingObserver for: marsRover.
+	marsRover process: 'fr'.
+	self assert: (OrderedCollection with: 1@2) equals: logTracer show.
+	self assert: MarsRoverHeadingEast equals: windowTracer heading.! !
+!MarsRoverObserverTest methodsFor: 'tests' stamp: 'NB 6/5/2023 13:19:45' prior: 50627641!
+test12MarsRoverCanStopObserving
+	
+	|marsRover windowTracer|
+	marsRover:= MarsRover at: 1@1 heading: MarsRoverHeadingNorth .
+	windowTracer:= MarsRoverWindowPositionObserver for: marsRover.
+	marsRover process: 'ff'.
+	windowTracer stopObserving.
+	marsRover process: 'f'.
+	self assert: 1@3 equals: windowTracer position.! !
+
+!testRun: #MarsRoverObserverTest #test12MarsRoverCanStopObserving stamp: 'NB 6/5/2023 13:19:47'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test01MarsRoverLogPositionObservingWithOneMove stamp: 'NB 6/5/2023 13:19:47'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test02MarsRoverWindowPositionObservingWithOneMove stamp: 'NB 6/5/2023 13:19:47'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test03MarsRoverLogPositionObservingManyMoves stamp: 'NB 6/5/2023 13:19:47'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test04MarsRoverLogPositionObservingManyMovesWithDifferentMove stamp: 'NB 6/5/2023 13:19:47'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test05MarsRoverWindowPositionObservingManyMoves stamp: 'NB 6/5/2023 13:19:47'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test06MarsRoverLogHeadingObservingManyHeadsChanges stamp: 'NB 6/5/2023 13:19:47'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test07MarsRoverHeadingAndLogObservingManyMoves stamp: 'NB 6/5/2023 13:19:47'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test08MarsRoverWindowHeadingObservingManyMoves stamp: 'NB 6/5/2023 13:19:47'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test09MarsRoverWindowPostionObservingManyMoves stamp: 'NB 6/5/2023 13:19:47'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test10MarsRoverCanObservePositionEvenIfMarsRoverRotates stamp: 'NB 6/5/2023 13:19:47'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test11MarsRoverCanObserveLogAndWindowAtSameTime stamp: 'NB 6/5/2023 13:19:47'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test12MarsRoverCanStopObserving stamp: 'NB 6/5/2023 13:19:47'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test12MarsRoverCanStopObserving stamp: 'NB 6/5/2023 13:19:49'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test01MarsRoverLogPositionObservingWithOneMove stamp: 'NB 6/5/2023 13:19:49'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test02MarsRoverWindowPositionObservingWithOneMove stamp: 'NB 6/5/2023 13:19:49'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test03MarsRoverLogPositionObservingManyMoves stamp: 'NB 6/5/2023 13:19:49'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test04MarsRoverLogPositionObservingManyMovesWithDifferentMove stamp: 'NB 6/5/2023 13:19:49'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test05MarsRoverWindowPositionObservingManyMoves stamp: 'NB 6/5/2023 13:19:49'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test06MarsRoverLogHeadingObservingManyHeadsChanges stamp: 'NB 6/5/2023 13:19:49'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test07MarsRoverHeadingAndLogObservingManyMoves stamp: 'NB 6/5/2023 13:19:49'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test08MarsRoverWindowHeadingObservingManyMoves stamp: 'NB 6/5/2023 13:19:49'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test09MarsRoverWindowPostionObservingManyMoves stamp: 'NB 6/5/2023 13:19:49'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test10MarsRoverCanObservePositionEvenIfMarsRoverRotates stamp: 'NB 6/5/2023 13:19:49'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test11MarsRoverCanObserveLogAndWindowAtSameTime stamp: 'NB 6/5/2023 13:19:49'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test12MarsRoverCanStopObserving stamp: 'NB 6/5/2023 13:19:49'!
+PASSED!
+
+!classRenamed: #MarsRoverHeadingAndMovingLogObserver as: #MarsRoverLogHeadingAndMovingObserver stamp: 'NB 6/5/2023 13:21:02'!
+Smalltalk renameClassNamed: #MarsRoverHeadingAndMovingLogObserver as: #MarsRoverLogHeadingAndMovingObserver!
+!MarsRoverObserverTest methodsFor: 'as yet unclassified' stamp: 'NB 6/5/2023 13:21:02' prior: 50627461!
+test07MarsRoverHeadingAndLogObservingManyMoves
+	
+	|marsRover logTracer|
+	marsRover:= MarsRover at: 1@1 heading: MarsRoverHeadingNorth .
+	logTracer:= MarsRoverLogHeadingAndMovingObserver for: marsRover.
+	marsRover process: 'fr'.
+	self assert: (OrderedCollection 
+				with: 1@2
+				with: MarsRoverHeadingEast)
+	    equals: logTracer show.! !
+
+!classRenamed: #MarsRoverHeadingLogObserver as: #MarsRoverLogHeadingObserver stamp: 'NB 6/5/2023 13:21:14'!
+Smalltalk renameClassNamed: #MarsRoverHeadingLogObserver as: #MarsRoverLogHeadingObserver!
+!MarsRoverObserverTest methodsFor: 'as yet unclassified' stamp: 'NB 6/5/2023 13:21:14' prior: 50627482!
+test06MarsRoverLogHeadingObservingManyHeadsChanges
+	
+	|marsRover logTracer|
+	marsRover:= MarsRover at: 1@1 heading: MarsRoverHeadingNorth .
+	logTracer:= MarsRoverLogHeadingObserver for: marsRover.
+	marsRover process: 'rlll'.
+	self assert: (OrderedCollection 
+				with: MarsRoverHeadingEast 
+				with: MarsRoverHeadingNorth 
+				with: MarsRoverHeadingWest 
+				with: MarsRoverHeadingSouth) 
+	    equals: logTracer show.! !
+
+!classRenamed: #MarsRoverPositionLogObserver as: #MarsRoverLogPositionObserver stamp: 'NB 6/5/2023 13:21:31'!
+Smalltalk renameClassNamed: #MarsRoverPositionLogObserver as: #MarsRoverLogPositionObserver!
+!MarsRoverObserverTest methodsFor: 'as yet unclassified' stamp: 'NB 6/5/2023 13:21:31' prior: 50628309!
+test11MarsRoverCanObserveLogAndWindowAtSameTime
+	
+	|marsRover logTracer windowTracer|
+	marsRover:= MarsRover at: 1@1 heading: MarsRoverHeadingNorth .
+	logTracer:= MarsRoverLogPositionObserver for: marsRover.
+	windowTracer:= MarsRoverWindowHeadingObserver for: marsRover.
+	marsRover process: 'fr'.
+	self assert: (OrderedCollection with: 1@2) equals: logTracer show.
+	self assert: MarsRoverHeadingEast equals: windowTracer heading.! !
+!MarsRoverObserverTest methodsFor: 'as yet unclassified' stamp: 'NB 6/5/2023 13:21:31' prior: 50627522!
+test01MarsRoverLogPositionObservingWithOneMove
+	
+	|marsRover logTracer|
+	marsRover:= MarsRover at: 1@1 heading: MarsRoverHeadingNorth .
+	logTracer:= MarsRoverLogPositionObserver for: marsRover.
+	marsRover process: 'f'.
+	self assert: (OrderedCollection with: 1@2) equals: logTracer show.! !
+!MarsRoverObserverTest methodsFor: 'as yet unclassified' stamp: 'NB 6/5/2023 13:21:31' prior: 50627535!
+test04MarsRoverLogPositionObservingManyMovesWithDifferentMove
+	
+	|marsRover logTracer|
+	marsRover:= MarsRover at: 1@1 heading: MarsRoverHeadingNorth .
+	logTracer:= MarsRoverLogPositionObserver for: marsRover.
+	marsRover process: 'bb'.
+	self assert: (OrderedCollection with: 1@0 with: 1@-1) equals: logTracer show.! !
+!MarsRoverObserverTest methodsFor: 'as yet unclassified' stamp: 'NB 6/5/2023 13:21:31' prior: 50627549!
+test10MarsRoverCanObservePositionEvenIfMarsRoverRotates
+	
+	|marsRover logTracer|
+	marsRover:= MarsRover at: 1@1 heading: MarsRoverHeadingNorth .
+	logTracer:= MarsRoverLogPositionObserver for: marsRover.
+	marsRover process: 'fr'.
+	self assert: (OrderedCollection with: 1@2) equals: logTracer show.! !
+!MarsRoverObserverTest methodsFor: 'as yet unclassified' stamp: 'NB 6/5/2023 13:21:31' prior: 50627562!
+test03MarsRoverLogPositionObservingManyMoves
+	
+	|marsRover logTracer|
+	marsRover:= MarsRover at: 1@1 heading: MarsRoverHeadingNorth .
+	logTracer:= MarsRoverLogPositionObserver for: marsRover.
+	marsRover process: 'ff'.
+	self assert: (OrderedCollection with: 1@2 with: 1@3) equals: logTracer show.! !
+
+!testRun: #MarsRoverObserverTest #test01MarsRoverLogPositionObservingWithOneMove stamp: 'NB 6/5/2023 13:21:55'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test02MarsRoverWindowPositionObservingWithOneMove stamp: 'NB 6/5/2023 13:21:55'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test03MarsRoverLogPositionObservingManyMoves stamp: 'NB 6/5/2023 13:21:55'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test04MarsRoverLogPositionObservingManyMovesWithDifferentMove stamp: 'NB 6/5/2023 13:21:55'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test05MarsRoverWindowPositionObservingManyMoves stamp: 'NB 6/5/2023 13:21:55'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test06MarsRoverLogHeadingObservingManyHeadsChanges stamp: 'NB 6/5/2023 13:21:55'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test07MarsRoverHeadingAndLogObservingManyMoves stamp: 'NB 6/5/2023 13:21:55'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test08MarsRoverWindowHeadingObservingManyMoves stamp: 'NB 6/5/2023 13:21:55'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test09MarsRoverWindowPostionObservingManyMoves stamp: 'NB 6/5/2023 13:21:55'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test10MarsRoverCanObservePositionEvenIfMarsRoverRotates stamp: 'NB 6/5/2023 13:21:55'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test11MarsRoverCanObserveLogAndWindowAtSameTime stamp: 'NB 6/5/2023 13:21:55'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test12MarsRoverCanStopObserving stamp: 'NB 6/5/2023 13:21:55'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test01MarsRoverLogPositionObservingWithOneMove stamp: 'NB 6/5/2023 13:21:57'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test02MarsRoverWindowPositionObservingWithOneMove stamp: 'NB 6/5/2023 13:21:57'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test03MarsRoverLogPositionObservingManyMoves stamp: 'NB 6/5/2023 13:21:57'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test04MarsRoverLogPositionObservingManyMovesWithDifferentMove stamp: 'NB 6/5/2023 13:21:57'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test05MarsRoverWindowPositionObservingManyMoves stamp: 'NB 6/5/2023 13:21:57'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test06MarsRoverLogHeadingObservingManyHeadsChanges stamp: 'NB 6/5/2023 13:21:57'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test07MarsRoverHeadingAndLogObservingManyMoves stamp: 'NB 6/5/2023 13:21:57'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test08MarsRoverWindowHeadingObservingManyMoves stamp: 'NB 6/5/2023 13:21:57'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test09MarsRoverWindowPostionObservingManyMoves stamp: 'NB 6/5/2023 13:21:57'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test10MarsRoverCanObservePositionEvenIfMarsRoverRotates stamp: 'NB 6/5/2023 13:21:57'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test11MarsRoverCanObserveLogAndWindowAtSameTime stamp: 'NB 6/5/2023 13:21:57'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test12MarsRoverCanStopObserving stamp: 'NB 6/5/2023 13:21:57'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test01MarsRoverLogPositionObservingWithOneMove stamp: 'NB 6/5/2023 13:22:00'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test02MarsRoverWindowPositionObservingWithOneMove stamp: 'NB 6/5/2023 13:22:00'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test03MarsRoverLogPositionObservingManyMoves stamp: 'NB 6/5/2023 13:22:00'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test04MarsRoverLogPositionObservingManyMovesWithDifferentMove stamp: 'NB 6/5/2023 13:22:00'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test05MarsRoverWindowPositionObservingManyMoves stamp: 'NB 6/5/2023 13:22:00'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test06MarsRoverLogHeadingObservingManyHeadsChanges stamp: 'NB 6/5/2023 13:22:00'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test07MarsRoverHeadingAndLogObservingManyMoves stamp: 'NB 6/5/2023 13:22:00'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test08MarsRoverWindowHeadingObservingManyMoves stamp: 'NB 6/5/2023 13:22:00'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test09MarsRoverWindowPostionObservingManyMoves stamp: 'NB 6/5/2023 13:22:00'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test10MarsRoverCanObservePositionEvenIfMarsRoverRotates stamp: 'NB 6/5/2023 13:22:00'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test11MarsRoverCanObserveLogAndWindowAtSameTime stamp: 'NB 6/5/2023 13:22:00'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test12MarsRoverCanStopObserving stamp: 'NB 6/5/2023 13:22:00'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test01MarsRoverLogPositionObservingWithOneMove stamp: 'NB 6/5/2023 13:22:08'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test02MarsRoverWindowPositionObservingWithOneMove stamp: 'NB 6/5/2023 13:22:08'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test03MarsRoverLogPositionObservingManyMoves stamp: 'NB 6/5/2023 13:22:08'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test04MarsRoverLogPositionObservingManyMovesWithDifferentMove stamp: 'NB 6/5/2023 13:22:08'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test05MarsRoverWindowPositionObservingManyMoves stamp: 'NB 6/5/2023 13:22:08'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test06MarsRoverLogHeadingObservingManyHeadsChanges stamp: 'NB 6/5/2023 13:22:08'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test07MarsRoverHeadingAndLogObservingManyMoves stamp: 'NB 6/5/2023 13:22:08'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test08MarsRoverWindowHeadingObservingManyMoves stamp: 'NB 6/5/2023 13:22:08'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test09MarsRoverWindowPostionObservingManyMoves stamp: 'NB 6/5/2023 13:22:08'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test10MarsRoverCanObservePositionEvenIfMarsRoverRotates stamp: 'NB 6/5/2023 13:22:08'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test11MarsRoverCanObserveLogAndWindowAtSameTime stamp: 'NB 6/5/2023 13:22:08'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test12MarsRoverCanStopObserving stamp: 'NB 6/5/2023 13:22:08'!
+PASSED!
+
+!testRun: #MarsRoverTest #test01DoesNotMoveWhenNoCommand stamp: 'NB 6/5/2023 13:22:11'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02IsAtFailsForDifferentPosition stamp: 'NB 6/5/2023 13:22:11'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03IsAtFailsForDifferentHeading stamp: 'NB 6/5/2023 13:22:11'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04IncrementsYAfterMovingForwardWhenHeadingNorth stamp: 'NB 6/5/2023 13:22:11'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06DecrementsYAfterMovingBackwardsWhenHeadingNorth stamp: 'NB 6/5/2023 13:22:11'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07PointToEashAfterRotatingRightWhenHeadingNorth stamp: 'NB 6/5/2023 13:22:11'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08PointsToWestAfterRotatingLeftWhenPointingNorth stamp: 'NB 6/5/2023 13:22:11'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09DoesNotProcessInvalidCommand stamp: 'NB 6/5/2023 13:22:11'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10CanProcessMoreThanOneCommand stamp: 'NB 6/5/2023 13:22:11'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11IncrementsXAfterMovingForwareWhenHeadingEast stamp: 'NB 6/5/2023 13:22:11'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12DecrementsXAfterMovingBackwardWhenHeadingEast stamp: 'NB 6/5/2023 13:22:11'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13PointsToSouthAfterRotatingRightWhenHeadingEast stamp: 'NB 6/5/2023 13:22:11'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14PointsToNorthAfterRotatingLeftWhenPointingEast stamp: 'NB 6/5/2023 13:22:11'!
+PASSED!
+
+!testRun: #MarsRoverTest #test15ForwardBackwardsAndRotateRightWorkAsExpectedWhenPointingSouth stamp: 'NB 6/5/2023 13:22:11'!
+PASSED!
+
+!testRun: #MarsRoverTest #test16ForwardBackwardsAndRotateRightWorkAsExpectedWhenPointingWest stamp: 'NB 6/5/2023 13:22:11'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test01MarsRoverLogPositionObservingWithOneMove stamp: 'NB 6/5/2023 13:22:14'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test02MarsRoverWindowPositionObservingWithOneMove stamp: 'NB 6/5/2023 13:22:14'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test03MarsRoverLogPositionObservingManyMoves stamp: 'NB 6/5/2023 13:22:14'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test04MarsRoverLogPositionObservingManyMovesWithDifferentMove stamp: 'NB 6/5/2023 13:22:14'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test05MarsRoverWindowPositionObservingManyMoves stamp: 'NB 6/5/2023 13:22:14'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test06MarsRoverLogHeadingObservingManyHeadsChanges stamp: 'NB 6/5/2023 13:22:14'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test07MarsRoverHeadingAndLogObservingManyMoves stamp: 'NB 6/5/2023 13:22:14'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test08MarsRoverWindowHeadingObservingManyMoves stamp: 'NB 6/5/2023 13:22:14'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test09MarsRoverWindowPostionObservingManyMoves stamp: 'NB 6/5/2023 13:22:14'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test10MarsRoverCanObservePositionEvenIfMarsRoverRotates stamp: 'NB 6/5/2023 13:22:14'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test11MarsRoverCanObserveLogAndWindowAtSameTime stamp: 'NB 6/5/2023 13:22:14'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test12MarsRoverCanStopObserving stamp: 'NB 6/5/2023 13:22:14'!
+PASSED!
+
+----SNAPSHOT----(5 June 2023 13:22:20) CuisUniversity-5832.image priorSource: 9476394!
