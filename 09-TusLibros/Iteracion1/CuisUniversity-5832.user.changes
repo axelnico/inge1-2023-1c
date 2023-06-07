@@ -1,0 +1,270 @@
+
+
+----QUIT----(30 May 2023 00:05:32) CuisUniversity-5832.image priorSource: 4928100!
+
+----STARTUP---- (30 May 2023 00:05:33) as /Users/hernan/Documents/Cuis/5.0-64Bits/Cuis-University-Installer/CuisUniversity-5832.image!
+
+
+----QUIT----(30 May 2023 00:05:33) CuisUniversity-5832.image priorSource: 9366537!
+
+----STARTUP---- (6 June 2023 23:04:06) as /Users/nico/Documents/inge1/cuis-images/macos64 4/CuisUniversity-5832.image!
+
+
+TestCase subclass: #CartTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #CartTest category: 'TusLibros' stamp: 'NB 6/6/2023 23:05:30'!
+TestCase subclass: #CartTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #Cart category: 'TusLibros' stamp: 'NB 6/6/2023 23:11:04'!
+Object subclass: #Cart
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!CartTest methodsFor: 'tests' stamp: 'NB 6/6/2023 23:11:00'!
+test01CreatingACartStartsEmpty
+
+	self assert: Cart new isEmpty.	! !
+
+!testRun: #CartTest #test01CreatingACartStartsEmpty stamp: 'NB 6/6/2023 23:11:07'!
+ERROR!
+!Cart methodsFor: 'testing' stamp: 'NB 6/6/2023 23:11:18'!
+isEmpty
+	self shouldBeImplemented.! !
+!Cart methodsFor: 'testing' stamp: 'NB 6/6/2023 23:11:23' prior: 50624392!
+isEmpty
+	
+	^true.! !
+
+!testRun: #CartTest #test01CreatingACartStartsEmpty stamp: 'NB 6/6/2023 23:11:24'!
+PASSED!
+
+!testRun: #CartTest #test01CreatingACartStartsEmpty stamp: 'NB 6/6/2023 23:11:24'!
+PASSED!
+!CartTest methodsFor: 'tests' stamp: 'NB 6/6/2023 23:15:50'!
+test02AddingAnItemToCartMakesItNotEmpty
+
+	|aCart|
+	aCart:= Cart new.
+	aCart add: '1123' quantity: 1.
+	self deny: aCart isEmpty.	! !
+
+!testRun: #CartTest #test02AddingAnItemToCartMakesItNotEmpty stamp: 'NB 6/6/2023 23:15:52'!
+ERROR!
+!Cart methodsFor: 'adding' stamp: 'NB 6/6/2023 23:16:04'!
+add: aRenameMe1 quantity: aRenameMe2 
+	self shouldBeImplemented.! !
+
+!classDefinition: #Cart category: 'TusLibros' stamp: 'NB 6/6/2023 23:33:36'!
+Object subclass: #Cart
+	instanceVariableNames: 'items'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!Cart methodsFor: 'adding' stamp: 'NB 6/6/2023 23:33:34' prior: 50624415!
+add: aISBN quantity: anAmount 
+	
+	items add: aISBN withOcurrences: anAmount.! !
+
+!testRun: #CartTest #test02AddingAnItemToCartMakesItNotEmpty stamp: 'NB 6/6/2023 23:33:41'!
+ERROR!
+!Cart methodsFor: 'initialization' stamp: 'NB 6/6/2023 23:34:16' overrides: 16920235!
+initialize
+
+	items:= Bag new.! !
+!Cart methodsFor: 'testing' stamp: 'NB 6/6/2023 23:34:30' prior: 50624396!
+isEmpty
+	
+	^items isEmpty .! !
+
+!testRun: #CartTest #test01CreatingACartStartsEmpty stamp: 'NB 6/6/2023 23:34:32'!
+PASSED!
+
+!testRun: #CartTest #test02AddingAnItemToCartMakesItNotEmpty stamp: 'NB 6/6/2023 23:34:32'!
+ERROR!
+
+!testRun: #CartTest #test02AddingAnItemToCartMakesItNotEmpty stamp: 'NB 6/6/2023 23:34:32'!
+ERROR!
+!Cart methodsFor: 'adding' stamp: 'NB 6/6/2023 23:34:54' prior: 50624426!
+add: aISBN quantity: anAmount 
+	
+	items add: aISBN  withOccurrences: anAmount.! !
+
+!testRun: #CartTest #test01CreatingACartStartsEmpty stamp: 'NB 6/6/2023 23:34:56'!
+PASSED!
+
+!testRun: #CartTest #test02AddingAnItemToCartMakesItNotEmpty stamp: 'NB 6/6/2023 23:34:56'!
+PASSED!
+!CartTest methodsFor: 'tests' stamp: 'NB 6/6/2023 23:37:35'!
+test03CartHoldsItemsAdded
+
+	|aCart|
+	aCart:= Cart new.
+	aCart add: '1123' quantity: 1.
+	self assert: aCart includes: '1123'.! !
+
+!testRun: #CartTest #test03CartHoldsItemsAdded stamp: 'NB 6/6/2023 23:37:43'!
+ERROR!
+
+!testRun: #CartTest #test03CartHoldsItemsAdded stamp: 'NB 6/6/2023 23:37:43'!
+ERROR!
+!Cart methodsFor: 'testing' stamp: 'NB 6/6/2023 23:37:47'!
+includes: anObject 
+	self shouldBeImplemented.! !
+!Cart methodsFor: 'testing' stamp: 'NB 6/6/2023 23:38:05' prior: 50624475!
+includes: aISBN 
+	
+	^items includes: aISBN.! !
+
+!testRun: #CartTest #test03CartHoldsItemsAdded stamp: 'NB 6/6/2023 23:38:06'!
+PASSED!
+
+!testRun: #CartTest #test03CartHoldsItemsAdded stamp: 'NB 6/6/2023 23:38:08'!
+PASSED!
+
+!testRun: #CartTest #test01CreatingACartStartsEmpty stamp: 'NB 6/6/2023 23:38:08'!
+PASSED!
+
+!testRun: #CartTest #test02AddingAnItemToCartMakesItNotEmpty stamp: 'NB 6/6/2023 23:38:08'!
+PASSED!
+
+!testRun: #CartTest #test03CartHoldsItemsAdded stamp: 'NB 6/6/2023 23:38:08'!
+PASSED!
+!CartTest methodsFor: 'tests' stamp: 'NB 6/6/2023 23:42:01'!
+test04CannotAddANonPositiveAmountOfItemsToCart
+
+	|aCart|
+	aCart:= Cart new.
+	self should: [aCart add: '1123' quantity: 0.] 
+		raise: Error - MessageNotUnderstood  
+		withExceptionDo: [:anError | self assert: aCart isEmpty.
+							     self assert: 'Cannot add a non positive amount of items to cart' equals: anError messageText ].! !
+
+!testRun: #CartTest #test04CannotAddANonPositiveAmountOfItemsToCart stamp: 'NB 6/6/2023 23:42:30'!
+FAILURE!
+!Cart methodsFor: 'adding' stamp: 'NB 6/6/2023 23:43:16' prior: 50624452!
+add: aISBN quantity: anAmount 
+	
+	anAmount strictlyPositive ifFalse: [self error: 'Cannot add a non positive amount of items to cart'].
+	
+	items add: aISBN  withOccurrences: anAmount.! !
+
+!testRun: #CartTest #test01CreatingACartStartsEmpty stamp: 'NB 6/6/2023 23:43:18'!
+PASSED!
+
+!testRun: #CartTest #test02AddingAnItemToCartMakesItNotEmpty stamp: 'NB 6/6/2023 23:43:18'!
+PASSED!
+
+!testRun: #CartTest #test03CartHoldsItemsAdded stamp: 'NB 6/6/2023 23:43:18'!
+PASSED!
+
+!testRun: #CartTest #test04CannotAddANonPositiveAmountOfItemsToCart stamp: 'NB 6/6/2023 23:43:18'!
+PASSED!
+!Cart methodsFor: 'adding' stamp: 'NB 6/6/2023 23:43:44'!
+assertAmountIsStrictlyPositive: anAmount
+
+	^ anAmount strictlyPositive ifFalse: [self error: 'Cannot add a non positive amount of items to cart']! !
+!Cart methodsFor: 'adding' stamp: 'NB 6/6/2023 23:43:44' prior: 50624514!
+add: aISBN quantity: anAmount 
+	
+	self assertAmountIsStrictlyPositive: anAmount.
+	
+	items add: aISBN  withOccurrences: anAmount.! !
+!Cart class methodsFor: 'error description' stamp: 'NB 6/6/2023 23:44:56'!
+cannotAddANonPositiveAmountOfItemsDescription
+
+	^'Cannot add a non positive amount of items to cart'! !
+!Cart methodsFor: 'assertions' stamp: 'NB 6/6/2023 23:45:13' prior: 50624534!
+assertAmountIsStrictlyPositive: anAmount
+
+	^ anAmount strictlyPositive ifFalse: [self error: self class cannotAddANonPositiveAmountOfItemsDescription ]! !
+
+!testRun: #CartTest #test01CreatingACartStartsEmpty stamp: 'NB 6/6/2023 23:45:14'!
+PASSED!
+
+!testRun: #CartTest #test02AddingAnItemToCartMakesItNotEmpty stamp: 'NB 6/6/2023 23:45:14'!
+PASSED!
+
+!testRun: #CartTest #test03CartHoldsItemsAdded stamp: 'NB 6/6/2023 23:45:14'!
+PASSED!
+
+!testRun: #CartTest #test04CannotAddANonPositiveAmountOfItemsToCart stamp: 'NB 6/6/2023 23:45:14'!
+PASSED!
+!CartTest methodsFor: 'tests' stamp: 'NB 6/6/2023 23:45:24' prior: 50624497!
+test04CannotAddANonPositiveAmountOfItemsToCart
+
+	|aCart|
+	aCart:= Cart new.
+	self should: [aCart add: '1123' quantity: 0.] 
+		raise: Error - MessageNotUnderstood  
+		withExceptionDo: [:anError | self assert: aCart isEmpty.
+							     self assert:Cart cannotAddANonPositiveAmountOfItemsDescription equals: anError messageText ].! !
+
+!testRun: #CartTest #test04CannotAddANonPositiveAmountOfItemsToCart stamp: 'NB 6/6/2023 23:45:25'!
+PASSED!
+
+!testRun: #CartTest #test01CreatingACartStartsEmpty stamp: 'NB 6/6/2023 23:45:25'!
+PASSED!
+
+!testRun: #CartTest #test02AddingAnItemToCartMakesItNotEmpty stamp: 'NB 6/6/2023 23:45:25'!
+PASSED!
+
+!testRun: #CartTest #test03CartHoldsItemsAdded stamp: 'NB 6/6/2023 23:45:25'!
+PASSED!
+
+!testRun: #CartTest #test04CannotAddANonPositiveAmountOfItemsToCart stamp: 'NB 6/6/2023 23:45:25'!
+PASSED!
+!CartTest methodsFor: 'tests' stamp: 'NB 6/6/2023 23:46:54'!
+test05CartHoldsAmountOfItemsAdded
+
+	|aCart|
+	aCart:= Cart new.
+	aCart add: '1123' quantity: 1.
+	self assert: (aCart quantityOf: '1123') equals: 1.! !
+
+!testRun: #CartTest #test05CartHoldsAmountOfItemsAdded stamp: 'NB 6/6/2023 23:46:57'!
+ERROR!
+!Cart methodsFor: 'testing' stamp: 'NB 6/6/2023 23:47:01'!
+quantityOf: aRenameMe1 
+	self shouldBeImplemented.! !
+!Cart methodsFor: 'testing' stamp: 'NB 6/6/2023 23:47:17' prior: 50624612!
+quantityOf: aISBN 
+	
+	items occurrencesOf: aISBN.! !
+
+!testRun: #CartTest #test05CartHoldsAmountOfItemsAdded stamp: 'NB 6/6/2023 23:47:17'!
+FAILURE!
+!Cart methodsFor: 'testing' stamp: 'NB 6/6/2023 23:47:33' prior: 50624617!
+quantityOf: aISBN 
+	
+	^items occurrencesOf: aISBN.! !
+
+!testRun: #CartTest #test05CartHoldsAmountOfItemsAdded stamp: 'NB 6/6/2023 23:47:58'!
+PASSED!
+
+!testRun: #CartTest #test01CreatingACartStartsEmpty stamp: 'NB 6/6/2023 23:48:01'!
+PASSED!
+
+!testRun: #CartTest #test02AddingAnItemToCartMakesItNotEmpty stamp: 'NB 6/6/2023 23:48:01'!
+PASSED!
+
+!testRun: #CartTest #test03CartHoldsItemsAdded stamp: 'NB 6/6/2023 23:48:01'!
+PASSED!
+
+!testRun: #CartTest #test04CannotAddANonPositiveAmountOfItemsToCart stamp: 'NB 6/6/2023 23:48:01'!
+PASSED!
+
+!testRun: #CartTest #test05CartHoldsAmountOfItemsAdded stamp: 'NB 6/6/2023 23:48:01'!
+PASSED!
+
+----SNAPSHOT----(6 June 2023 23:48:10) CuisUniversity-5832.image priorSource: 9366758!
+
+----SNAPSHOT----(6 June 2023 23:48:12) CuisUniversity-5832.image priorSource: 9375863!
