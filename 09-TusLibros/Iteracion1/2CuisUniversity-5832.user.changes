@@ -1,0 +1,517 @@
+
+
+----QUIT----(30 May 2023 00:05:32) CuisUniversity-5832.image priorSource: 4928100!
+
+----STARTUP---- (30 May 2023 00:05:33) as /Users/hernan/Documents/Cuis/5.0-64Bits/Cuis-University-Installer/CuisUniversity-5832.image!
+
+
+----QUIT----(30 May 2023 00:05:33) CuisUniversity-5832.image priorSource: 9366537!
+
+----STARTUP---- (7 June 2023 17:13:50) as D:\inge 1 repo\windows64\windows64\CuisUniversity-5832.image!
+
+
+----End fileIn of D:\inge 1 repo\windows64\windows64\TusLibros.st----!
+!Cart methodsFor: 'as yet unclassified' stamp: 'am 6/7/2023 17:15:18' prior: 50624435!
+quantityOf: aISBN 
+	
+	^items occurrencesOf: aISBN.! !
+!Cart methodsFor: 'as yet unclassified' stamp: 'am 6/7/2023 17:15:18' prior: 50624440 overrides: 16920235!
+initialize
+
+	items:= Bag new.! !
+!Cart methodsFor: 'as yet unclassified' stamp: 'am 6/7/2023 17:15:18' prior: 50624432!
+isEmpty
+	
+	^items isEmpty .! !
+!Cart methodsFor: 'as yet unclassified' stamp: 'am 6/7/2023 17:15:18' prior: 50624428!
+includes: aISBN 
+	
+	^items includes: aISBN.! !
+!Cart methodsFor: 'as yet unclassified' stamp: 'am 6/7/2023 17:15:18' prior: 50624451!
+add: aISBN quantity: anAmount 
+	
+	self assertAmountIsStrictlyPositive: anAmount.
+	
+	items add: aISBN  withOccurrences: anAmount.! !
+!Cart methodsFor: 'as yet unclassified' stamp: 'am 6/7/2023 17:15:18' prior: 50624444!
+assertAmountIsStrictlyPositive: anAmount
+
+	^ anAmount strictlyPositive ifFalse: [self error: self class cannotAddANonPositiveAmountOfItemsDescription ]! !
+!Cart class methodsFor: 'as yet unclassified' stamp: 'am 6/7/2023 17:15:18' prior: 50624465!
+cannotAddANonPositiveAmountOfItemsDescription
+
+	^'Cannot add a non positive amount of items to cart'! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'am 6/7/2023 17:15:18' prior: 50624383!
+test02AddingAnItemToCartMakesItNotEmpty
+
+	|aCart|
+	aCart:= Cart new.
+	aCart add: '1123' quantity: 1.
+	self deny: aCart isEmpty.	! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'am 6/7/2023 17:15:18' prior: 50624397!
+test04CannotAddANonPositiveAmountOfItemsToCart
+
+	|aCart|
+	aCart:= Cart new.
+	self should: [aCart add: '1123' quantity: 0.] 
+		raise: Error - MessageNotUnderstood  
+		withExceptionDo: [:anError | self assert: aCart isEmpty.
+							     self assert:Cart cannotAddANonPositiveAmountOfItemsDescription equals: anError messageText ].! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'am 6/7/2023 17:15:18' prior: 50624378!
+test01CreatingACartStartsEmpty
+
+	self assert: Cart new isEmpty.	! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'am 6/7/2023 17:15:19' prior: 50624410!
+test05CartHoldsAmountOfItemsAdded
+
+	|aCart|
+	aCart:= Cart new.
+	aCart add: '1123' quantity: 1.
+	self assert: (aCart quantityOf: '1123') equals: 1.! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'am 6/7/2023 17:15:19' prior: 50624390!
+test03CartHoldsItemsAdded
+
+	|aCart|
+	aCart:= Cart new.
+	aCart add: '1123' quantity: 1.
+	self assert: aCart includes: '1123'.! !
+
+!classDefinition: #Inventory category: 'TusLibros' stamp: 'am 6/7/2023 17:30:00'!
+Object subclass: #Inventory
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!CartTest methodsFor: 'tests' stamp: 'am 6/7/2023 17:29:48'!
+test06CannotAddItemsThatAreNotOnInventory
+
+	|aCart inventory|
+	
+	inventory:= Inventory newWith: #('book1' 'book2' 'book3').
+	aCart:= Cart forInventory: inventory.
+	self should: [aCart add: '1123' quantity: 1.	] raise: Error. ! !
+
+!testRun: #CartTest #test06CannotAddItemsThatAreNotOnInventory stamp: 'am 6/7/2023 17:30:10'!
+ERROR!
+!Inventory class methodsFor: 'class initialization' stamp: 'am 6/7/2023 17:30:29'!
+newWith: aRenameMe1 
+	self shouldBeImplemented.! !
+!Inventory class methodsFor: 'class initialization' stamp: 'am 6/7/2023 17:30:59' prior: 50624575!
+newWith: aRenameMe1 
+	self new with:aRenameMe1.! !
+
+!testRun: #CartTest #test06CannotAddItemsThatAreNotOnInventory stamp: 'am 6/7/2023 17:31:12'!
+ERROR!
+!Inventory methodsFor: 'inicialization' stamp: 'am 6/7/2023 17:31:43'!
+with: aRenameMe1 
+	self shouldBeImplemented.! !
+
+!classDefinition: #Inventory category: 'TusLibros' stamp: 'am 6/7/2023 17:32:32'!
+Object subclass: #Inventory
+	instanceVariableNames: 'catalogo'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!Inventory methodsFor: 'inicialization' stamp: 'am 6/7/2023 17:32:29' prior: 50624587!
+with: aCatalogo
+	catalogo := aCatalogo ! !
+
+!testRun: #CartTest #test06CannotAddItemsThatAreNotOnInventory stamp: 'am 6/7/2023 17:32:36'!
+ERROR!
+!Cart class methodsFor: 'instance creation' stamp: 'am 6/7/2023 17:32:50'!
+forInventory: aClass 
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+	self shouldBeImplemented.
+	^self new initializeForInventory: aClass ! !
+!Cart class methodsFor: 'instance creation' stamp: 'am 6/7/2023 17:33:15' prior: 50624605!
+forInventory: aCatalogo
+	
+	^self new initializeForInventory: aCatalogo! !
+
+!testRun: #CartTest #test06CannotAddItemsThatAreNotOnInventory stamp: 'am 6/7/2023 17:33:19'!
+ERROR!
+
+!classDefinition: #Cart category: 'TusLibros' stamp: 'am 6/7/2023 17:33:33'!
+Object subclass: #Cart
+	instanceVariableNames: 'items catalogo'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!Cart methodsFor: 'initialization' stamp: 'am 6/7/2023 17:33:33'!
+initializeForInventory: aCatalogo 
+	self shouldBeImplemented.
+	catalogo := aCatalogo.! !
+
+!classDefinition: #Cart category: 'TusLibros' stamp: 'am 6/7/2023 17:34:01'!
+Object subclass: #Cart
+	instanceVariableNames: 'items catalogo inventory'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!Cart methodsFor: 'initialization' stamp: 'am 6/7/2023 17:33:58' prior: 50624628!
+initializeForInventory: aCatalogo 
+	inventory := aCatalogo.! !
+
+!testRun: #CartTest #test06CannotAddItemsThatAreNotOnInventory stamp: 'am 6/7/2023 17:34:05'!
+FAILURE!
+!Cart methodsFor: 'adding' stamp: 'am 6/7/2023 17:35:59' prior: 50624493!
+add: aISBN quantity: anAmount 
+	
+	self assertAmountIsStrictlyPositive: anAmount.
+	self assertISBNIsOnCatalogo: aISBN.	
+	items add: aISBN  withOccurrences: anAmount.! !
+!Cart methodsFor: 'assertions' stamp: 'am 6/7/2023 17:37:57'!
+assertISBNIsOnCatalogo: aISBN
+
+	^ (catalogo includes: aISBN) isTrue: []. ! !
+!Cart class methodsFor: 'error description' stamp: 'am 6/7/2023 17:39:57'!
+cannotAddAItemThatsNotOnCatalogo
+
+	^'Cannot add a item thats not on catalogo'.! !
+!Cart methodsFor: 'assertions' stamp: 'am 6/7/2023 17:40:46' prior: 50624657!
+assertISBNIsOnCatalogo: aISBN
+
+	^ (catalogo includes: aISBN) isTrue: [self error: self class cannotAddAItemThatsNotOnCatalogo ]. ! !
+!Cart methodsFor: 'assertions' stamp: 'am 6/7/2023 17:40:50' prior: 50624667!
+assertISBNIsOnCatalogo: aISBN
+
+	^ (catalogo includes: aISBN) isTrue: [self error: self class cannotAddAItemThatsNotOnCatalogo]. ! !
+
+!testRun: #CartTest #test06CannotAddItemsThatAreNotOnInventory stamp: 'am 6/7/2023 17:42:11'!
+PASSED!
+
+!testRun: #CartTest #test01CreatingACartStartsEmpty stamp: 'am 6/7/2023 17:42:11'!
+PASSED!
+
+!testRun: #CartTest #test02AddingAnItemToCartMakesItNotEmpty stamp: 'am 6/7/2023 17:42:11'!
+ERROR!
+
+!testRun: #CartTest #test03CartHoldsItemsAdded stamp: 'am 6/7/2023 17:42:11'!
+ERROR!
+
+!testRun: #CartTest #test04CannotAddANonPositiveAmountOfItemsToCart stamp: 'am 6/7/2023 17:42:12'!
+PASSED!
+
+!testRun: #CartTest #test05CartHoldsAmountOfItemsAdded stamp: 'am 6/7/2023 17:42:12'!
+ERROR!
+
+!testRun: #CartTest #test06CannotAddItemsThatAreNotOnInventory stamp: 'am 6/7/2023 17:42:12'!
+PASSED!
+!CartTest methodsFor: 'tests' stamp: 'am 6/7/2023 17:43:17' prior: 50624562!
+test06CannotAddItemsThatAreNotOnInventory
+
+	|aCart inventory|
+	
+	inventory:= Inventory newWith: #('book1' 'book2' 'book3').
+	aCart:= Cart forInventory: inventory.
+	self should: [aCart add: '1123' quantity: 1.] 
+		raise: Error - MessageNotUnderstood  
+		withExceptionDo: [:anError | self assert: aCart isEmpty.
+							     self assert:Cart cannotAddAItemThatsNotOnCatalogo equals: anError messageText ].! !
+
+!testRun: #CartTest #test06CannotAddItemsThatAreNotOnInventory stamp: 'am 6/7/2023 17:43:18'!
+ERROR!
+!Cart methodsFor: 'initialization' stamp: 'am 6/7/2023 17:44:12' prior: 50624641!
+initializeForInventory: aCatalogo 
+	inventory := aCatalogo.
+	items:= Bag new.! !
+
+!testRun: #CartTest #test06CannotAddItemsThatAreNotOnInventory stamp: 'am 6/7/2023 17:44:18'!
+ERROR!
+!Cart methodsFor: 'assertions' stamp: 'am 6/7/2023 17:46:42' prior: 50624674!
+assertISBNIsOnCatalogo: aISBN
+
+	^ (inventory includes: aISBN) isTrue: [self error: self class cannotAddAItemThatsNotOnCatalogo]. ! !
+
+!testRun: #CartTest #test06CannotAddItemsThatAreNotOnInventory stamp: 'am 6/7/2023 17:46:46'!
+ERROR!
+
+!testRun: #CartTest #test06CannotAddItemsThatAreNotOnInventory stamp: 'am 6/7/2023 17:46:55'!
+ERROR!
+
+!testRun: #CartTest #test06CannotAddItemsThatAreNotOnInventory stamp: 'am 6/7/2023 17:46:55'!
+ERROR!
+!Cart methodsFor: 'assertions' stamp: 'am 6/7/2023 17:47:50' prior: 50624730!
+assertISBNIsOnCatalogo: aISBN
+
+	^ (inventory includes: aISBN) isTrue: [self error: self class cannotAddAItemThatsNotOnCatalogo]. ! !
+
+!classDefinition: #Cart category: 'TusLibros' stamp: 'am 6/7/2023 17:49:00'!
+Object subclass: #Cart
+	instanceVariableNames: 'items inventory'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!Cart class methodsFor: 'instance creation' stamp: 'am 6/7/2023 17:49:26' prior: 50624613!
+forInventory: aInventory
+	
+	^self new initializeForInventory: aInventory! !
+!Cart methodsFor: 'initialization' stamp: 'am 6/7/2023 17:49:58' prior: 50624721!
+initializeForInventory: aInventory 
+	inventory := aInventory.
+	items:= Bag new.! !
+!CartTest methodsFor: 'tests' stamp: 'am 6/7/2023 17:53:16' prior: 50624702!
+test06CannotAddItemsThatAreNotOnInventory
+
+	|aCart inventory|
+	
+	inventory:= Inventory newWith: (OrderedCollection with: 'book1' with: 'book2' with: 'book3').
+	aCart:= Cart forInventory: inventory.
+	self should: [aCart add: '1123' quantity: 1.] 
+		raise: Error - MessageNotUnderstood  
+		withExceptionDo: [:anError | self assert: aCart isEmpty.
+							     self assert:Cart cannotAddAItemThatsNotOnCatalogo equals: anError messageText ].! !
+
+!testRun: #CartTest #test06CannotAddItemsThatAreNotOnInventory stamp: 'am 6/7/2023 17:53:26'!
+ERROR!
+
+!testRun: #CartTest #test06CannotAddItemsThatAreNotOnInventory stamp: 'am 6/7/2023 17:53:26'!
+ERROR!
+!Inventory methodsFor: 'inicialization' stamp: 'am 6/7/2023 17:54:13'!
+includes: aItem
+	^catalogo includes: aItem! !
+
+!testRun: #CartTest #test06CannotAddItemsThatAreNotOnInventory stamp: 'am 6/7/2023 17:54:19'!
+ERROR!
+
+!testRun: #CartTest #test06CannotAddItemsThatAreNotOnInventory stamp: 'am 6/7/2023 17:54:20'!
+ERROR!
+
+!testRun: #CartTest #test06CannotAddItemsThatAreNotOnInventory stamp: 'am 6/7/2023 17:54:35'!
+ERROR!
+
+!testRun: #CartTest #test06CannotAddItemsThatAreNotOnInventory stamp: 'am 6/7/2023 17:54:35'!
+ERROR!
+!Cart methodsFor: 'testing' stamp: 'am 6/7/2023 17:56:33'!
+isOnCatalogo: aISBN 
+	
+	^items includes: aISBN.! !
+!Inventory methodsFor: 'inicialization' stamp: 'am 6/7/2023 17:56:33'!
+isOnCatalogo: aItem
+	^catalogo includes: aItem! !
+!Cart methodsFor: 'as yet unclassified' stamp: 'am 6/7/2023 17:56:33' prior: 50624488!
+includes: aISBN 
+	
+	^items isOnCatalogo: aISBN.! !
+!Inventory methodsFor: 'as yet unclassified' stamp: 'am 6/7/2023 17:56:33' prior: 50624794!
+includes: aItem
+	^catalogo isOnCatalogo: aItem! !
+!Cart methodsFor: 'as yet unclassified' stamp: 'am 6/7/2023 17:56:34' prior: 50624747!
+assertISBNIsOnCatalogo: aISBN
+
+	^ (inventory isOnCatalogo: aISBN) isTrue: [self error: self class cannotAddAItemThatsNotOnCatalogo]. ! !
+!Cart methodsFor: 'as yet unclassified' stamp: 'am 6/7/2023 17:56:34' prior: 50624811!
+isOnCatalogo: aISBN 
+	
+	^items isOnCatalogo: aISBN.! !
+!Inventory methodsFor: 'as yet unclassified' stamp: 'am 6/7/2023 17:56:34' prior: 50624815!
+isOnCatalogo: aItem
+	^catalogo isOnCatalogo: aItem! !
+
+!methodRemoval: Cart #includes: stamp: 'am 6/7/2023 17:56:34'!
+includes: aISBN 
+	
+	^items isOnCatalogo: aISBN.!
+
+!methodRemoval: Inventory #includes: stamp: 'am 6/7/2023 17:56:34'!
+includes: aItem
+	^catalogo isOnCatalogo: aItem!
+
+!testRun: #CartTest #test06CannotAddItemsThatAreNotOnInventory stamp: 'am 6/7/2023 17:57:00'!
+ERROR!
+
+!testRun: #CartTest #test06CannotAddItemsThatAreNotOnInventory stamp: 'am 6/7/2023 17:57:01'!
+ERROR!
+!Inventory class methodsFor: 'as yet unclassified' stamp: 'am 6/7/2023 17:57:20'!
+isOnCatalogo: aISBN 
+	self shouldBeImplemented.! !
+!Inventory class methodsFor: 'class initialization' stamp: 'am 6/7/2023 17:57:54' prior: 50624580!
+newWith: aCatalgo 
+	self new with:aCatalgo.! !
+!Inventory methodsFor: 'inicialization' stamp: 'am 6/7/2023 17:58:28' prior: 50624842!
+isOnCatalogo: aItem
+	^catalogo includes: aItem! !
+
+!testRun: #CartTest #test06CannotAddItemsThatAreNotOnInventory stamp: 'am 6/7/2023 17:58:33'!
+FAILURE!
+
+!testRun: #CartTest #test06CannotAddItemsThatAreNotOnInventory stamp: 'am 6/7/2023 17:58:33'!
+FAILURE!
+
+!testRun: #CartTest #test06CannotAddItemsThatAreNotOnInventory stamp: 'am 6/7/2023 18:00:55'!
+FAILURE!
+
+!testRun: #CartTest #test06CannotAddItemsThatAreNotOnInventory stamp: 'am 6/7/2023 18:00:55'!
+FAILURE!
+
+!methodRemoval: Inventory class #isOnCatalogo: stamp: 'am 6/7/2023 18:02:04'!
+isOnCatalogo: aISBN 
+	self shouldBeImplemented.!
+
+!testRun: #CartTest #test06CannotAddItemsThatAreNotOnInventory stamp: 'am 6/7/2023 18:02:21'!
+ERROR!
+
+!testRun: #CartTest #test06CannotAddItemsThatAreNotOnInventory stamp: 'am 6/7/2023 18:02:21'!
+ERROR!
+!Cart methodsFor: 'testing' stamp: 'am 6/7/2023 18:04:03' prior: 50624837!
+isOnCatalogo: aISBN 
+	
+	^inventory isOnCatalogo: aISBN.! !
+
+!testRun: #CartTest #test06CannotAddItemsThatAreNotOnInventory stamp: 'am 6/7/2023 18:04:13'!
+ERROR!
+
+!testRun: #CartTest #test06CannotAddItemsThatAreNotOnInventory stamp: 'am 6/7/2023 18:04:13'!
+ERROR!
+!Inventory class methodsFor: 'class initialization' stamp: 'am 6/7/2023 18:05:20' prior: 50624865!
+newWith: aCatalgo 
+	^self new with:aCatalgo.! !
+
+!testRun: #CartTest #test06CannotAddItemsThatAreNotOnInventory stamp: 'am 6/7/2023 18:05:26'!
+ERROR!
+
+!testRun: #CartTest #test06CannotAddItemsThatAreNotOnInventory stamp: 'am 6/7/2023 18:05:26'!
+ERROR!
+!Cart methodsFor: 'assertions' stamp: 'am 6/7/2023 18:05:49' prior: 50624830!
+assertISBNIsOnCatalogo: aISBN
+
+	^ (inventory isOnCatalogo: aISBN) ifTrue: [self error: self class cannotAddAItemThatsNotOnCatalogo]. ! !
+!Cart methodsFor: 'assertions' stamp: 'am 6/7/2023 18:06:06' prior: 50624921!
+assertISBNIsOnCatalogo: aISBN
+
+	^ (inventory isOnCatalogo: aISBN) ifFalse: [self error: self class cannotAddAItemThatsNotOnCatalogo]. ! !
+
+!testRun: #CartTest #test06CannotAddItemsThatAreNotOnInventory stamp: 'am 6/7/2023 18:06:11'!
+PASSED!
+!CartTest methodsFor: 'tests' stamp: 'am 6/7/2023 18:06:56' prior: 50624541!
+test05CartHoldsAmountOfItemsAdded
+	
+	|aCart inventory|
+	
+	inventory:= Inventory newWith: (OrderedCollection with: '1123').
+	aCart:= Cart forInventory: inventory.
+	aCart add: '1123' quantity: 1.
+	self assert: (aCart quantityOf: '1123') equals: 1.! !
+
+!testRun: #CartTest #test05CartHoldsAmountOfItemsAdded stamp: 'am 6/7/2023 18:07:00'!
+PASSED!
+!CartTest methodsFor: 'tests' stamp: 'am 6/7/2023 18:07:56' prior: 50624522!
+test04CannotAddANonPositiveAmountOfItemsToCart
+
+	|aCart inventory|
+	
+	inventory:= Inventory newWith: (OrderedCollection with: '1123').
+	aCart:= Cart forInventory: inventory.
+	self should: [aCart add: '1123' quantity: 0.] 
+		raise: Error - MessageNotUnderstood  
+		withExceptionDo: [:anError | self assert: aCart isEmpty.
+							     self assert:Cart cannotAddANonPositiveAmountOfItemsDescription equals: anError messageText ].! !
+
+!testRun: #CartTest #test04CannotAddANonPositiveAmountOfItemsToCart stamp: 'am 6/7/2023 18:07:59'!
+PASSED!
+!CartTest methodsFor: 'tests' stamp: 'am 6/7/2023 18:08:22' prior: 50624549!
+test03CartHoldsItemsAdded
+
+	|aCart inventory|
+	
+	inventory:= Inventory newWith: (OrderedCollection with: '1123').
+	aCart:= Cart forInventory: inventory.
+	aCart add: '1123' quantity: 1.
+	self assert: aCart includes: '1123'.! !
+
+!testRun: #CartTest #test03CartHoldsItemsAdded stamp: 'am 6/7/2023 18:08:24'!
+ERROR!
+!Cart methodsFor: 'testing' stamp: 'am 6/7/2023 18:09:03'!
+includes: aISBN 
+	
+	^items includes: aISBN.! !
+
+!testRun: #CartTest #test03CartHoldsItemsAdded stamp: 'am 6/7/2023 18:09:08'!
+PASSED!
+
+!testRun: #CartTest #test04CannotAddANonPositiveAmountOfItemsToCart stamp: 'am 6/7/2023 18:09:11'!
+PASSED!
+!CartTest methodsFor: 'tests' stamp: 'am 6/7/2023 18:09:41' prior: 50624515!
+test02AddingAnItemToCartMakesItNotEmpty
+
+	|aCart inventory|
+	
+	inventory:= Inventory newWith: (OrderedCollection with: '1123').
+	aCart:= Cart forInventory: inventory.
+	aCart add: '1123' quantity: 1.
+	self deny: aCart isEmpty.	! !
+
+!testRun: #CartTest #test02AddingAnItemToCartMakesItNotEmpty stamp: 'am 6/7/2023 18:09:43'!
+PASSED!
+
+!testRun: #CartTest #test01CreatingACartStartsEmpty stamp: 'am 6/7/2023 18:09:43'!
+PASSED!
+
+!testRun: #CartTest #test02AddingAnItemToCartMakesItNotEmpty stamp: 'am 6/7/2023 18:09:43'!
+PASSED!
+
+!testRun: #CartTest #test03CartHoldsItemsAdded stamp: 'am 6/7/2023 18:09:43'!
+PASSED!
+
+!testRun: #CartTest #test04CannotAddANonPositiveAmountOfItemsToCart stamp: 'am 6/7/2023 18:09:43'!
+PASSED!
+
+!testRun: #CartTest #test05CartHoldsAmountOfItemsAdded stamp: 'am 6/7/2023 18:09:43'!
+PASSED!
+
+!testRun: #CartTest #test06CannotAddItemsThatAreNotOnInventory stamp: 'am 6/7/2023 18:09:44'!
+PASSED!
+!CartTest methodsFor: 'tests' stamp: 'am 6/7/2023 18:10:04' prior: 50624536!
+test01CreatingACartStartsEmpty
+	
+	|aCart inventory|
+	
+	inventory:= Inventory newWith: (OrderedCollection with: '1123').
+	aCart:= Cart forInventory: inventory.
+	self assert: aCart isEmpty.	! !
+
+!testRun: #CartTest #test01CreatingACartStartsEmpty stamp: 'am 6/7/2023 18:10:06'!
+PASSED!
+
+!testRun: #CartTest #test01CreatingACartStartsEmpty stamp: 'am 6/7/2023 18:10:06'!
+PASSED!
+
+!testRun: #CartTest #test02AddingAnItemToCartMakesItNotEmpty stamp: 'am 6/7/2023 18:10:06'!
+PASSED!
+
+!testRun: #CartTest #test03CartHoldsItemsAdded stamp: 'am 6/7/2023 18:10:06'!
+PASSED!
+
+!testRun: #CartTest #test04CannotAddANonPositiveAmountOfItemsToCart stamp: 'am 6/7/2023 18:10:06'!
+PASSED!
+
+!testRun: #CartTest #test05CartHoldsAmountOfItemsAdded stamp: 'am 6/7/2023 18:10:06'!
+PASSED!
+
+!testRun: #CartTest #test06CannotAddItemsThatAreNotOnInventory stamp: 'am 6/7/2023 18:10:06'!
+PASSED!
+
+!methodRemoval: Cart #initialize stamp: 'am 6/7/2023 18:10:39'!
+initialize
+
+	items:= Bag new.!
+
+!testRun: #CartTest #test01CreatingACartStartsEmpty stamp: 'am 6/7/2023 18:11:04'!
+PASSED!
+
+!testRun: #CartTest #test02AddingAnItemToCartMakesItNotEmpty stamp: 'am 6/7/2023 18:11:05'!
+PASSED!
+
+!testRun: #CartTest #test03CartHoldsItemsAdded stamp: 'am 6/7/2023 18:11:05'!
+PASSED!
+
+!testRun: #CartTest #test04CannotAddANonPositiveAmountOfItemsToCart stamp: 'am 6/7/2023 18:11:05'!
+PASSED!
+
+!testRun: #CartTest #test05CartHoldsAmountOfItemsAdded stamp: 'am 6/7/2023 18:11:05'!
+PASSED!
+
+!testRun: #CartTest #test06CannotAddItemsThatAreNotOnInventory stamp: 'am 6/7/2023 18:11:05'!
+PASSED!
+
+----SNAPSHOT----(7 June 2023 18:12:44) CuisUniversity-5832.image priorSource: 9366758!
