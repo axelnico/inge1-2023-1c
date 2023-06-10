@@ -5,10 +5,10 @@ TestCase subclass: #CartTest
 	poolDictionaries: ''
 	category: 'TusLibros'!
 
-!CartTest methodsFor: 'tests' stamp: 'NB 6/8/2023 19:55:27'!
+!CartTest methodsFor: 'tests' stamp: 'NB 6/10/2023 19:31:27'!
 setUp
 
-	testSupport := TestSupport new.! !
+	testSupport := StoreTestObjectFactory new.! !
 
 !CartTest methodsFor: 'tests' stamp: 'NB 6/8/2023 19:55:37'!
 test01NewCartsAreCreatedEmpty
@@ -99,54 +99,134 @@ test08CartRemembersTheNumberOfAddedItems
 
 !classDefinition: #CashierTest category: 'TusLibros'!
 TestCase subclass: #CashierTest
-	instanceVariableNames: 'testSupport'
+	instanceVariableNames: 'testSupport debitFunctionality creditCard'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'TusLibros'!
 
-!CashierTest methodsFor: 'tests' stamp: 'NB 6/8/2023 19:59:53'!
+!CashierTest methodsFor: 'tests' stamp: 'NB 6/10/2023 18:59:36'!
+debit: anAmount from: aCreditCard
+
+	^debitFunctionality value: anAmount value: aCreditCard.
+
+	
+
+	! !
+
+!CashierTest methodsFor: 'tests' stamp: 'NB 6/10/2023 19:36:25'!
 setUp
 
-	testSupport := TestSupport new.
+	testSupport := StoreTestObjectFactory new.
+	debitFunctionality := [:amount :aCreditCard].
+	creditCard:= CreditCard number: '1111111111111111' expiresOn: (March ofYear: 2023).
 
 	! !
 
-!CashierTest methodsFor: 'tests' stamp: 'NB 6/8/2023 21:48:49'!
+!CashierTest methodsFor: 'tests' stamp: 'NB 6/10/2023 19:43:37'!
 test01CannotCheckoutAnEmptyCart
 
-	self should: [(Cashier for: testSupport createCart withCreditCard: '1111111111111111' on: testSupport monthOfNextYear ) ]
-	 raise: Error - MessageNotUnderstood 
-	  withExceptionDo: [:anError | self assert: Cashier emptyCartErrorDescription equals: anError messageText ].! !
+	|salesBook|
+	salesBook:= OrderedCollection new.
+	
+	self should: [(Cashier 
+				for: testSupport createCart 
+				withCreditCard: creditCard 
+				on: (March ofYear: 2023) 
+				withMerchantProcessor: self 
+				registerOn: salesBook) ]
+	 	raise: Error - MessageNotUnderstood 
+	  	withExceptionDo: [:anError | self assert: Cashier emptyCartErrorDescription equals: anError messageText.
+							self assert: salesBook isEmpty. ].! !
 
-!CashierTest methodsFor: 'tests' stamp: 'NB 6/8/2023 21:48:55'!
+!CashierTest methodsFor: 'tests' stamp: 'NB 6/10/2023 19:44:01'!
 test02CashierCanCheckoutACartWithOneValidItem
 
-	|aCart|
+	|aCart aSalesBook|
 	aCart:= testSupport createCart .
 	aCart add: testSupport itemSellByTheStore.
-	self assert: 10 equals: ((Cashier for: aCart withCreditCard: '1111111111111111' on: testSupport monthOfNextYear ) checkout).
+	aSalesBook:= OrderedCollection new.
+	
+	self assert: 10 equals: ((Cashier 
+						for: aCart 
+						withCreditCard: creditCard 
+						on: (March ofYear: 2023) 
+						withMerchantProcessor: self 
+						registerOn: aSalesBook ) checkout).
+	self assert: aSalesBook includes: 'Sale for 10 with credit card 1111111111111111'.
 	! !
 
-!CashierTest methodsFor: 'tests' stamp: 'NB 6/8/2023 21:48:59'!
+!CashierTest methodsFor: 'tests' stamp: 'NB 6/10/2023 19:44:39'!
 test03CashierCanCheckoutACartWithSeveralValidItems
 
-	|aCart|
+	|aCart aSalesBook|
 	aCart:= testSupport createCart .
 	aCart add:2 of: testSupport itemSellByTheStore.
-	self assert: 20 equals: ((Cashier for: aCart withCreditCard: '1111111111111111' on: testSupport monthOfNextYear ) checkout)
+	aSalesBook:= OrderedCollection new.
+	
+	self assert: 20 equals: ((Cashier 
+						for: aCart 
+						withCreditCard: creditCard 
+						on: (March ofYear: 2023) 
+						withMerchantProcessor: self 
+						registerOn: aSalesBook) checkout).
+	self assert: aSalesBook includes: 'Sale for 20 with credit card 1111111111111111'.
 	! !
 
-!CashierTest methodsFor: 'tests' stamp: 'NB 6/8/2023 21:43:35'!
+!CashierTest methodsFor: 'tests' stamp: 'NB 6/10/2023 19:44:59'!
 test04CannotCheckoutACartWithAnExpiredCreditCard
 
-	|aCart creditCard|
+	|aCart salesBook|
 	aCart:= testSupport createCart .
 	aCart add:2 of: testSupport itemSellByTheStore.
-	creditCard:= CreditCard number: '1111111111111111' expiresOn: (March ofYear: 2023).
-	self should: [Cashier for: aCart withCreditCard: creditCard on: nil]
+	salesBook:= OrderedCollection new.
+	
+	self should: [Cashier
+				 for: aCart 
+				withCreditCard: creditCard 
+				on: (June ofYear: 2023) 
+				withMerchantProcessor: self 
+				registerOn: OrderedCollection new]
 		raise: Error - MessageNotUnderstood 
-		withExceptionDo: [:anError | self assert: 'Cannot checkout with an expired credit card' equals: anError messageText]
+		withExceptionDo: [:anError | self assert: Cashier expiredCreditCardErrorDescription equals: anError messageText. self assert: salesBook isEmpty.]
 	! !
+
+!CashierTest methodsFor: 'tests' stamp: 'NB 6/10/2023 19:45:22'!
+test05CannotCheckoutACartWithACreditCardWithoutFunds
+
+	|aCart cashier aSalesBook|
+	aCart:= testSupport createCart .
+	aCart add:2 of: testSupport itemSellByTheStore.
+	aSalesBook:= OrderedCollection new.
+	debitFunctionality := [:amount :aCreditCard | self error: Cashier creditCardWithoutFundsErrorDescription ].
+	
+	cashier:= Cashier 
+				for: aCart 
+				withCreditCard: creditCard 
+				on: (March ofYear: 2023) 
+				withMerchantProcessor: self 
+				registerOn: OrderedCollection new.
+	self should: [cashier checkout ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [:anError | self assert: Cashier creditCardWithoutFundsErrorDescription equals: anError messageText. self assert: aSalesBook isEmpty.]
+	! !
+
+!CashierTest methodsFor: 'tests' stamp: 'NB 6/10/2023 19:45:48'!
+test06CashierCanCheckoutAndChargeWithAValidCreditCardAndMerchantProcessor
+
+	|aCart cashier amountDebited creditCardDebited|
+	aCart:= testSupport createCart .
+	aCart add:2 of: testSupport itemSellByTheStore.
+	debitFunctionality := [:amount :aCreditCard | amountDebited := amount. creditCardDebited := aCreditCard].
+	
+	cashier:= Cashier 
+				for: aCart 
+				withCreditCard: creditCard 
+				on: (March ofYear: 2023) 
+				withMerchantProcessor: self 
+				registerOn: OrderedCollection new.
+	self assert: 20 equals: cashier checkout.
+	self assert: amountDebited equals: 20.	self assert: creditCardDebited equals: creditCard.
+      ! !
 
 
 !classDefinition: #Cart category: 'TusLibros'!
@@ -236,15 +316,18 @@ acceptingItemsOf: aCatalog
 
 !classDefinition: #Cashier category: 'TusLibros'!
 Object subclass: #Cashier
-	instanceVariableNames: 'cart total creditCard'
+	instanceVariableNames: 'cart total creditCard merchantProcessor salesBook'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'TusLibros'!
 
-!Cashier methodsFor: 'initialization' stamp: 'NB 6/8/2023 21:23:26'!
-initializeFor: aCart  withCreditCard: aCreditCard
+!Cashier methodsFor: 'initialization' stamp: 'NB 6/10/2023 19:15:47'!
+initializeFor: aCart  withCreditCard: aCreditCard withMerchantProcessor: aMerchantProcessor registerOn: aSalesBook  
+	
 	cart := aCart.
-	creditCard:= aCreditCard.! !
+	creditCard:= aCreditCard.
+	merchantProcessor := aMerchantProcessor.
+	salesBook:= aSalesBook.! !
 
 
 !Cashier methodsFor: 'assertions' stamp: 'NB 6/8/2023 20:12:56'!
@@ -259,12 +342,16 @@ add: anItemSubtotal
 	total := total + anItemSubtotal.
 	! !
 
-!Cashier methodsFor: 'checkout' stamp: 'NB 6/8/2023 21:27:24'!
+!Cashier methodsFor: 'checkout' stamp: 'NB 6/10/2023 19:22:41'!
 checkout
 	
 	total:= 0.
 	
 	cart total: self.
+	
+	salesBook add: 'Sale for ', total asString, ' with credit card ' , creditCard number asString.
+	
+	merchantProcessor debit: total from: creditCard .
 	
 	^total.
 	! !
@@ -275,24 +362,41 @@ checkout
 Cashier class
 	instanceVariableNames: ''!
 
-!Cashier class methodsFor: 'instance creation' stamp: 'NB 6/8/2023 21:43:35'!
-for: aCart withCreditCard: aCreditCard on: aDate 
+!Cashier class methodsFor: 'instance creation' stamp: 'NB 6/10/2023 19:40:24'!
+for: aCart withCreditCard: aCreditCard on: aDate withMerchantProcessor: aMerchantProcessor registerOn: aSalesBook   
 
 	self assertCartIsNotEmpty: aCart.
 	
-	^self new initializeFor: aCart withCreditCard: aCreditCard.! !
+	self assertCreditCard: aCreditCard isNotExpired: aDate.
+	
+	^self new initializeFor: aCart withCreditCard: aCreditCard withMerchantProcessor: aMerchantProcessor registerOn: aSalesBook.! !
 
+
+!Cashier class methodsFor: 'error description' stamp: 'NB 6/10/2023 19:42:05'!
+creditCardWithoutFundsErrorDescription
+	
+	^'Cannot checkout with an credit card without funds'.! !
 
 !Cashier class methodsFor: 'error description' stamp: 'NB 6/8/2023 20:12:45'!
 emptyCartErrorDescription
 	
 	^'Cannot checkout an empty cart'.! !
 
+!Cashier class methodsFor: 'error description' stamp: 'NB 6/10/2023 19:40:54'!
+expiredCreditCardErrorDescription
+	
+	^'Cannot checkout with an expired credit card'.! !
+
 
 !Cashier class methodsFor: 'assertions' stamp: 'NB 6/8/2023 21:25:53'!
 assertCartIsNotEmpty: aCart
 
 	^ aCart isEmpty ifTrue: [self error: self emptyCartErrorDescription ]! !
+
+!Cashier class methodsFor: 'assertions' stamp: 'NB 6/10/2023 19:41:05'!
+assertCreditCard: aCreditCard isNotExpired: aDate
+
+	^(aCreditCard isExpired: aDate) ifTrue: [self error: self expiredCreditCardErrorDescription ].! !
 
 
 !classDefinition: #CreditCard category: 'TusLibros'!
@@ -308,6 +412,18 @@ initializeNumber: aCreditCardNumber expiresOn: aMonthOfYear
 	creditCardNumber := aCreditCardNumber.
 	monthOfYear := aMonthOfYear.! !
 
+
+!CreditCard methodsFor: 'testing' stamp: 'NB 6/10/2023 18:41:11'!
+isExpired: aCurrentDate
+
+	^monthOfYear < aCurrentDate.! !
+
+
+!CreditCard methodsFor: 'accessing' stamp: 'NB 6/10/2023 19:18:01'!
+number
+
+	^creditCardNumber .! !
+
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
 !classDefinition: 'CreditCard class' category: 'TusLibros'!
@@ -320,19 +436,19 @@ number: aCreditCardNumber expiresOn: aMonthOfYear
 	^self new initializeNumber: aCreditCardNumber expiresOn: aMonthOfYear ! !
 
 
-!classDefinition: #TestSupport category: 'TusLibros'!
-Object subclass: #TestSupport
+!classDefinition: #StoreTestObjectFactory category: 'TusLibros'!
+Object subclass: #StoreTestObjectFactory
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'TusLibros'!
 
-!TestSupport methodsFor: 'support' stamp: 'NB 6/8/2023 19:52:27'!
+!StoreTestObjectFactory methodsFor: 'support' stamp: 'NB 6/8/2023 19:52:27'!
 createCart
 	
 	^Cart acceptingItemsOf: self defaultCatalog.! !
 
-!TestSupport methodsFor: 'support' stamp: 'NB 6/8/2023 20:24:07'!
+!StoreTestObjectFactory methodsFor: 'support' stamp: 'NB 6/8/2023 20:24:07'!
 defaultCatalog
 	
 	|catalog|
@@ -340,17 +456,17 @@ defaultCatalog
 	catalog at: self itemSellByTheStore put: 10.
 	^catalog.! !
 
-!TestSupport methodsFor: 'support' stamp: 'NB 6/8/2023 19:53:14'!
+!StoreTestObjectFactory methodsFor: 'support' stamp: 'NB 6/8/2023 19:53:14'!
 itemNotSellByTheStore
 	
 	^'invalidBook'! !
 
-!TestSupport methodsFor: 'support' stamp: 'NB 6/8/2023 19:53:31'!
+!StoreTestObjectFactory methodsFor: 'support' stamp: 'NB 6/8/2023 19:53:31'!
 itemSellByTheStore
 	
 	^ 'validBook'! !
 
-!TestSupport methodsFor: 'support' stamp: 'NB 6/8/2023 21:51:56'!
+!StoreTestObjectFactory methodsFor: 'support' stamp: 'NB 6/10/2023 18:23:15'!
 monthOfNextYear
 	
-	^ Month month: (Date today) monthIndex year: ((Date today) year - 1).! !
+	^ Month month: (Date today) monthIndex year: ((Date today) year + (Duration days:365)).! !
