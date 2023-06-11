@@ -172,7 +172,7 @@ test03CashierCanCheckoutACartWithSeveralValidItems
 	self assert: aSalesBook includes: 'Sale for 20 with credit card 1111111111111111'.
 	! !
 
-!CashierTest methodsFor: 'tests' stamp: 'NB 6/10/2023 19:44:59'!
+!CashierTest methodsFor: 'tests' stamp: 'NB 6/11/2023 18:29:28'!
 test04CannotCheckoutACartWithAnExpiredCreditCard
 
 	|aCart salesBook|
@@ -185,12 +185,12 @@ test04CannotCheckoutACartWithAnExpiredCreditCard
 				withCreditCard: creditCard 
 				on: (June ofYear: 2023) 
 				withMerchantProcessor: self 
-				registerOn: OrderedCollection new]
+				registerOn: salesBook]
 		raise: Error - MessageNotUnderstood 
 		withExceptionDo: [:anError | self assert: Cashier expiredCreditCardErrorDescription equals: anError messageText. self assert: salesBook isEmpty.]
 	! !
 
-!CashierTest methodsFor: 'tests' stamp: 'NB 6/10/2023 19:45:22'!
+!CashierTest methodsFor: 'tests' stamp: 'NB 6/11/2023 18:29:42'!
 test05CannotCheckoutACartWithACreditCardWithoutFunds
 
 	|aCart cashier aSalesBook|
@@ -204,7 +204,7 @@ test05CannotCheckoutACartWithACreditCardWithoutFunds
 				withCreditCard: creditCard 
 				on: (March ofYear: 2023) 
 				withMerchantProcessor: self 
-				registerOn: OrderedCollection new.
+				registerOn: aSalesBook.
 	self should: [cashier checkout ]
 		raise: Error - MessageNotUnderstood 
 		withExceptionDo: [:anError | self assert: Cashier creditCardWithoutFundsErrorDescription equals: anError messageText. self assert: aSalesBook isEmpty.]
@@ -342,16 +342,16 @@ add: anItemSubtotal
 	total := total + anItemSubtotal.
 	! !
 
-!Cashier methodsFor: 'checkout' stamp: 'NB 6/10/2023 19:22:41'!
+!Cashier methodsFor: 'checkout' stamp: 'NB 6/11/2023 18:31:52'!
 checkout
 	
 	total:= 0.
 	
 	cart total: self.
 	
-	salesBook add: 'Sale for ', total asString, ' with credit card ' , creditCard number asString.
-	
 	merchantProcessor debit: total from: creditCard .
+	
+	salesBook add: 'Sale for ', total asString, ' with credit card ' , creditCard number asString.
 	
 	^total.
 	! !

@@ -2763,3 +2763,161 @@ PASSED!
 PASSED!
 
 ----SNAPSHOT----(11 June 2023 18:22:07) CuisUniversity-5832.image priorSource: 9481059!
+
+----STARTUP---- (11 June 2023 18:28:58) as /Users/nico/Documents/inge1/cuis-images/macos64 5/CuisUniversity-5832.image!
+
+!CashierTest methodsFor: 'tests' stamp: 'NB 6/11/2023 18:29:28' prior: 50627832!
+test04CannotCheckoutACartWithAnExpiredCreditCard
+
+	|aCart salesBook|
+	aCart:= testSupport createCart .
+	aCart add:2 of: testSupport itemSellByTheStore.
+	salesBook:= OrderedCollection new.
+	
+	self should: [Cashier
+				 for: aCart 
+				withCreditCard: creditCard 
+				on: (June ofYear: 2023) 
+				withMerchantProcessor: self 
+				registerOn: salesBook]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [:anError | self assert: Cashier expiredCreditCardErrorDescription equals: anError messageText. self assert: salesBook isEmpty.]
+	! !
+
+!testRun: #CashierTest #test04CannotCheckoutACartWithAnExpiredCreditCard stamp: 'NB 6/11/2023 18:29:29'!
+PASSED!
+
+!testRun: #CashierTest #test01CannotCheckoutAnEmptyCart stamp: 'NB 6/11/2023 18:29:29'!
+PASSED!
+
+!testRun: #CashierTest #test02CashierCanCheckoutACartWithOneValidItem stamp: 'NB 6/11/2023 18:29:29'!
+PASSED!
+
+!testRun: #CashierTest #test03CashierCanCheckoutACartWithSeveralValidItems stamp: 'NB 6/11/2023 18:29:29'!
+PASSED!
+
+!testRun: #CashierTest #test04CannotCheckoutACartWithAnExpiredCreditCard stamp: 'NB 6/11/2023 18:29:29'!
+PASSED!
+
+!testRun: #CashierTest #test05CannotCheckoutACartWithACreditCardWithoutFunds stamp: 'NB 6/11/2023 18:29:29'!
+PASSED!
+
+!testRun: #CashierTest #test06CashierCanCheckoutAndChargeWithAValidCreditCardAndMerchantProcessor stamp: 'NB 6/11/2023 18:29:29'!
+PASSED!
+!CashierTest methodsFor: 'tests' stamp: 'NB 6/11/2023 18:29:42' prior: 50627852!
+test05CannotCheckoutACartWithACreditCardWithoutFunds
+
+	|aCart cashier aSalesBook|
+	aCart:= testSupport createCart .
+	aCart add:2 of: testSupport itemSellByTheStore.
+	aSalesBook:= OrderedCollection new.
+	debitFunctionality := [:amount :aCreditCard | self error: Cashier creditCardWithoutFundsErrorDescription ].
+	
+	cashier:= Cashier 
+				for: aCart 
+				withCreditCard: creditCard 
+				on: (March ofYear: 2023) 
+				withMerchantProcessor: self 
+				registerOn: aSalesBook.
+	self should: [cashier checkout ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [:anError | self assert: Cashier creditCardWithoutFundsErrorDescription equals: anError messageText. self assert: aSalesBook isEmpty.]
+	! !
+
+!testRun: #CashierTest #test05CannotCheckoutACartWithACreditCardWithoutFunds stamp: 'NB 6/11/2023 18:29:43'!
+FAILURE!
+!Cashier methodsFor: 'checkout' stamp: 'NB 6/11/2023 18:31:52' prior: 50627052!
+checkout
+	
+	total:= 0.
+	
+	cart total: self.
+	
+	merchantProcessor debit: total from: creditCard .
+	
+	salesBook add: 'Sale for ', total asString, ' with credit card ' , creditCard number asString.
+	
+	^total.
+	! !
+
+!testRun: #CashierTest #test01CannotCheckoutAnEmptyCart stamp: 'NB 6/11/2023 18:31:57'!
+PASSED!
+
+!testRun: #CashierTest #test02CashierCanCheckoutACartWithOneValidItem stamp: 'NB 6/11/2023 18:31:57'!
+PASSED!
+
+!testRun: #CashierTest #test03CashierCanCheckoutACartWithSeveralValidItems stamp: 'NB 6/11/2023 18:31:57'!
+PASSED!
+
+!testRun: #CashierTest #test04CannotCheckoutACartWithAnExpiredCreditCard stamp: 'NB 6/11/2023 18:31:57'!
+PASSED!
+
+!testRun: #CashierTest #test05CannotCheckoutACartWithACreditCardWithoutFunds stamp: 'NB 6/11/2023 18:31:57'!
+PASSED!
+
+!testRun: #CashierTest #test06CashierCanCheckoutAndChargeWithAValidCreditCardAndMerchantProcessor stamp: 'NB 6/11/2023 18:31:57'!
+PASSED!
+
+!testRun: #CashierTest #test01CannotCheckoutAnEmptyCart stamp: 'NB 6/11/2023 18:32:39'!
+PASSED!
+
+!testRun: #CashierTest #test02CashierCanCheckoutACartWithOneValidItem stamp: 'NB 6/11/2023 18:32:39'!
+PASSED!
+
+!testRun: #CashierTest #test03CashierCanCheckoutACartWithSeveralValidItems stamp: 'NB 6/11/2023 18:32:39'!
+PASSED!
+
+!testRun: #CashierTest #test04CannotCheckoutACartWithAnExpiredCreditCard stamp: 'NB 6/11/2023 18:32:39'!
+PASSED!
+
+!testRun: #CashierTest #test05CannotCheckoutACartWithACreditCardWithoutFunds stamp: 'NB 6/11/2023 18:32:39'!
+PASSED!
+
+!testRun: #CashierTest #test06CashierCanCheckoutAndChargeWithAValidCreditCardAndMerchantProcessor stamp: 'NB 6/11/2023 18:32:39'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'NB 6/11/2023 18:32:41'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'NB 6/11/2023 18:32:41'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'NB 6/11/2023 18:32:41'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'NB 6/11/2023 18:32:41'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'NB 6/11/2023 18:32:41'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'NB 6/11/2023 18:32:41'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'NB 6/11/2023 18:32:42'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'NB 6/11/2023 18:32:42'!
+PASSED!
+
+!testRun: #CashierTest #test01CannotCheckoutAnEmptyCart stamp: 'NB 6/11/2023 18:32:42'!
+PASSED!
+
+!testRun: #CashierTest #test02CashierCanCheckoutACartWithOneValidItem stamp: 'NB 6/11/2023 18:32:42'!
+PASSED!
+
+!testRun: #CashierTest #test03CashierCanCheckoutACartWithSeveralValidItems stamp: 'NB 6/11/2023 18:32:42'!
+PASSED!
+
+!testRun: #CashierTest #test04CannotCheckoutACartWithAnExpiredCreditCard stamp: 'NB 6/11/2023 18:32:42'!
+PASSED!
+
+!testRun: #CashierTest #test05CannotCheckoutACartWithACreditCardWithoutFunds stamp: 'NB 6/11/2023 18:32:42'!
+PASSED!
+
+!testRun: #CashierTest #test06CashierCanCheckoutAndChargeWithAValidCreditCardAndMerchantProcessor stamp: 'NB 6/11/2023 18:32:42'!
+PASSED!
+
+----SNAPSHOT----(11 June 2023 18:32:45) CuisUniversity-5832.image priorSource: 9483668!
+
+----SNAPSHOT----(11 June 2023 18:32:48) CuisUniversity-5832.image priorSource: 9489442!
