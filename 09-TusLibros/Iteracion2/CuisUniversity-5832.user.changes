@@ -2693,3 +2693,73 @@ PASSED!
 
 !testRun: #CashierTest #test06CashierCanCheckoutAndChargeWithAValidCreditCardAndMerchantProcessor stamp: 'NB 6/10/2023 19:48:54'!
 PASSED!
+
+----STARTUP---- (11 June 2023 18:19:47) as /Users/nico/Documents/inge1/cuis-images/macos64 5/CuisUniversity-5832.image!
+
+
+!methodRemoval: StoreTestObjectFactory #monthOfNextYear stamp: 'NB 6/11/2023 18:20:15'!
+monthOfNextYear
+	
+	^ Month month: (Date today) monthIndex year: ((Date today) year + (Duration days:365)).!
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'NB 6/11/2023 18:22:02'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'NB 6/11/2023 18:22:02'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'NB 6/11/2023 18:22:02'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'NB 6/11/2023 18:22:02'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'NB 6/11/2023 18:22:02'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'NB 6/11/2023 18:22:02'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'NB 6/11/2023 18:22:02'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'NB 6/11/2023 18:22:02'!
+PASSED!
+
+!testRun: #CashierTest #test01CannotCheckoutAnEmptyCart stamp: 'NB 6/11/2023 18:22:02'!
+PASSED!
+
+!testRun: #CashierTest #test02CashierCanCheckoutACartWithOneValidItem stamp: 'NB 6/11/2023 18:22:02'!
+PASSED!
+
+!testRun: #CashierTest #test03CashierCanCheckoutACartWithSeveralValidItems stamp: 'NB 6/11/2023 18:22:02'!
+PASSED!
+
+!testRun: #CashierTest #test04CannotCheckoutACartWithAnExpiredCreditCard stamp: 'NB 6/11/2023 18:22:02'!
+PASSED!
+
+!testRun: #CashierTest #test05CannotCheckoutACartWithACreditCardWithoutFunds stamp: 'NB 6/11/2023 18:22:02'!
+PASSED!
+
+!testRun: #CashierTest #test06CashierCanCheckoutAndChargeWithAValidCreditCardAndMerchantProcessor stamp: 'NB 6/11/2023 18:22:02'!
+PASSED!
+
+!testRun: #CashierTest #test01CannotCheckoutAnEmptyCart stamp: 'NB 6/11/2023 18:22:04'!
+PASSED!
+
+!testRun: #CashierTest #test02CashierCanCheckoutACartWithOneValidItem stamp: 'NB 6/11/2023 18:22:04'!
+PASSED!
+
+!testRun: #CashierTest #test03CashierCanCheckoutACartWithSeveralValidItems stamp: 'NB 6/11/2023 18:22:04'!
+PASSED!
+
+!testRun: #CashierTest #test04CannotCheckoutACartWithAnExpiredCreditCard stamp: 'NB 6/11/2023 18:22:04'!
+PASSED!
+
+!testRun: #CashierTest #test05CannotCheckoutACartWithACreditCardWithoutFunds stamp: 'NB 6/11/2023 18:22:04'!
+PASSED!
+
+!testRun: #CashierTest #test06CashierCanCheckoutAndChargeWithAValidCreditCardAndMerchantProcessor stamp: 'NB 6/11/2023 18:22:04'!
+PASSED!
+
+----SNAPSHOT----(11 June 2023 18:22:07) CuisUniversity-5832.image priorSource: 9481059!

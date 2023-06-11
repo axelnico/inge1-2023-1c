@@ -465,8 +465,3 @@ itemNotSellByTheStore
 itemSellByTheStore
 	
 	^ 'validBook'! !
-
-!StoreTestObjectFactory methodsFor: 'support' stamp: 'NB 6/10/2023 18:23:15'!
-monthOfNextYear
-	
-	^ Month month: (Date today) monthIndex year: ((Date today) year + (Duration days:365)).! !
