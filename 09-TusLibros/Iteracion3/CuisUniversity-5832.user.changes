@@ -1,0 +1,2935 @@
+
+
+----QUIT----(30 May 2023 00:05:32) CuisUniversity-5832.image priorSource: 4928100!
+
+----STARTUP---- (30 May 2023 00:05:33) as /Users/hernan/Documents/Cuis/5.0-64Bits/Cuis-University-Installer/CuisUniversity-5832.image!
+
+
+----QUIT----(30 May 2023 00:05:33) CuisUniversity-5832.image priorSource: 9366537!
+
+----STARTUP---- (12 June 2023 18:40:23) as /Users/nico/Documents/inge1/cuis-images/macos64 6/CuisUniversity-5832.image!
+
+
+----End fileIn of /Users/nico/Documents/inge1/2023-1c/09-TusLibros/TusLibros.iteracion.2.st----!
+
+TestCase subclass: #StoreFacadeTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #StoreFacadeTest category: 'TusLibros' stamp: 'NB 6/12/2023 18:42:29'!
+TestCase subclass: #StoreFacadeTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #StoreFacade category: 'TusLibros' stamp: 'NB 6/12/2023 18:45:31'!
+Object subclass: #StoreFacade
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!StoreFacadeTest methodsFor: 'tests' stamp: 'NB 6/12/2023 18:45:28'!
+test01createCartWithAValidUsernameAndPasswordThenListCartIsEmpty
+
+	|storeFacade aCartId|
+	
+	storeFacade:= StoreFacade new.
+	aCartId:= storeFacade createCart: 'usuario' authenticatedWith: 'password'.
+
+	self assert: (storeFacade listCart: aCartId) isEmpty.! !
+
+!testRun: #StoreFacadeTest #test01createCartWithAValidUsernameAndPasswordThenListCartIsEmpty stamp: 'NB 6/12/2023 18:45:38'!
+ERROR!
+!StoreFacade methodsFor: 'cart' stamp: 'NB 6/12/2023 18:45:51'!
+createCart: aRenameMe1 authenticatedWith: aRenameMe2 
+	self shouldBeImplemented.! !
+!StoreFacade methodsFor: 'cart' stamp: 'NB 6/12/2023 18:46:15' prior: 50624946!
+createCart: aUser authenticatedWith: aPassword 
+	
+	^'1'.! !
+
+!testRun: #StoreFacadeTest #test01createCartWithAValidUsernameAndPasswordThenListCartIsEmpty stamp: 'NB 6/12/2023 18:46:16'!
+ERROR!
+!StoreFacade methodsFor: 'cart' stamp: 'NB 6/12/2023 18:46:24'!
+listCart: aCartId 
+	self shouldBeImplemented.! !
+!StoreFacade methodsFor: 'cart' stamp: 'NB 6/12/2023 18:46:32' prior: 50624961!
+listCart: aCartId 
+	
+	^OrderedCollection new.! !
+
+!testRun: #StoreFacadeTest #test01createCartWithAValidUsernameAndPasswordThenListCartIsEmpty stamp: 'NB 6/12/2023 18:46:33'!
+PASSED!
+
+!testRun: #StoreFacadeTest #test01createCartWithAValidUsernameAndPasswordThenListCartIsEmpty stamp: 'NB 6/12/2023 18:46:33'!
+PASSED!
+
+----SNAPSHOT----(12 June 2023 18:46:36) CuisUniversity-5832.image priorSource: 9366758!
+!StoreFacadeTest methodsFor: 'tests' stamp: 'NB 6/12/2023 18:48:59'!
+test02createCartWithAnInvalidUsernameAndPasswordRaisesError
+
+	|storeFacade |
+	
+	storeFacade:= StoreFacade new.
+	self should: [storeFacade createCart: 'invalidUser' authenticatedWith: 'password']
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [:anError | self assert: anError messageText equals: 'User or password invalid']! !
+!StoreFacadeTest methodsFor: 'tests' stamp: 'NB 6/12/2023 18:49:37' prior: 50624931!
+test01createCartWithAValidUsernameAndPasswordThenListCartIsEmpty
+
+	|storeFacade aCartId|
+	
+	storeFacade:= StoreFacade withAuthenticator: self.
+	aCartId:= storeFacade createCart: 'usuario' authenticatedWith: 'password'.
+
+	self assert: (storeFacade listCart: aCartId) isEmpty.! !
+!StoreFacadeTest methodsFor: 'tests' stamp: 'NB 6/12/2023 18:49:48' prior: 50624981!
+test02createCartWithAnInvalidUsernameAndPasswordRaisesError
+
+	|storeFacade |
+	
+	storeFacade:= StoreFacade withAuthenticator: self.
+	self should: [storeFacade createCart: 'invalidUser' authenticatedWith: 'password']
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [:anError | self assert: anError messageText equals: 'User or password invalid']! !
+
+!testRun: #StoreFacadeTest #test01createCartWithAValidUsernameAndPasswordThenListCartIsEmpty stamp: 'NB 6/12/2023 18:49:57'!
+ERROR!
+
+!testRun: #StoreFacadeTest #test01createCartWithAValidUsernameAndPasswordThenListCartIsEmpty stamp: 'NB 6/12/2023 18:49:57'!
+ERROR!
+!StoreFacade class methodsFor: 'instance creation' stamp: 'NB 6/12/2023 18:50:05'!
+withAuthenticator: aStoreFacadeTest 
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+	self shouldBeImplemented.
+	^self new initializeWithAuthenticator: aStoreFacadeTest ! !
+!StoreFacade class methodsFor: 'instance creation' stamp: 'NB 6/12/2023 18:50:19' prior: 50625030!
+withAuthenticator: aStoreFacadeAuthenticator
+	
+	^self new initializeWithAuthenticator: aStoreFacadeAuthenticator ! !
+
+!testRun: #StoreFacadeTest #test01createCartWithAValidUsernameAndPasswordThenListCartIsEmpty stamp: 'NB 6/12/2023 18:50:20'!
+ERROR!
+
+!classDefinition: #StoreFacade category: 'TusLibros' stamp: 'NB 6/12/2023 18:50:29'!
+Object subclass: #StoreFacade
+	instanceVariableNames: 'storeFacadeAuthenticator'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!StoreFacade methodsFor: 'initialization' stamp: 'NB 6/12/2023 18:50:29'!
+initializeWithAuthenticator: aStoreFacadeAuthenticator 
+	self shouldBeImplemented.
+	storeFacadeAuthenticator := aStoreFacadeAuthenticator.! !
+!StoreFacade methodsFor: 'initialization' stamp: 'NB 6/12/2023 18:50:33' prior: 50625058!
+initializeWithAuthenticator: aStoreFacadeAuthenticator 
+	
+	storeFacadeAuthenticator := aStoreFacadeAuthenticator.! !
+
+!testRun: #StoreFacadeTest #test01createCartWithAValidUsernameAndPasswordThenListCartIsEmpty stamp: 'NB 6/12/2023 18:50:34'!
+PASSED!
+
+!testRun: #StoreFacadeTest #test01createCartWithAValidUsernameAndPasswordThenListCartIsEmpty stamp: 'NB 6/12/2023 18:50:37'!
+PASSED!
+
+!testRun: #StoreFacadeTest #test02createCartWithAnInvalidUsernameAndPasswordRaisesError stamp: 'NB 6/12/2023 18:50:40'!
+FAILURE!
+
+!testRun: #StoreFacadeTest #test02createCartWithAnInvalidUsernameAndPasswordRaisesError stamp: 'NB 6/12/2023 18:50:40'!
+FAILURE!
+!StoreFacade methodsFor: 'cart' stamp: 'NB 6/12/2023 18:51:13' prior: 50624952!
+createCart: aUser authenticatedWith: aPassword 
+	
+	storeFacadeAuthenticator isValid: aUser withPassword: aPassword.
+	^'1'.! !
+
+!testRun: #StoreFacadeTest #test01createCartWithAValidUsernameAndPasswordThenListCartIsEmpty stamp: 'NB 6/12/2023 18:51:16'!
+ERROR!
+
+!testRun: #StoreFacadeTest #test02createCartWithAnInvalidUsernameAndPasswordRaisesError stamp: 'NB 6/12/2023 18:51:16'!
+ERROR!
+
+!testRun: #StoreFacadeTest #test01createCartWithAValidUsernameAndPasswordThenListCartIsEmpty stamp: 'NB 6/12/2023 18:51:18'!
+ERROR!
+
+!classDefinition: #StoreFacadeTest category: 'TusLibros' stamp: 'NB 6/12/2023 18:52:18'!
+TestCase subclass: #StoreFacadeTest
+	instanceVariableNames: 'authenticationBehaviour'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!StoreFacadeTest methodsFor: 'authentication' stamp: 'NB 6/12/2023 18:52:16'!
+isValid: aUser withPassword: aPassword
+	
+	authenticationBehaviour value: aUser value: aPassword.! !
+!StoreFacadeTest methodsFor: 'tests' stamp: 'NB 6/12/2023 18:52:43' overrides: 16961394!
+setUp
+	
+	authenticationBehaviour := [:aUser :aPassword |]! !
+
+!testRun: #StoreFacadeTest #test01createCartWithAValidUsernameAndPasswordThenListCartIsEmpty stamp: 'NB 6/12/2023 18:52:45'!
+PASSED!
+
+!testRun: #StoreFacadeTest #test02createCartWithAnInvalidUsernameAndPasswordRaisesError stamp: 'NB 6/12/2023 18:52:50'!
+FAILURE!
+
+!testRun: #StoreFacadeTest #test02createCartWithAnInvalidUsernameAndPasswordRaisesError stamp: 'NB 6/12/2023 18:52:50'!
+FAILURE!
+!StoreFacadeTest methodsFor: 'tests' stamp: 'NB 6/12/2023 18:53:17' prior: 50625007!
+test02createCartWithAnInvalidUsernameAndPasswordRaisesError
+
+	|storeFacade |
+	
+	storeFacade:= StoreFacade withAuthenticator: self.
+	authenticationBehaviour := [:aUser :aPassword | self error: 'User or password invalid'.].
+	self should: [storeFacade createCart: 'invalidUser' authenticatedWith: 'password']
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [:anError | self assert: anError messageText equals: 'User or password invalid']! !
+
+!testRun: #StoreFacadeTest #test02createCartWithAnInvalidUsernameAndPasswordRaisesError stamp: 'NB 6/12/2023 18:53:18'!
+PASSED!
+
+!testRun: #StoreFacadeTest #test01createCartWithAValidUsernameAndPasswordThenListCartIsEmpty stamp: 'NB 6/12/2023 18:53:18'!
+PASSED!
+
+!testRun: #StoreFacadeTest #test02createCartWithAnInvalidUsernameAndPasswordRaisesError stamp: 'NB 6/12/2023 18:53:18'!
+PASSED!
+
+----SNAPSHOT----(12 June 2023 18:53:21) CuisUniversity-5832.image priorSource: 9386492!
+!StoreFacadeTest methodsFor: 'tests' stamp: 'NB 6/12/2023 18:54:30'!
+test03CanAddItemsToCreatedCart
+
+	! !
+!StoreFacadeTest methodsFor: 'tests' stamp: 'NB 6/12/2023 18:56:08' prior: 50625171!
+test03CanAddItemsToCreatedCart
+
+	|storeFacade aCartId|
+	
+	storeFacade:= StoreFacade withAuthenticator: self.
+	aCartId:= storeFacade createCart: 'usuario' authenticatedWith: 'password'.
+	storeFacade addToCart: aCartId anItem: '1213' quantity: 2.
+
+	self assert: (storeFacade listCart: aCartId) size equals: 2.
+	self assert: (storeFacade listCart: aCartId) includes: '1112'.! !
+
+!classDefinition: #StoreFacadeTest category: 'TusLibros' stamp: 'NB 6/12/2023 18:56:27'!
+TestCase subclass: #StoreFacadeTest
+	instanceVariableNames: 'authenticationBehaviour testObjectsFactory'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!StoreFacadeTest methodsFor: 'tests' stamp: 'NB 6/12/2023 18:56:26' prior: 50625122 overrides: 16961394!
+setUp
+	
+	testObjectsFactory := StoreTestObjectsFactory new.
+	authenticationBehaviour := [:aUser :aPassword |]! !
+!StoreFacadeTest methodsFor: 'tests' stamp: 'NB 6/12/2023 18:56:48' prior: 50625175!
+test03CanAddItemsToCreatedCart
+
+	|storeFacade aCartId|
+	
+	storeFacade:= StoreFacade withAuthenticator: self.
+	aCartId:= storeFacade createCart: 'usuario' authenticatedWith: 'password'.
+	storeFacade addToCart: aCartId anItem: testObjectsFactory itemSellByTheStore quantity: 2.
+
+	self assert: (storeFacade listCart: aCartId) size equals: 2.
+	self assert: (storeFacade listCart: aCartId) includes: '1112'.! !
+
+!testRun: #StoreFacadeTest #test03CanAddItemsToCreatedCart stamp: 'NB 6/12/2023 18:56:49'!
+ERROR!
+!StoreFacade methodsFor: 'cart' stamp: 'NB 6/12/2023 18:56:55'!
+addToCart: aCartId anItem: aRenameMe1 quantity: aRenameMe2 
+	self shouldBeImplemented.! !
+!StoreFacade methodsFor: 'cart' stamp: 'NB 6/12/2023 18:57:18' prior: 50625224!
+addToCart: aCartId anItem: aISBN quantity: anAmount 
+	
+	! !
+
+!testRun: #StoreFacadeTest #test03CanAddItemsToCreatedCart stamp: 'NB 6/12/2023 18:57:34'!
+FAILURE!
+!StoreFacadeTest methodsFor: 'tests' stamp: 'NB 6/12/2023 18:57:50' prior: 50625206!
+test03CanAddItemsToCreatedCart
+
+	|storeFacade aCartId|
+	
+	storeFacade:= StoreFacade withAuthenticator: self.
+	aCartId:= storeFacade createCart: 'usuario' authenticatedWith: 'password'.
+	storeFacade addToCart: aCartId anItem: testObjectsFactory itemSellByTheStore quantity: 2.
+
+	self assert: 2 equals: (storeFacade listCart: aCartId) size.
+	self assert: (storeFacade listCart: aCartId) includes: '1112'.! !
+!StoreFacade methodsFor: 'cart' stamp: 'NB 6/12/2023 18:58:27' prior: 50625089!
+createCart: aUser authenticatedWith: aPassword 
+	
+	storeFacadeAuthenticator isValid: aUser withPassword: aPassword.
+	^'1'.! !
+!StoreFacade class methodsFor: 'instance creation' stamp: 'NB 6/12/2023 19:01:23'!
+withAuthenticator: aStoreFacadeAuthenticator acceptingItemsOf: aCatalog 
+	
+	^self new initializeWithAuthenticator: aStoreFacadeAuthenticator ! !
+!StoreFacadeTest methodsFor: 'as yet unclassified' stamp: 'NB 6/12/2023 19:01:23' prior: 50625139!
+test02createCartWithAnInvalidUsernameAndPasswordRaisesError
+
+	|storeFacade |
+	
+	storeFacade:= StoreFacade withAuthenticator: self acceptingItemsOf: testObjectFactory defaultCatalog.
+	authenticationBehaviour := [:aUser :aPassword | self error: 'User or password invalid'.].
+	self should: [storeFacade createCart: 'invalidUser' authenticatedWith: 'password']
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [:anError | self assert: anError messageText equals: 'User or password invalid']! !
+!StoreFacadeTest methodsFor: 'as yet unclassified' stamp: 'NB 6/12/2023 19:01:23' prior: 50625238!
+test03CanAddItemsToCreatedCart
+
+	|storeFacade aCartId|
+	
+	storeFacade:= StoreFacade withAuthenticator: self acceptingItemsOf: testObjectFactory defaultCatalog.
+	aCartId:= storeFacade createCart: 'usuario' authenticatedWith: 'password'.
+	storeFacade addToCart: aCartId anItem: testObjectsFactory itemSellByTheStore quantity: 2.
+
+	self assert: 2 equals: (storeFacade listCart: aCartId) size.
+	self assert: (storeFacade listCart: aCartId) includes: '1112'.! !
+!StoreFacadeTest methodsFor: 'as yet unclassified' stamp: 'NB 6/12/2023 19:01:23' prior: 50624995!
+test01createCartWithAValidUsernameAndPasswordThenListCartIsEmpty
+
+	|storeFacade aCartId|
+	
+	storeFacade:= StoreFacade withAuthenticator: self acceptingItemsOf: testObjectFactory defaultCatalog.
+	aCartId:= storeFacade createCart: 'usuario' authenticatedWith: 'password'.
+
+	self assert: (storeFacade listCart: aCartId) isEmpty.! !
+
+!methodRemoval: StoreFacade class #withAuthenticator: stamp: 'NB 6/12/2023 19:01:23'!
+withAuthenticator: aStoreFacadeAuthenticator
+	
+	^self new initializeWithAuthenticator: aStoreFacadeAuthenticator !
+!StoreFacadeTest methodsFor: 'tests' stamp: 'NB 6/12/2023 19:01:43' prior: 50625306!
+test01createCartWithAValidUsernameAndPasswordThenListCartIsEmpty
+
+	|storeFacade aCartId|
+	
+	storeFacade:= StoreFacade withAuthenticator: self acceptingItemsOf: testObjectsFactory defaultCatalog.
+	aCartId:= storeFacade createCart: 'usuario' authenticatedWith: 'password'.
+
+	self assert: (storeFacade listCart: aCartId) isEmpty.! !
+!StoreFacadeTest methodsFor: 'tests' stamp: 'NB 6/12/2023 19:01:47' prior: 50625269!
+test02createCartWithAnInvalidUsernameAndPasswordRaisesError
+
+	|storeFacade |
+	
+	storeFacade:= StoreFacade withAuthenticator: self acceptingItemsOf: testObjectsFactory defaultCatalog.
+	authenticationBehaviour := [:aUser :aPassword | self error: 'User or password invalid'.].
+	self should: [storeFacade createCart: 'invalidUser' authenticatedWith: 'password']
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [:anError | self assert: anError messageText equals: 'User or password invalid']! !
+!StoreFacadeTest methodsFor: 'tests' stamp: 'NB 6/12/2023 19:01:51' prior: 50625288!
+test03CanAddItemsToCreatedCart
+
+	|storeFacade aCartId|
+	
+	storeFacade:= StoreFacade withAuthenticator: self acceptingItemsOf: testObjectsFactory defaultCatalog.
+	aCartId:= storeFacade createCart: 'usuario' authenticatedWith: 'password'.
+	storeFacade addToCart: aCartId anItem: testObjectsFactory itemSellByTheStore quantity: 2.
+
+	self assert: 2 equals: (storeFacade listCart: aCartId) size.
+	self assert: (storeFacade listCart: aCartId) includes: '1112'.! !
+!StoreFacade methodsFor: 'initialization' stamp: 'NB 6/12/2023 19:02:29'!
+initializeWithAuthenticator: aStoreFacadeAuthenticator acceptingItemsOf: aCatalog  
+	
+	storeFacadeAuthenticator := aStoreFacadeAuthenticator.! !
+!StoreFacade class methodsFor: 'as yet unclassified' stamp: 'NB 6/12/2023 19:02:29' prior: 50625261!
+withAuthenticator: aStoreFacadeAuthenticator acceptingItemsOf: aCatalog 
+	
+	^self new initializeWithAuthenticator: aStoreFacadeAuthenticator acceptingItemsOf: aCatalog ! !
+
+!methodRemoval: StoreFacade #initializeWithAuthenticator: stamp: 'NB 6/12/2023 19:02:29'!
+initializeWithAuthenticator: aStoreFacadeAuthenticator 
+	
+	storeFacadeAuthenticator := aStoreFacadeAuthenticator.!
+
+!classDefinition: #StoreFacade category: 'TusLibros' stamp: 'NB 6/12/2023 19:02:41'!
+Object subclass: #StoreFacade
+	instanceVariableNames: 'storeFacadeAuthenticator catalog'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!StoreFacade methodsFor: 'initialization' stamp: 'NB 6/12/2023 19:02:40' prior: 50625375!
+initializeWithAuthenticator: aStoreFacadeAuthenticator acceptingItemsOf: aCatalog  
+	
+	storeFacadeAuthenticator := aStoreFacadeAuthenticator.
+	catalog:= aCatalog! !
+
+!classDefinition: #StoreFacade category: 'TusLibros' stamp: 'NB 6/12/2023 19:02:54'!
+Object subclass: #StoreFacade
+	instanceVariableNames: 'storeFacadeAuthenticator catalog lastId'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!StoreFacade methodsFor: 'initialization' stamp: 'NB 6/12/2023 19:02:53' prior: 50625406!
+initializeWithAuthenticator: aStoreFacadeAuthenticator acceptingItemsOf: aCatalog  
+	
+	lastId:= 0.
+	storeFacadeAuthenticator := aStoreFacadeAuthenticator.
+	catalog:= aCatalog.! !
+
+!classDefinition: #StoreFacade category: 'TusLibros' stamp: 'NB 6/12/2023 19:03:07'!
+Object subclass: #StoreFacade
+	instanceVariableNames: 'storeFacadeAuthenticator catalog lastId carts'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!StoreFacade methodsFor: 'initialization' stamp: 'NB 6/12/2023 19:03:06' prior: 50625422!
+initializeWithAuthenticator: aStoreFacadeAuthenticator acceptingItemsOf: aCatalog  
+	
+	lastId:= 0.
+	storeFacadeAuthenticator := aStoreFacadeAuthenticator.
+	catalog:= aCatalog.
+	carts:= Dictionary new.! !
+!StoreFacade methodsFor: 'cart' stamp: 'NB 6/12/2023 19:04:11' prior: 50625254!
+createCart: aUser authenticatedWith: aPassword 
+	
+	storeFacadeAuthenticator isValid: aUser withPassword: aPassword.
+	lastId:= lastId + 1.
+	carts at: lastId put: (Cart acceptingItemsOf: catalog).	
+	^lastId.! !
+!StoreFacade methodsFor: 'cart' stamp: 'NB 6/12/2023 19:05:25' prior: 50625230!
+addToCart: aCartId anItem: aISBN quantity: anAmount 
+	
+	(carts at: aCartId) add: aISBN withOccurrences: anAmount.
+	! !
+!Cart methodsFor: 'accessing' stamp: 'NB 6/12/2023 19:06:06'!
+list
+	
+	^items copy.! !
+!StoreFacade methodsFor: 'cart' stamp: 'NB 6/12/2023 19:06:28' prior: 50624966!
+listCart: aCartId 
+	
+	^(carts at: aCartId) list.! !
+
+!testRun: #StoreFacadeTest #test01createCartWithAValidUsernameAndPasswordThenListCartIsEmpty stamp: 'NB 6/12/2023 19:06:31'!
+PASSED!
+
+!testRun: #StoreFacadeTest #test02createCartWithAnInvalidUsernameAndPasswordRaisesError stamp: 'NB 6/12/2023 19:06:31'!
+PASSED!
+
+!testRun: #StoreFacadeTest #test03CanAddItemsToCreatedCart stamp: 'NB 6/12/2023 19:06:31'!
+ERROR!
+
+!testRun: #StoreFacadeTest #test03CanAddItemsToCreatedCart stamp: 'NB 6/12/2023 19:06:31'!
+ERROR!
+!StoreFacade methodsFor: 'cart' stamp: 'NB 6/12/2023 19:06:55' prior: 50625458!
+addToCart: aCartId anItem: aISBN quantity: anAmount 
+	
+	(carts at: aCartId) add: anAmount of: anAmount.
+	! !
+!StoreFacade methodsFor: 'cart' stamp: 'NB 6/12/2023 19:06:59' prior: 50625487!
+addToCart: aCartId anItem: aISBN quantity: anAmount 
+	
+	(carts at: aCartId) add: anAmount of: aISBN.
+	! !
+
+!testRun: #StoreFacadeTest #test01createCartWithAValidUsernameAndPasswordThenListCartIsEmpty stamp: 'NB 6/12/2023 19:07:01'!
+PASSED!
+
+!testRun: #StoreFacadeTest #test02createCartWithAnInvalidUsernameAndPasswordRaisesError stamp: 'NB 6/12/2023 19:07:01'!
+PASSED!
+
+!testRun: #StoreFacadeTest #test03CanAddItemsToCreatedCart stamp: 'NB 6/12/2023 19:07:01'!
+FAILURE!
+
+!testRun: #StoreFacadeTest #test03CanAddItemsToCreatedCart stamp: 'NB 6/12/2023 19:07:01'!
+FAILURE!
+!StoreFacadeTest methodsFor: 'tests' stamp: 'NB 6/12/2023 19:07:19' prior: 50625358!
+test03CanAddItemsToCreatedCart
+
+	|storeFacade aCartId|
+	
+	storeFacade:= StoreFacade withAuthenticator: self acceptingItemsOf: testObjectsFactory defaultCatalog.
+	aCartId:= storeFacade createCart: 'usuario' authenticatedWith: 'password'.
+	storeFacade addToCart: aCartId anItem: testObjectsFactory itemSellByTheStore quantity: 2.
+
+	self assert: 2 equals: (storeFacade listCart: aCartId) size.
+	self assert: (storeFacade listCart: aCartId) includes: testObjectsFactory itemSellByTheStore.! !
+
+!testRun: #StoreFacadeTest #test03CanAddItemsToCreatedCart stamp: 'NB 6/12/2023 19:07:20'!
+PASSED!
+
+!testRun: #StoreFacadeTest #test01createCartWithAValidUsernameAndPasswordThenListCartIsEmpty stamp: 'NB 6/12/2023 19:07:20'!
+PASSED!
+
+!testRun: #StoreFacadeTest #test02createCartWithAnInvalidUsernameAndPasswordRaisesError stamp: 'NB 6/12/2023 19:07:20'!
+PASSED!
+
+!testRun: #StoreFacadeTest #test03CanAddItemsToCreatedCart stamp: 'NB 6/12/2023 19:07:20'!
+PASSED!
+
+----SNAPSHOT----(12 June 2023 19:07:24) CuisUniversity-5832.image priorSource: 9392551!
+!StoreFacadeTest methodsFor: 'tests' stamp: 'NB 6/12/2023 19:16:48'!
+test04CannotAddItemsToAnInvalidCartId
+
+	! !
+!StoreFacadeTest methodsFor: 'tests' stamp: 'NB 6/12/2023 19:17:30' prior: 50625549!
+test04CannotAddItemsToAnInvalidCartId
+
+	|storeFacade aCartId|
+	
+	storeFacade:= StoreFacade withAuthenticator: self acceptingItemsOf: testObjectsFactory defaultCatalog.
+	aCartId:= storeFacade createCart: 'usuario' authenticatedWith: 'password'.
+	storeFacade addToCart: -1 anItem: testObjectsFactory itemSellByTheStore quantity: 2.
+
+	! !
+
+!testRun: #StoreFacadeTest #test04CannotAddItemsToAnInvalidCartId stamp: 'NB 6/12/2023 19:17:33'!
+ERROR!
+!StoreFacadeTest methodsFor: 'tests' stamp: 'NB 6/12/2023 19:21:20' prior: 50625554!
+test04CannotAddItemsToAnInvalidCartId
+
+	|storeFacade|
+	
+	storeFacade:= StoreFacade withAuthenticator: self acceptingItemsOf: testObjectsFactory defaultCatalog.
+	
+	self should: [storeFacade addToCart: nil anItem: testObjectsFactory itemSellByTheStore quantity: 2.]
+	       raise:  Error - MessageNotUnderstood
+	       withExceptionDo: [:anError | self assert: 'Invalid Cart Id provided' equals: anError messageText]
+	
+	
+
+	! !
+
+!testRun: #StoreFacadeTest #test04CannotAddItemsToAnInvalidCartId stamp: 'NB 6/12/2023 19:21:21'!
+FAILURE!
+!StoreFacade methodsFor: 'cart' stamp: 'NB 6/12/2023 19:22:07' prior: 50625493!
+addToCart: aCartId anItem: aISBN quantity: anAmount 
+
+	(carts includesKey: aCartId) ifFalse: [self error: 'Invalid Cart Id provided'].
+	
+	(carts at: aCartId) add: anAmount of: aISBN.
+	! !
+
+!testRun: #StoreFacadeTest #test01createCartWithAValidUsernameAndPasswordThenListCartIsEmpty stamp: 'NB 6/12/2023 19:22:09'!
+PASSED!
+
+!testRun: #StoreFacadeTest #test02createCartWithAnInvalidUsernameAndPasswordRaisesError stamp: 'NB 6/12/2023 19:22:09'!
+PASSED!
+
+!testRun: #StoreFacadeTest #test03CanAddItemsToCreatedCart stamp: 'NB 6/12/2023 19:22:09'!
+PASSED!
+
+!testRun: #StoreFacadeTest #test04CannotAddItemsToAnInvalidCartId stamp: 'NB 6/12/2023 19:22:09'!
+PASSED!
+!StoreFacadeTest methodsFor: 'tests' stamp: 'NB 6/12/2023 19:23:29'!
+test05CanCheckoutAValidCreatedCart
+
+	
+	
+
+	! !
+!StoreFacadeTest methodsFor: 'tests' stamp: 'NB 6/12/2023 19:26:01' prior: 50625614!
+test05CanCheckoutAValidCreatedCart
+	
+	|storeFacade aCartId|
+	
+	storeFacade:= StoreFacade withAuthenticator: self acceptingItemsOf: testObjectsFactory defaultCatalog.
+	aCartId:= storeFacade createCart: 'usuario' authenticatedWith: 'password'.
+	storeFacade addToCart: aCartId anItem: testObjectsFactory itemSellByTheStore quantity: 2.
+
+	self shouldnt: [storeFacade checkoutCard: aCartId withCreditCard: nil ownedBy: nil expiringOn: (March year: 2023)]
+	      raise: Error-MessageNotUnderstood 
+	
+	
+
+	! !
+!StoreFacadeTest methodsFor: 'tests' stamp: 'NB 6/12/2023 19:27:35' prior: 50625619!
+test05CanCheckoutAValidCreatedCart
+	
+	|storeFacade aCartId|
+	
+	storeFacade:= StoreFacade withAuthenticator: self acceptingItemsOf: testObjectsFactory defaultCatalog.
+	aCartId:= storeFacade createCart: 'usuario' authenticatedWith: 'password'.
+	storeFacade addToCart: aCartId anItem: testObjectsFactory itemSellByTheStore quantity: 2.
+
+	self shouldnt: [storeFacade checkoutCart: aCartId 
+						   withCreditCard: testObjectsFactory notExpiredCreditCard 
+						   ownedBy: nil 
+						   expiringOn: (March year: 2023)]
+	      raise: Error-MessageNotUnderstood 
+	
+	
+
+	! !
+!StoreFacadeTest methodsFor: 'tests' stamp: 'NB 6/12/2023 19:29:33' prior: 50625638!
+test05CanCheckoutAValidCreatedCart
+	
+	|storeFacade aCartId|
+	
+	storeFacade:= StoreFacade withAuthenticator: self acceptingItemsOf: testObjectsFactory defaultCatalog.
+	aCartId:= storeFacade createCart: 'usuario' authenticatedWith: 'password'.
+	storeFacade addToCart: aCartId anItem: testObjectsFactory itemSellByTheStore quantity: 2.
+
+	self shouldnt: [storeFacade checkoutCart: aCartId 
+						   withCreditCard: '1111'
+						   ownedBy: 'Usuario password' 
+						   expiringOn: testObjectsFactory ]
+	      raise: Error-MessageNotUnderstood 
+	
+	
+
+	! !
+!StoreTestObjectsFactory methodsFor: 'credit card' stamp: 'NB 6/12/2023 19:30:22'!
+notExpiredMonth
+	
+	^ Month month: today monthIndex year: today year + 1! !
+!StoreFacadeTest methodsFor: 'tests' stamp: 'NB 6/12/2023 19:30:36' prior: 50625659!
+test05CanCheckoutAValidCreatedCart
+	
+	|storeFacade aCartId|
+	
+	storeFacade:= StoreFacade withAuthenticator: self acceptingItemsOf: testObjectsFactory defaultCatalog.
+	aCartId:= storeFacade createCart: 'usuario' authenticatedWith: 'password'.
+	storeFacade addToCart: aCartId anItem: testObjectsFactory itemSellByTheStore quantity: 2.
+
+	self shouldnt: [storeFacade checkoutCart: aCartId 
+						   withCreditCard: '1111'
+						   ownedBy: 'Usuario password' 
+						   expiringOn: testObjectsFactory notExpiredMonth ]
+	      raise: Error-MessageNotUnderstood 
+	
+	
+
+	! !
+!StoreTestObjectsFactory methodsFor: 'credit card' stamp: 'NB 6/12/2023 19:31:24' prior: 50625679!
+notExpiredMonth
+	
+	^ Month month: today monthIndex year: today yearNumber + 1! !
+
+!testRun: #StoreFacadeTest #test05CanCheckoutAValidCreatedCart stamp: 'NB 6/12/2023 19:31:28'!
+ERROR!
+
+!testRun: #StoreFacadeTest #test05CanCheckoutAValidCreatedCart stamp: 'NB 6/12/2023 19:31:28'!
+ERROR!
+!StoreFacade methodsFor: 'checkout' stamp: 'NB 6/12/2023 19:31:39'!
+checkoutCart: aCartId withCreditCard: aRenameMe1 ownedBy: aRenameMe2 expiringOn: aRenameMe3 
+	self shouldBeImplemented.! !
+!StoreFacade methodsFor: 'checkout' stamp: 'NB 6/12/2023 19:33:25' prior: 50625717!
+checkoutCart: aCartId withCreditCard: aCreditCardNumber ownedBy: aCustomer expiringOn: aMonthOfYear 
+	
+	
+	Cashier toCheckout: (carts at: aCartId)  charging:  nil throught: nil  on: nil registeringOn: nil.
+	! !
+
+!testRun: #StoreFacadeTest #test05CanCheckoutAValidCreatedCart stamp: 'NB 6/12/2023 19:33:26'!
+ERROR!
+
+----SNAPSHOT----(12 June 2023 19:33:35) CuisUniversity-5832.image priorSource: 9404663!
+
+!classDefinition: #StoreFacade category: 'TusLibros' stamp: 'NB 6/12/2023 19:52:43'!
+Object subclass: #StoreFacade
+	instanceVariableNames: 'storeFacadeAuthenticator catalog lastId carts merchantProcessor'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #StoreFacade category: 'TusLibros' stamp: 'NB 6/12/2023 19:52:44'!
+Object subclass: #StoreFacade
+	instanceVariableNames: 'storeFacadeAuthenticator catalog lastId carts merchantProcessor date'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #StoreFacade category: 'TusLibros' stamp: 'NB 6/12/2023 19:52:46'!
+Object subclass: #StoreFacade
+	instanceVariableNames: 'storeFacadeAuthenticator catalog lastId carts merchantProcessor date salesBook'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!StoreFacade methodsFor: 'checkout' stamp: 'NB 6/12/2023 19:52:41' prior: 50625724!
+checkoutCart: aCartId withCreditCard: aCreditCardNumber ownedBy: aCustomer expiringOn: aMonthOfYear 
+	
+	
+	Cashier  toCheckout: (carts at: aCartId)  
+			charging:  (CreditCard expiringOn: aMonthOfYear)
+			throught: merchantProcessor  
+			on: date 
+			registeringOn: salesBook.
+	! !
+!StoreFacade methodsFor: 'checkout' stamp: 'NB 6/12/2023 19:52:59' prior: 50625766!
+checkoutCart: aCartId withCreditCard: aCreditCardNumber ownedBy: aCustomer expiringOn: aMonthOfYear 
+	
+	
+	(Cashier  toCheckout: (carts at: aCartId)  
+			charging:  (CreditCard expiringOn: aMonthOfYear)
+			throught: merchantProcessor  
+			on: date 
+			registeringOn: salesBook) checkout.
+	! !
+!StoreFacade class methodsFor: 'instance creation' stamp: 'NB 6/12/2023 19:53:52'!
+withAuthenticator: aStoreFacadeAuthenticator acceptingItemsOf: aCatalog through: aMerchantProcessor  
+	
+	^self new initializeWithAuthenticator: aStoreFacadeAuthenticator acceptingItemsOf: aCatalog ! !
+!StoreFacadeTest methodsFor: 'as yet unclassified' stamp: 'NB 6/12/2023 19:53:52' prior: 50625684!
+test05CanCheckoutAValidCreatedCart
+	
+	|storeFacade aCartId|
+	
+	storeFacade:= StoreFacade withAuthenticator: self acceptingItemsOf: testObjectsFactory defaultCatalog through: self.
+	aCartId:= storeFacade createCart: 'usuario' authenticatedWith: 'password'.
+	storeFacade addToCart: aCartId anItem: testObjectsFactory itemSellByTheStore quantity: 2.
+
+	self shouldnt: [storeFacade checkoutCart: aCartId 
+						   withCreditCard: '1111'
+						   ownedBy: 'Usuario password' 
+						   expiringOn: testObjectsFactory notExpiredMonth ]
+	      raise: Error-MessageNotUnderstood 
+	
+	
+
+	! !
+!StoreFacadeTest methodsFor: 'as yet unclassified' stamp: 'NB 6/12/2023 19:53:52' prior: 50625571!
+test04CannotAddItemsToAnInvalidCartId
+
+	|storeFacade|
+	
+	storeFacade:= StoreFacade withAuthenticator: self acceptingItemsOf: testObjectsFactory defaultCatalog through: self.
+	
+	self should: [storeFacade addToCart: nil anItem: testObjectsFactory itemSellByTheStore quantity: 2.]
+	       raise:  Error - MessageNotUnderstood
+	       withExceptionDo: [:anError | self assert: 'Invalid Cart Id provided' equals: anError messageText]
+	
+	
+
+	! !
+!StoreFacadeTest methodsFor: 'as yet unclassified' stamp: 'NB 6/12/2023 19:53:52' prior: 50625339!
+test02createCartWithAnInvalidUsernameAndPasswordRaisesError
+
+	|storeFacade |
+	
+	storeFacade:= StoreFacade withAuthenticator: self acceptingItemsOf: testObjectsFactory defaultCatalog through: self.
+	authenticationBehaviour := [:aUser :aPassword | self error: 'User or password invalid'.].
+	self should: [storeFacade createCart: 'invalidUser' authenticatedWith: 'password']
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [:anError | self assert: anError messageText equals: 'User or password invalid']! !
+!StoreFacadeTest methodsFor: 'as yet unclassified' stamp: 'NB 6/12/2023 19:53:52' prior: 50625326!
+test01createCartWithAValidUsernameAndPasswordThenListCartIsEmpty
+
+	|storeFacade aCartId|
+	
+	storeFacade:= StoreFacade withAuthenticator: self acceptingItemsOf: testObjectsFactory defaultCatalog through: self.
+	aCartId:= storeFacade createCart: 'usuario' authenticatedWith: 'password'.
+
+	self assert: (storeFacade listCart: aCartId) isEmpty.! !
+!StoreFacadeTest methodsFor: 'as yet unclassified' stamp: 'NB 6/12/2023 19:53:52' prior: 50625514!
+test03CanAddItemsToCreatedCart
+
+	|storeFacade aCartId|
+	
+	storeFacade:= StoreFacade withAuthenticator: self acceptingItemsOf: testObjectsFactory defaultCatalog through: self.
+	aCartId:= storeFacade createCart: 'usuario' authenticatedWith: 'password'.
+	storeFacade addToCart: aCartId anItem: testObjectsFactory itemSellByTheStore quantity: 2.
+
+	self assert: 2 equals: (storeFacade listCart: aCartId) size.
+	self assert: (storeFacade listCart: aCartId) includes: testObjectsFactory itemSellByTheStore.! !
+
+!methodRemoval: StoreFacade class #withAuthenticator:acceptingItemsOf: stamp: 'NB 6/12/2023 19:53:52'!
+withAuthenticator: aStoreFacadeAuthenticator acceptingItemsOf: aCatalog 
+	
+	^self new initializeWithAuthenticator: aStoreFacadeAuthenticator acceptingItemsOf: aCatalog !
+!StoreFacade methodsFor: 'initialization' stamp: 'NB 6/12/2023 19:54:36'!
+initializeWithAuthenticator: aStoreFacadeAuthenticator acceptingItemsOf: aCatalog through: aMerchantProcessor   
+	
+	lastId:= 0.
+	storeFacadeAuthenticator := aStoreFacadeAuthenticator.
+	catalog:= aCatalog.
+	carts:= Dictionary new.! !
+!StoreFacade class methodsFor: 'as yet unclassified' stamp: 'NB 6/12/2023 19:54:36' prior: 50625790!
+withAuthenticator: aStoreFacadeAuthenticator acceptingItemsOf: aCatalog through: aMerchantProcessor  
+	
+	^self new initializeWithAuthenticator: aStoreFacadeAuthenticator acceptingItemsOf: aCatalog through: aMerchantProcessor ! !
+
+!methodRemoval: StoreFacade #initializeWithAuthenticator:acceptingItemsOf: stamp: 'NB 6/12/2023 19:54:36'!
+initializeWithAuthenticator: aStoreFacadeAuthenticator acceptingItemsOf: aCatalog  
+	
+	lastId:= 0.
+	storeFacadeAuthenticator := aStoreFacadeAuthenticator.
+	catalog:= aCatalog.
+	carts:= Dictionary new.!
+!StoreFacade methodsFor: 'initialization' stamp: 'NB 6/12/2023 19:54:45' prior: 50625900!
+initializeWithAuthenticator: aStoreFacadeAuthenticator acceptingItemsOf: aCatalog through: aMerchantProcessor   
+	
+	lastId:= 0.
+	storeFacadeAuthenticator := aStoreFacadeAuthenticator.
+	catalog:= aCatalog.
+	carts:= Dictionary new.
+	merchantProcessor := aMerchantProcessor .! !
+!StoreFacade class methodsFor: 'instance creation' stamp: 'NB 6/12/2023 19:56:28'!
+withAuthenticator: aStoreFacadeAuthenticator acceptingItemsOf: aCatalog through: aMerchantProcessor on: aDate   
+	
+	^self new initializeWithAuthenticator: aStoreFacadeAuthenticator acceptingItemsOf: aCatalog through: aMerchantProcessor ! !
+!StoreFacadeTest methodsFor: 'as yet unclassified' stamp: 'NB 6/12/2023 19:56:28' prior: 50625859!
+test01createCartWithAValidUsernameAndPasswordThenListCartIsEmpty
+
+	|storeFacade aCartId|
+	
+	storeFacade:= StoreFacade withAuthenticator: self acceptingItemsOf: testObjectsFactory defaultCatalog through: self on: testObjectsFactory today.
+	aCartId:= storeFacade createCart: 'usuario' authenticatedWith: 'password'.
+
+	self assert: (storeFacade listCart: aCartId) isEmpty.! !
+!StoreFacadeTest methodsFor: 'as yet unclassified' stamp: 'NB 6/12/2023 19:56:28' prior: 50625839!
+test02createCartWithAnInvalidUsernameAndPasswordRaisesError
+
+	|storeFacade |
+	
+	storeFacade:= StoreFacade withAuthenticator: self acceptingItemsOf: testObjectsFactory defaultCatalog through: self on: testObjectsFactory today.
+	authenticationBehaviour := [:aUser :aPassword | self error: 'User or password invalid'.].
+	self should: [storeFacade createCart: 'invalidUser' authenticatedWith: 'password']
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [:anError | self assert: anError messageText equals: 'User or password invalid']! !
+!StoreFacadeTest methodsFor: 'as yet unclassified' stamp: 'NB 6/12/2023 19:56:28' prior: 50625873!
+test03CanAddItemsToCreatedCart
+
+	|storeFacade aCartId|
+	
+	storeFacade:= StoreFacade withAuthenticator: self acceptingItemsOf: testObjectsFactory defaultCatalog through: self on: testObjectsFactory today.
+	aCartId:= storeFacade createCart: 'usuario' authenticatedWith: 'password'.
+	storeFacade addToCart: aCartId anItem: testObjectsFactory itemSellByTheStore quantity: 2.
+
+	self assert: 2 equals: (storeFacade listCart: aCartId) size.
+	self assert: (storeFacade listCart: aCartId) includes: testObjectsFactory itemSellByTheStore.! !
+!StoreFacadeTest methodsFor: 'as yet unclassified' stamp: 'NB 6/12/2023 19:56:28' prior: 50625800!
+test05CanCheckoutAValidCreatedCart
+	
+	|storeFacade aCartId|
+	
+	storeFacade:= StoreFacade withAuthenticator: self acceptingItemsOf: testObjectsFactory defaultCatalog through: self on: testObjectsFactory today.
+	aCartId:= storeFacade createCart: 'usuario' authenticatedWith: 'password'.
+	storeFacade addToCart: aCartId anItem: testObjectsFactory itemSellByTheStore quantity: 2.
+
+	self shouldnt: [storeFacade checkoutCart: aCartId 
+						   withCreditCard: '1111'
+						   ownedBy: 'Usuario password' 
+						   expiringOn: testObjectsFactory notExpiredMonth ]
+	      raise: Error-MessageNotUnderstood 
+	
+	
+
+	! !
+!StoreFacadeTest methodsFor: 'as yet unclassified' stamp: 'NB 6/12/2023 19:56:28' prior: 50625822!
+test04CannotAddItemsToAnInvalidCartId
+
+	|storeFacade|
+	
+	storeFacade:= StoreFacade withAuthenticator: self acceptingItemsOf: testObjectsFactory defaultCatalog through: self on: testObjectsFactory today.
+	
+	self should: [storeFacade addToCart: nil anItem: testObjectsFactory itemSellByTheStore quantity: 2.]
+	       raise:  Error - MessageNotUnderstood
+	       withExceptionDo: [:anError | self assert: 'Invalid Cart Id provided' equals: anError messageText]
+	
+	
+
+	! !
+
+!methodRemoval: StoreFacade class #withAuthenticator:acceptingItemsOf:through: stamp: 'NB 6/12/2023 19:56:28'!
+withAuthenticator: aStoreFacadeAuthenticator acceptingItemsOf: aCatalog through: aMerchantProcessor  
+	
+	^self new initializeWithAuthenticator: aStoreFacadeAuthenticator acceptingItemsOf: aCatalog through: aMerchantProcessor !
+!StoreFacade methodsFor: 'initialization' stamp: 'NB 6/12/2023 19:56:51'!
+initializeWithAuthenticator: aStoreFacadeAuthenticator acceptingItemsOf: aCatalog through: aMerchantProcessor on: aDate    
+	
+	lastId:= 0.
+	storeFacadeAuthenticator := aStoreFacadeAuthenticator.
+	catalog:= aCatalog.
+	carts:= Dictionary new.
+	merchantProcessor := aMerchantProcessor .! !
+!StoreFacade class methodsFor: 'as yet unclassified' stamp: 'NB 6/12/2023 19:56:51' prior: 50625943!
+withAuthenticator: aStoreFacadeAuthenticator acceptingItemsOf: aCatalog through: aMerchantProcessor on: aDate   
+	
+	^self new initializeWithAuthenticator: aStoreFacadeAuthenticator acceptingItemsOf: aCatalog through: aMerchantProcessor on: aDate ! !
+
+!methodRemoval: StoreFacade #initializeWithAuthenticator:acceptingItemsOf:through: stamp: 'NB 6/12/2023 19:56:51'!
+initializeWithAuthenticator: aStoreFacadeAuthenticator acceptingItemsOf: aCatalog through: aMerchantProcessor   
+	
+	lastId:= 0.
+	storeFacadeAuthenticator := aStoreFacadeAuthenticator.
+	catalog:= aCatalog.
+	carts:= Dictionary new.
+	merchantProcessor := aMerchantProcessor .!
+!StoreFacade methodsFor: 'initialization' stamp: 'NB 6/12/2023 19:56:59' prior: 50626061!
+initializeWithAuthenticator: aStoreFacadeAuthenticator acceptingItemsOf: aCatalog through: aMerchantProcessor on: aDate    
+	
+	lastId:= 0.
+	storeFacadeAuthenticator := aStoreFacadeAuthenticator.
+	catalog:= aCatalog.
+	carts:= Dictionary new.
+	merchantProcessor := aMerchantProcessor .
+	date:= aDate.! !
+
+!testRun: #StoreFacadeTest #test01createCartWithAValidUsernameAndPasswordThenListCartIsEmpty stamp: 'NB 6/12/2023 19:57:02'!
+PASSED!
+!StoreFacade class methodsFor: 'instance creation' stamp: 'NB 6/12/2023 19:57:44'!
+withAuthenticator: aStoreFacadeAuthenticator acceptingItemsOf: aCatalog through: aMerchantProcessor on: aDate registeringOn: aSalesBook    
+	
+	^self new initializeWithAuthenticator: aStoreFacadeAuthenticator acceptingItemsOf: aCatalog through: aMerchantProcessor on: aDate ! !
+!StoreFacadeTest methodsFor: 'as yet unclassified' stamp: 'NB 6/12/2023 19:57:44' prior: 50625954!
+test01createCartWithAValidUsernameAndPasswordThenListCartIsEmpty
+
+	|storeFacade aCartId|
+	
+	storeFacade:= StoreFacade withAuthenticator: self acceptingItemsOf: testObjectsFactory defaultCatalog through: self on: testObjectsFactory today registeringOn: OrderedCollection new.
+	aCartId:= storeFacade createCart: 'usuario' authenticatedWith: 'password'.
+
+	self assert: (storeFacade listCart: aCartId) isEmpty.! !
+!StoreFacadeTest methodsFor: 'as yet unclassified' stamp: 'NB 6/12/2023 19:57:44' prior: 50626010!
+test05CanCheckoutAValidCreatedCart
+	
+	|storeFacade aCartId|
+	
+	storeFacade:= StoreFacade withAuthenticator: self acceptingItemsOf: testObjectsFactory defaultCatalog through: self on: testObjectsFactory today registeringOn: OrderedCollection new.
+	aCartId:= storeFacade createCart: 'usuario' authenticatedWith: 'password'.
+	storeFacade addToCart: aCartId anItem: testObjectsFactory itemSellByTheStore quantity: 2.
+
+	self shouldnt: [storeFacade checkoutCart: aCartId 
+						   withCreditCard: '1111'
+						   ownedBy: 'Usuario password' 
+						   expiringOn: testObjectsFactory notExpiredMonth ]
+	      raise: Error-MessageNotUnderstood 
+	
+	
+
+	! !
+!StoreFacadeTest methodsFor: 'as yet unclassified' stamp: 'NB 6/12/2023 19:57:44' prior: 50626033!
+test04CannotAddItemsToAnInvalidCartId
+
+	|storeFacade|
+	
+	storeFacade:= StoreFacade withAuthenticator: self acceptingItemsOf: testObjectsFactory defaultCatalog through: self on: testObjectsFactory today registeringOn: OrderedCollection new.
+	
+	self should: [storeFacade addToCart: nil anItem: testObjectsFactory itemSellByTheStore quantity: 2.]
+	       raise:  Error - MessageNotUnderstood
+	       withExceptionDo: [:anError | self assert: 'Invalid Cart Id provided' equals: anError messageText]
+	
+	
+
+	! !
+!StoreFacadeTest methodsFor: 'as yet unclassified' stamp: 'NB 6/12/2023 19:57:44' prior: 50625990!
+test03CanAddItemsToCreatedCart
+
+	|storeFacade aCartId|
+	
+	storeFacade:= StoreFacade withAuthenticator: self acceptingItemsOf: testObjectsFactory defaultCatalog through: self on: testObjectsFactory today registeringOn: OrderedCollection new.
+	aCartId:= storeFacade createCart: 'usuario' authenticatedWith: 'password'.
+	storeFacade addToCart: aCartId anItem: testObjectsFactory itemSellByTheStore quantity: 2.
+
+	self assert: 2 equals: (storeFacade listCart: aCartId) size.
+	self assert: (storeFacade listCart: aCartId) includes: testObjectsFactory itemSellByTheStore.! !
+!StoreFacadeTest methodsFor: 'as yet unclassified' stamp: 'NB 6/12/2023 19:57:44' prior: 50625969!
+test02createCartWithAnInvalidUsernameAndPasswordRaisesError
+
+	|storeFacade |
+	
+	storeFacade:= StoreFacade withAuthenticator: self acceptingItemsOf: testObjectsFactory defaultCatalog through: self on: testObjectsFactory today registeringOn: OrderedCollection new.
+	authenticationBehaviour := [:aUser :aPassword | self error: 'User or password invalid'.].
+	self should: [storeFacade createCart: 'invalidUser' authenticatedWith: 'password']
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [:anError | self assert: anError messageText equals: 'User or password invalid']! !
+
+!methodRemoval: StoreFacade class #withAuthenticator:acceptingItemsOf:through:on: stamp: 'NB 6/12/2023 19:57:44'!
+withAuthenticator: aStoreFacadeAuthenticator acceptingItemsOf: aCatalog through: aMerchantProcessor on: aDate   
+	
+	^self new initializeWithAuthenticator: aStoreFacadeAuthenticator acceptingItemsOf: aCatalog through: aMerchantProcessor on: aDate !
+!StoreFacade methodsFor: 'initialization' stamp: 'NB 6/12/2023 19:58:09'!
+initializeWithAuthenticator: aStoreFacadeAuthenticator acceptingItemsOf: aCatalog through: aMerchantProcessor on: aDate registeringOn: aSalesBook     
+	
+	lastId:= 0.
+	storeFacadeAuthenticator := aStoreFacadeAuthenticator.
+	catalog:= aCatalog.
+	carts:= Dictionary new.
+	merchantProcessor := aMerchantProcessor .
+	date:= aDate.! !
+!StoreFacade class methodsFor: 'as yet unclassified' stamp: 'NB 6/12/2023 19:58:09' prior: 50626114!
+withAuthenticator: aStoreFacadeAuthenticator acceptingItemsOf: aCatalog through: aMerchantProcessor on: aDate registeringOn: aSalesBook    
+	
+	^self new initializeWithAuthenticator: aStoreFacadeAuthenticator acceptingItemsOf: aCatalog through: aMerchantProcessor on: aDate registeringOn: aSalesBook ! !
+
+!methodRemoval: StoreFacade #initializeWithAuthenticator:acceptingItemsOf:through:on: stamp: 'NB 6/12/2023 19:58:09'!
+initializeWithAuthenticator: aStoreFacadeAuthenticator acceptingItemsOf: aCatalog through: aMerchantProcessor on: aDate    
+	
+	lastId:= 0.
+	storeFacadeAuthenticator := aStoreFacadeAuthenticator.
+	catalog:= aCatalog.
+	carts:= Dictionary new.
+	merchantProcessor := aMerchantProcessor .
+	date:= aDate.!
+!StoreFacade methodsFor: 'initialization' stamp: 'NB 6/12/2023 19:58:18' prior: 50626238!
+initializeWithAuthenticator: aStoreFacadeAuthenticator acceptingItemsOf: aCatalog through: aMerchantProcessor on: aDate registeringOn: aSalesBook     
+	
+	lastId:= 0.
+	storeFacadeAuthenticator := aStoreFacadeAuthenticator.
+	catalog:= aCatalog.
+	carts:= Dictionary new.
+	merchantProcessor := aMerchantProcessor .
+	date:= aDate.
+	salesBook := aSalesBook .! !
+
+!testRun: #StoreFacadeTest #test05CanCheckoutAValidCreatedCart stamp: 'NB 6/12/2023 19:58:29'!
+ERROR!
+
+!testRun: #StoreFacadeTest #test05CanCheckoutAValidCreatedCart stamp: 'NB 6/12/2023 19:58:29'!
+ERROR!
+!StoreFacade methodsFor: 'checkout' stamp: 'NB 6/12/2023 19:58:48' prior: 50625778!
+checkoutCart: aCartId withCreditCard: aCreditCardNumber ownedBy: aCustomer expiringOn: aMonthOfYear 
+	
+	
+	(Cashier  toCheckout: (carts at: aCartId)  
+			charging:  (CreditCard expiringOn: aMonthOfYear)
+			throught: merchantProcessor  
+			on: date 
+			registeringOn: salesBook) checkOut.
+	! !
+
+!testRun: #StoreFacadeTest #test01createCartWithAValidUsernameAndPasswordThenListCartIsEmpty stamp: 'NB 6/12/2023 19:58:51'!
+PASSED!
+
+!testRun: #StoreFacadeTest #test02createCartWithAnInvalidUsernameAndPasswordRaisesError stamp: 'NB 6/12/2023 19:58:51'!
+PASSED!
+
+!testRun: #StoreFacadeTest #test03CanAddItemsToCreatedCart stamp: 'NB 6/12/2023 19:58:51'!
+PASSED!
+
+!testRun: #StoreFacadeTest #test04CannotAddItemsToAnInvalidCartId stamp: 'NB 6/12/2023 19:58:51'!
+PASSED!
+
+!testRun: #StoreFacadeTest #test05CanCheckoutAValidCreatedCart stamp: 'NB 6/12/2023 19:58:51'!
+ERROR!
+
+!testRun: #StoreFacadeTest #test05CanCheckoutAValidCreatedCart stamp: 'NB 6/12/2023 19:58:51'!
+ERROR!
+
+!classDefinition: #StoreFacadeTest category: 'TusLibros' stamp: 'NB 6/12/2023 19:59:28'!
+TestCase subclass: #StoreFacadeTest
+	instanceVariableNames: 'authenticationBehaviour testObjectsFactory debitBehavior'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!StoreFacadeTest methodsFor: 'merchant processor protocol' stamp: 'NB 6/12/2023 19:59:26'!
+debit: anAmount from: aCreditCard 
+
+	^debitBehavior value: anAmount value: aCreditCard ! !
+!StoreFacadeTest methodsFor: 'tests' stamp: 'NB 6/12/2023 19:59:48' prior: 50625199 overrides: 16961394!
+setUp
+	
+	testObjectsFactory := StoreTestObjectsFactory new.
+	debitBehavior := [ :anAmount :aCreditCard | ].
+	authenticationBehaviour := [:aUser :aPassword |]! !
+
+!testRun: #StoreFacadeTest #test01createCartWithAValidUsernameAndPasswordThenListCartIsEmpty stamp: 'NB 6/12/2023 19:59:53'!
+PASSED!
+
+!testRun: #StoreFacadeTest #test02createCartWithAnInvalidUsernameAndPasswordRaisesError stamp: 'NB 6/12/2023 19:59:53'!
+PASSED!
+
+!testRun: #StoreFacadeTest #test03CanAddItemsToCreatedCart stamp: 'NB 6/12/2023 19:59:53'!
+PASSED!
+
+!testRun: #StoreFacadeTest #test04CannotAddItemsToAnInvalidCartId stamp: 'NB 6/12/2023 19:59:53'!
+PASSED!
+
+!testRun: #StoreFacadeTest #test05CanCheckoutAValidCreatedCart stamp: 'NB 6/12/2023 19:59:53'!
+PASSED!
+
+----SNAPSHOT----(12 June 2023 19:59:56) CuisUniversity-5832.image priorSource: 9410744!
+!StoreFacadeTest methodsFor: 'tests' stamp: 'NB 6/12/2023 20:02:16'!
+test05CannotCheckoutANotCreatedCart
+	
+	|storeFacade |
+	
+	storeFacade:= StoreFacade withAuthenticator: self acceptingItemsOf: testObjectsFactory defaultCatalog through: self on: testObjectsFactory today registeringOn: OrderedCollection new.
+	
+	self should: [storeFacade checkoutCart: nil 
+						   withCreditCard: '1111'
+						   ownedBy: 'Usuario password' 
+						   expiringOn: testObjectsFactory notExpiredMonth ]
+	      raise: Error-MessageNotUnderstood 
+	      withExceptionDo: [:anError | self assert: 'Invalid Cart Id provided' equals: anError messageText ].
+	
+	
+
+	! !
+
+!testRun: #StoreFacadeTest #test05CannotCheckoutANotCreatedCart stamp: 'NB 6/12/2023 20:02:25'!
+FAILURE!
+!StoreFacade methodsFor: 'checkout' stamp: 'NB 6/12/2023 20:02:49' prior: 50626299!
+checkoutCart: aCartId withCreditCard: aCreditCardNumber ownedBy: aCustomer expiringOn: aMonthOfYear 
+	
+	(carts includesKey: aCartId) ifFalse: [self error: 'Invalid Cart Id provided'].
+	
+	(Cashier  toCheckout: (carts at: aCartId)  
+			charging:  (CreditCard expiringOn: aMonthOfYear)
+			throught: merchantProcessor  
+			on: date 
+			registeringOn: salesBook) checkOut.
+	! !
+
+!testRun: #StoreFacadeTest #test01createCartWithAValidUsernameAndPasswordThenListCartIsEmpty stamp: 'NB 6/12/2023 20:02:50'!
+PASSED!
+
+!testRun: #StoreFacadeTest #test02createCartWithAnInvalidUsernameAndPasswordRaisesError stamp: 'NB 6/12/2023 20:02:50'!
+PASSED!
+
+!testRun: #StoreFacadeTest #test03CanAddItemsToCreatedCart stamp: 'NB 6/12/2023 20:02:50'!
+PASSED!
+
+!testRun: #StoreFacadeTest #test04CannotAddItemsToAnInvalidCartId stamp: 'NB 6/12/2023 20:02:50'!
+PASSED!
+
+!testRun: #StoreFacadeTest #test05CanCheckoutAValidCreatedCart stamp: 'NB 6/12/2023 20:02:50'!
+PASSED!
+
+!testRun: #StoreFacadeTest #test05CannotCheckoutANotCreatedCart stamp: 'NB 6/12/2023 20:02:50'!
+PASSED!
+
+TestCase subclass: #StoreFacadeTest
+	instanceVariableNames: 'authenticationBehaviour testObjectsFactory debitBehavior storeFacade'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+TestCase subclass: #StoreFacadeTest
+	instanceVariableNames: 'authenticationBehaviour testObjectsFactory debitBehavior storeFacade1'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #StoreFacadeTest category: 'TusLibros' stamp: 'NB 6/12/2023 20:04:28'!
+TestCase subclass: #StoreFacadeTest
+	instanceVariableNames: 'authenticationBehaviour testObjectsFactory debitBehavior storeFacade1'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!StoreFacadeTest methodsFor: 'tests' stamp: 'NB 6/12/2023 20:04:50' prior: 50626348 overrides: 16961394!
+setUp
+	
+	testObjectsFactory := StoreTestObjectsFactory new.
+	debitBehavior := [ :anAmount :aCreditCard | ].
+	authenticationBehaviour := [:aUser :aPassword |].
+	storeFacade1:= StoreFacade withAuthenticator: self acceptingItemsOf: testObjectsFactory defaultCatalog through: self on: testObjectsFactory today registeringOn: OrderedCollection new.! !
+!StoreFacadeTest methodsFor: 'tests' stamp: 'NB 6/12/2023 20:05:15' prior: 50626126!
+test01createCartWithAValidUsernameAndPasswordThenListCartIsEmpty
+
+	| aCartId|
+
+	aCartId:= storeFacade1 createCart: 'usuario' authenticatedWith: 'password'.
+
+	self assert: (storeFacade1 listCart: aCartId) isEmpty.! !
+
+!testRun: #StoreFacadeTest #test01createCartWithAValidUsernameAndPasswordThenListCartIsEmpty stamp: 'NB 6/12/2023 20:05:16'!
+PASSED!
+
+!testRun: #StoreFacadeTest #test01createCartWithAValidUsernameAndPasswordThenListCartIsEmpty stamp: 'NB 6/12/2023 20:05:16'!
+PASSED!
+
+!testRun: #StoreFacadeTest #test02createCartWithAnInvalidUsernameAndPasswordRaisesError stamp: 'NB 6/12/2023 20:05:16'!
+PASSED!
+
+!testRun: #StoreFacadeTest #test03CanAddItemsToCreatedCart stamp: 'NB 6/12/2023 20:05:16'!
+PASSED!
+
+!testRun: #StoreFacadeTest #test04CannotAddItemsToAnInvalidCartId stamp: 'NB 6/12/2023 20:05:16'!
+PASSED!
+
+!testRun: #StoreFacadeTest #test05CanCheckoutAValidCreatedCart stamp: 'NB 6/12/2023 20:05:16'!
+PASSED!
+
+!testRun: #StoreFacadeTest #test05CannotCheckoutANotCreatedCart stamp: 'NB 6/12/2023 20:05:16'!
+PASSED!
+!StoreFacadeTest methodsFor: 'tests' stamp: 'NB 6/12/2023 20:05:30' prior: 50626206!
+test02createCartWithAnInvalidUsernameAndPasswordRaisesError
+
+	
+	authenticationBehaviour := [:aUser :aPassword | self error: 'User or password invalid'.].
+	self should: [storeFacade1 createCart: 'invalidUser' authenticatedWith: 'password']
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [:anError | self assert: anError messageText equals: 'User or password invalid']! !
+
+!testRun: #StoreFacadeTest #test02createCartWithAnInvalidUsernameAndPasswordRaisesError stamp: 'NB 6/12/2023 20:05:32'!
+PASSED!
+
+!testRun: #StoreFacadeTest #test01createCartWithAValidUsernameAndPasswordThenListCartIsEmpty stamp: 'NB 6/12/2023 20:05:32'!
+PASSED!
+
+!testRun: #StoreFacadeTest #test02createCartWithAnInvalidUsernameAndPasswordRaisesError stamp: 'NB 6/12/2023 20:05:32'!
+PASSED!
+
+!testRun: #StoreFacadeTest #test03CanAddItemsToCreatedCart stamp: 'NB 6/12/2023 20:05:32'!
+PASSED!
+
+!testRun: #StoreFacadeTest #test04CannotAddItemsToAnInvalidCartId stamp: 'NB 6/12/2023 20:05:32'!
+PASSED!
+
+!testRun: #StoreFacadeTest #test05CanCheckoutAValidCreatedCart stamp: 'NB 6/12/2023 20:05:32'!
+PASSED!
+
+!testRun: #StoreFacadeTest #test05CannotCheckoutANotCreatedCart stamp: 'NB 6/12/2023 20:05:32'!
+PASSED!
+!StoreFacadeTest methodsFor: 'tests' stamp: 'NB 6/12/2023 20:05:56' prior: 50626185!
+test03CanAddItemsToCreatedCart
+
+	| aCartId|
+	
+	
+	aCartId:= storeFacade1 createCart: 'usuario' authenticatedWith: 'password'.
+	storeFacade1 addToCart: aCartId anItem: testObjectsFactory itemSellByTheStore quantity: 2.
+
+	self assert: 2 equals: (storeFacade1 listCart: aCartId) size.
+	self assert: (storeFacade1 listCart: aCartId) includes: testObjectsFactory itemSellByTheStore.! !
+
+!testRun: #StoreFacadeTest #test03CanAddItemsToCreatedCart stamp: 'NB 6/12/2023 20:05:57'!
+PASSED!
+
+!testRun: #StoreFacadeTest #test01createCartWithAValidUsernameAndPasswordThenListCartIsEmpty stamp: 'NB 6/12/2023 20:05:57'!
+PASSED!
+
+!testRun: #StoreFacadeTest #test02createCartWithAnInvalidUsernameAndPasswordRaisesError stamp: 'NB 6/12/2023 20:05:57'!
+PASSED!
+
+!testRun: #StoreFacadeTest #test03CanAddItemsToCreatedCart stamp: 'NB 6/12/2023 20:05:57'!
+PASSED!
+
+!testRun: #StoreFacadeTest #test04CannotAddItemsToAnInvalidCartId stamp: 'NB 6/12/2023 20:05:57'!
+PASSED!
+
+!testRun: #StoreFacadeTest #test05CanCheckoutAValidCreatedCart stamp: 'NB 6/12/2023 20:05:57'!
+PASSED!
+
+!testRun: #StoreFacadeTest #test05CannotCheckoutANotCreatedCart stamp: 'NB 6/12/2023 20:05:57'!
+PASSED!
+!StoreFacadeTest methodsFor: 'tests' stamp: 'NB 6/12/2023 20:06:09' prior: 50626166!
+test04CannotAddItemsToAnInvalidCartId
+
+	
+	
+	self should: [storeFacade1 addToCart: nil anItem: testObjectsFactory itemSellByTheStore quantity: 2.]
+	       raise:  Error - MessageNotUnderstood
+	       withExceptionDo: [:anError | self assert: 'Invalid Cart Id provided' equals: anError messageText]
+	
+	
+
+	! !
+
+!testRun: #StoreFacadeTest #test04CannotAddItemsToAnInvalidCartId stamp: 'NB 6/12/2023 20:06:10'!
+PASSED!
+
+!testRun: #StoreFacadeTest #test01createCartWithAValidUsernameAndPasswordThenListCartIsEmpty stamp: 'NB 6/12/2023 20:06:10'!
+PASSED!
+
+!testRun: #StoreFacadeTest #test02createCartWithAnInvalidUsernameAndPasswordRaisesError stamp: 'NB 6/12/2023 20:06:10'!
+PASSED!
+
+!testRun: #StoreFacadeTest #test03CanAddItemsToCreatedCart stamp: 'NB 6/12/2023 20:06:10'!
+PASSED!
+
+!testRun: #StoreFacadeTest #test04CannotAddItemsToAnInvalidCartId stamp: 'NB 6/12/2023 20:06:10'!
+PASSED!
+
+!testRun: #StoreFacadeTest #test05CanCheckoutAValidCreatedCart stamp: 'NB 6/12/2023 20:06:10'!
+PASSED!
+
+!testRun: #StoreFacadeTest #test05CannotCheckoutANotCreatedCart stamp: 'NB 6/12/2023 20:06:10'!
+PASSED!
+!StoreFacadeTest methodsFor: 'tests' stamp: 'NB 6/12/2023 20:06:26' prior: 50626142!
+test05CanCheckoutAValidCreatedCart
+	
+	| aCartId|
+	
+	aCartId:= storeFacade1 createCart: 'usuario' authenticatedWith: 'password'.
+	storeFacade1 addToCart: aCartId anItem: testObjectsFactory itemSellByTheStore quantity: 2.
+
+	self shouldnt: [storeFacade1 checkoutCart: aCartId 
+						   withCreditCard: '1111'
+						   ownedBy: 'Usuario password' 
+						   expiringOn: testObjectsFactory notExpiredMonth ]
+	      raise: Error-MessageNotUnderstood 
+	
+	
+
+	! !
+
+!testRun: #StoreFacadeTest #test05CanCheckoutAValidCreatedCart stamp: 'NB 6/12/2023 20:06:27'!
+PASSED!
+
+!testRun: #StoreFacadeTest #test01createCartWithAValidUsernameAndPasswordThenListCartIsEmpty stamp: 'NB 6/12/2023 20:06:27'!
+PASSED!
+
+!testRun: #StoreFacadeTest #test02createCartWithAnInvalidUsernameAndPasswordRaisesError stamp: 'NB 6/12/2023 20:06:27'!
+PASSED!
+
+!testRun: #StoreFacadeTest #test03CanAddItemsToCreatedCart stamp: 'NB 6/12/2023 20:06:27'!
+PASSED!
+
+!testRun: #StoreFacadeTest #test04CannotAddItemsToAnInvalidCartId stamp: 'NB 6/12/2023 20:06:27'!
+PASSED!
+
+!testRun: #StoreFacadeTest #test05CanCheckoutAValidCreatedCart stamp: 'NB 6/12/2023 20:06:27'!
+PASSED!
+
+!testRun: #StoreFacadeTest #test05CannotCheckoutANotCreatedCart stamp: 'NB 6/12/2023 20:06:27'!
+PASSED!
+!StoreFacadeTest methodsFor: 'tests' stamp: 'NB 6/12/2023 20:07:36' prior: 50626376!
+test05CannotCheckoutANotCreatedCart
+	
+	
+	self should: [storeFacade1 checkoutCart: nil 
+						   withCreditCard: '1111'
+						   ownedBy: 'Usuario password' 
+						   expiringOn: testObjectsFactory notExpiredMonth ]
+	      raise: Error-MessageNotUnderstood 
+	      withExceptionDo: [:anError | self assert: 'Invalid Cart Id provided' equals: anError messageText ].
+	
+	
+
+	! !
+!StoreFacadeTest methodsFor: 'tests' stamp: 'NB 6/12/2023 20:07:42'!
+test06CannotCheckoutANotCreatedCart
+	
+	
+	self should: [storeFacade1 checkoutCart: nil 
+						   withCreditCard: '1111'
+						   ownedBy: 'Usuario password' 
+						   expiringOn: testObjectsFactory notExpiredMonth ]
+	      raise: Error-MessageNotUnderstood 
+	      withExceptionDo: [:anError | self assert: 'Invalid Cart Id provided' equals: anError messageText ].
+	
+	
+
+	! !
+
+!methodRemoval: StoreFacadeTest #test05CannotCheckoutANotCreatedCart stamp: 'NB 6/12/2023 20:07:42'!
+test05CannotCheckoutANotCreatedCart
+	
+	
+	self should: [storeFacade1 checkoutCart: nil 
+						   withCreditCard: '1111'
+						   ownedBy: 'Usuario password' 
+						   expiringOn: testObjectsFactory notExpiredMonth ]
+	      raise: Error-MessageNotUnderstood 
+	      withExceptionDo: [:anError | self assert: 'Invalid Cart Id provided' equals: anError messageText ].
+	
+	
+
+	!
+
+!classDefinition: #StoreFacadeTest category: 'TusLibros' stamp: 'NB 6/12/2023 20:07:52'!
+TestCase subclass: #StoreFacadeTest
+	instanceVariableNames: 'authenticationBehaviour testObjectsFactory debitBehavior storeFacade'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!StoreFacadeTest methodsFor: 'as yet unclassified' stamp: 'NB 6/12/2023 20:07:52' prior: 50626472!
+test01createCartWithAValidUsernameAndPasswordThenListCartIsEmpty
+
+	| aCartId|
+
+	aCartId:= storeFacade createCart: 'usuario' authenticatedWith: 'password'.
+
+	self assert: (storeFacade listCart: aCartId) isEmpty.! !
+!StoreFacadeTest methodsFor: 'as yet unclassified' stamp: 'NB 6/12/2023 20:07:52' prior: 50626507!
+test02createCartWithAnInvalidUsernameAndPasswordRaisesError
+
+	
+	authenticationBehaviour := [:aUser :aPassword | self error: 'User or password invalid'.].
+	self should: [storeFacade createCart: 'invalidUser' authenticatedWith: 'password']
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [:anError | self assert: anError messageText equals: 'User or password invalid']! !
+!StoreFacadeTest methodsFor: 'as yet unclassified' stamp: 'NB 6/12/2023 20:07:52' prior: 50626586!
+test04CannotAddItemsToAnInvalidCartId
+
+	
+	
+	self should: [storeFacade addToCart: nil anItem: testObjectsFactory itemSellByTheStore quantity: 2.]
+	       raise:  Error - MessageNotUnderstood
+	       withExceptionDo: [:anError | self assert: 'Invalid Cart Id provided' equals: anError messageText]
+	
+	
+
+	! !
+!StoreFacadeTest methodsFor: 'as yet unclassified' stamp: 'NB 6/12/2023 20:07:52' prior: 50626623!
+test05CanCheckoutAValidCreatedCart
+	
+	| aCartId|
+	
+	aCartId:= storeFacade createCart: 'usuario' authenticatedWith: 'password'.
+	storeFacade addToCart: aCartId anItem: testObjectsFactory itemSellByTheStore quantity: 2.
+
+	self shouldnt: [storeFacade checkoutCart: aCartId 
+						   withCreditCard: '1111'
+						   ownedBy: 'Usuario password' 
+						   expiringOn: testObjectsFactory notExpiredMonth ]
+	      raise: Error-MessageNotUnderstood 
+	
+	
+
+	! !
+!StoreFacadeTest methodsFor: 'as yet unclassified' stamp: 'NB 6/12/2023 20:07:52' prior: 50626458 overrides: 16961394!
+setUp
+	
+	testObjectsFactory := StoreTestObjectsFactory new.
+	debitBehavior := [ :anAmount :aCreditCard | ].
+	authenticationBehaviour := [:aUser :aPassword |].
+	storeFacade:= StoreFacade withAuthenticator: self acceptingItemsOf: testObjectsFactory defaultCatalog through: self on: testObjectsFactory today registeringOn: OrderedCollection new.! !
+!StoreFacadeTest methodsFor: 'as yet unclassified' stamp: 'NB 6/12/2023 20:07:52' prior: 50626679!
+test06CannotCheckoutANotCreatedCart
+	
+	
+	self should: [storeFacade checkoutCart: nil 
+						   withCreditCard: '1111'
+						   ownedBy: 'Usuario password' 
+						   expiringOn: testObjectsFactory notExpiredMonth ]
+	      raise: Error-MessageNotUnderstood 
+	      withExceptionDo: [:anError | self assert: 'Invalid Cart Id provided' equals: anError messageText ].
+	
+	
+
+	! !
+!StoreFacadeTest methodsFor: 'as yet unclassified' stamp: 'NB 6/12/2023 20:07:52' prior: 50626547!
+test03CanAddItemsToCreatedCart
+
+	| aCartId|
+	
+	
+	aCartId:= storeFacade createCart: 'usuario' authenticatedWith: 'password'.
+	storeFacade addToCart: aCartId anItem: testObjectsFactory itemSellByTheStore quantity: 2.
+
+	self assert: 2 equals: (storeFacade listCart: aCartId) size.
+	self assert: (storeFacade listCart: aCartId) includes: testObjectsFactory itemSellByTheStore.! !
+
+!testRun: #StoreFacadeTest #test01createCartWithAValidUsernameAndPasswordThenListCartIsEmpty stamp: 'NB 6/12/2023 20:07:56'!
+PASSED!
+
+!testRun: #StoreFacadeTest #test02createCartWithAnInvalidUsernameAndPasswordRaisesError stamp: 'NB 6/12/2023 20:07:56'!
+PASSED!
+
+!testRun: #StoreFacadeTest #test03CanAddItemsToCreatedCart stamp: 'NB 6/12/2023 20:07:56'!
+PASSED!
+
+!testRun: #StoreFacadeTest #test04CannotAddItemsToAnInvalidCartId stamp: 'NB 6/12/2023 20:07:56'!
+PASSED!
+
+!testRun: #StoreFacadeTest #test05CanCheckoutAValidCreatedCart stamp: 'NB 6/12/2023 20:07:56'!
+PASSED!
+
+!testRun: #StoreFacadeTest #test06CannotCheckoutANotCreatedCart stamp: 'NB 6/12/2023 20:07:56'!
+PASSED!
+!StoreFacadeTest methodsFor: 'tests' stamp: 'NB 6/12/2023 20:10:45' prior: 50626803!
+test03CanAddItemsToCreatedCart
+
+	| aCartId|
+	
+	
+	aCartId:= storeFacade createCart: 'usuario' authenticatedWith: 'password'.
+	storeFacade addToCart: aCartId anItem: testObjectsFactory itemSellByTheStore quantity: 2.
+
+	self assert: 2 equals: (storeFacade listCart: aCartId) size.
+	self assert: 2 equals: ((storeFacade listCart: aCartId) occurrencesOf: testObjectsFactory itemSellByTheStore).! !
+
+!testRun: #StoreFacadeTest #test03CanAddItemsToCreatedCart stamp: 'NB 6/12/2023 20:10:47'!
+PASSED!
+
+!testRun: #StoreFacadeTest #test01createCartWithAValidUsernameAndPasswordThenListCartIsEmpty stamp: 'NB 6/12/2023 20:10:47'!
+PASSED!
+
+!testRun: #StoreFacadeTest #test02createCartWithAnInvalidUsernameAndPasswordRaisesError stamp: 'NB 6/12/2023 20:10:47'!
+PASSED!
+
+!testRun: #StoreFacadeTest #test03CanAddItemsToCreatedCart stamp: 'NB 6/12/2023 20:10:47'!
+PASSED!
+
+!testRun: #StoreFacadeTest #test04CannotAddItemsToAnInvalidCartId stamp: 'NB 6/12/2023 20:10:47'!
+PASSED!
+
+!testRun: #StoreFacadeTest #test05CanCheckoutAValidCreatedCart stamp: 'NB 6/12/2023 20:10:47'!
+PASSED!
+
+!testRun: #StoreFacadeTest #test06CannotCheckoutANotCreatedCart stamp: 'NB 6/12/2023 20:10:47'!
+PASSED!
+
+----SNAPSHOT----(12 June 2023 20:10:55) CuisUniversity-5832.image priorSource: 9431134!
+
+----SNAPSHOT----(12 June 2023 20:10:58) CuisUniversity-5832.image priorSource: 9447283!
+
+----SNAPSHOT----(12 June 2023 20:46:20) CuisUniversity-5832.image priorSource: 9447372!
+
+!classRemoval: #StoreTestObjectsFactory stamp: 'NB 6/12/2023 20:47:08'!
+Object subclass: #StoreTestObjectsFactory
+	instanceVariableNames: 'today'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classRemoval: #StoreFacade stamp: 'NB 6/12/2023 20:47:08'!
+Object subclass: #StoreFacade
+	instanceVariableNames: 'storeFacadeAuthenticator catalog lastId carts merchantProcessor date salesBook'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classRemoval: #CreditCard stamp: 'NB 6/12/2023 20:47:09'!
+Object subclass: #CreditCard
+	instanceVariableNames: 'expiration'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classRemoval: #Cashier stamp: 'NB 6/12/2023 20:47:09'!
+Object subclass: #Cashier
+	instanceVariableNames: 'cart salesBook merchantProcessor creditCard total'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classRemoval: #Cart stamp: 'NB 6/12/2023 20:47:09'!
+Object subclass: #Cart
+	instanceVariableNames: 'catalog items'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classRemoval: #StoreFacadeTest stamp: 'NB 6/12/2023 20:47:09'!
+TestCase subclass: #StoreFacadeTest
+	instanceVariableNames: 'authenticationBehaviour testObjectsFactory debitBehavior storeFacade'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classRemoval: #CashierTest stamp: 'NB 6/12/2023 20:47:09'!
+TestCase subclass: #CashierTest
+	instanceVariableNames: 'testObjectsFactory debitBehavior'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classRemoval: #CartTest stamp: 'NB 6/12/2023 20:47:09'!
+TestCase subclass: #CartTest
+	instanceVariableNames: 'testObjectsFactory'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+----End fileIn of /Users/nico/Documents/inge1/2023-1c/09-TusLibros/TusLibros.iteracion.2.st----!
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'NB 6/12/2023 20:47:27'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'NB 6/12/2023 20:47:27'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'NB 6/12/2023 20:47:27'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'NB 6/12/2023 20:47:27'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'NB 6/12/2023 20:47:27'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'NB 6/12/2023 20:47:27'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'NB 6/12/2023 20:47:27'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'NB 6/12/2023 20:47:27'!
+PASSED!
+
+!testRun: #CashierTest #test01CanNotCheckoutAnEmptyCart stamp: 'NB 6/12/2023 20:47:27'!
+PASSED!
+
+!testRun: #CashierTest #test02CalculatedTotalIsCorrect stamp: 'NB 6/12/2023 20:47:27'!
+PASSED!
+
+!testRun: #CashierTest #test03CanNotCheckoutWithAnExpiredCreditCart stamp: 'NB 6/12/2023 20:47:27'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutRegistersASale stamp: 'NB 6/12/2023 20:47:27'!
+PASSED!
+
+!testRun: #CashierTest #test05CashierChargesCreditCardUsingMerchantProcessor stamp: 'NB 6/12/2023 20:47:27'!
+PASSED!
+
+!testRun: #CashierTest #test06CashierDoesNotSaleWhenTheCreditCardHasNoCredit stamp: 'NB 6/12/2023 20:47:27'!
+PASSED!
+
+!classRemoval: #StoreTestObjectsFactory stamp: 'NB 6/12/2023 20:47:40'!
+Object subclass: #StoreTestObjectsFactory
+	instanceVariableNames: 'today'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classRemoval: #CreditCard stamp: 'NB 6/12/2023 20:47:40'!
+Object subclass: #CreditCard
+	instanceVariableNames: 'expiration'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classRemoval: #Cashier stamp: 'NB 6/12/2023 20:47:41'!
+Object subclass: #Cashier
+	instanceVariableNames: 'cart salesBook merchantProcessor creditCard total'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classRemoval: #Cart stamp: 'NB 6/12/2023 20:47:41'!
+Object subclass: #Cart
+	instanceVariableNames: 'catalog items'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classRemoval: #CashierTest stamp: 'NB 6/12/2023 20:47:41'!
+TestCase subclass: #CashierTest
+	instanceVariableNames: 'testObjectsFactory debitBehavior'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classRemoval: #CartTest stamp: 'NB 6/12/2023 20:47:41'!
+TestCase subclass: #CartTest
+	instanceVariableNames: 'testObjectsFactory'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+----End fileIn of /Users/nico/Documents/inge1/2023-1c/09-TusLibros/TusLibros.iteracion.2.5.st----!
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'NB 6/12/2023 20:48:01'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'NB 6/12/2023 20:48:01'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'NB 6/12/2023 20:48:01'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'NB 6/12/2023 20:48:01'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'NB 6/12/2023 20:48:01'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'NB 6/12/2023 20:48:01'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'NB 6/12/2023 20:48:01'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'NB 6/12/2023 20:48:01'!
+PASSED!
+
+!testRun: #CashierTest #test01CanNotCheckoutAnEmptyCart stamp: 'NB 6/12/2023 20:48:01'!
+PASSED!
+
+!testRun: #CashierTest #test02CalculatedTotalIsCorrect stamp: 'NB 6/12/2023 20:48:01'!
+PASSED!
+
+!testRun: #CashierTest #test03CanNotCheckoutWithAnExpiredCreditCart stamp: 'NB 6/12/2023 20:48:01'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutRegistersASale stamp: 'NB 6/12/2023 20:48:01'!
+PASSED!
+
+!testRun: #CashierTest #test05CashierChargesCreditCardUsingMerchantProcessor stamp: 'NB 6/12/2023 20:48:01'!
+PASSED!
+
+!testRun: #CashierTest #test06CashierDoesNotSaleWhenTheCreditCardHasNoCredit stamp: 'NB 6/12/2023 20:48:01'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test01CanCreateCartWithValidUserAndPassword stamp: 'NB 6/12/2023 20:48:01'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02CanNotCreateCartWithInvalidUser stamp: 'NB 6/12/2023 20:48:01'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03CanNotCreateCartWithInvalidPassword stamp: 'NB 6/12/2023 20:48:01'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04CanAddItemsToACreatedCart stamp: 'NB 6/12/2023 20:48:01'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05CanNotAddItemToNotCreatedCart stamp: 'NB 6/12/2023 20:48:01'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06CanNotAddItemNotSellByTheStore stamp: 'NB 6/12/2023 20:48:01'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07ListCartOfAnEmptyCartReturnsAnEmptyBag stamp: 'NB 6/12/2023 20:48:01'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08CanNotListCartOfInvalidCartId stamp: 'NB 6/12/2023 20:48:01'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09ListCartReturnsTheRightNumberOfItems stamp: 'NB 6/12/2023 20:48:01'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10CanCheckoutACart stamp: 'NB 6/12/2023 20:48:01'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11CanNotCheckoutANotCreatedCart stamp: 'NB 6/12/2023 20:48:01'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12CanNotCheckoutAnEmptyCart stamp: 'NB 6/12/2023 20:48:01'!
+PASSED!
+
+!classDefinition: #Clock category: 'TusLibros' stamp: 'NB 6/12/2023 20:50:38'!
+Object subclass: #Clock
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'NB 6/12/2023 20:50:34'!
+test13CannotUseCartAfter30minutesHavePassesSinceLastOperationWithIt
+	
+	| interface cartId |
+
+	interface := self createDefaultInterface.
+
+	(Clock new) time: DateAndTime now.
+	
+	cartId := interface createCartFor: self validUser authenticatedWith: self validUserPassword.
+	
+	self
+		should: [interface 
+			checkOutCartIdentifiedAs: cartId 
+			withCreditCardNumbered: '1111222233334444' 
+			ownedBy: 'Juan Perez' 
+			expiringOn: testObjectsFactory notExpiredMonthOfYear ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = interface cartCanNotBeEmptyErrorMessage ]
+		
+		! !
+
+TestCase subclass: #RestInterfaceTest
+	instanceVariableNames: 'testObjectsFactory clock'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #RestInterfaceTest category: 'TusLibros' stamp: 'NB 6/12/2023 20:50:55'!
+TestCase subclass: #RestInterfaceTest
+	instanceVariableNames: 'testObjectsFactory clock'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'NB 6/12/2023 20:51:54' prior: 50627844!
+createDefaultInterface
+	
+	^RestInterface
+		authenticatingWith: self
+		acceptingItemsOf: testObjectsFactory defaultCatalog
+		merchantProcessor: self
+		on: clock.! !
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'NB 6/12/2023 20:52:13' prior: 50628673!
+createDefaultInterface
+	
+	^RestInterface
+		authenticatingWith: self
+		acceptingItemsOf: testObjectsFactory defaultCatalog
+		merchantProcessor: self
+		withClock: clock.! !
+!RestInterface class methodsFor: 'as yet unclassified' stamp: 'NB 6/12/2023 20:52:34'!
+authenticatingWith: aValidUsersAndPasswords acceptingItemsOf: aCatalog merchantProcessor: anMP withClock: aClock
+
+	^self new initializeAuthenticatingWith: aValidUsersAndPasswords acceptingItemsOf: aCatalog merchantProcessor: anMP withClock: aClock.! !
+
+!classDefinition: #RestInterface category: 'TusLibros' stamp: 'NB 6/12/2023 20:53:02'!
+Object subclass: #RestInterface
+	instanceVariableNames: 'authenticationSystem carts catalog lastId merchantProcessor salesBook clock'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!RestInterface methodsFor: 'as yet unclassified' stamp: 'NB 6/12/2023 20:53:00'!
+initializeAuthenticatingWith: anAuthenticationSystem acceptingItemsOf: aCatalog merchantProcessor: anMP withClock: aClock
+
+	authenticationSystem := anAuthenticationSystem.
+	catalog := aCatalog.
+	carts := Dictionary new.
+	lastId := 0.
+	merchantProcessor := anMP.
+	clock:= aClock.! !
+
+!testRun: #RestInterfaceTest #test01CanCreateCartWithValidUserAndPassword stamp: 'NB 6/12/2023 20:53:12'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02CanNotCreateCartWithInvalidUser stamp: 'NB 6/12/2023 20:53:12'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03CanNotCreateCartWithInvalidPassword stamp: 'NB 6/12/2023 20:53:12'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04CanAddItemsToACreatedCart stamp: 'NB 6/12/2023 20:53:12'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05CanNotAddItemToNotCreatedCart stamp: 'NB 6/12/2023 20:53:12'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06CanNotAddItemNotSellByTheStore stamp: 'NB 6/12/2023 20:53:12'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07ListCartOfAnEmptyCartReturnsAnEmptyBag stamp: 'NB 6/12/2023 20:53:12'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08CanNotListCartOfInvalidCartId stamp: 'NB 6/12/2023 20:53:12'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09ListCartReturnsTheRightNumberOfItems stamp: 'NB 6/12/2023 20:53:12'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10CanCheckoutACart stamp: 'NB 6/12/2023 20:53:12'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11CanNotCheckoutANotCreatedCart stamp: 'NB 6/12/2023 20:53:12'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12CanNotCheckoutAnEmptyCart stamp: 'NB 6/12/2023 20:53:12'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test13CannotUseCartAfter30minutesHavePassesSinceLastOperationWithIt stamp: 'NB 6/12/2023 20:53:12'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test13CannotUseCartAfter30minutesHavePassesSinceLastOperationWithIt stamp: 'NB 6/12/2023 20:53:12'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test13CannotUseCartAfter30minutesHavePassesSinceLastOperationWithIt stamp: 'NB 6/12/2023 20:53:23'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test13CannotUseCartAfter30minutesHavePassesSinceLastOperationWithIt stamp: 'NB 6/12/2023 20:53:23'!
+ERROR!
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'NB 6/12/2023 20:54:06' prior: 50628637!
+test13CannotUseCartAfter30minutesHavePassesSinceLastOperationWithIt
+	
+	| interface cartId |
+
+	interface := self createDefaultInterface.
+
+	(Clock new) time: DateAndTime now.
+	
+	cartId := interface createCartFor: self validUser authenticatedWith: self validUserPassword.
+	
+	self
+		should: [interface add: self validBook quantity: 1 toCartIdentifiedAs: cartId ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = interface cannotUseCartAfter30MinutesErrorMessage ]
+		
+		! !
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'NB 6/12/2023 20:54:34' prior: 50628781!
+test13CannotUseCartAfter30minutesHavePassesSinceLastOperationWithIt
+	
+	| interface cartId |
+
+	interface := self createDefaultInterface.
+	
+	cartId := interface createCartFor: self validUser authenticatedWith: self validUserPassword.
+	
+	
+	
+	self
+		should: [interface add: self validBook quantity: 1 toCartIdentifiedAs: cartId ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = interface cannotUseCartAfter30MinutesErrorMessage ]
+		
+		! !
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'NB 6/12/2023 20:55:16' prior: 50627883 overrides: 16961394!
+setUp 
+
+	testObjectsFactory := StoreTestObjectsFactory new.
+	clock time: DateAndTime now.
+! !
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'NB 6/12/2023 20:55:35' prior: 50628821 overrides: 16961394!
+setUp 
+
+	testObjectsFactory := StoreTestObjectsFactory new.
+	clock:= Clock new.
+	clock time: DateAndTime now.
+! !
+!Clock methodsFor: 'category-name' stamp: 'NB 6/12/2023 20:55:50'!
+time: aRenameMe1 
+	self shouldBeImplemented.! !
+
+!classDefinition: #Clock category: 'TusLibros' stamp: 'NB 6/12/2023 20:56:06'!
+Object subclass: #Clock
+	instanceVariableNames: 'time'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!Clock methodsFor: 'category-name' stamp: 'NB 6/12/2023 20:56:05' prior: 50628834!
+time: aTime 
+	
+	time:= aTime.! !
+
+!testRun: #RestInterfaceTest #test01CanCreateCartWithValidUserAndPassword stamp: 'NB 6/12/2023 20:56:07'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test01CanCreateCartWithValidUserAndPassword stamp: 'NB 6/12/2023 20:56:12'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02CanNotCreateCartWithInvalidUser stamp: 'NB 6/12/2023 20:56:12'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03CanNotCreateCartWithInvalidPassword stamp: 'NB 6/12/2023 20:56:12'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04CanAddItemsToACreatedCart stamp: 'NB 6/12/2023 20:56:12'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05CanNotAddItemToNotCreatedCart stamp: 'NB 6/12/2023 20:56:12'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06CanNotAddItemNotSellByTheStore stamp: 'NB 6/12/2023 20:56:12'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07ListCartOfAnEmptyCartReturnsAnEmptyBag stamp: 'NB 6/12/2023 20:56:12'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08CanNotListCartOfInvalidCartId stamp: 'NB 6/12/2023 20:56:12'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09ListCartReturnsTheRightNumberOfItems stamp: 'NB 6/12/2023 20:56:12'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10CanCheckoutACart stamp: 'NB 6/12/2023 20:56:12'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11CanNotCheckoutANotCreatedCart stamp: 'NB 6/12/2023 20:56:12'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12CanNotCheckoutAnEmptyCart stamp: 'NB 6/12/2023 20:56:12'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test13CannotUseCartAfter30minutesHavePassesSinceLastOperationWithIt stamp: 'NB 6/12/2023 20:56:12'!
+FAILURE!
+
+!testRun: #RestInterfaceTest #test13CannotUseCartAfter30minutesHavePassesSinceLastOperationWithIt stamp: 'NB 6/12/2023 20:56:12'!
+FAILURE!
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'NB 6/12/2023 20:59:13' prior: 50628801!
+test13CannotUseCartAfter30minutesHavePassesSinceLastOperationWithIt
+	
+	| interface cartId |
+
+	interface := self createDefaultInterface.
+	
+	cartId := interface createCartFor: self validUser authenticatedWith: self validUserPassword.
+	
+	clock time: ((DateAndTime now) + Duration minutes: 31).
+	
+	self
+		should: [interface add: self validBook quantity: 1 toCartIdentifiedAs: cartId ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = interface cannotUseCartAfter30MinutesErrorMessage ]
+		
+		! !
+
+!classDefinition: #RestInterface category: 'TusLibros' stamp: 'NB 6/12/2023 21:00:13'!
+Object subclass: #RestInterface
+	instanceVariableNames: 'authenticationSystem carts catalog lastId merchantProcessor salesBook clock lastTimeCartUsed'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!RestInterface methodsFor: 'as yet unclassified' stamp: 'NB 6/12/2023 21:00:11' prior: 50628338!
+add: aBook quantity: anAmount toCartIdentifiedAs: aCartId
+
+	| cart |
+	
+	lastTimeCartUsed:= clock time.
+	
+	cart := carts at: aCartId ifAbsent: [ self signalInvalidCartId ].
+	cart add: anAmount of: aBook ! !
+
+!testRun: #RestInterfaceTest #test01CanCreateCartWithValidUserAndPassword stamp: 'NB 6/12/2023 21:00:13'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02CanNotCreateCartWithInvalidUser stamp: 'NB 6/12/2023 21:00:13'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03CanNotCreateCartWithInvalidPassword stamp: 'NB 6/12/2023 21:00:13'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04CanAddItemsToACreatedCart stamp: 'NB 6/12/2023 21:00:13'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test05CanNotAddItemToNotCreatedCart stamp: 'NB 6/12/2023 21:00:13'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test06CanNotAddItemNotSellByTheStore stamp: 'NB 6/12/2023 21:00:13'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test07ListCartOfAnEmptyCartReturnsAnEmptyBag stamp: 'NB 6/12/2023 21:00:13'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08CanNotListCartOfInvalidCartId stamp: 'NB 6/12/2023 21:00:13'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09ListCartReturnsTheRightNumberOfItems stamp: 'NB 6/12/2023 21:00:13'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test10CanCheckoutACart stamp: 'NB 6/12/2023 21:00:13'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test11CanNotCheckoutANotCreatedCart stamp: 'NB 6/12/2023 21:00:13'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12CanNotCheckoutAnEmptyCart stamp: 'NB 6/12/2023 21:00:13'!
+PASSED!
+!Clock methodsFor: 'category-name' stamp: 'NB 6/12/2023 21:00:26'!
+time
+	
+	^time! !
+
+!testRun: #RestInterfaceTest #test06CanNotAddItemNotSellByTheStore stamp: 'NB 6/12/2023 21:00:35'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09ListCartReturnsTheRightNumberOfItems stamp: 'NB 6/12/2023 21:00:35'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10CanCheckoutACart stamp: 'NB 6/12/2023 21:00:35'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05CanNotAddItemToNotCreatedCart stamp: 'NB 6/12/2023 21:00:35'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04CanAddItemsToACreatedCart stamp: 'NB 6/12/2023 21:00:35'!
+PASSED!
+!RestInterface methodsFor: 'as yet unclassified' stamp: 'NB 6/12/2023 21:00:53' prior: 50628353!
+checkOutCartIdentifiedAs: aCartId withCreditCardNumbered: aCreditCartNumber ownedBy: anOwner expiringOn: anExpirationMonthOfYear
+
+	| cart |
+	
+	cart := carts at: aCartId ifAbsent: [self signalInvalidCartId ].
+	
+	Cashier 
+		toCheckout: cart 
+		charging: (CreditCard expiringOn: anExpirationMonthOfYear) 
+		throught: merchantProcessor 
+		on: self today 
+		registeringOn: salesBook.
+		
+	lastTimeCartUsed:= clock time.! !
+!RestInterface methodsFor: 'as yet unclassified' stamp: 'NB 6/12/2023 21:01:04' prior: 50628933!
+add: aBook quantity: anAmount toCartIdentifiedAs: aCartId
+
+	| cart |
+	
+	
+	
+	cart := carts at: aCartId ifAbsent: [ self signalInvalidCartId ].
+	cart add: anAmount of: aBook.
+	
+	lastTimeCartUsed:= clock time.! !
+!RestInterface methodsFor: 'as yet unclassified' stamp: 'NB 6/12/2023 21:01:18' prior: 50628368!
+createCartFor: aUser authenticatedWith: aPassword
+
+	| cartId |
+	
+	(self is: aUser authenticatingWith: aPassword) ifFalse: [ self signalInvalidUserAndOrPassword ].
+	
+	cartId := self generateCartId.
+	carts at: cartId put: (Cart acceptingItemsOf: catalog).
+	
+	lastTimeCartUsed:= clock time.
+	
+	^cartId ! !
+!RestInterface methodsFor: 'as yet unclassified' stamp: 'NB 6/12/2023 21:02:45' prior: 50629019!
+add: aBook quantity: anAmount toCartIdentifiedAs: aCartId
+
+	| cart |
+	
+	(clock time - lastTimeCartUsed ) > (Duration minutes: 30) ifTrue: [self error: self class].
+	
+	cart := carts at: aCartId ifAbsent: [ self signalInvalidCartId ].
+	cart add: anAmount of: aBook.
+	
+	lastTimeCartUsed:= clock time.! !
+!RestInterface methodsFor: 'as yet unclassified' stamp: 'NB 6/12/2023 21:03:04' prior: 50629042!
+add: aBook quantity: anAmount toCartIdentifiedAs: aCartId
+
+	| cart |
+	
+	(clock time - lastTimeCartUsed ) > (Duration minutes: 30) ifTrue: [self error: self class cannotUseCartAfter30MinutesErrorMessage].
+	
+	cart := carts at: aCartId ifAbsent: [ self signalInvalidCartId ].
+	cart add: anAmount of: aBook.
+	
+	lastTimeCartUsed:= clock time.! !
+
+!testRun: #RestInterfaceTest #test01CanCreateCartWithValidUserAndPassword stamp: 'NB 6/12/2023 21:03:05'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02CanNotCreateCartWithInvalidUser stamp: 'NB 6/12/2023 21:03:05'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03CanNotCreateCartWithInvalidPassword stamp: 'NB 6/12/2023 21:03:05'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04CanAddItemsToACreatedCart stamp: 'NB 6/12/2023 21:03:05'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05CanNotAddItemToNotCreatedCart stamp: 'NB 6/12/2023 21:03:05'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test06CanNotAddItemNotSellByTheStore stamp: 'NB 6/12/2023 21:03:05'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07ListCartOfAnEmptyCartReturnsAnEmptyBag stamp: 'NB 6/12/2023 21:03:05'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08CanNotListCartOfInvalidCartId stamp: 'NB 6/12/2023 21:03:05'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09ListCartReturnsTheRightNumberOfItems stamp: 'NB 6/12/2023 21:03:05'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10CanCheckoutACart stamp: 'NB 6/12/2023 21:03:05'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11CanNotCheckoutANotCreatedCart stamp: 'NB 6/12/2023 21:03:05'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12CanNotCheckoutAnEmptyCart stamp: 'NB 6/12/2023 21:03:05'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05CanNotAddItemToNotCreatedCart stamp: 'NB 6/12/2023 21:03:09'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test01CanCreateCartWithValidUserAndPassword stamp: 'NB 6/12/2023 21:03:36'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02CanNotCreateCartWithInvalidUser stamp: 'NB 6/12/2023 21:03:36'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03CanNotCreateCartWithInvalidPassword stamp: 'NB 6/12/2023 21:03:36'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04CanAddItemsToACreatedCart stamp: 'NB 6/12/2023 21:03:36'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05CanNotAddItemToNotCreatedCart stamp: 'NB 6/12/2023 21:03:36'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test06CanNotAddItemNotSellByTheStore stamp: 'NB 6/12/2023 21:03:36'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07ListCartOfAnEmptyCartReturnsAnEmptyBag stamp: 'NB 6/12/2023 21:03:36'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08CanNotListCartOfInvalidCartId stamp: 'NB 6/12/2023 21:03:36'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09ListCartReturnsTheRightNumberOfItems stamp: 'NB 6/12/2023 21:03:36'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10CanCheckoutACart stamp: 'NB 6/12/2023 21:03:36'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11CanNotCheckoutANotCreatedCart stamp: 'NB 6/12/2023 21:03:36'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12CanNotCheckoutAnEmptyCart stamp: 'NB 6/12/2023 21:03:36'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05CanNotAddItemToNotCreatedCart stamp: 'NB 6/12/2023 21:03:41'!
+ERROR!
+!RestInterface methodsFor: 'as yet unclassified' stamp: 'NB 6/12/2023 21:04:28' prior: 50629055!
+add: aBook quantity: anAmount toCartIdentifiedAs: aCartId
+
+	| cart |
+
+	
+	cart := carts at: aCartId ifAbsent: [ self signalInvalidCartId ].
+	
+	(clock time - lastTimeCartUsed ) > (Duration minutes: 30) ifTrue: [self error: self class cannotUseCartAfter30MinutesErrorMessage].
+	
+	cart add: anAmount of: aBook.
+	
+	lastTimeCartUsed:= clock time.! !
+
+!testRun: #RestInterfaceTest #test01CanCreateCartWithValidUserAndPassword stamp: 'NB 6/12/2023 21:04:29'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02CanNotCreateCartWithInvalidUser stamp: 'NB 6/12/2023 21:04:29'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03CanNotCreateCartWithInvalidPassword stamp: 'NB 6/12/2023 21:04:29'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04CanAddItemsToACreatedCart stamp: 'NB 6/12/2023 21:04:29'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05CanNotAddItemToNotCreatedCart stamp: 'NB 6/12/2023 21:04:29'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06CanNotAddItemNotSellByTheStore stamp: 'NB 6/12/2023 21:04:29'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07ListCartOfAnEmptyCartReturnsAnEmptyBag stamp: 'NB 6/12/2023 21:04:29'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08CanNotListCartOfInvalidCartId stamp: 'NB 6/12/2023 21:04:29'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09ListCartReturnsTheRightNumberOfItems stamp: 'NB 6/12/2023 21:04:29'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10CanCheckoutACart stamp: 'NB 6/12/2023 21:04:29'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11CanNotCheckoutANotCreatedCart stamp: 'NB 6/12/2023 21:04:29'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12CanNotCheckoutAnEmptyCart stamp: 'NB 6/12/2023 21:04:29'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test13CannotUseCartAfter30minutesHavePassesSinceLastOperationWithIt stamp: 'NB 6/12/2023 21:04:54'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test01CanCreateCartWithValidUserAndPassword stamp: 'NB 6/12/2023 21:05:54'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02CanNotCreateCartWithInvalidUser stamp: 'NB 6/12/2023 21:05:54'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03CanNotCreateCartWithInvalidPassword stamp: 'NB 6/12/2023 21:05:54'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04CanAddItemsToACreatedCart stamp: 'NB 6/12/2023 21:05:54'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05CanNotAddItemToNotCreatedCart stamp: 'NB 6/12/2023 21:05:54'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06CanNotAddItemNotSellByTheStore stamp: 'NB 6/12/2023 21:05:54'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07ListCartOfAnEmptyCartReturnsAnEmptyBag stamp: 'NB 6/12/2023 21:05:54'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08CanNotListCartOfInvalidCartId stamp: 'NB 6/12/2023 21:05:54'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09ListCartReturnsTheRightNumberOfItems stamp: 'NB 6/12/2023 21:05:54'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10CanCheckoutACart stamp: 'NB 6/12/2023 21:05:54'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11CanNotCheckoutANotCreatedCart stamp: 'NB 6/12/2023 21:05:54'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12CanNotCheckoutAnEmptyCart stamp: 'NB 6/12/2023 21:05:54'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test01CanCreateCartWithValidUserAndPassword stamp: 'NB 6/12/2023 21:06:55'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02CanNotCreateCartWithInvalidUser stamp: 'NB 6/12/2023 21:06:55'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03CanNotCreateCartWithInvalidPassword stamp: 'NB 6/12/2023 21:06:55'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04CanAddItemsToACreatedCart stamp: 'NB 6/12/2023 21:06:55'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05CanNotAddItemToNotCreatedCart stamp: 'NB 6/12/2023 21:06:55'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06CanNotAddItemNotSellByTheStore stamp: 'NB 6/12/2023 21:06:55'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07ListCartOfAnEmptyCartReturnsAnEmptyBag stamp: 'NB 6/12/2023 21:06:55'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08CanNotListCartOfInvalidCartId stamp: 'NB 6/12/2023 21:06:55'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09ListCartReturnsTheRightNumberOfItems stamp: 'NB 6/12/2023 21:06:55'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10CanCheckoutACart stamp: 'NB 6/12/2023 21:06:55'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11CanNotCheckoutANotCreatedCart stamp: 'NB 6/12/2023 21:06:55'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12CanNotCheckoutAnEmptyCart stamp: 'NB 6/12/2023 21:06:55'!
+PASSED!
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'NB 6/12/2023 21:07:48' prior: 50628903!
+test13CannotUseCartAfter30minutesHavePassesSinceLastOperationWithIt
+	
+	| interface cartId |
+
+	interface := self createDefaultInterface.
+	
+	cartId := interface createCartFor: self validUser authenticatedWith: self validUserPassword.
+	
+	clock time: ((DateAndTime now) + (Duration minutes: 31)).
+	
+	self
+		should: [interface add: self validBook quantity: 1 toCartIdentifiedAs: cartId ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = interface cannotUseCartAfter30MinutesErrorMessage ]
+		
+		! !
+
+!testRun: #RestInterfaceTest #test13CannotUseCartAfter30minutesHavePassesSinceLastOperationWithIt stamp: 'NB 6/12/2023 21:07:49'!
+ERROR!
+!RestInterface class methodsFor: 'as yet unclassified' stamp: 'NB 6/12/2023 21:08:00'!
+cannotUseCartAfter30MinutesErrorMessage
+	self shouldBeImplemented.! !
+!RestInterface class methodsFor: 'as yet unclassified' stamp: 'NB 6/12/2023 21:08:30' prior: 50629322!
+cannotUseCartAfter30MinutesErrorMessage
+	
+	^'Cart cannot be used after 30 minutes of inactivity'.! !
+
+!testRun: #RestInterfaceTest #test13CannotUseCartAfter30minutesHavePassesSinceLastOperationWithIt stamp: 'NB 6/12/2023 21:08:31'!
+ERROR!
+!RestInterface methodsFor: 'as yet unclassified' stamp: 'NB 6/12/2023 21:08:42'!
+cannotUseCartAfter30MinutesErrorMessage
+	self shouldBeImplemented.! !
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'NB 6/12/2023 21:09:21' prior: 50629297!
+test13CannotUseCartAfter30minutesHavePassesSinceLastOperationWithIt
+	
+	| interface cartId |
+
+	interface := self createDefaultInterface.
+	
+	cartId := interface createCartFor: self validUser authenticatedWith: self validUserPassword.
+	
+	clock time: ((DateAndTime now) + (Duration minutes: 31)).
+	
+	self
+		should: [interface add: self validBook quantity: 1 toCartIdentifiedAs: cartId ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = RestInterface cannotUseCartAfter30MinutesErrorMessage ]
+		
+		! !
+
+!methodRemoval: RestInterface #cannotUseCartAfter30MinutesErrorMessage stamp: 'NB 6/12/2023 21:09:29'!
+cannotUseCartAfter30MinutesErrorMessage
+	self shouldBeImplemented.!
+
+!testRun: #RestInterfaceTest #test01CanCreateCartWithValidUserAndPassword stamp: 'NB 6/12/2023 21:09:32'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02CanNotCreateCartWithInvalidUser stamp: 'NB 6/12/2023 21:09:32'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03CanNotCreateCartWithInvalidPassword stamp: 'NB 6/12/2023 21:09:32'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04CanAddItemsToACreatedCart stamp: 'NB 6/12/2023 21:09:32'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05CanNotAddItemToNotCreatedCart stamp: 'NB 6/12/2023 21:09:32'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06CanNotAddItemNotSellByTheStore stamp: 'NB 6/12/2023 21:09:32'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07ListCartOfAnEmptyCartReturnsAnEmptyBag stamp: 'NB 6/12/2023 21:09:32'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08CanNotListCartOfInvalidCartId stamp: 'NB 6/12/2023 21:09:32'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09ListCartReturnsTheRightNumberOfItems stamp: 'NB 6/12/2023 21:09:32'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10CanCheckoutACart stamp: 'NB 6/12/2023 21:09:32'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11CanNotCheckoutANotCreatedCart stamp: 'NB 6/12/2023 21:09:32'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12CanNotCheckoutAnEmptyCart stamp: 'NB 6/12/2023 21:09:32'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test13CannotUseCartAfter30minutesHavePassesSinceLastOperationWithIt stamp: 'NB 6/12/2023 21:09:32'!
+PASSED!
+
+----SNAPSHOT----(12 June 2023 21:09:43) CuisUniversity-5832.image priorSource: 9447461!
+!Clock methodsFor: 'category-name' stamp: 'NB 6/12/2023 21:13:50'!
+advanceTime: aTime 
+	
+	time:= aTime.! !
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'NB 6/12/2023 21:13:50' prior: 50629344!
+test13CannotUseCartAfter30minutesHavePassesSinceLastOperationWithIt
+	
+	| interface cartId |
+
+	interface := self createDefaultInterface.
+	
+	cartId := interface createCartFor: self validUser authenticatedWith: self validUserPassword.
+	
+	clock advanceTime: ((DateAndTime now) + (Duration minutes: 31)).
+	
+	self
+		should: [interface add: self validBook quantity: 1 toCartIdentifiedAs: cartId ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = RestInterface cannotUseCartAfter30MinutesErrorMessage ]
+		
+		! !
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'NB 6/12/2023 21:13:50' prior: 50628828 overrides: 16961394!
+setUp 
+
+	testObjectsFactory := StoreTestObjectsFactory new.
+	clock:= Clock new.
+	clock advanceTime: DateAndTime now.
+! !
+
+!methodRemoval: Clock #time: stamp: 'NB 6/12/2023 21:13:50'!
+time: aTime 
+	
+	time:= aTime.!
+!Clock methodsFor: 'category-name' stamp: 'NB 6/12/2023 21:15:45' prior: 50629417!
+advanceTime: aDuration
+	
+	time:= time + aDuration.! !
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'NB 6/12/2023 21:16:18' prior: 50629422!
+test13CannotUseCartAfter30minutesHavePassesSinceLastOperationWithIt
+	
+	| interface cartId |
+
+	interface := self createDefaultInterface.
+	
+	cartId := interface createCartFor: self validUser authenticatedWith: self validUserPassword.
+	
+	clock advanceTime:  31*minute.
+	
+	self
+		should: [interface add: self validBook quantity: 1 toCartIdentifiedAs: cartId ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = RestInterface cannotUseCartAfter30MinutesErrorMessage ]
+		
+		! !
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'NB 6/12/2023 21:16:33' prior: 50629459!
+test13CannotUseCartAfter30minutesHavePassesSinceLastOperationWithIt
+	
+	| interface cartId |
+
+	interface := self createDefaultInterface.
+	
+	cartId := interface createCartFor: self validUser authenticatedWith: self validUserPassword.
+	
+	clock advanceTime: 31*minute.
+	
+	self
+		should: [interface add: self validBook quantity: 1 toCartIdentifiedAs: cartId ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = RestInterface cannotUseCartAfter30MinutesErrorMessage ]
+		
+		! !
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'NB 6/12/2023 21:17:18' prior: 50629444 overrides: 16961394!
+setUp 
+
+	testObjectsFactory := StoreTestObjectsFactory new.
+	clock:= Clock time: DateAndTime now.
+	
+! !
+!Clock class methodsFor: 'no messages' stamp: 'NB 6/12/2023 21:17:47'!
+time: aTime
+
+	^self new initializeWith: aTime.! !
+!Clock methodsFor: 'initialization' stamp: 'NB 6/12/2023 21:18:12'!
+initializeWith: aTime
+
+	time:= aTime.! !
+
+!testRun: #RestInterfaceTest #test01CanCreateCartWithValidUserAndPassword stamp: 'NB 6/12/2023 21:18:13'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02CanNotCreateCartWithInvalidUser stamp: 'NB 6/12/2023 21:18:13'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03CanNotCreateCartWithInvalidPassword stamp: 'NB 6/12/2023 21:18:13'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04CanAddItemsToACreatedCart stamp: 'NB 6/12/2023 21:18:13'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05CanNotAddItemToNotCreatedCart stamp: 'NB 6/12/2023 21:18:13'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06CanNotAddItemNotSellByTheStore stamp: 'NB 6/12/2023 21:18:13'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07ListCartOfAnEmptyCartReturnsAnEmptyBag stamp: 'NB 6/12/2023 21:18:13'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08CanNotListCartOfInvalidCartId stamp: 'NB 6/12/2023 21:18:13'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09ListCartReturnsTheRightNumberOfItems stamp: 'NB 6/12/2023 21:18:13'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10CanCheckoutACart stamp: 'NB 6/12/2023 21:18:13'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11CanNotCheckoutANotCreatedCart stamp: 'NB 6/12/2023 21:18:13'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12CanNotCheckoutAnEmptyCart stamp: 'NB 6/12/2023 21:18:13'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test13CannotUseCartAfter30minutesHavePassesSinceLastOperationWithIt stamp: 'NB 6/12/2023 21:18:22'!
+ERROR!
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'NB 6/12/2023 21:19:03' prior: 50629479!
+test13CannotUseCartAfter30minutesHavePassesSinceLastOperationWithIt
+	
+	| interface cartId |
+
+	interface := self createDefaultInterface.
+	
+	cartId := interface createCartFor: self validUser authenticatedWith: self validUserPassword.
+	
+	clock advanceTime: (Duration minutes: 31).
+	
+	self
+		should: [interface add: self validBook quantity: 1 toCartIdentifiedAs: cartId ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = RestInterface cannotUseCartAfter30MinutesErrorMessage ]
+		
+		! !
+
+!testRun: #RestInterfaceTest #test13CannotUseCartAfter30minutesHavePassesSinceLastOperationWithIt stamp: 'NB 6/12/2023 21:19:04'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test01CanCreateCartWithValidUserAndPassword stamp: 'NB 6/12/2023 21:19:04'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02CanNotCreateCartWithInvalidUser stamp: 'NB 6/12/2023 21:19:04'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03CanNotCreateCartWithInvalidPassword stamp: 'NB 6/12/2023 21:19:04'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04CanAddItemsToACreatedCart stamp: 'NB 6/12/2023 21:19:04'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05CanNotAddItemToNotCreatedCart stamp: 'NB 6/12/2023 21:19:04'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06CanNotAddItemNotSellByTheStore stamp: 'NB 6/12/2023 21:19:04'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07ListCartOfAnEmptyCartReturnsAnEmptyBag stamp: 'NB 6/12/2023 21:19:04'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08CanNotListCartOfInvalidCartId stamp: 'NB 6/12/2023 21:19:04'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09ListCartReturnsTheRightNumberOfItems stamp: 'NB 6/12/2023 21:19:04'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10CanCheckoutACart stamp: 'NB 6/12/2023 21:19:04'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11CanNotCheckoutANotCreatedCart stamp: 'NB 6/12/2023 21:19:04'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12CanNotCheckoutAnEmptyCart stamp: 'NB 6/12/2023 21:19:04'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test13CannotUseCartAfter30minutesHavePassesSinceLastOperationWithIt stamp: 'NB 6/12/2023 21:19:04'!
+PASSED!
+
+----SNAPSHOT----(12 June 2023 21:23:14) CuisUniversity-5832.image priorSource: 9528434!
+
+----SNAPSHOT----(12 June 2023 21:23:17) CuisUniversity-5832.image priorSource: 9535298!
+
+----SNAPSHOT----(12 June 2023 21:23:22) CuisUniversity-5832.image priorSource: 9535387!
+
+----SNAPSHOT----(12 June 2023 21:23:33) CuisUniversity-5832.image priorSource: 9535476!
+
+----SNAPSHOT----(12 June 2023 21:23:36) CuisUniversity-5832.image priorSource: 9535565!
+
+----SNAPSHOT----(12 June 2023 21:23:39) CuisUniversity-5832.image priorSource: 9535654!
+
+----SNAPSHOT----(12 June 2023 21:23:52) CuisUniversity-5832.image priorSource: 9535743!
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'NB 6/12/2023 21:29:06'!
+test13CannotAddItemsToCartAfter30minutesHavePassesSinceItWasCreated
+	
+	| interface cartId |
+
+	interface := self createDefaultInterface.
+	
+	cartId := interface createCartFor: self validUser authenticatedWith: self validUserPassword.
+	
+	clock advanceTime: (Duration minutes: 31).
+	
+	self
+		should: [interface add: self validBook quantity: 1 toCartIdentifiedAs: cartId ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = RestInterface cannotUseCartAfter30MinutesErrorMessage ]
+		
+		! !
+
+!methodRemoval: RestInterfaceTest #test13CannotUseCartAfter30minutesHavePassesSinceLastOperationWithIt stamp: 'NB 6/12/2023 21:29:06'!
+test13CannotUseCartAfter30minutesHavePassesSinceLastOperationWithIt
+	
+	| interface cartId |
+
+	interface := self createDefaultInterface.
+	
+	cartId := interface createCartFor: self validUser authenticatedWith: self validUserPassword.
+	
+	clock advanceTime: (Duration minutes: 31).
+	
+	self
+		should: [interface add: self validBook quantity: 1 toCartIdentifiedAs: cartId ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = RestInterface cannotUseCartAfter30MinutesErrorMessage ]
+		
+		!
+
+!testRun: #RestInterfaceTest #test13CannotAddItemsToCartAfter30minutesHavePassesSinceItWasCreated stamp: 'NB 6/12/2023 21:29:09'!
+PASSED!
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'NB 6/12/2023 21:30:51'!
+test14CannotListCartAfterSessionOf30minutesHasExpired
+	
+	| interface cartId |
+
+	interface := self createDefaultInterface.
+	
+	cartId := interface createCartFor: self validUser authenticatedWith: self validUserPassword.
+	
+	clock advanceTime: (Duration minutes: 31).
+	
+	self
+		should: [interface add: self validBook quantity: 1 toCartIdentifiedAs: cartId ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = RestInterface cannotUseCartAfter30MinutesErrorMessage ]
+		
+		! !
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'NB 6/12/2023 21:31:13'!
+test13CannotAddItemsToCartAfterSessionOf30minutesHasExpired
+	
+	| interface cartId |
+
+	interface := self createDefaultInterface.
+	
+	cartId := interface createCartFor: self validUser authenticatedWith: self validUserPassword.
+	
+	clock advanceTime: (Duration minutes: 31).
+	
+	self
+		should: [interface add: self validBook quantity: 1 toCartIdentifiedAs: cartId ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = RestInterface cannotUseCartAfter30MinutesErrorMessage ]
+		
+		! !
+
+!methodRemoval: RestInterfaceTest #test13CannotAddItemsToCartAfter30minutesHavePassesSinceItWasCreated stamp: 'NB 6/12/2023 21:31:13'!
+test13CannotAddItemsToCartAfter30minutesHavePassesSinceItWasCreated
+	
+	| interface cartId |
+
+	interface := self createDefaultInterface.
+	
+	cartId := interface createCartFor: self validUser authenticatedWith: self validUserPassword.
+	
+	clock advanceTime: (Duration minutes: 31).
+	
+	self
+		should: [interface add: self validBook quantity: 1 toCartIdentifiedAs: cartId ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = RestInterface cannotUseCartAfter30MinutesErrorMessage ]
+		
+		!
+
+!testRun: #RestInterfaceTest #test01CanCreateCartWithValidUserAndPassword stamp: 'NB 6/12/2023 21:31:35'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02CanNotCreateCartWithInvalidUser stamp: 'NB 6/12/2023 21:31:35'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03CanNotCreateCartWithInvalidPassword stamp: 'NB 6/12/2023 21:31:35'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04CanAddItemsToACreatedCart stamp: 'NB 6/12/2023 21:31:35'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05CanNotAddItemToNotCreatedCart stamp: 'NB 6/12/2023 21:31:35'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06CanNotAddItemNotSellByTheStore stamp: 'NB 6/12/2023 21:31:35'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07ListCartOfAnEmptyCartReturnsAnEmptyBag stamp: 'NB 6/12/2023 21:31:35'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08CanNotListCartOfInvalidCartId stamp: 'NB 6/12/2023 21:31:35'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09ListCartReturnsTheRightNumberOfItems stamp: 'NB 6/12/2023 21:31:35'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10CanCheckoutACart stamp: 'NB 6/12/2023 21:31:35'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11CanNotCheckoutANotCreatedCart stamp: 'NB 6/12/2023 21:31:35'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12CanNotCheckoutAnEmptyCart stamp: 'NB 6/12/2023 21:31:35'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test13CannotAddItemsToCartAfterSessionOf30minutesHasExpired stamp: 'NB 6/12/2023 21:31:35'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test14CannotListCartAfterSessionOf30minutesHasExpired stamp: 'NB 6/12/2023 21:31:35'!
+PASSED!
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'NB 6/12/2023 21:32:14' prior: 50629694!
+test14CannotListCartAfterSessionOf30minutesHasExpired
+	
+	| interface cartId |
+
+	interface := self createDefaultInterface.
+	
+	cartId := interface createCartFor: self validUser authenticatedWith: self validUserPassword.
+	interface add: self validBook quantity: 1 toCartIdentifiedAs: cartId.
+	
+	clock advanceTime: (Duration minutes: 31).
+	
+	self
+		should: [interface listCartIdentifiedAs: cartId]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = RestInterface cannotUseCartAfter30MinutesErrorMessage ]
+		
+		! !
+
+!testRun: #RestInterfaceTest #test14CannotListCartAfterSessionOf30minutesHasExpired stamp: 'NB 6/12/2023 21:32:16'!
+FAILURE!
+!RestInterface methodsFor: 'as yet unclassified' stamp: 'NB 6/12/2023 21:32:42' prior: 50628425!
+listCartIdentifiedAs: aCartId
+
+	| cart |
+	
+	cart := carts at: aCartId ifAbsent: [ self signalInvalidCartId ].
+	
+	(clock time - lastTimeCartUsed ) > (Duration minutes: 30) ifTrue: [self error: self class cannotUseCartAfter30MinutesErrorMessage].
+	
+	^cart content! !
+
+!testRun: #RestInterfaceTest #test01CanCreateCartWithValidUserAndPassword stamp: 'NB 6/12/2023 21:32:44'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02CanNotCreateCartWithInvalidUser stamp: 'NB 6/12/2023 21:32:44'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03CanNotCreateCartWithInvalidPassword stamp: 'NB 6/12/2023 21:32:44'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04CanAddItemsToACreatedCart stamp: 'NB 6/12/2023 21:32:44'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05CanNotAddItemToNotCreatedCart stamp: 'NB 6/12/2023 21:32:44'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06CanNotAddItemNotSellByTheStore stamp: 'NB 6/12/2023 21:32:44'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07ListCartOfAnEmptyCartReturnsAnEmptyBag stamp: 'NB 6/12/2023 21:32:44'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08CanNotListCartOfInvalidCartId stamp: 'NB 6/12/2023 21:32:44'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09ListCartReturnsTheRightNumberOfItems stamp: 'NB 6/12/2023 21:32:44'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10CanCheckoutACart stamp: 'NB 6/12/2023 21:32:44'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11CanNotCheckoutANotCreatedCart stamp: 'NB 6/12/2023 21:32:44'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12CanNotCheckoutAnEmptyCart stamp: 'NB 6/12/2023 21:32:44'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test13CannotAddItemsToCartAfterSessionOf30minutesHasExpired stamp: 'NB 6/12/2023 21:32:44'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test14CannotListCartAfterSessionOf30minutesHasExpired stamp: 'NB 6/12/2023 21:32:44'!
+PASSED!
+
+----SNAPSHOT----(12 June 2023 21:32:48) CuisUniversity-5832.image priorSource: 9535832!
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'NB 6/12/2023 21:33:37'!
+test15CannotCheckoutCartAfterSessionOf30minutesHasExpired
+	
+	| interface cartId |
+
+	interface := self createDefaultInterface.
+	
+	cartId := interface createCartFor: self validUser authenticatedWith: self validUserPassword.
+	interface add: self validBook quantity: 1 toCartIdentifiedAs: cartId.
+	
+	clock advanceTime: (Duration minutes: 31).
+	
+	self
+		should: [interface listCartIdentifiedAs: cartId]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = RestInterface cannotUseCartAfter30MinutesErrorMessage ]
+		
+		! !
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'NB 6/12/2023 21:35:04' prior: 50629892!
+test15CannotCheckoutCartAfterSessionOf30minutesHasExpired
+	
+	| interface cartId |
+
+	interface := self createDefaultInterface.
+	
+	cartId := interface createCartFor: self validUser authenticatedWith: self validUserPassword.
+	interface add: self validBook quantity: 1 toCartIdentifiedAs: cartId.
+	
+	clock advanceTime: (Duration minutes: 31).
+	
+	self
+		should: [interface 
+			checkOutCartIdentifiedAs: cartId 
+			withCreditCardNumbered: '1111222233334444' 
+			ownedBy: 'Juan Perez' 
+			expiringOn: testObjectsFactory notExpiredMonthOfYear]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = RestInterface cannotUseCartAfter30MinutesErrorMessage ]
+		
+		! !
+
+!testRun: #RestInterfaceTest #test15CannotCheckoutCartAfterSessionOf30minutesHasExpired stamp: 'NB 6/12/2023 21:35:08'!
+FAILURE!
+!RestInterface methodsFor: 'as yet unclassified' stamp: 'NB 6/12/2023 21:35:36' prior: 50629002!
+checkOutCartIdentifiedAs: aCartId withCreditCardNumbered: aCreditCartNumber ownedBy: anOwner expiringOn: anExpirationMonthOfYear
+
+	| cart |
+	
+	cart := carts at: aCartId ifAbsent: [self signalInvalidCartId ].
+	
+	(clock time - lastTimeCartUsed ) > (Duration minutes: 30) ifTrue: [self error: self class cannotUseCartAfter30MinutesErrorMessage].
+	
+	Cashier 
+		toCheckout: cart 
+		charging: (CreditCard expiringOn: anExpirationMonthOfYear) 
+		throught: merchantProcessor 
+		on: self today 
+		registeringOn: salesBook.
+		
+	lastTimeCartUsed:= clock time.! !
+
+!testRun: #RestInterfaceTest #test01CanCreateCartWithValidUserAndPassword stamp: 'NB 6/12/2023 21:35:38'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02CanNotCreateCartWithInvalidUser stamp: 'NB 6/12/2023 21:35:38'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03CanNotCreateCartWithInvalidPassword stamp: 'NB 6/12/2023 21:35:38'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04CanAddItemsToACreatedCart stamp: 'NB 6/12/2023 21:35:38'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05CanNotAddItemToNotCreatedCart stamp: 'NB 6/12/2023 21:35:38'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06CanNotAddItemNotSellByTheStore stamp: 'NB 6/12/2023 21:35:38'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07ListCartOfAnEmptyCartReturnsAnEmptyBag stamp: 'NB 6/12/2023 21:35:38'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08CanNotListCartOfInvalidCartId stamp: 'NB 6/12/2023 21:35:38'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09ListCartReturnsTheRightNumberOfItems stamp: 'NB 6/12/2023 21:35:38'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10CanCheckoutACart stamp: 'NB 6/12/2023 21:35:38'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11CanNotCheckoutANotCreatedCart stamp: 'NB 6/12/2023 21:35:38'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12CanNotCheckoutAnEmptyCart stamp: 'NB 6/12/2023 21:35:38'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test13CannotAddItemsToCartAfterSessionOf30minutesHasExpired stamp: 'NB 6/12/2023 21:35:38'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test14CannotListCartAfterSessionOf30minutesHasExpired stamp: 'NB 6/12/2023 21:35:38'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test15CannotCheckoutCartAfterSessionOf30minutesHasExpired stamp: 'NB 6/12/2023 21:35:38'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test01CanCreateCartWithValidUserAndPassword stamp: 'NB 6/12/2023 21:35:47'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02CanNotCreateCartWithInvalidUser stamp: 'NB 6/12/2023 21:35:47'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03CanNotCreateCartWithInvalidPassword stamp: 'NB 6/12/2023 21:35:47'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04CanAddItemsToACreatedCart stamp: 'NB 6/12/2023 21:35:47'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05CanNotAddItemToNotCreatedCart stamp: 'NB 6/12/2023 21:35:47'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06CanNotAddItemNotSellByTheStore stamp: 'NB 6/12/2023 21:35:47'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07ListCartOfAnEmptyCartReturnsAnEmptyBag stamp: 'NB 6/12/2023 21:35:47'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08CanNotListCartOfInvalidCartId stamp: 'NB 6/12/2023 21:35:47'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09ListCartReturnsTheRightNumberOfItems stamp: 'NB 6/12/2023 21:35:47'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10CanCheckoutACart stamp: 'NB 6/12/2023 21:35:47'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11CanNotCheckoutANotCreatedCart stamp: 'NB 6/12/2023 21:35:47'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12CanNotCheckoutAnEmptyCart stamp: 'NB 6/12/2023 21:35:47'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test13CannotAddItemsToCartAfterSessionOf30minutesHasExpired stamp: 'NB 6/12/2023 21:35:47'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test14CannotListCartAfterSessionOf30minutesHasExpired stamp: 'NB 6/12/2023 21:35:47'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test15CannotCheckoutCartAfterSessionOf30minutesHasExpired stamp: 'NB 6/12/2023 21:35:47'!
+PASSED!
+
+----SNAPSHOT----(12 June 2023 21:35:51) CuisUniversity-5832.image priorSource: 9543608!
+
+----SNAPSHOT----(12 June 2023 21:36:35) CuisUniversity-5832.image priorSource: 9549353!
