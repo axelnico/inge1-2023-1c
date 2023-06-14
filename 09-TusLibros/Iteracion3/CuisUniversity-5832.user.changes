@@ -2933,3 +2933,1193 @@ PASSED!
 ----SNAPSHOT----(12 June 2023 21:35:51) CuisUniversity-5832.image priorSource: 9543608!
 
 ----SNAPSHOT----(12 June 2023 21:36:35) CuisUniversity-5832.image priorSource: 9549353!
+
+----STARTUP---- (13 June 2023 22:13:44) as /Users/nico/Documents/inge1/cuis-images/macos64 6/CuisUniversity-5832.image!
+
+
+!methodRemoval: RestInterface class #authenticatingWith:acceptingItemsOf:merchantProcessor: stamp: 'NB 6/13/2023 22:23:33'!
+authenticatingWith: aValidUsersAndPasswords acceptingItemsOf: aCatalog merchantProcessor: anMP
+
+	^self new initializeAuthenticatingWith: aValidUsersAndPasswords acceptingItemsOf: aCatalog merchantProcessor: anMP!
+
+!methodRemoval: RestInterface #initializeAuthenticatingWith:acceptingItemsOf:merchantProcessor: stamp: 'NB 6/13/2023 22:23:44'!
+initializeAuthenticatingWith: anAuthenticationSystem acceptingItemsOf: aCatalog merchantProcessor: anMP
+
+	authenticationSystem := anAuthenticationSystem.
+	catalog := aCatalog.
+	carts := Dictionary new.
+	lastId := 0.
+	merchantProcessor := anMP!
+!RestInterface methodsFor: 'as yet unclassified' stamp: 'NB 6/13/2023 23:35:21'!
+withCartIdentifiedBy: aCartId do: aBlock
+
+	| cart |
+	
+	cart := carts at: aCartId ifAbsent: [ self signalInvalidCartId ].
+	
+	aBlock value: cart.! !
+!RestInterface methodsFor: 'as yet unclassified' stamp: 'NB 6/13/2023 23:37:56' prior: 50629829!
+listCartIdentifiedAs: aCartId
+
+	self withCartIdentifiedBy: aCartId do: [:aCart | 
+		
+		(clock time - lastTimeCartUsed ) > (Duration minutes: 30) ifTrue: [self error: self class cannotUseCartAfter30MinutesErrorMessage].
+	
+	^aCart content.
+		
+		] 
+	
+	! !
+
+!testRun: #RestInterfaceTest #test01CanCreateCartWithValidUserAndPassword stamp: 'NB 6/13/2023 23:37:57'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02CanNotCreateCartWithInvalidUser stamp: 'NB 6/13/2023 23:37:57'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03CanNotCreateCartWithInvalidPassword stamp: 'NB 6/13/2023 23:37:57'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04CanAddItemsToACreatedCart stamp: 'NB 6/13/2023 23:37:57'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05CanNotAddItemToNotCreatedCart stamp: 'NB 6/13/2023 23:37:57'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06CanNotAddItemNotSellByTheStore stamp: 'NB 6/13/2023 23:37:57'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07ListCartOfAnEmptyCartReturnsAnEmptyBag stamp: 'NB 6/13/2023 23:37:57'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08CanNotListCartOfInvalidCartId stamp: 'NB 6/13/2023 23:37:57'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09ListCartReturnsTheRightNumberOfItems stamp: 'NB 6/13/2023 23:37:57'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10CanCheckoutACart stamp: 'NB 6/13/2023 23:37:57'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11CanNotCheckoutANotCreatedCart stamp: 'NB 6/13/2023 23:37:57'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12CanNotCheckoutAnEmptyCart stamp: 'NB 6/13/2023 23:37:57'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test13CannotAddItemsToCartAfterSessionOf30minutesHasExpired stamp: 'NB 6/13/2023 23:37:57'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test14CannotListCartAfterSessionOf30minutesHasExpired stamp: 'NB 6/13/2023 23:37:57'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test15CannotCheckoutCartAfterSessionOf30minutesHasExpired stamp: 'NB 6/13/2023 23:37:57'!
+PASSED!
+!RestInterface methodsFor: 'as yet unclassified' stamp: 'NB 6/13/2023 23:41:53' prior: 50629157!
+add: aBook quantity: anAmount toCartIdentifiedAs: aCartId
+
+	
+	self withCartIdentifiedBy: aCartId do: [:aCart | 
+		
+		(clock time - lastTimeCartUsed ) > (Duration minutes: 30) ifTrue: [self error: self class cannotUseCartAfter30MinutesErrorMessage].
+	
+	aCart add: anAmount of: aBook.
+	
+	lastTimeCartUsed:= clock time.
+		
+		] 
+	
+	! !
+
+!testRun: #RestInterfaceTest #test01CanCreateCartWithValidUserAndPassword stamp: 'NB 6/13/2023 23:41:54'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02CanNotCreateCartWithInvalidUser stamp: 'NB 6/13/2023 23:41:54'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03CanNotCreateCartWithInvalidPassword stamp: 'NB 6/13/2023 23:41:54'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04CanAddItemsToACreatedCart stamp: 'NB 6/13/2023 23:41:54'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05CanNotAddItemToNotCreatedCart stamp: 'NB 6/13/2023 23:41:54'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06CanNotAddItemNotSellByTheStore stamp: 'NB 6/13/2023 23:41:54'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07ListCartOfAnEmptyCartReturnsAnEmptyBag stamp: 'NB 6/13/2023 23:41:54'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08CanNotListCartOfInvalidCartId stamp: 'NB 6/13/2023 23:41:54'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09ListCartReturnsTheRightNumberOfItems stamp: 'NB 6/13/2023 23:41:54'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10CanCheckoutACart stamp: 'NB 6/13/2023 23:41:54'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11CanNotCheckoutANotCreatedCart stamp: 'NB 6/13/2023 23:41:54'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12CanNotCheckoutAnEmptyCart stamp: 'NB 6/13/2023 23:41:54'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test13CannotAddItemsToCartAfterSessionOf30minutesHasExpired stamp: 'NB 6/13/2023 23:41:54'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test14CannotListCartAfterSessionOf30minutesHasExpired stamp: 'NB 6/13/2023 23:41:54'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test15CannotCheckoutCartAfterSessionOf30minutesHasExpired stamp: 'NB 6/13/2023 23:41:54'!
+PASSED!
+!RestInterface methodsFor: 'as yet unclassified' stamp: 'NB 6/13/2023 23:42:37' prior: 50629943!
+checkOutCartIdentifiedAs: aCartId withCreditCardNumbered: aCreditCartNumber ownedBy: anOwner expiringOn: anExpirationMonthOfYear
+
+	self withCartIdentifiedBy: aCartId do: [:aCart | 
+		(clock time - lastTimeCartUsed ) > (Duration minutes: 30) ifTrue: [self error: self class cannotUseCartAfter30MinutesErrorMessage].
+	
+	Cashier 
+		toCheckout: aCart 
+		charging: (CreditCard expiringOn: anExpirationMonthOfYear) 
+		throught: merchantProcessor 
+		on: self today 
+		registeringOn: salesBook.
+		
+	lastTimeCartUsed:= clock time.
+		
+		] 
+	
+	! !
+
+!testRun: #RestInterfaceTest #test01CanCreateCartWithValidUserAndPassword stamp: 'NB 6/13/2023 23:42:37'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02CanNotCreateCartWithInvalidUser stamp: 'NB 6/13/2023 23:42:37'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03CanNotCreateCartWithInvalidPassword stamp: 'NB 6/13/2023 23:42:37'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04CanAddItemsToACreatedCart stamp: 'NB 6/13/2023 23:42:37'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05CanNotAddItemToNotCreatedCart stamp: 'NB 6/13/2023 23:42:37'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06CanNotAddItemNotSellByTheStore stamp: 'NB 6/13/2023 23:42:37'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07ListCartOfAnEmptyCartReturnsAnEmptyBag stamp: 'NB 6/13/2023 23:42:37'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08CanNotListCartOfInvalidCartId stamp: 'NB 6/13/2023 23:42:37'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09ListCartReturnsTheRightNumberOfItems stamp: 'NB 6/13/2023 23:42:37'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10CanCheckoutACart stamp: 'NB 6/13/2023 23:42:37'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11CanNotCheckoutANotCreatedCart stamp: 'NB 6/13/2023 23:42:37'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12CanNotCheckoutAnEmptyCart stamp: 'NB 6/13/2023 23:42:37'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test13CannotAddItemsToCartAfterSessionOf30minutesHasExpired stamp: 'NB 6/13/2023 23:42:37'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test14CannotListCartAfterSessionOf30minutesHasExpired stamp: 'NB 6/13/2023 23:42:37'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test15CannotCheckoutCartAfterSessionOf30minutesHasExpired stamp: 'NB 6/13/2023 23:42:37'!
+PASSED!
+
+----SNAPSHOT----(13 June 2023 23:43:18) CuisUniversity-5832.image priorSource: 9549442!
+
+Object subclass: #CartSession
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #CartSession category: 'TusLibros' stamp: 'NB 6/13/2023 23:54:30'!
+Object subclass: #CartSession
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #RestInterface category: 'TusLibros' stamp: 'NB 6/13/2023 23:58:11'!
+Object subclass: #RestInterface
+	instanceVariableNames: 'authenticationSystem cartsSessions catalog lastId merchantProcessor salesBook clock lastTimeCartUsed'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!RestInterface methodsFor: 'as yet unclassified' stamp: 'NB 6/13/2023 23:58:11' prior: 50629029!
+createCartFor: aUser authenticatedWith: aPassword
+
+	| cartId |
+	
+	(self is: aUser authenticatingWith: aPassword) ifFalse: [ self signalInvalidUserAndOrPassword ].
+	
+	cartId := self generateCartId.
+	cartsSessions at: cartId put: (Cart acceptingItemsOf: catalog).
+	
+	lastTimeCartUsed:= clock time.
+	
+	^cartId ! !
+!RestInterface methodsFor: 'as yet unclassified' stamp: 'NB 6/13/2023 23:58:11' prior: 50630100!
+withCartIdentifiedBy: aCartId do: aBlock
+
+	| cart |
+	
+	cart := cartsSessions at: aCartId ifAbsent: [ self signalInvalidCartId ].
+	
+	aBlock value: cart.! !
+!RestInterface methodsFor: 'as yet unclassified' stamp: 'NB 6/13/2023 23:58:11' prior: 50628711!
+initializeAuthenticatingWith: anAuthenticationSystem acceptingItemsOf: aCatalog merchantProcessor: anMP withClock: aClock
+
+	authenticationSystem := anAuthenticationSystem.
+	catalog := aCatalog.
+	cartsSessions := Dictionary new.
+	lastId := 0.
+	merchantProcessor := anMP.
+	clock:= aClock.! !
+!RestInterface methodsFor: 'as yet unclassified' stamp: 'NB 6/13/2023 23:59:51' prior: 50630334!
+createCartFor: aUser authenticatedWith: aPassword
+
+	| cartId |
+	
+	(self is: aUser authenticatingWith: aPassword) ifFalse: [ self signalInvalidUserAndOrPassword ].
+	
+	cartId := self generateCartId.
+	cartsSessions at: cartId put: (CartSession for: (Cart acceptingItemsOf: catalog) withInterface: self).
+	
+	lastTimeCartUsed:= clock time.
+	
+	^cartId ! !
+
+!testRun: #RestInterfaceTest #test01CanCreateCartWithValidUserAndPassword stamp: 'NB 6/13/2023 23:59:52'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test02CanNotCreateCartWithInvalidUser stamp: 'NB 6/13/2023 23:59:52'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03CanNotCreateCartWithInvalidPassword stamp: 'NB 6/13/2023 23:59:52'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04CanAddItemsToACreatedCart stamp: 'NB 6/13/2023 23:59:52'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test05CanNotAddItemToNotCreatedCart stamp: 'NB 6/13/2023 23:59:52'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06CanNotAddItemNotSellByTheStore stamp: 'NB 6/13/2023 23:59:52'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test07ListCartOfAnEmptyCartReturnsAnEmptyBag stamp: 'NB 6/13/2023 23:59:52'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test08CanNotListCartOfInvalidCartId stamp: 'NB 6/13/2023 23:59:52'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09ListCartReturnsTheRightNumberOfItems stamp: 'NB 6/13/2023 23:59:52'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test10CanCheckoutACart stamp: 'NB 6/13/2023 23:59:52'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test11CanNotCheckoutANotCreatedCart stamp: 'NB 6/13/2023 23:59:52'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12CanNotCheckoutAnEmptyCart stamp: 'NB 6/13/2023 23:59:52'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test13CannotAddItemsToCartAfterSessionOf30minutesHasExpired stamp: 'NB 6/13/2023 23:59:52'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test14CannotListCartAfterSessionOf30minutesHasExpired stamp: 'NB 6/13/2023 23:59:52'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test15CannotCheckoutCartAfterSessionOf30minutesHasExpired stamp: 'NB 6/13/2023 23:59:52'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test01CanCreateCartWithValidUserAndPassword stamp: 'NB 6/13/2023 23:59:54'!
+ERROR!
+!CartSession class methodsFor: 'instance creation' stamp: 'NB 6/13/2023 23:59:58'!
+for: aCart withInterface: aRestInterface 
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+	self shouldBeImplemented.
+	^self new initializeFor: aCart withInterface: aRestInterface ! !
+!CartSession class methodsFor: 'instance creation' stamp: 'NB 6/14/2023 00:00:04' prior: 50630438!
+for: aCart withInterface: aRestInterface 
+	
+	^self new initializeFor: aCart withInterface: aRestInterface ! !
+
+!testRun: #RestInterfaceTest #test01CanCreateCartWithValidUserAndPassword stamp: 'NB 6/14/2023 00:00:06'!
+ERROR!
+
+!classDefinition: #CartSession category: 'TusLibros' stamp: 'NB 6/14/2023 00:00:15'!
+Object subclass: #CartSession
+	instanceVariableNames: 'cart'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #CartSession category: 'TusLibros' stamp: 'NB 6/14/2023 00:00:15'!
+Object subclass: #CartSession
+	instanceVariableNames: 'cart restInterface'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!CartSession methodsFor: 'initialization' stamp: 'NB 6/14/2023 00:00:15'!
+initializeFor: aCart withInterface: aRestInterface 
+	self shouldBeImplemented.
+	cart := aCart.
+	restInterface := aRestInterface.! !
+!CartSession methodsFor: 'initialization' stamp: 'NB 6/14/2023 00:00:20' prior: 50630472!
+initializeFor: aCart withInterface: aRestInterface 
+	cart := aCart.
+	restInterface := aRestInterface.! !
+
+!testRun: #RestInterfaceTest #test01CanCreateCartWithValidUserAndPassword stamp: 'NB 6/14/2023 00:00:21'!
+ERROR!
+!RestInterface methodsFor: 'as yet unclassified' stamp: 'NB 6/14/2023 00:03:09' prior: 50630347!
+withCartIdentifiedBy: aCartId do: aBlock
+
+	| cartSession |
+	
+	cartSession := cartsSessions at: aCartId ifAbsent: [ self signalInvalidCartId ].
+	
+	^cartSession do: aBlock.! !
+!RestInterface methodsFor: 'as yet unclassified' stamp: 'NB 6/14/2023 00:03:24'!
+withCartSessionIdentifiedBy: aCartId do: aBlock
+
+	| cartSession |
+	
+	cartSession := cartsSessions at: aCartId ifAbsent: [ self signalInvalidCartId ].
+	
+	^cartSession do: aBlock.! !
+!RestInterface methodsFor: 'as yet unclassified' stamp: 'NB 6/14/2023 00:03:24' prior: 50630238!
+checkOutCartIdentifiedAs: aCartId withCreditCardNumbered: aCreditCartNumber ownedBy: anOwner expiringOn: anExpirationMonthOfYear
+
+	self withCartSessionIdentifiedBy: aCartId do: [:aCart | 
+		(clock time - lastTimeCartUsed ) > (Duration minutes: 30) ifTrue: [self error: self class cannotUseCartAfter30MinutesErrorMessage].
+	
+	Cashier 
+		toCheckout: aCart 
+		charging: (CreditCard expiringOn: anExpirationMonthOfYear) 
+		throught: merchantProcessor 
+		on: self today 
+		registeringOn: salesBook.
+		
+	lastTimeCartUsed:= clock time.
+		
+		] 
+	
+	! !
+!RestInterface methodsFor: 'as yet unclassified' stamp: 'NB 6/14/2023 00:03:24' prior: 50630108!
+listCartIdentifiedAs: aCartId
+
+	self withCartSessionIdentifiedBy: aCartId do: [:aCart | 
+		
+		(clock time - lastTimeCartUsed ) > (Duration minutes: 30) ifTrue: [self error: self class cannotUseCartAfter30MinutesErrorMessage].
+	
+	^aCart content.
+		
+		] 
+	
+	! !
+!RestInterface methodsFor: 'as yet unclassified' stamp: 'NB 6/14/2023 00:03:24' prior: 50630172!
+add: aBook quantity: anAmount toCartIdentifiedAs: aCartId
+
+	
+	self withCartSessionIdentifiedBy: aCartId do: [:aCart | 
+		
+		(clock time - lastTimeCartUsed ) > (Duration minutes: 30) ifTrue: [self error: self class cannotUseCartAfter30MinutesErrorMessage].
+	
+	aCart add: anAmount of: aBook.
+	
+	lastTimeCartUsed:= clock time.
+		
+		] 
+	
+	! !
+
+!methodRemoval: RestInterface #withCartIdentifiedBy:do: stamp: 'NB 6/14/2023 00:03:24'!
+withCartIdentifiedBy: aCartId do: aBlock
+
+	| cartSession |
+	
+	cartSession := cartsSessions at: aCartId ifAbsent: [ self signalInvalidCartId ].
+	
+	^cartSession do: aBlock.!
+
+!testRun: #RestInterfaceTest #test01CanCreateCartWithValidUserAndPassword stamp: 'NB 6/14/2023 00:03:32'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test02CanNotCreateCartWithInvalidUser stamp: 'NB 6/14/2023 00:03:32'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03CanNotCreateCartWithInvalidPassword stamp: 'NB 6/14/2023 00:03:32'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04CanAddItemsToACreatedCart stamp: 'NB 6/14/2023 00:03:32'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test05CanNotAddItemToNotCreatedCart stamp: 'NB 6/14/2023 00:03:32'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06CanNotAddItemNotSellByTheStore stamp: 'NB 6/14/2023 00:03:32'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test07ListCartOfAnEmptyCartReturnsAnEmptyBag stamp: 'NB 6/14/2023 00:03:32'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test08CanNotListCartOfInvalidCartId stamp: 'NB 6/14/2023 00:03:32'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09ListCartReturnsTheRightNumberOfItems stamp: 'NB 6/14/2023 00:03:32'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test10CanCheckoutACart stamp: 'NB 6/14/2023 00:03:32'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test11CanNotCheckoutANotCreatedCart stamp: 'NB 6/14/2023 00:03:32'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12CanNotCheckoutAnEmptyCart stamp: 'NB 6/14/2023 00:03:32'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test13CannotAddItemsToCartAfterSessionOf30minutesHasExpired stamp: 'NB 6/14/2023 00:03:32'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test14CannotListCartAfterSessionOf30minutesHasExpired stamp: 'NB 6/14/2023 00:03:32'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test15CannotCheckoutCartAfterSessionOf30minutesHasExpired stamp: 'NB 6/14/2023 00:03:32'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test01CanCreateCartWithValidUserAndPassword stamp: 'NB 6/14/2023 00:03:33'!
+ERROR!
+!CartSession methodsFor: 'session' stamp: 'NB 6/14/2023 00:04:50'!
+do: aBlock
+
+	! !
+!RestInterface methodsFor: 'as yet unclassified' stamp: 'NB 6/14/2023 00:06:35'!
+time
+	
+	^clock time.! !
+
+!testRun: #RestInterfaceTest #test01CanCreateCartWithValidUserAndPassword stamp: 'NB 6/14/2023 00:06:36'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test02CanNotCreateCartWithInvalidUser stamp: 'NB 6/14/2023 00:06:36'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03CanNotCreateCartWithInvalidPassword stamp: 'NB 6/14/2023 00:06:36'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04CanAddItemsToACreatedCart stamp: 'NB 6/14/2023 00:06:36'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05CanNotAddItemToNotCreatedCart stamp: 'NB 6/14/2023 00:06:36'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06CanNotAddItemNotSellByTheStore stamp: 'NB 6/14/2023 00:06:36'!
+FAILURE!
+
+!testRun: #RestInterfaceTest #test07ListCartOfAnEmptyCartReturnsAnEmptyBag stamp: 'NB 6/14/2023 00:06:36'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test08CanNotListCartOfInvalidCartId stamp: 'NB 6/14/2023 00:06:36'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09ListCartReturnsTheRightNumberOfItems stamp: 'NB 6/14/2023 00:06:36'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test10CanCheckoutACart stamp: 'NB 6/14/2023 00:06:36'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11CanNotCheckoutANotCreatedCart stamp: 'NB 6/14/2023 00:06:36'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12CanNotCheckoutAnEmptyCart stamp: 'NB 6/14/2023 00:06:36'!
+FAILURE!
+
+!testRun: #RestInterfaceTest #test13CannotAddItemsToCartAfterSessionOf30minutesHasExpired stamp: 'NB 6/14/2023 00:06:36'!
+FAILURE!
+
+!testRun: #RestInterfaceTest #test14CannotListCartAfterSessionOf30minutesHasExpired stamp: 'NB 6/14/2023 00:06:36'!
+FAILURE!
+
+!testRun: #RestInterfaceTest #test15CannotCheckoutCartAfterSessionOf30minutesHasExpired stamp: 'NB 6/14/2023 00:06:36'!
+FAILURE!
+
+!classDefinition: #CartSession category: 'TusLibros' stamp: 'NB 6/14/2023 00:08:07'!
+Object subclass: #CartSession
+	instanceVariableNames: 'cart restInterface lastTimeCartUsed'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!CartSession methodsFor: 'session' stamp: 'NB 6/14/2023 00:08:06' prior: 50630616!
+do: aBlock
+
+	(restInterface time - lastTimeCartUsed ) > (Duration minutes: 30) ifTrue: [self error: self class cannotUseCartAfter30MinutesErrorMessage].! !
+!CartSession class methodsFor: 'instance creation' stamp: 'NB 6/14/2023 00:08:27'!
+cannotUseCartAfter30MinutesErrorMessage
+	
+	^'Cart cannot be used after 30 minutes of inactivity'.! !
+
+!methodRemoval: RestInterface class #cannotUseCartAfter30MinutesErrorMessage stamp: 'NB 6/14/2023 00:08:43'!
+cannotUseCartAfter30MinutesErrorMessage
+	
+	^'Cart cannot be used after 30 minutes of inactivity'.!
+!CartSession methodsFor: 'initialization' stamp: 'NB 6/14/2023 00:09:11' prior: 50630479!
+initializeFor: aCart withInterface: aRestInterface 
+	cart := aCart.
+	restInterface := aRestInterface.
+	lastTimeCartUsed := aRestInterface time.! !
+!CartSession methodsFor: 'session' stamp: 'NB 6/14/2023 00:10:13' prior: 50630684!
+do: aBlock
+
+	(restInterface time - lastTimeCartUsed ) > (Duration minutes: 30) ifTrue: [self error: self class cannotUseCartAfter30MinutesErrorMessage].
+	
+	^[aBlock value: self] ensure: [ lastTimeCartUsed := restInterface time].! !
+
+!testRun: #RestInterfaceTest #test01CanCreateCartWithValidUserAndPassword stamp: 'NB 6/14/2023 00:10:19'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test02CanNotCreateCartWithInvalidUser stamp: 'NB 6/14/2023 00:10:19'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03CanNotCreateCartWithInvalidPassword stamp: 'NB 6/14/2023 00:10:19'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04CanAddItemsToACreatedCart stamp: 'NB 6/14/2023 00:10:19'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test05CanNotAddItemToNotCreatedCart stamp: 'NB 6/14/2023 00:10:19'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06CanNotAddItemNotSellByTheStore stamp: 'NB 6/14/2023 00:10:19'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test07ListCartOfAnEmptyCartReturnsAnEmptyBag stamp: 'NB 6/14/2023 00:10:19'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test08CanNotListCartOfInvalidCartId stamp: 'NB 6/14/2023 00:10:19'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09ListCartReturnsTheRightNumberOfItems stamp: 'NB 6/14/2023 00:10:19'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test10CanCheckoutACart stamp: 'NB 6/14/2023 00:10:19'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test11CanNotCheckoutANotCreatedCart stamp: 'NB 6/14/2023 00:10:19'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12CanNotCheckoutAnEmptyCart stamp: 'NB 6/14/2023 00:10:19'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test13CannotAddItemsToCartAfterSessionOf30minutesHasExpired stamp: 'NB 6/14/2023 00:10:19'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test14CannotListCartAfterSessionOf30minutesHasExpired stamp: 'NB 6/14/2023 00:10:19'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test15CannotCheckoutCartAfterSessionOf30minutesHasExpired stamp: 'NB 6/14/2023 00:10:19'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test01CanCreateCartWithValidUserAndPassword stamp: 'NB 6/14/2023 00:10:20'!
+ERROR!
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'NB 6/14/2023 00:10:43' prior: 50629714!
+test13CannotAddItemsToCartAfterSessionOf30minutesHasExpired
+	
+	| interface cartId |
+
+	interface := self createDefaultInterface.
+	
+	cartId := interface createCartFor: self validUser authenticatedWith: self validUserPassword.
+	
+	clock advanceTime: (Duration minutes: 31).
+	
+	self
+		should: [interface add: self validBook quantity: 1 toCartIdentifiedAs: cartId ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = CartSession cannotUseCartAfter30MinutesErrorMessage ]
+		
+		! !
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'NB 6/14/2023 00:10:48' prior: 50629804!
+test14CannotListCartAfterSessionOf30minutesHasExpired
+	
+	| interface cartId |
+
+	interface := self createDefaultInterface.
+	
+	cartId := interface createCartFor: self validUser authenticatedWith: self validUserPassword.
+	interface add: self validBook quantity: 1 toCartIdentifiedAs: cartId.
+	
+	clock advanceTime: (Duration minutes: 31).
+	
+	self
+		should: [interface listCartIdentifiedAs: cartId]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = CartSession cannotUseCartAfter30MinutesErrorMessage ]
+		
+		! !
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'NB 6/14/2023 00:10:51' prior: 50629913!
+test15CannotCheckoutCartAfterSessionOf30minutesHasExpired
+	
+	| interface cartId |
+
+	interface := self createDefaultInterface.
+	
+	cartId := interface createCartFor: self validUser authenticatedWith: self validUserPassword.
+	interface add: self validBook quantity: 1 toCartIdentifiedAs: cartId.
+	
+	clock advanceTime: (Duration minutes: 31).
+	
+	self
+		should: [interface 
+			checkOutCartIdentifiedAs: cartId 
+			withCreditCardNumbered: '1111222233334444' 
+			ownedBy: 'Juan Perez' 
+			expiringOn: testObjectsFactory notExpiredMonthOfYear]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = CartSession cannotUseCartAfter30MinutesErrorMessage ]
+		
+		! !
+
+!testRun: #RestInterfaceTest #test13CannotAddItemsToCartAfterSessionOf30minutesHasExpired stamp: 'NB 6/14/2023 00:10:54'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test14CannotListCartAfterSessionOf30minutesHasExpired stamp: 'NB 6/14/2023 00:10:57'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test14CannotListCartAfterSessionOf30minutesHasExpired stamp: 'NB 6/14/2023 00:10:57'!
+ERROR!
+!CartSession methodsFor: 'session' stamp: 'NB 6/14/2023 00:13:53' prior: 50630713!
+do: aBlock
+
+	(restInterface time - lastTimeCartUsed ) > (Duration minutes: 30) ifTrue: [self error: self class cannotUseCartAfter30MinutesErrorMessage].
+	
+	^[aBlock value: cart] ensure: [ lastTimeCartUsed := restInterface time].! !
+!RestInterface methodsFor: 'as yet unclassified' stamp: 'NB 6/14/2023 00:15:32' prior: 50630539!
+add: aBook quantity: anAmount toCartIdentifiedAs: aCartId
+
+	
+	self withCartSessionIdentifiedBy: aCartId do: [:cart | cart add: anAmount of: aBook.] 
+	
+	! !
+
+!testRun: #RestInterfaceTest #test01CanCreateCartWithValidUserAndPassword stamp: 'NB 6/14/2023 00:15:36'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02CanNotCreateCartWithInvalidUser stamp: 'NB 6/14/2023 00:15:36'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03CanNotCreateCartWithInvalidPassword stamp: 'NB 6/14/2023 00:15:36'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04CanAddItemsToACreatedCart stamp: 'NB 6/14/2023 00:15:36'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05CanNotAddItemToNotCreatedCart stamp: 'NB 6/14/2023 00:15:36'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06CanNotAddItemNotSellByTheStore stamp: 'NB 6/14/2023 00:15:36'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07ListCartOfAnEmptyCartReturnsAnEmptyBag stamp: 'NB 6/14/2023 00:15:36'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08CanNotListCartOfInvalidCartId stamp: 'NB 6/14/2023 00:15:36'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09ListCartReturnsTheRightNumberOfItems stamp: 'NB 6/14/2023 00:15:36'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10CanCheckoutACart stamp: 'NB 6/14/2023 00:15:36'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11CanNotCheckoutANotCreatedCart stamp: 'NB 6/14/2023 00:15:36'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12CanNotCheckoutAnEmptyCart stamp: 'NB 6/14/2023 00:15:36'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test13CannotAddItemsToCartAfterSessionOf30minutesHasExpired stamp: 'NB 6/14/2023 00:15:36'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test14CannotListCartAfterSessionOf30minutesHasExpired stamp: 'NB 6/14/2023 00:15:36'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test15CannotCheckoutCartAfterSessionOf30minutesHasExpired stamp: 'NB 6/14/2023 00:15:36'!
+PASSED!
+!RestInterface methodsFor: 'as yet unclassified' stamp: 'NB 6/14/2023 00:16:05' prior: 50630506!
+checkOutCartIdentifiedAs: aCartId withCreditCardNumbered: aCreditCartNumber ownedBy: anOwner expiringOn: anExpirationMonthOfYear
+
+	self withCartSessionIdentifiedBy: aCartId do: [:cart | 
+	Cashier 
+		toCheckout: cart 
+		charging: (CreditCard expiringOn: anExpirationMonthOfYear) 
+		throught: merchantProcessor 
+		on: self today 
+		registeringOn: salesBook.
+
+		] 
+	
+	! !
+
+!testRun: #RestInterfaceTest #test01CanCreateCartWithValidUserAndPassword stamp: 'NB 6/14/2023 00:16:07'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02CanNotCreateCartWithInvalidUser stamp: 'NB 6/14/2023 00:16:07'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03CanNotCreateCartWithInvalidPassword stamp: 'NB 6/14/2023 00:16:07'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04CanAddItemsToACreatedCart stamp: 'NB 6/14/2023 00:16:07'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05CanNotAddItemToNotCreatedCart stamp: 'NB 6/14/2023 00:16:07'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06CanNotAddItemNotSellByTheStore stamp: 'NB 6/14/2023 00:16:07'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07ListCartOfAnEmptyCartReturnsAnEmptyBag stamp: 'NB 6/14/2023 00:16:07'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08CanNotListCartOfInvalidCartId stamp: 'NB 6/14/2023 00:16:07'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09ListCartReturnsTheRightNumberOfItems stamp: 'NB 6/14/2023 00:16:07'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10CanCheckoutACart stamp: 'NB 6/14/2023 00:16:07'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11CanNotCheckoutANotCreatedCart stamp: 'NB 6/14/2023 00:16:07'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12CanNotCheckoutAnEmptyCart stamp: 'NB 6/14/2023 00:16:07'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test13CannotAddItemsToCartAfterSessionOf30minutesHasExpired stamp: 'NB 6/14/2023 00:16:07'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test14CannotListCartAfterSessionOf30minutesHasExpired stamp: 'NB 6/14/2023 00:16:07'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test15CannotCheckoutCartAfterSessionOf30minutesHasExpired stamp: 'NB 6/14/2023 00:16:07'!
+PASSED!
+!RestInterface methodsFor: 'as yet unclassified' stamp: 'NB 6/14/2023 00:16:21' prior: 50630368!
+createCartFor: aUser authenticatedWith: aPassword
+
+	| cartId |
+	
+	(self is: aUser authenticatingWith: aPassword) ifFalse: [ self signalInvalidUserAndOrPassword ].
+	
+	cartId := self generateCartId.
+	cartsSessions at: cartId put: (CartSession for: (Cart acceptingItemsOf: catalog) withInterface: self).
+	
+	^cartId ! !
+
+!testRun: #RestInterfaceTest #test01CanCreateCartWithValidUserAndPassword stamp: 'NB 6/14/2023 00:16:22'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test02CanNotCreateCartWithInvalidUser stamp: 'NB 6/14/2023 00:16:22'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03CanNotCreateCartWithInvalidPassword stamp: 'NB 6/14/2023 00:16:22'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04CanAddItemsToACreatedCart stamp: 'NB 6/14/2023 00:16:22'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05CanNotAddItemToNotCreatedCart stamp: 'NB 6/14/2023 00:16:22'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06CanNotAddItemNotSellByTheStore stamp: 'NB 6/14/2023 00:16:22'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07ListCartOfAnEmptyCartReturnsAnEmptyBag stamp: 'NB 6/14/2023 00:16:22'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test08CanNotListCartOfInvalidCartId stamp: 'NB 6/14/2023 00:16:22'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09ListCartReturnsTheRightNumberOfItems stamp: 'NB 6/14/2023 00:16:22'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test10CanCheckoutACart stamp: 'NB 6/14/2023 00:16:22'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11CanNotCheckoutANotCreatedCart stamp: 'NB 6/14/2023 00:16:22'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12CanNotCheckoutAnEmptyCart stamp: 'NB 6/14/2023 00:16:22'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test13CannotAddItemsToCartAfterSessionOf30minutesHasExpired stamp: 'NB 6/14/2023 00:16:22'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test14CannotListCartAfterSessionOf30minutesHasExpired stamp: 'NB 6/14/2023 00:16:22'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test15CannotCheckoutCartAfterSessionOf30minutesHasExpired stamp: 'NB 6/14/2023 00:16:22'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test01CanCreateCartWithValidUserAndPassword stamp: 'NB 6/14/2023 00:16:24'!
+ERROR!
+!RestInterface methodsFor: 'as yet unclassified' stamp: 'NB 6/14/2023 00:17:11' prior: 50630527!
+listCartIdentifiedAs: aCartId
+
+	self withCartSessionIdentifiedBy: aCartId do: [:cart | ^cart content.] 
+	
+	! !
+
+!testRun: #RestInterfaceTest #test01CanCreateCartWithValidUserAndPassword stamp: 'NB 6/14/2023 00:17:13'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02CanNotCreateCartWithInvalidUser stamp: 'NB 6/14/2023 00:17:13'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03CanNotCreateCartWithInvalidPassword stamp: 'NB 6/14/2023 00:17:13'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04CanAddItemsToACreatedCart stamp: 'NB 6/14/2023 00:17:13'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05CanNotAddItemToNotCreatedCart stamp: 'NB 6/14/2023 00:17:13'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06CanNotAddItemNotSellByTheStore stamp: 'NB 6/14/2023 00:17:13'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07ListCartOfAnEmptyCartReturnsAnEmptyBag stamp: 'NB 6/14/2023 00:17:13'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08CanNotListCartOfInvalidCartId stamp: 'NB 6/14/2023 00:17:13'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09ListCartReturnsTheRightNumberOfItems stamp: 'NB 6/14/2023 00:17:13'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10CanCheckoutACart stamp: 'NB 6/14/2023 00:17:13'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11CanNotCheckoutANotCreatedCart stamp: 'NB 6/14/2023 00:17:13'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12CanNotCheckoutAnEmptyCart stamp: 'NB 6/14/2023 00:17:13'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test13CannotAddItemsToCartAfterSessionOf30minutesHasExpired stamp: 'NB 6/14/2023 00:17:13'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test14CannotListCartAfterSessionOf30minutesHasExpired stamp: 'NB 6/14/2023 00:17:13'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test15CannotCheckoutCartAfterSessionOf30minutesHasExpired stamp: 'NB 6/14/2023 00:17:13'!
+PASSED!
+!CartSession methodsFor: 'session' stamp: 'NB 6/14/2023 00:18:40'!
+isSessionExpired
+
+	^(restInterface time - lastTimeCartUsed ) > (Duration minutes: 30)! !
+!CartSession methodsFor: 'session' stamp: 'NB 6/14/2023 00:18:49' prior: 50630858!
+do: aBlock
+
+	self isSessionExpired ifTrue: [self error: self class cannotUseCartAfter30MinutesErrorMessage].
+	
+	^[aBlock value: cart] ensure: [ lastTimeCartUsed := restInterface time].! !
+
+!testRun: #RestInterfaceTest #test01CanCreateCartWithValidUserAndPassword stamp: 'NB 6/14/2023 00:18:50'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02CanNotCreateCartWithInvalidUser stamp: 'NB 6/14/2023 00:18:50'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03CanNotCreateCartWithInvalidPassword stamp: 'NB 6/14/2023 00:18:50'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04CanAddItemsToACreatedCart stamp: 'NB 6/14/2023 00:18:50'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05CanNotAddItemToNotCreatedCart stamp: 'NB 6/14/2023 00:18:50'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06CanNotAddItemNotSellByTheStore stamp: 'NB 6/14/2023 00:18:50'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07ListCartOfAnEmptyCartReturnsAnEmptyBag stamp: 'NB 6/14/2023 00:18:50'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08CanNotListCartOfInvalidCartId stamp: 'NB 6/14/2023 00:18:50'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09ListCartReturnsTheRightNumberOfItems stamp: 'NB 6/14/2023 00:18:50'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10CanCheckoutACart stamp: 'NB 6/14/2023 00:18:50'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11CanNotCheckoutANotCreatedCart stamp: 'NB 6/14/2023 00:18:50'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12CanNotCheckoutAnEmptyCart stamp: 'NB 6/14/2023 00:18:50'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test13CannotAddItemsToCartAfterSessionOf30minutesHasExpired stamp: 'NB 6/14/2023 00:18:50'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test14CannotListCartAfterSessionOf30minutesHasExpired stamp: 'NB 6/14/2023 00:18:50'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test15CannotCheckoutCartAfterSessionOf30minutesHasExpired stamp: 'NB 6/14/2023 00:18:50'!
+PASSED!
+!RestInterface methodsFor: 'as yet unclassified' stamp: 'NB 6/14/2023 00:19:03' prior: 50628444!
+today
+	
+	^clock time.! !
+
+!testRun: #RestInterfaceTest #test01CanCreateCartWithValidUserAndPassword stamp: 'NB 6/14/2023 00:19:04'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02CanNotCreateCartWithInvalidUser stamp: 'NB 6/14/2023 00:19:04'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03CanNotCreateCartWithInvalidPassword stamp: 'NB 6/14/2023 00:19:04'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04CanAddItemsToACreatedCart stamp: 'NB 6/14/2023 00:19:04'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05CanNotAddItemToNotCreatedCart stamp: 'NB 6/14/2023 00:19:04'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06CanNotAddItemNotSellByTheStore stamp: 'NB 6/14/2023 00:19:04'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07ListCartOfAnEmptyCartReturnsAnEmptyBag stamp: 'NB 6/14/2023 00:19:04'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08CanNotListCartOfInvalidCartId stamp: 'NB 6/14/2023 00:19:04'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09ListCartReturnsTheRightNumberOfItems stamp: 'NB 6/14/2023 00:19:04'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10CanCheckoutACart stamp: 'NB 6/14/2023 00:19:04'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11CanNotCheckoutANotCreatedCart stamp: 'NB 6/14/2023 00:19:04'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12CanNotCheckoutAnEmptyCart stamp: 'NB 6/14/2023 00:19:04'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test13CannotAddItemsToCartAfterSessionOf30minutesHasExpired stamp: 'NB 6/14/2023 00:19:04'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test14CannotListCartAfterSessionOf30minutesHasExpired stamp: 'NB 6/14/2023 00:19:04'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test15CannotCheckoutCartAfterSessionOf30minutesHasExpired stamp: 'NB 6/14/2023 00:19:04'!
+PASSED!
+
+!classDefinition: #RestInterface category: 'TusLibros' stamp: 'NB 6/14/2023 00:21:06'!
+Object subclass: #RestInterface
+	instanceVariableNames: 'authenticationSystem cartsSessions catalog lastId merchantProcessor salesBook clock'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classRenamed: #Clock as: #ManualClock stamp: 'NB 6/14/2023 00:22:42'!
+Smalltalk renameClassNamed: #Clock as: #ManualClock!
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'NB 6/14/2023 00:22:42' prior: 50629500 overrides: 16961394!
+setUp 
+
+	testObjectsFactory := StoreTestObjectsFactory new.
+	clock:= ManualClock time: DateAndTime now.
+	
+! !
+
+Object subclass: #Clock
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #Clock category: 'TusLibros' stamp: 'NB 6/14/2023 00:22:56'!
+Object subclass: #Clock
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+Clock subclass: #ManualClock
+	instanceVariableNames: 'time'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #ManualClock category: 'TusLibros' stamp: 'NB 6/14/2023 00:23:02'!
+Clock subclass: #ManualClock
+	instanceVariableNames: 'time'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!Clock methodsFor: 'time' stamp: 'NB 6/14/2023 00:23:42'!
+time
+
+	self subclassResponsibility .! !
+!CartSession class methodsFor: 'instance creation' stamp: 'NB 6/14/2023 00:25:38'!
+for: aCart withClock: aRestInterface 
+	
+	^self new initializeFor: aCart withInterface: aRestInterface ! !
+!RestInterface methodsFor: 'as yet unclassified' stamp: 'NB 6/14/2023 00:25:38' prior: 50630998!
+createCartFor: aUser authenticatedWith: aPassword
+
+	| cartId |
+	
+	(self is: aUser authenticatingWith: aPassword) ifFalse: [ self signalInvalidUserAndOrPassword ].
+	
+	cartId := self generateCartId.
+	cartsSessions at: cartId put: (CartSession for: (Cart acceptingItemsOf: catalog) withClock: self).
+	
+	^cartId ! !
+
+!methodRemoval: CartSession class #for:withInterface: stamp: 'NB 6/14/2023 00:25:38'!
+for: aCart withInterface: aRestInterface 
+	
+	^self new initializeFor: aCart withInterface: aRestInterface !
+!CartSession class methodsFor: 'instance creation' stamp: 'NB 6/14/2023 00:25:46' prior: 50631296!
+for: aCart withClock: aClock 
+	
+	^self new initializeFor: aCart withInterface: aClock ! !
+!CartSession methodsFor: 'initialization' stamp: 'NB 6/14/2023 00:26:00'!
+initializeFor: aCart withClock: aRestInterface 
+	cart := aCart.
+	restInterface := aRestInterface.
+	lastTimeCartUsed := aRestInterface time.! !
+!CartSession class methodsFor: 'as yet unclassified' stamp: 'NB 6/14/2023 00:26:00' prior: 50631322!
+for: aCart withClock: aClock 
+	
+	^self new initializeFor: aCart withClock: aClock ! !
+
+!methodRemoval: CartSession #initializeFor:withInterface: stamp: 'NB 6/14/2023 00:26:00'!
+initializeFor: aCart withInterface: aRestInterface 
+	cart := aCart.
+	restInterface := aRestInterface.
+	lastTimeCartUsed := aRestInterface time.!
+
+!classDefinition: #CartSession category: 'TusLibros' stamp: 'NB 6/14/2023 00:26:39'!
+Object subclass: #CartSession
+	instanceVariableNames: 'cart clock lastTimeCartUsed'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!CartSession methodsFor: 'as yet unclassified' stamp: 'NB 6/14/2023 00:26:39' prior: 50631328!
+initializeFor: aCart withClock: aRestInterface 
+	cart := aCart.
+	clock := aRestInterface.
+	lastTimeCartUsed := aRestInterface time.! !
+!CartSession methodsFor: 'as yet unclassified' stamp: 'NB 6/14/2023 00:26:39' prior: 50631126!
+isSessionExpired
+
+	^(clock time - lastTimeCartUsed ) > (Duration minutes: 30)! !
+!CartSession methodsFor: 'as yet unclassified' stamp: 'NB 6/14/2023 00:26:39' prior: 50631132!
+do: aBlock
+
+	self isSessionExpired ifTrue: [self error: self class cannotUseCartAfter30MinutesErrorMessage].
+	
+	^[aBlock value: cart] ensure: [ lastTimeCartUsed := clock time].! !
+!CartSession methodsFor: 'initialization' stamp: 'NB 6/14/2023 00:26:55' prior: 50631357!
+initializeFor: aCart withClock: aClock 
+	cart := aCart.
+	clock := aClock.
+	lastTimeCartUsed := aClock time.! !
+!RestInterface methodsFor: 'as yet unclassified' stamp: 'NB 6/14/2023 00:27:36' prior: 50631303!
+createCartFor: aUser authenticatedWith: aPassword
+
+	| cartId |
+	
+	(self is: aUser authenticatingWith: aPassword) ifFalse: [ self signalInvalidUserAndOrPassword ].
+	
+	cartId := self generateCartId.
+	cartsSessions at: cartId put: (CartSession for: (Cart acceptingItemsOf: catalog) withClock: clock).
+	
+	^cartId ! !
+
+!methodRemoval: RestInterface #time stamp: 'NB 6/14/2023 00:27:43'!
+time
+	
+	^clock time.!
+
+!testRun: #RestInterfaceTest #test01CanCreateCartWithValidUserAndPassword stamp: 'NB 6/14/2023 00:27:47'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02CanNotCreateCartWithInvalidUser stamp: 'NB 6/14/2023 00:27:47'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03CanNotCreateCartWithInvalidPassword stamp: 'NB 6/14/2023 00:27:47'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04CanAddItemsToACreatedCart stamp: 'NB 6/14/2023 00:27:47'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05CanNotAddItemToNotCreatedCart stamp: 'NB 6/14/2023 00:27:47'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06CanNotAddItemNotSellByTheStore stamp: 'NB 6/14/2023 00:27:47'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07ListCartOfAnEmptyCartReturnsAnEmptyBag stamp: 'NB 6/14/2023 00:27:47'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08CanNotListCartOfInvalidCartId stamp: 'NB 6/14/2023 00:27:47'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09ListCartReturnsTheRightNumberOfItems stamp: 'NB 6/14/2023 00:27:47'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10CanCheckoutACart stamp: 'NB 6/14/2023 00:27:47'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11CanNotCheckoutANotCreatedCart stamp: 'NB 6/14/2023 00:27:47'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12CanNotCheckoutAnEmptyCart stamp: 'NB 6/14/2023 00:27:47'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test13CannotAddItemsToCartAfterSessionOf30minutesHasExpired stamp: 'NB 6/14/2023 00:27:47'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test14CannotListCartAfterSessionOf30minutesHasExpired stamp: 'NB 6/14/2023 00:27:47'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test15CannotCheckoutCartAfterSessionOf30minutesHasExpired stamp: 'NB 6/14/2023 00:27:47'!
+PASSED!
+
+----SNAPSHOT----(14 June 2023 00:27:50) CuisUniversity-5832.image priorSource: 9557097!
+
+----SNAPSHOT----(14 June 2023 00:28:31) CuisUniversity-5832.image priorSource: 9593732!
+
+----SNAPSHOT----(14 June 2023 00:28:48) CuisUniversity-5832.image priorSource: 9593821!
+
+----SNAPSHOT----(14 June 2023 00:28:50) CuisUniversity-5832.image priorSource: 9593910!
+
+----SNAPSHOT----(14 June 2023 00:28:53) CuisUniversity-5832.image priorSource: 9593999!

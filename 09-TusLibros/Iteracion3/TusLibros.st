@@ -300,11 +300,11 @@ is: aUser authenticatingWith: aPassword
 	storedPassword := self validUsersAndPasswords at: aUser ifAbsent: [ ^false ].
 	^aPassword = storedPassword ! !
 
-!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'NB 6/12/2023 21:17:18'!
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'NB 6/14/2023 00:22:42'!
 setUp 
 
 	testObjectsFactory := StoreTestObjectsFactory new.
-	clock:= Clock time: DateAndTime now.
+	clock:= ManualClock time: DateAndTime now.
 	
 ! !
 
@@ -486,7 +486,7 @@ test12CanNotCheckoutAnEmptyCart
 		
 		! !
 
-!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'NB 6/12/2023 21:31:13'!
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'NB 6/14/2023 00:10:43'!
 test13CannotAddItemsToCartAfterSessionOf30minutesHasExpired
 	
 	| interface cartId |
@@ -501,11 +501,11 @@ test13CannotAddItemsToCartAfterSessionOf30minutesHasExpired
 		should: [interface add: self validBook quantity: 1 toCartIdentifiedAs: cartId ]
 		raise: Error - MessageNotUnderstood
 		withExceptionDo: [ :anError |
-			self assert: anError messageText = RestInterface cannotUseCartAfter30MinutesErrorMessage ]
+			self assert: anError messageText = CartSession cannotUseCartAfter30MinutesErrorMessage ]
 		
 		! !
 
-!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'NB 6/12/2023 21:32:14'!
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'NB 6/14/2023 00:10:48'!
 test14CannotListCartAfterSessionOf30minutesHasExpired
 	
 	| interface cartId |
@@ -521,11 +521,11 @@ test14CannotListCartAfterSessionOf30minutesHasExpired
 		should: [interface listCartIdentifiedAs: cartId]
 		raise: Error - MessageNotUnderstood
 		withExceptionDo: [ :anError |
-			self assert: anError messageText = RestInterface cannotUseCartAfter30MinutesErrorMessage ]
+			self assert: anError messageText = CartSession cannotUseCartAfter30MinutesErrorMessage ]
 		
 		! !
 
-!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'NB 6/12/2023 21:35:04'!
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'NB 6/14/2023 00:10:51'!
 test15CannotCheckoutCartAfterSessionOf30minutesHasExpired
 	
 	| interface cartId |
@@ -545,7 +545,7 @@ test15CannotCheckoutCartAfterSessionOf30minutesHasExpired
 			expiringOn: testObjectsFactory notExpiredMonthOfYear]
 		raise: Error - MessageNotUnderstood
 		withExceptionDo: [ :anError |
-			self assert: anError messageText = RestInterface cannotUseCartAfter30MinutesErrorMessage ]
+			self assert: anError messageText = CartSession cannotUseCartAfter30MinutesErrorMessage ]
 		
 		! !
 
@@ -675,6 +675,49 @@ acceptingItemsOf: aCatalog
 	^self new initializeAcceptingItemsOf: aCatalog ! !
 
 
+!classDefinition: #CartSession category: 'TusLibros'!
+Object subclass: #CartSession
+	instanceVariableNames: 'cart clock lastTimeCartUsed'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!CartSession methodsFor: 'initialization' stamp: 'NB 6/14/2023 00:26:55'!
+initializeFor: aCart withClock: aClock 
+	cart := aCart.
+	clock := aClock.
+	lastTimeCartUsed := aClock time.! !
+
+
+!CartSession methodsFor: 'session' stamp: 'NB 6/14/2023 00:26:39'!
+do: aBlock
+
+	self isSessionExpired ifTrue: [self error: self class cannotUseCartAfter30MinutesErrorMessage].
+	
+	^[aBlock value: cart] ensure: [ lastTimeCartUsed := clock time].! !
+
+!CartSession methodsFor: 'session' stamp: 'NB 6/14/2023 00:26:39'!
+isSessionExpired
+
+	^(clock time - lastTimeCartUsed ) > (Duration minutes: 30)! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'CartSession class' category: 'TusLibros'!
+CartSession class
+	instanceVariableNames: ''!
+
+!CartSession class methodsFor: 'instance creation' stamp: 'NB 6/14/2023 00:08:27'!
+cannotUseCartAfter30MinutesErrorMessage
+	
+	^'Cart cannot be used after 30 minutes of inactivity'.! !
+
+!CartSession class methodsFor: 'instance creation' stamp: 'NB 6/14/2023 00:26:00'!
+for: aCart withClock: aClock 
+	
+	^self new initializeFor: aCart withClock: aClock ! !
+
+
 !classDefinition: #Cashier category: 'TusLibros'!
 Object subclass: #Cashier
 	instanceVariableNames: 'cart salesBook merchantProcessor creditCard total'
@@ -763,34 +806,47 @@ cartCanNotBeEmptyErrorMessage
 
 !classDefinition: #Clock category: 'TusLibros'!
 Object subclass: #Clock
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!Clock methodsFor: 'time' stamp: 'NB 6/14/2023 00:23:42'!
+time
+
+	self subclassResponsibility .! !
+
+
+!classDefinition: #ManualClock category: 'TusLibros'!
+Clock subclass: #ManualClock
 	instanceVariableNames: 'time'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'TusLibros'!
 
-!Clock methodsFor: 'category-name' stamp: 'NB 6/12/2023 21:15:45'!
+!ManualClock methodsFor: 'time' stamp: 'NB 6/12/2023 21:15:45'!
 advanceTime: aDuration
 	
 	time:= time + aDuration.! !
 
-!Clock methodsFor: 'category-name' stamp: 'NB 6/12/2023 21:00:26'!
+!ManualClock methodsFor: 'time' stamp: 'NB 6/12/2023 21:00:26'!
 time
 	
 	^time! !
 
 
-!Clock methodsFor: 'initialization' stamp: 'NB 6/12/2023 21:18:12'!
+!ManualClock methodsFor: 'initialization' stamp: 'NB 6/12/2023 21:18:12'!
 initializeWith: aTime
 
 	time:= aTime.! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
-!classDefinition: 'Clock class' category: 'TusLibros'!
-Clock class
+!classDefinition: 'ManualClock class' category: 'TusLibros'!
+ManualClock class
 	instanceVariableNames: ''!
 
-!Clock class methodsFor: 'as yet unclassified' stamp: 'NB 6/12/2023 21:17:47'!
+!ManualClock class methodsFor: 'as yet unclassified' stamp: 'NB 6/12/2023 21:17:47'!
 time: aTime
 
 	^self new initializeWith: aTime.! !
@@ -828,49 +884,40 @@ expiringOn: aMonth
 
 !classDefinition: #RestInterface category: 'TusLibros'!
 Object subclass: #RestInterface
-	instanceVariableNames: 'authenticationSystem carts catalog lastId merchantProcessor salesBook clock lastTimeCartUsed'
+	instanceVariableNames: 'authenticationSystem cartsSessions catalog lastId merchantProcessor salesBook clock'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'TusLibros'!
 
-!RestInterface methodsFor: 'as yet unclassified' stamp: 'NB 6/12/2023 21:04:28'!
+!RestInterface methodsFor: 'as yet unclassified' stamp: 'NB 6/14/2023 00:15:32'!
 add: aBook quantity: anAmount toCartIdentifiedAs: aCartId
 
-	| cart |
-
 	
-	cart := carts at: aCartId ifAbsent: [ self signalInvalidCartId ].
+	self withCartSessionIdentifiedBy: aCartId do: [:cart | cart add: anAmount of: aBook.] 
 	
-	(clock time - lastTimeCartUsed ) > (Duration minutes: 30) ifTrue: [self error: self class cannotUseCartAfter30MinutesErrorMessage].
-	
-	cart add: anAmount of: aBook.
-	
-	lastTimeCartUsed:= clock time.! !
+	! !
 
 !RestInterface methodsFor: 'as yet unclassified' stamp: 'HernanWilkinson 6/22/2013 11:17'!
 cartCanNotBeEmptyErrorMessage
 	
 	^Cashier cartCanNotBeEmptyErrorMessage ! !
 
-!RestInterface methodsFor: 'as yet unclassified' stamp: 'NB 6/12/2023 21:35:36'!
+!RestInterface methodsFor: 'as yet unclassified' stamp: 'NB 6/14/2023 00:16:05'!
 checkOutCartIdentifiedAs: aCartId withCreditCardNumbered: aCreditCartNumber ownedBy: anOwner expiringOn: anExpirationMonthOfYear
 
-	| cart |
-	
-	cart := carts at: aCartId ifAbsent: [self signalInvalidCartId ].
-	
-	(clock time - lastTimeCartUsed ) > (Duration minutes: 30) ifTrue: [self error: self class cannotUseCartAfter30MinutesErrorMessage].
-	
+	self withCartSessionIdentifiedBy: aCartId do: [:cart | 
 	Cashier 
 		toCheckout: cart 
 		charging: (CreditCard expiringOn: anExpirationMonthOfYear) 
 		throught: merchantProcessor 
 		on: self today 
 		registeringOn: salesBook.
-		
-	lastTimeCartUsed:= clock time.! !
 
-!RestInterface methodsFor: 'as yet unclassified' stamp: 'NB 6/12/2023 21:01:18'!
+		] 
+	
+	! !
+
+!RestInterface methodsFor: 'as yet unclassified' stamp: 'NB 6/14/2023 00:27:36'!
 createCartFor: aUser authenticatedWith: aPassword
 
 	| cartId |
@@ -878,9 +925,7 @@ createCartFor: aUser authenticatedWith: aPassword
 	(self is: aUser authenticatingWith: aPassword) ifFalse: [ self signalInvalidUserAndOrPassword ].
 	
 	cartId := self generateCartId.
-	carts at: cartId put: (Cart acceptingItemsOf: catalog).
-	
-	lastTimeCartUsed:= clock time.
+	cartsSessions at: cartId put: (CartSession for: (Cart acceptingItemsOf: catalog) withClock: clock).
 	
 	^cartId ! !
 
@@ -893,21 +938,12 @@ generateCartId
 	lastId := lastId + 1.
 	^lastId! !
 
-!RestInterface methodsFor: 'as yet unclassified' stamp: 'ARM 6/11/2023 14:13:23'!
-initializeAuthenticatingWith: anAuthenticationSystem acceptingItemsOf: aCatalog merchantProcessor: anMP
-
-	authenticationSystem := anAuthenticationSystem.
-	catalog := aCatalog.
-	carts := Dictionary new.
-	lastId := 0.
-	merchantProcessor := anMP! !
-
-!RestInterface methodsFor: 'as yet unclassified' stamp: 'NB 6/12/2023 20:53:00'!
+!RestInterface methodsFor: 'as yet unclassified' stamp: 'NB 6/13/2023 23:58:11'!
 initializeAuthenticatingWith: anAuthenticationSystem acceptingItemsOf: aCatalog merchantProcessor: anMP withClock: aClock
 
 	authenticationSystem := anAuthenticationSystem.
 	catalog := aCatalog.
-	carts := Dictionary new.
+	cartsSessions := Dictionary new.
 	lastId := 0.
 	merchantProcessor := anMP.
 	clock:= aClock.! !
@@ -933,16 +969,12 @@ is: aUser authenticatingWith: aPassword
 	^authenticationSystem is: aUser authenticatingWith: aPassword 
 ! !
 
-!RestInterface methodsFor: 'as yet unclassified' stamp: 'NB 6/12/2023 21:32:42'!
+!RestInterface methodsFor: 'as yet unclassified' stamp: 'NB 6/14/2023 00:17:11'!
 listCartIdentifiedAs: aCartId
 
-	| cart |
+	self withCartSessionIdentifiedBy: aCartId do: [:cart | ^cart content.] 
 	
-	cart := carts at: aCartId ifAbsent: [ self signalInvalidCartId ].
-	
-	(clock time - lastTimeCartUsed ) > (Duration minutes: 30) ifTrue: [self error: self class cannotUseCartAfter30MinutesErrorMessage].
-	
-	^cart content! !
+	! !
 
 !RestInterface methodsFor: 'as yet unclassified' stamp: 'HernanWilkinson 6/21/2013 23:27'!
 signalInvalidCartId
@@ -954,10 +986,19 @@ signalInvalidUserAndOrPassword
 	
 	self error: self invalidUserAndOrPasswordErrorDescription! !
 
-!RestInterface methodsFor: 'as yet unclassified' stamp: 'HernanWilkinson 6/22/2013 11:17'!
+!RestInterface methodsFor: 'as yet unclassified' stamp: 'NB 6/14/2023 00:19:03'!
 today
 	
-	^DateAndTime now! !
+	^clock time.! !
+
+!RestInterface methodsFor: 'as yet unclassified' stamp: 'NB 6/14/2023 00:03:24'!
+withCartSessionIdentifiedBy: aCartId do: aBlock
+
+	| cartSession |
+	
+	cartSession := cartsSessions at: aCartId ifAbsent: [ self signalInvalidCartId ].
+	
+	^cartSession do: aBlock.! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
@@ -965,20 +1006,10 @@ today
 RestInterface class
 	instanceVariableNames: ''!
 
-!RestInterface class methodsFor: 'as yet unclassified' stamp: 'ARM 6/11/2023 14:13:04'!
-authenticatingWith: aValidUsersAndPasswords acceptingItemsOf: aCatalog merchantProcessor: anMP
-
-	^self new initializeAuthenticatingWith: aValidUsersAndPasswords acceptingItemsOf: aCatalog merchantProcessor: anMP! !
-
 !RestInterface class methodsFor: 'as yet unclassified' stamp: 'NB 6/12/2023 20:52:34'!
 authenticatingWith: aValidUsersAndPasswords acceptingItemsOf: aCatalog merchantProcessor: anMP withClock: aClock
 
 	^self new initializeAuthenticatingWith: aValidUsersAndPasswords acceptingItemsOf: aCatalog merchantProcessor: anMP withClock: aClock.! !
-
-!RestInterface class methodsFor: 'as yet unclassified' stamp: 'NB 6/12/2023 21:08:30'!
-cannotUseCartAfter30MinutesErrorMessage
-	
-	^'Cart cannot be used after 30 minutes of inactivity'.! !
 
 
 !classDefinition: #StoreTestObjectsFactory category: 'TusLibros'!
