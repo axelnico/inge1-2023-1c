@@ -258,12 +258,7 @@ TestCase subclass: #RestInterfaceTest
 	poolDictionaries: ''
 	category: 'TusLibros'!
 
-!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'HernanWilkinson 6/22/2013 00:15'!
-anotherValidBook
-	
-	^testObjectsFactory anotherItemSellByTheStore ! !
-
-!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'NB 6/12/2023 20:52:13'!
+!RestInterfaceTest methodsFor: 'setup' stamp: 'NB 6/12/2023 20:52:13'!
 createDefaultInterface
 	
 	^RestInterface
@@ -272,35 +267,7 @@ createDefaultInterface
 		merchantProcessor: self
 		withClock: clock.! !
 
-!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'HernanWilkinson 6/21/2013 23:49'!
-invalidBook
-
-	^testObjectsFactory itemNotSellByTheStore ! !
-
-!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'HernanWilkinson 6/21/2013 23:25'!
-invalidCartId
-	
-	"Devuelvo nil porque seguro que siempre sera un id invalido, no importa que sea el id - Hernan"
-	^nil! !
-
-!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'HernanWilkinson 6/21/2013 23:06'!
-invalidPassword
-	
-	^'invalidPassword'! !
-
-!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'HernanWilkinson 6/21/2013 22:30'!
-invalidUser
-
-	^'invalidUser'! !
-
-!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'ARM 6/11/2023 13:57:02'!
-is: aUser authenticatingWith: aPassword 
-	| storedPassword |
-	
-	storedPassword := self validUsersAndPasswords at: aUser ifAbsent: [ ^false ].
-	^aPassword = storedPassword ! !
-
-!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'NB 6/14/2023 00:22:42'!
+!RestInterfaceTest methodsFor: 'setup' stamp: 'NB 6/14/2023 00:22:42'!
 setUp 
 
 	testObjectsFactory := StoreTestObjectsFactory new.
@@ -308,7 +275,66 @@ setUp
 	
 ! !
 
-!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'ARM 6/11/2023 14:00:14'!
+
+!RestInterfaceTest methodsFor: 'valid test objects' stamp: 'HernanWilkinson 6/22/2013 00:15'!
+anotherValidBook
+	
+	^testObjectsFactory anotherItemSellByTheStore ! !
+
+!RestInterfaceTest methodsFor: 'valid test objects' stamp: 'HernanWilkinson 6/21/2013 23:50'!
+validBook
+	
+	^testObjectsFactory itemSellByTheStore ! !
+
+!RestInterfaceTest methodsFor: 'valid test objects' stamp: 'HernanWilkinson 6/21/2013 22:27'!
+validUser
+	
+	^'validUser'! !
+
+!RestInterfaceTest methodsFor: 'valid test objects' stamp: 'HernanWilkinson 6/21/2013 22:28'!
+validUserPassword
+	
+	^'validUserPassword'! !
+
+!RestInterfaceTest methodsFor: 'valid test objects' stamp: 'HernanWilkinson 6/21/2013 22:43'!
+validUsersAndPasswords
+	
+	^Dictionary new
+		at: self validUser put: self validUserPassword;
+		yourself! !
+
+
+!RestInterfaceTest methodsFor: 'invalid test objects' stamp: 'HernanWilkinson 6/21/2013 23:49'!
+invalidBook
+
+	^testObjectsFactory itemNotSellByTheStore ! !
+
+!RestInterfaceTest methodsFor: 'invalid test objects' stamp: 'HernanWilkinson 6/21/2013 23:25'!
+invalidCartId
+	
+	"Devuelvo nil porque seguro que siempre sera un id invalido, no importa que sea el id - Hernan"
+	^nil! !
+
+!RestInterfaceTest methodsFor: 'invalid test objects' stamp: 'HernanWilkinson 6/21/2013 23:06'!
+invalidPassword
+	
+	^'invalidPassword'! !
+
+!RestInterfaceTest methodsFor: 'invalid test objects' stamp: 'HernanWilkinson 6/21/2013 22:30'!
+invalidUser
+
+	^'invalidUser'! !
+
+
+!RestInterfaceTest methodsFor: 'authentication' stamp: 'ARM 6/11/2023 13:57:02'!
+is: aUser authenticatingWith: aPassword 
+	| storedPassword |
+	
+	storedPassword := self validUsersAndPasswords at: aUser ifAbsent: [ ^false ].
+	^aPassword = storedPassword ! !
+
+
+!RestInterfaceTest methodsFor: 'tests' stamp: 'ARM 6/11/2023 14:00:14'!
 test01CanCreateCartWithValidUserAndPassword
 
 	| interface cartID |
@@ -319,7 +345,7 @@ test01CanCreateCartWithValidUserAndPassword
 	
 	self assert: (interface listCartIdentifiedAs: cartID) isEmpty! !
 
-!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'HernanWilkinson 6/21/2013 23:03'!
+!RestInterfaceTest methodsFor: 'tests' stamp: 'HernanWilkinson 6/21/2013 23:03'!
 test02CanNotCreateCartWithInvalidUser
 
 	| interface |
@@ -332,7 +358,7 @@ test02CanNotCreateCartWithInvalidUser
 		withExceptionDo: [ :anError | 
 			self assert: anError messageText = interface invalidUserAndOrPasswordErrorDescription ]! !
 
-!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'HernanWilkinson 6/21/2013 23:06'!
+!RestInterfaceTest methodsFor: 'tests' stamp: 'HernanWilkinson 6/21/2013 23:06'!
 test03CanNotCreateCartWithInvalidPassword
 
 	| interface |
@@ -345,7 +371,7 @@ test03CanNotCreateCartWithInvalidPassword
 		withExceptionDo: [ :anError | 
 			self assert: anError messageText = interface invalidUserAndOrPasswordErrorDescription ]! !
 
-!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'HernanWilkinson 6/21/2013 23:15'!
+!RestInterfaceTest methodsFor: 'tests' stamp: 'HernanWilkinson 6/21/2013 23:15'!
 test04CanAddItemsToACreatedCart
 
 	| interface cartId |
@@ -358,7 +384,7 @@ test04CanAddItemsToACreatedCart
 		raise: Error - MessageNotUnderstood
 		! !
 
-!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'HernanWilkinson 6/21/2013 23:24'!
+!RestInterfaceTest methodsFor: 'tests' stamp: 'HernanWilkinson 6/21/2013 23:24'!
 test05CanNotAddItemToNotCreatedCart
 
 	| interface |
@@ -372,7 +398,7 @@ test05CanNotAddItemToNotCreatedCart
 			self assert: anError messageText = interface invalidCartIdErrorDescription ]
 		! !
 
-!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'HernanWilkinson 6/21/2013 23:41'!
+!RestInterfaceTest methodsFor: 'tests' stamp: 'HernanWilkinson 6/21/2013 23:41'!
 test06CanNotAddItemNotSellByTheStore
 
 	| interface cartId |
@@ -387,7 +413,7 @@ test06CanNotAddItemNotSellByTheStore
 			self assert: anError messageText = interface invalidItemErrorMessage ]
 		! !
 
-!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'HernanWilkinson 6/22/2013 00:05'!
+!RestInterfaceTest methodsFor: 'tests' stamp: 'HernanWilkinson 6/22/2013 00:05'!
 test07ListCartOfAnEmptyCartReturnsAnEmptyBag
 
 	| interface cartId |
@@ -398,7 +424,7 @@ test07ListCartOfAnEmptyCartReturnsAnEmptyBag
 	self assert: (interface listCartIdentifiedAs: cartId) isEmpty 
 	! !
 
-!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'HernanWilkinson 6/22/2013 00:08'!
+!RestInterfaceTest methodsFor: 'tests' stamp: 'HernanWilkinson 6/22/2013 00:08'!
 test08CanNotListCartOfInvalidCartId
 
 	| interface |
@@ -412,7 +438,7 @@ test08CanNotListCartOfInvalidCartId
 			self assert: anError messageText = interface invalidCartIdErrorDescription ]
 	! !
 
-!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'HernanWilkinson 6/22/2013 00:15'!
+!RestInterfaceTest methodsFor: 'tests' stamp: 'HernanWilkinson 6/22/2013 00:15'!
 test09ListCartReturnsTheRightNumberOfItems
 
 	| interface cartId cartContent |
@@ -428,7 +454,7 @@ test09ListCartReturnsTheRightNumberOfItems
 	self assert: (cartContent occurrencesOf: self anotherValidBook) = 2
 ! !
 
-!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'HernanWilkinson 6/22/2013 11:08'!
+!RestInterfaceTest methodsFor: 'tests' stamp: 'HernanWilkinson 6/22/2013 11:08'!
 test10CanCheckoutACart
 
 	| interface cartId  |
@@ -447,7 +473,7 @@ test10CanCheckoutACart
 		
 		! !
 
-!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'HernanWilkinson 6/22/2013 11:10'!
+!RestInterfaceTest methodsFor: 'tests' stamp: 'HernanWilkinson 6/22/2013 11:10'!
 test11CanNotCheckoutANotCreatedCart
 
 	| interface |
@@ -466,7 +492,7 @@ test11CanNotCheckoutANotCreatedCart
 		
 		! !
 
-!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'HernanWilkinson 6/22/2013 11:13'!
+!RestInterfaceTest methodsFor: 'tests' stamp: 'HernanWilkinson 6/22/2013 11:13'!
 test12CanNotCheckoutAnEmptyCart
 
 	| interface cartId |
@@ -486,7 +512,7 @@ test12CanNotCheckoutAnEmptyCart
 		
 		! !
 
-!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'NB 6/14/2023 00:10:43'!
+!RestInterfaceTest methodsFor: 'tests' stamp: 'NB 6/14/2023 21:45:51'!
 test13CannotAddItemsToCartAfterSessionOf30minutesHasExpired
 	
 	| interface cartId |
@@ -495,7 +521,7 @@ test13CannotAddItemsToCartAfterSessionOf30minutesHasExpired
 	
 	cartId := interface createCartFor: self validUser authenticatedWith: self validUserPassword.
 	
-	clock advanceTime: (Duration minutes: 31).
+	clock advanceTime: 31 minutes.
 	
 	self
 		should: [interface add: self validBook quantity: 1 toCartIdentifiedAs: cartId ]
@@ -505,7 +531,7 @@ test13CannotAddItemsToCartAfterSessionOf30minutesHasExpired
 		
 		! !
 
-!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'NB 6/14/2023 00:10:48'!
+!RestInterfaceTest methodsFor: 'tests' stamp: 'NB 6/14/2023 21:46:01'!
 test14CannotListCartAfterSessionOf30minutesHasExpired
 	
 	| interface cartId |
@@ -515,7 +541,7 @@ test14CannotListCartAfterSessionOf30minutesHasExpired
 	cartId := interface createCartFor: self validUser authenticatedWith: self validUserPassword.
 	interface add: self validBook quantity: 1 toCartIdentifiedAs: cartId.
 	
-	clock advanceTime: (Duration minutes: 31).
+	clock advanceTime: 31 minutes.
 	
 	self
 		should: [interface listCartIdentifiedAs: cartId]
@@ -525,7 +551,7 @@ test14CannotListCartAfterSessionOf30minutesHasExpired
 		
 		! !
 
-!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'NB 6/14/2023 00:10:51'!
+!RestInterfaceTest methodsFor: 'tests' stamp: 'NB 6/14/2023 21:46:05'!
 test15CannotCheckoutCartAfterSessionOf30minutesHasExpired
 	
 	| interface cartId |
@@ -535,7 +561,7 @@ test15CannotCheckoutCartAfterSessionOf30minutesHasExpired
 	cartId := interface createCartFor: self validUser authenticatedWith: self validUserPassword.
 	interface add: self validBook quantity: 1 toCartIdentifiedAs: cartId.
 	
-	clock advanceTime: (Duration minutes: 31).
+	clock advanceTime: 31 minutes.
 	
 	self
 		should: [interface 
@@ -548,28 +574,6 @@ test15CannotCheckoutCartAfterSessionOf30minutesHasExpired
 			self assert: anError messageText = CartSession cannotUseCartAfter30MinutesErrorMessage ]
 		
 		! !
-
-!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'HernanWilkinson 6/21/2013 23:50'!
-validBook
-	
-	^testObjectsFactory itemSellByTheStore ! !
-
-!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'HernanWilkinson 6/21/2013 22:27'!
-validUser
-	
-	^'validUser'! !
-
-!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'HernanWilkinson 6/21/2013 22:28'!
-validUserPassword
-	
-	^'validUserPassword'! !
-
-!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'HernanWilkinson 6/21/2013 22:43'!
-validUsersAndPasswords
-	
-	^Dictionary new
-		at: self validUser put: self validUserPassword;
-		yourself! !
 
 
 !classDefinition: #Cart category: 'TusLibros'!
@@ -677,15 +681,17 @@ acceptingItemsOf: aCatalog
 
 !classDefinition: #CartSession category: 'TusLibros'!
 Object subclass: #CartSession
-	instanceVariableNames: 'cart clock lastTimeCartUsed'
+	instanceVariableNames: 'cart clock lastTimeCartUsed sessionDuration'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'TusLibros'!
 
-!CartSession methodsFor: 'initialization' stamp: 'NB 6/14/2023 00:26:55'!
-initializeFor: aCart withClock: aClock 
+!CartSession methodsFor: 'initialization' stamp: 'NB 6/14/2023 21:49:38'!
+initializeFor: aCart withClock: aClock withDuration: aSessionDuration  
+
 	cart := aCart.
 	clock := aClock.
+	sessionDuration:= aSessionDuration.
 	lastTimeCartUsed := aClock time.! !
 
 
@@ -696,10 +702,10 @@ do: aBlock
 	
 	^[aBlock value: cart] ensure: [ lastTimeCartUsed := clock time].! !
 
-!CartSession methodsFor: 'session' stamp: 'NB 6/14/2023 00:26:39'!
+!CartSession methodsFor: 'session' stamp: 'NB 6/14/2023 21:49:09'!
 isSessionExpired
 
-	^(clock time - lastTimeCartUsed ) > (Duration minutes: 30)! !
+	^(clock time - lastTimeCartUsed ) > sessionDuration .! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
@@ -707,15 +713,16 @@ isSessionExpired
 CartSession class
 	instanceVariableNames: ''!
 
-!CartSession class methodsFor: 'instance creation' stamp: 'NB 6/14/2023 00:08:27'!
+!CartSession class methodsFor: 'error messages' stamp: 'NB 6/14/2023 00:08:27'!
 cannotUseCartAfter30MinutesErrorMessage
 	
 	^'Cart cannot be used after 30 minutes of inactivity'.! !
 
-!CartSession class methodsFor: 'instance creation' stamp: 'NB 6/14/2023 00:26:00'!
-for: aCart withClock: aClock 
+
+!CartSession class methodsFor: 'instance creation' stamp: 'NB 6/14/2023 21:48:35'!
+for: aCart withClock: aClock withDuration: aSessionDuration  
 	
-	^self new initializeFor: aCart withClock: aClock ! !
+	^self new initializeFor: aCart withClock: aClock withDuration: aSessionDuration ! !
 
 
 !classDefinition: #Cashier category: 'TusLibros'!
@@ -846,7 +853,7 @@ initializeWith: aTime
 ManualClock class
 	instanceVariableNames: ''!
 
-!ManualClock class methodsFor: 'as yet unclassified' stamp: 'NB 6/12/2023 21:17:47'!
+!ManualClock class methodsFor: 'instance creation' stamp: 'NB 6/12/2023 21:17:47'!
 time: aTime
 
 	^self new initializeWith: aTime.! !
@@ -889,20 +896,64 @@ Object subclass: #RestInterface
 	poolDictionaries: ''
 	category: 'TusLibros'!
 
-!RestInterface methodsFor: 'as yet unclassified' stamp: 'NB 6/14/2023 00:15:32'!
-add: aBook quantity: anAmount toCartIdentifiedAs: aCartId
-
+!RestInterface methodsFor: 'session' stamp: 'HernanWilkinson 6/21/2013 23:32'!
+generateCartId
 	
-	self withCartSessionIdentifiedBy: aCartId do: [:cart | cart add: anAmount of: aBook.] 
+	"Recuerden que esto es un ejemplo, por lo que voy a generar ids numericos consecutivos, pero en una 
+	implementacion real no deberian se numeros consecutivos ni nada que genere problemas de seguridad - Hernan"
 	
-	! !
+	lastId := lastId + 1.
+	^lastId! !
 
-!RestInterface methodsFor: 'as yet unclassified' stamp: 'HernanWilkinson 6/22/2013 11:17'!
+!RestInterface methodsFor: 'session' stamp: 'NB 6/14/2023 00:03:24'!
+withCartSessionIdentifiedBy: aCartId do: aBlock
+
+	| cartSession |
+	
+	cartSession := cartsSessions at: aCartId ifAbsent: [ self signalInvalidCartId ].
+	
+	^cartSession do: aBlock.! !
+
+
+!RestInterface methodsFor: 'time' stamp: 'NB 6/14/2023 00:19:03'!
+today
+	
+	^clock time.! !
+
+
+!RestInterface methodsFor: 'error messages' stamp: 'HernanWilkinson 6/22/2013 11:17'!
 cartCanNotBeEmptyErrorMessage
 	
 	^Cashier cartCanNotBeEmptyErrorMessage ! !
 
-!RestInterface methodsFor: 'as yet unclassified' stamp: 'NB 6/14/2023 00:16:05'!
+!RestInterface methodsFor: 'error messages' stamp: 'HernanWilkinson 6/21/2013 23:27'!
+invalidCartIdErrorDescription
+	
+	^'Invalid cart id'! !
+
+!RestInterface methodsFor: 'error messages' stamp: 'HernanWilkinson 6/21/2013 23:59'!
+invalidItemErrorMessage
+	
+	^Cart invalidItemErrorMessage ! !
+
+!RestInterface methodsFor: 'error messages' stamp: 'HernanWilkinson 6/21/2013 23:03'!
+invalidUserAndOrPasswordErrorDescription
+	
+	^'Invalid user and/or password'! !
+
+
+!RestInterface methodsFor: 'error signal' stamp: 'HernanWilkinson 6/21/2013 23:27'!
+signalInvalidCartId
+	
+	self error: self invalidCartIdErrorDescription ! !
+
+!RestInterface methodsFor: 'error signal' stamp: 'HernanWilkinson 6/21/2013 23:02'!
+signalInvalidUserAndOrPassword
+	
+	self error: self invalidUserAndOrPasswordErrorDescription! !
+
+
+!RestInterface methodsFor: 'checkout' stamp: 'NB 6/14/2023 00:16:05'!
 checkOutCartIdentifiedAs: aCartId withCreditCardNumbered: aCreditCartNumber ownedBy: anOwner expiringOn: anExpirationMonthOfYear
 
 	self withCartSessionIdentifiedBy: aCartId do: [:cart | 
@@ -917,28 +968,8 @@ checkOutCartIdentifiedAs: aCartId withCreditCardNumbered: aCreditCartNumber owne
 	
 	! !
 
-!RestInterface methodsFor: 'as yet unclassified' stamp: 'NB 6/14/2023 00:27:36'!
-createCartFor: aUser authenticatedWith: aPassword
 
-	| cartId |
-	
-	(self is: aUser authenticatingWith: aPassword) ifFalse: [ self signalInvalidUserAndOrPassword ].
-	
-	cartId := self generateCartId.
-	cartsSessions at: cartId put: (CartSession for: (Cart acceptingItemsOf: catalog) withClock: clock).
-	
-	^cartId ! !
-
-!RestInterface methodsFor: 'as yet unclassified' stamp: 'HernanWilkinson 6/21/2013 23:32'!
-generateCartId
-	
-	"Recuerden que esto es un ejemplo, por lo que voy a generar ids numericos consecutivos, pero en una 
-	implementacion real no deberian se numeros consecutivos ni nada que genere problemas de seguridad - Hernan"
-	
-	lastId := lastId + 1.
-	^lastId! !
-
-!RestInterface methodsFor: 'as yet unclassified' stamp: 'NB 6/13/2023 23:58:11'!
+!RestInterface methodsFor: 'initialization' stamp: 'NB 6/13/2023 23:58:11'!
 initializeAuthenticatingWith: anAuthenticationSystem acceptingItemsOf: aCatalog merchantProcessor: anMP withClock: aClock
 
 	authenticationSystem := anAuthenticationSystem.
@@ -948,57 +979,40 @@ initializeAuthenticatingWith: anAuthenticationSystem acceptingItemsOf: aCatalog 
 	merchantProcessor := anMP.
 	clock:= aClock.! !
 
-!RestInterface methodsFor: 'as yet unclassified' stamp: 'HernanWilkinson 6/21/2013 23:27'!
-invalidCartIdErrorDescription
-	
-	^'Invalid cart id'! !
 
-!RestInterface methodsFor: 'as yet unclassified' stamp: 'HernanWilkinson 6/21/2013 23:59'!
-invalidItemErrorMessage
-	
-	^Cart invalidItemErrorMessage ! !
-
-!RestInterface methodsFor: 'as yet unclassified' stamp: 'HernanWilkinson 6/21/2013 23:03'!
-invalidUserAndOrPasswordErrorDescription
-	
-	^'Invalid user and/or password'! !
-
-!RestInterface methodsFor: 'as yet unclassified' stamp: 'ARM 6/11/2023 13:54:36'!
+!RestInterface methodsFor: 'authentication' stamp: 'ARM 6/11/2023 13:54:36'!
 is: aUser authenticatingWith: aPassword 
 	
 	^authenticationSystem is: aUser authenticatingWith: aPassword 
 ! !
 
-!RestInterface methodsFor: 'as yet unclassified' stamp: 'NB 6/14/2023 00:17:11'!
+
+!RestInterface methodsFor: 'cart' stamp: 'NB 6/14/2023 00:15:32'!
+add: aBook quantity: anAmount toCartIdentifiedAs: aCartId
+
+	
+	self withCartSessionIdentifiedBy: aCartId do: [:cart | cart add: anAmount of: aBook.] 
+	
+	! !
+
+!RestInterface methodsFor: 'cart' stamp: 'NB 6/14/2023 21:47:48'!
+createCartFor: aUser authenticatedWith: aPassword
+
+	| cartId |
+	
+	(self is: aUser authenticatingWith: aPassword) ifFalse: [ self signalInvalidUserAndOrPassword ].
+	
+	cartId := self generateCartId.
+	cartsSessions at: cartId put: (CartSession for: (Cart acceptingItemsOf: catalog) withClock: clock withDuration: 30 minutes).
+	
+	^cartId ! !
+
+!RestInterface methodsFor: 'cart' stamp: 'NB 6/14/2023 00:17:11'!
 listCartIdentifiedAs: aCartId
 
 	self withCartSessionIdentifiedBy: aCartId do: [:cart | ^cart content.] 
 	
 	! !
-
-!RestInterface methodsFor: 'as yet unclassified' stamp: 'HernanWilkinson 6/21/2013 23:27'!
-signalInvalidCartId
-	
-	self error: self invalidCartIdErrorDescription ! !
-
-!RestInterface methodsFor: 'as yet unclassified' stamp: 'HernanWilkinson 6/21/2013 23:02'!
-signalInvalidUserAndOrPassword
-	
-	self error: self invalidUserAndOrPasswordErrorDescription! !
-
-!RestInterface methodsFor: 'as yet unclassified' stamp: 'NB 6/14/2023 00:19:03'!
-today
-	
-	^clock time.! !
-
-!RestInterface methodsFor: 'as yet unclassified' stamp: 'NB 6/14/2023 00:03:24'!
-withCartSessionIdentifiedBy: aCartId do: aBlock
-
-	| cartSession |
-	
-	cartSession := cartsSessions at: aCartId ifAbsent: [ self signalInvalidCartId ].
-	
-	^cartSession do: aBlock.! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
@@ -1006,7 +1020,7 @@ withCartSessionIdentifiedBy: aCartId do: aBlock
 RestInterface class
 	instanceVariableNames: ''!
 
-!RestInterface class methodsFor: 'as yet unclassified' stamp: 'NB 6/12/2023 20:52:34'!
+!RestInterface class methodsFor: 'instance creation' stamp: 'NB 6/12/2023 20:52:34'!
 authenticatingWith: aValidUsersAndPasswords acceptingItemsOf: aCatalog merchantProcessor: anMP withClock: aClock
 
 	^self new initializeAuthenticatingWith: aValidUsersAndPasswords acceptingItemsOf: aCatalog merchantProcessor: anMP withClock: aClock.! !
