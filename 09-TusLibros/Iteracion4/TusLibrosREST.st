@@ -291,6 +291,21 @@ add: quantity of: bookIsbn toCartIdentifiedAs: cartId
 		ifTrue:[^(WebUtils jsonDecode: ((resp content) readStream))]
 		ifFalse:[^self error: resp content]! !
 
+!TusLibrosClientRestInterface methodsFor: 'requests' stamp: 'NB 6/19/2023 22:26:23'!
+asyncAdd: quantity of: bookIsbn toCartIdentifiedAs: cartId
+
+	^Promise of: [self add: quantity  of: bookIsbn toCartIdentifiedAs: cartId].! !
+
+!TusLibrosClientRestInterface methodsFor: 'requests' stamp: 'NB 6/19/2023 22:22:11'!
+asyncCreateCartFor: aUser password: aPassword
+
+	^Promise of: [self createCartFor: aUser password: aPassword ].! !
+
+!TusLibrosClientRestInterface methodsFor: 'requests' stamp: 'NB 6/19/2023 22:27:34'!
+asyncListCart: cartId
+
+	^Promise of: [self listCart: cartId].! !
+
 !TusLibrosClientRestInterface methodsFor: 'requests' stamp: 'NR 6/9/2022 08:11:20'!
 createCartFor: aUser password: aPassword
 
@@ -397,38 +412,36 @@ cartIdsIndex: anIndex
 	! !
 
 
-!TusLibrosClientTestWindowModel methodsFor: 'buttonSelectors' stamp: 'NB 6/17/2023 19:13:15'!
+!TusLibrosClientTestWindowModel methodsFor: 'buttonSelectors' stamp: 'NB 6/19/2023 22:26:56'!
 addToCart
 
-	| cartId bookIsbn promise |
+	| cartId bookIsbn |
 
 	(self areCartIdAndBookSelected) ifTrue:[
 		cartId := self selectedCartId.
 		bookIsbn := self selectedBook.
-		promise:= Promise of: [restInterface add: 1 of: bookIsbn toCartIdentifiedAs: cartId].
-		promise then: [:response| self triggerEvent: #bookAddedToCart withArguments: (Array with: bookIsbn with: cartId)  ]
+		(restInterface asyncAdd: 1 of: bookIsbn toCartIdentifiedAs: cartId) 
+			 then: [:response| self triggerEvent: #bookAddedToCart withArguments: (Array with: bookIsbn with: cartId)  ]
 		]! !
 
-!TusLibrosClientTestWindowModel methodsFor: 'buttonSelectors' stamp: 'NB 6/17/2023 19:11:23'!
+!TusLibrosClientTestWindowModel methodsFor: 'buttonSelectors' stamp: 'NB 6/19/2023 22:25:18'!
 createCart
 
-	| promise |
 	
-	promise:= Promise of: [restInterface createCartFor: 'hernan' password: 'smalltalk'].
-	promise then: [:newCartId | 
+	(restInterface asyncCreateCartFor: 'hernan' password: 'smalltalk') 
+	  then: [:newCartId | 
 		cartIds add: newCartId.
 		self triggerEvent: #newCartIdArrived].! !
 
-!TusLibrosClientTestWindowModel methodsFor: 'buttonSelectors' stamp: 'NB 6/17/2023 19:15:17'!
+!TusLibrosClientTestWindowModel methodsFor: 'buttonSelectors' stamp: 'NB 6/19/2023 22:28:04'!
 listCart
 
-	| cartId promise |
-	
+	| cartId |
 	
 	(self isCartIdSelected) ifTrue:[
 		cartId := self selectedCartId.
-		promise:= Promise of: [restInterface listCart: cartId].
-		promise then: [:cartContent | 
+		(restInterface asyncListCart: cartId) 
+		      then: [:cartContent | 
 					currentSelectedCartContent :=cartContent.
 					self triggerEvent: #newCurrentSelectedCartContentArrived with: cartId. ]
 		 ].! !

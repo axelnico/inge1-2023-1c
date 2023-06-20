@@ -1794,3 +1794,229 @@ PASSED!
 ----SNAPSHOT----(17 June 2023 19:32:40) CuisUniversity-5832.image priorSource: 10678140!
 
 ----SNAPSHOT----(17 June 2023 19:32:42) CuisUniversity-5832.image priorSource: 10698202!
+
+----STARTUP---- (19 June 2023 22:09:05) as /Users/nico/Documents/inge1/cuis-images/macos64 7/CuisUniversity-5832.image!
+
+!TusLibrosClientRestInterface methodsFor: 'requests' stamp: 'NB 6/19/2023 22:17:31' prior: 50665188!
+createCartFor: aUser password: aPassword
+
+	| fieldDict resp |
+	
+	^Promise of: [
+		
+		fieldDict := Dictionary newFromPairs: {'clientId'. aUser. 'password'. aPassword}.		
+	
+		resp := WebClient htmlSubmit: (self url,'/createCart') fields: fieldDict.
+		
+		resp isSuccess 
+			ifTrue:[^(WebUtils jsonDecode: ((resp content) readStream))] 
+			ifFalse:[^self error: resp content]
+	].
+	
+	! !
+!TusLibrosClientTestWindowModel methodsFor: 'buttonSelectors' stamp: 'NB 6/19/2023 22:18:03' prior: 50665273!
+createCart
+
+	
+	(restInterface createCartFor: 'hernan' password: 'smalltalk') 
+	  then: [:newCartId | 
+		cartIds add: newCartId.
+		self triggerEvent: #newCartIdArrived].! !
+!TusLibrosClientRestInterface methodsFor: 'requests' stamp: 'NR 6/9/2022 08:11:20' prior: 50665980!
+createCartFor: aUser password: aPassword
+
+	| fieldDict resp |
+	
+	fieldDict := Dictionary newFromPairs: {'clientId'. aUser. 'password'. aPassword}.		
+	
+	resp := WebClient htmlSubmit: (self url,'/createCart') fields: fieldDict.
+		
+	resp isSuccess 
+		ifTrue:[^(WebUtils jsonDecode: ((resp content) readStream))] 
+		ifFalse:[^self error: resp content]! !
+!TusLibrosClientRestInterface methodsFor: 'requests' stamp: 'NB 6/19/2023 22:22:11'!
+asyncCreateCartFor: aUser password: aPassword
+
+	^Promise of: [self createCartFor: aUser password: aPassword ].! !
+!TusLibrosClientTestWindowModel methodsFor: 'buttonSelectors' stamp: 'NB 6/19/2023 22:25:18' prior: 50665996!
+createCart
+
+	
+	(restInterface asyncCreateCartFor: 'hernan' password: 'smalltalk') 
+	  then: [:newCartId | 
+		cartIds add: newCartId.
+		self triggerEvent: #newCartIdArrived].! !
+!TusLibrosClientRestInterface methodsFor: 'requests' stamp: 'NB 6/19/2023 22:26:23'!
+asyncAdd: quantity of: bookIsbn toCartIdentifiedAs: cartId
+
+	^Promise of: [self add: quantity  of: bookIsbn toCartIdentifiedAs: cartId].! !
+!TusLibrosClientTestWindowModel methodsFor: 'buttonSelectors' stamp: 'NB 6/19/2023 22:26:56' prior: 50665284!
+addToCart
+
+	| cartId bookIsbn |
+
+	(self areCartIdAndBookSelected) ifTrue:[
+		cartId := self selectedCartId.
+		bookIsbn := self selectedBook.
+		(restInterface asyncAdd: 1 of: bookIsbn toCartIdentifiedAs: cartId) 
+			 then: [:response| self triggerEvent: #bookAddedToCart withArguments: (Array with: bookIsbn with: cartId)  ]
+		]! !
+!TusLibrosClientRestInterface methodsFor: 'requests' stamp: 'NB 6/19/2023 22:27:34'!
+asyncListCart: cartId
+
+	^Promise of: [self listCart: cartId].! !
+!TusLibrosClientTestWindowModel methodsFor: 'buttonSelectors' stamp: 'NB 6/19/2023 22:28:00' prior: 50665313!
+listCart
+
+	| cartId |
+	
+	
+	(self isCartIdSelected) ifTrue:[
+		cartId := self selectedCartId.
+		(restInterface asyncListCart: cartId) 
+		      then: [:cartContent | 
+					currentSelectedCartContent :=cartContent.
+					self triggerEvent: #newCurrentSelectedCartContentArrived with: cartId. ]
+		 ].! !
+!TusLibrosClientTestWindowModel methodsFor: 'buttonSelectors' stamp: 'NB 6/19/2023 22:28:04' prior: 50666062!
+listCart
+
+	| cartId |
+	
+	(self isCartIdSelected) ifTrue:[
+		cartId := self selectedCartId.
+		(restInterface asyncListCart: cartId) 
+		      then: [:cartContent | 
+					currentSelectedCartContent :=cartContent.
+					self triggerEvent: #newCurrentSelectedCartContentArrived with: cartId. ]
+		 ].! !
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'NB 6/19/2023 22:28:58'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'NB 6/19/2023 22:28:58'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'NB 6/19/2023 22:28:58'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'NB 6/19/2023 22:28:58'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'NB 6/19/2023 22:28:58'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'NB 6/19/2023 22:28:58'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'NB 6/19/2023 22:28:58'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'NB 6/19/2023 22:28:58'!
+PASSED!
+
+!testRun: #CashierTest #test01CanNotCheckoutAnEmptyCart stamp: 'NB 6/19/2023 22:28:58'!
+PASSED!
+
+!testRun: #CashierTest #test02CalculatedTotalIsCorrect stamp: 'NB 6/19/2023 22:28:58'!
+PASSED!
+
+!testRun: #CashierTest #test03CanNotCheckoutWithAnExpiredCreditCart stamp: 'NB 6/19/2023 22:28:58'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutRegistersASale stamp: 'NB 6/19/2023 22:28:58'!
+PASSED!
+
+!testRun: #CashierTest #test05CashierChargesCreditCardUsingMerchantProcessor stamp: 'NB 6/19/2023 22:28:58'!
+PASSED!
+
+!testRun: #CashierTest #test06CashierDoesNotSaleWhenTheCreditCardHasNoCredit stamp: 'NB 6/19/2023 22:28:58'!
+PASSED!
+
+!testRun: #CreditCardTest #test01CreditCardNumberWithLessThan16DigitsIsNotValid stamp: 'NB 6/19/2023 22:28:58'!
+PASSED!
+
+!testRun: #CreditCardTest #test02CreditCardNumberWithMoreThan16DigitsIsNotValid stamp: 'NB 6/19/2023 22:28:58'!
+PASSED!
+
+!testRun: #CreditCardTest #test03CreditCardNumberShouldBeDigitsOnly stamp: 'NB 6/19/2023 22:28:58'!
+PASSED!
+
+!testRun: #CreditCardTest #test04NameCanNotBeEmpty stamp: 'NB 6/19/2023 22:28:58'!
+PASSED!
+
+!testRun: #CreditCardTest #test05IsExpiredOnNextExpirationMonth stamp: 'NB 6/19/2023 22:28:58'!
+PASSED!
+
+!testRun: #CreditCardTest #test06IsNotExpiredOnExpirationMonth stamp: 'NB 6/19/2023 22:28:58'!
+PASSED!
+
+!testRun: #CreditCardTest #test07CanGetCreditCardInfoFromIt stamp: 'NB 6/19/2023 22:28:58'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test01CanCreateCartWithValidUserAndPassword stamp: 'NB 6/19/2023 22:28:58'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test02CanNotCreateCartWithInvalidUser stamp: 'NB 6/19/2023 22:28:58'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test03CanNotCreateCartWithInvalidPassword stamp: 'NB 6/19/2023 22:28:58'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test04CanAddItemsToACreatedCart stamp: 'NB 6/19/2023 22:28:58'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test05CanNotAddItemToNotCreatedCart stamp: 'NB 6/19/2023 22:28:58'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test06CanNotAddItemNotSellByTheStore stamp: 'NB 6/19/2023 22:28:58'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test08CanNotListCartOfInvalidCartId stamp: 'NB 6/19/2023 22:28:58'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test09ListCartReturnsTheRightNumberOfItems stamp: 'NB 6/19/2023 22:28:58'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test10CheckOutReturnsTransactionIdAndImpactsCustomerPurchases stamp: 'NB 6/19/2023 22:28:58'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test10_1_CanNotCheckoutAnAlreadyCheckedOutCart stamp: 'NB 6/19/2023 22:28:58'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test11CanNotCheckoutANotCreatedCart stamp: 'NB 6/19/2023 22:28:58'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test12CanNotCheckoutAnEmptyCart stamp: 'NB 6/19/2023 22:28:58'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test13CanNotCheckoutWithAnExpiredCreditCard stamp: 'NB 6/19/2023 22:28:58'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test14ListPurchasesIncludesBoughtItems stamp: 'NB 6/19/2023 22:28:58'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test15CanNotListPurchasesOfInvalidCustomer stamp: 'NB 6/19/2023 22:28:58'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test16CanNotListPurchasesOfValidCustomerWithInvalidPassword stamp: 'NB 6/19/2023 22:28:58'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test17CanNotAddToCartWhenSessionIsExpired stamp: 'NB 6/19/2023 22:28:58'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test18CanNotListCartWhenSessionIsExpired stamp: 'NB 6/19/2023 22:28:58'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test19CanNotCheckOutCartWhenSessionIsExpired stamp: 'NB 6/19/2023 22:28:58'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test20BookPerformanceShouldNotTakeTooLong stamp: 'NB 6/19/2023 22:28:59'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test21StorePerformanceShouldNotTakeTooLong stamp: 'NB 6/19/2023 22:29:00'!
+PASSED!
+
+----SNAPSHOT----(19 June 2023 22:29:09) CuisUniversity-5832.image priorSource: 10698292!
+
+----SNAPSHOT----(19 June 2023 22:29:11) CuisUniversity-5832.image priorSource: 10706699!
