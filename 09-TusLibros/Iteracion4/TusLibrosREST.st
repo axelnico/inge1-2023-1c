@@ -12,6 +12,13 @@ informBook: bookIsbn addedToCart: cartId
 	
 ! !
 
+!TusLibrosClientTestWindow methodsFor: 'events' stamp: 'NB 6/20/2023 16:48:39'!
+informServerError: anError
+
+	self inform: anError asString.
+	
+! !
+
 !TusLibrosClientTestWindow methodsFor: 'events' stamp: 'NR 6/13/2022 07:06:29'!
 refreshCartButtonsLabels: anIndex
 
@@ -169,7 +176,7 @@ heightOfButtons
 	^ 66! !
 
 
-!TusLibrosClientTestWindow methodsFor: 'initialization' stamp: 'NR 6/13/2022 07:07:04'!
+!TusLibrosClientTestWindow methodsFor: 'initialization' stamp: 'NB 6/20/2023 16:10:24'!
 initializeWith: aTitle
 
 	self setLabel: aTitle.
@@ -181,7 +188,8 @@ initializeWith: aTitle
 	self model when: #newCartIdArrived send: #refreshListOfCartIds to: self.		
 	self model when: #selectedCartChanged send: #refreshCartButtonsLabels: to: self.	
 	self model when: #bookAddedToCart send: #informBook:addedToCart: to: self.
-	self model when: #newCurrentSelectedCartContentArrived send: #refreshCurrentSelectedCartContent: to: self! !
+	self model when: #newCurrentSelectedCartContentArrived send: #refreshCurrentSelectedCartContent: to: self.
+	self model when: #serverError send: #informServerError: to: self.		! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
@@ -236,28 +244,39 @@ initialize
 
 !classDefinition: #Promise category: 'TusLibrosREST'!
 Object subclass: #Promise
-	instanceVariableNames: 'semaphore response'
+	instanceVariableNames: 'semaphore response closure'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'TusLibrosREST'!
 
-!Promise methodsFor: 'execution' stamp: 'NB 6/17/2023 19:07:55'!
+!Promise methodsFor: 'execution' stamp: 'NB 6/20/2023 16:24:08'!
 then: aClosure
 
+	closure fork.
+	[
+		semaphore wait.
+		aClosure value: response.
+	] fork.! !
+
+!Promise methodsFor: 'execution' stamp: 'NB 6/20/2023 16:44:32'!
+then: aClosure onError: anErrorClosure
+
+	[closure on: Error do: [:error| anErrorClosure value: error ]] fork.
 	[
 		semaphore wait.
 		aClosure value: response.
 	] fork.! !
 
 
-!Promise methodsFor: 'initialization' stamp: 'NB 6/17/2023 19:06:50'!
+!Promise methodsFor: 'initialization' stamp: 'NB 6/20/2023 16:23:22'!
 initializeOf: aClosure
 
 	semaphore:= Semaphore new.
+	closure:= 
 	[
 		response:= aClosure value.	
 		semaphore signal.
-	] fork.! !
+	].! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
@@ -306,7 +325,7 @@ asyncListCart: cartId
 
 	^Promise of: [self listCart: cartId].! !
 
-!TusLibrosClientRestInterface methodsFor: 'requests' stamp: 'NR 6/9/2022 08:11:20'!
+!TusLibrosClientRestInterface methodsFor: 'requests' stamp: 'NB 6/20/2023 16:37:34'!
 createCartFor: aUser password: aPassword
 
 	| fieldDict resp |
@@ -412,7 +431,7 @@ cartIdsIndex: anIndex
 	! !
 
 
-!TusLibrosClientTestWindowModel methodsFor: 'buttonSelectors' stamp: 'NB 6/19/2023 22:26:56'!
+!TusLibrosClientTestWindowModel methodsFor: 'buttonSelectors' stamp: 'NB 6/20/2023 16:54:49'!
 addToCart
 
 	| cartId bookIsbn |
@@ -421,19 +440,20 @@ addToCart
 		cartId := self selectedCartId.
 		bookIsbn := self selectedBook.
 		(restInterface asyncAdd: 1 of: bookIsbn toCartIdentifiedAs: cartId) 
-			 then: [:response| self triggerEvent: #bookAddedToCart withArguments: (Array with: bookIsbn with: cartId)  ]
+			 then: [:response| self triggerEvent: #bookAddedToCart withArguments: (Array with: bookIsbn with: cartId)  ]  onError: [:anError | self triggerEvent: #serverError with: anError].
 		]! !
 
-!TusLibrosClientTestWindowModel methodsFor: 'buttonSelectors' stamp: 'NB 6/19/2023 22:25:18'!
+!TusLibrosClientTestWindowModel methodsFor: 'buttonSelectors' stamp: 'NB 6/20/2023 16:46:50'!
 createCart
 
 	
 	(restInterface asyncCreateCartFor: 'hernan' password: 'smalltalk') 
 	  then: [:newCartId | 
 		cartIds add: newCartId.
-		self triggerEvent: #newCartIdArrived].! !
+		self triggerEvent: #newCartIdArrived]
+	  onError: [:anError | self triggerEvent: #serverError with: anError].! !
 
-!TusLibrosClientTestWindowModel methodsFor: 'buttonSelectors' stamp: 'NB 6/19/2023 22:28:04'!
+!TusLibrosClientTestWindowModel methodsFor: 'buttonSelectors' stamp: 'NB 6/20/2023 16:56:33'!
 listCart
 
 	| cartId |
@@ -444,6 +464,7 @@ listCart
 		      then: [:cartContent | 
 					currentSelectedCartContent :=cartContent.
 					self triggerEvent: #newCurrentSelectedCartContentArrived with: cartId. ]
+		      onError: [:anError | self triggerEvent: #serverError with: anError]
 		 ].! !
 
 
@@ -526,7 +547,7 @@ withFieldsOf: aRequest do: aBlock
 			close: true ]! !
 
 
-!TusLibrosServerRestInterface methodsFor: 'rest interface' stamp: 'NR 11/7/2022 06:14:02'!
+!TusLibrosServerRestInterface methodsFor: 'rest interface' stamp: 'NB 6/20/2023 16:55:17'!
 addToCart: aRequest
 
 	| bookIsbn cartId quantity |
@@ -569,7 +590,7 @@ checkOutCart: aRequest
 			transactionId printString ]
 		to: aRequest ! !
 
-!TusLibrosServerRestInterface methodsFor: 'rest interface' stamp: 'NR 6/13/2022 07:11:38'!
+!TusLibrosServerRestInterface methodsFor: 'rest interface' stamp: 'NB 6/20/2023 16:50:36'!
 createCart: aRequest
 
 	| clientId password |
@@ -586,7 +607,7 @@ createCart: aRequest
 			cartId printString ]
 		to: aRequest ! !
 
-!TusLibrosServerRestInterface methodsFor: 'rest interface' stamp: 'NR 6/13/2022 07:11:31'!
+!TusLibrosServerRestInterface methodsFor: 'rest interface' stamp: 'NB 6/20/2023 16:57:00'!
 listCart: aRequest
 
 	| cartId |

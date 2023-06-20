@@ -2020,3 +2020,583 @@ PASSED!
 ----SNAPSHOT----(19 June 2023 22:29:09) CuisUniversity-5832.image priorSource: 10698292!
 
 ----SNAPSHOT----(19 June 2023 22:29:11) CuisUniversity-5832.image priorSource: 10706699!
+
+----STARTUP---- (20 June 2023 15:45:29) as /Users/nico/Documents/inge1/cuis-images/macos64 7/CuisUniversity-5832.image!
+
+!TusLibrosServerRestInterface methodsFor: 'rest interface' stamp: 'NB 6/20/2023 15:57:15' prior: 50663767!
+createCart: aRequest
+
+	| clientId password |
+
+	(Delay forSeconds: 1) wait.
+	
+	self withFieldsOf: aRequest do: [ :requestFields |
+		clientId := self clientIdFrom: requestFields.
+		password := self passwordFrom: requestFields ].
+	
+	self error: 'un error'.
+	
+	self 
+		answer: [ | cartId | 
+			cartId := systemFacade createCartFor: clientId authenticatedWith: password.
+			cartId printString ]
+		to: aRequest ! !
+!Promise methodsFor: 'execution' stamp: 'NB 6/20/2023 16:06:07'!
+then: aClosure onError: anErrorClosure
+
+	[
+		semaphore wait.
+		aClosure value: response.
+	] on: Error do: [:error| anErrorClosure value: error ] fork.! !
+!TusLibrosClientTestWindowModel methodsFor: 'buttonSelectors' stamp: 'NB 6/20/2023 16:06:42' prior: 50666026!
+createCart
+
+	
+	(restInterface asyncCreateCartFor: 'hernan' password: 'smalltalk') 
+	  then: [:newCartId | 
+		cartIds add: newCartId.
+		self triggerEvent: #newCartIdArrived]
+	  onError: [:anError | ].! !
+
+SystemWindow!
+!TusLibrosClientTestWindow methodsFor: 'initialization' stamp: 'NB 6/20/2023 16:10:24' prior: 50663385!
+initializeWith: aTitle
+
+	self setLabel: aTitle.
+	self model: (TusLibrosClientTestWindowModel new).
+	self morphExtent: (self defaultExtent).
+	self buildMorphicWindow.
+	self openInWorld.
+			
+	self model when: #newCartIdArrived send: #refreshListOfCartIds to: self.		
+	self model when: #selectedCartChanged send: #refreshCartButtonsLabels: to: self.	
+	self model when: #bookAddedToCart send: #informBook:addedToCart: to: self.
+	self model when: #newCurrentSelectedCartContentArrived send: #refreshCurrentSelectedCartContent: to: self.
+	self model when: #serverError send: #informServerError: to: self.		! !
+!TusLibrosClientTestWindow methodsFor: 'events' stamp: 'NB 6/20/2023 16:11:15'!
+informServerError: anError
+
+	self inform: anError.
+	
+! !
+!TusLibrosClientTestWindowModel methodsFor: 'buttonSelectors' stamp: 'NB 6/20/2023 16:12:59' prior: 50666270!
+createCart
+
+	
+	(restInterface asyncCreateCartFor: 'hernan' password: 'smalltalk') 
+	  then: [:newCartId | 
+		cartIds add: newCartId.
+		self triggerEvent: #newCartIdArrived]
+	  onError: [:anError | self triggerEvent: #serverError withArguments: anError ].! !
+!TusLibrosClientTestWindowModel methodsFor: 'buttonSelectors' stamp: 'NB 6/20/2023 16:13:18' prior: 50666309!
+createCart
+
+	
+	(restInterface asyncCreateCartFor: 'hernan' password: 'smalltalk') 
+	  then: [:newCartId | 
+		cartIds add: newCartId.
+		self triggerEvent: #newCartIdArrived]
+	  onError: [:anError | self triggerEvent: #serverError with: anError ].! !
+
+----SNAPSHOT----(20 June 2023 16:13:33) CuisUniversity-5832.image priorSource: 10706789!
+
+!classDefinition: #Promise category: 'TusLibrosREST' stamp: 'NB 6/20/2023 16:23:24'!
+Object subclass: #Promise
+	instanceVariableNames: 'semaphore response closure'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibrosREST'!
+!Promise methodsFor: 'initialization' stamp: 'NB 6/20/2023 16:23:22' prior: 50665261!
+initializeOf: aClosure
+
+	semaphore:= Semaphore new.
+	closure:= 
+	[
+		response:= aClosure value.	
+		semaphore signal.
+	].! !
+!Promise methodsFor: 'execution' stamp: 'NB 6/20/2023 16:24:08' prior: 50665267!
+then: aClosure
+
+	closure fork.
+	[
+		semaphore wait.
+		aClosure value: response.
+	] fork.! !
+!Promise methodsFor: 'execution' stamp: 'NB 6/20/2023 16:25:35' prior: 50666261!
+then: aClosure onError: anErrorClosure
+
+	closure fork.
+	[
+		semaphore wait.
+		aClosure value: response.
+	] fork.! !
+!Promise methodsFor: 'execution' stamp: 'NB 6/20/2023 16:26:34' prior: 50666355!
+then: aClosure onError: anErrorClosure
+
+	closure on: Error do: [:error| anErrorClosure value: error ] fork.
+	[
+		semaphore wait.
+		aClosure value: response.
+	] fork.! !
+!Promise methodsFor: 'execution' stamp: 'NB 6/20/2023 16:29:49' prior: 50666362!
+then: aClosure onError: anErrorClosure
+
+	(closure on: Error do: [:error| anErrorClosure value: error ]) fork.
+	[
+		semaphore wait.
+		aClosure value: response.
+	] fork.! !
+!Promise methodsFor: 'execution' stamp: 'NB 6/20/2023 16:32:12' prior: 50666370!
+then: aClosure onError: anErrorClosure
+
+	[closure on: Error do: [:error| anErrorClosure value: error ]] fork.
+	[
+		semaphore wait.
+		aClosure value: response.
+	] fork.! !
+!TusLibrosClientRestInterface methodsFor: 'requests' stamp: 'NB 6/20/2023 16:33:42' prior: 50666005!
+createCartFor: aUser password: aPassword
+
+	| fieldDict resp |
+	
+	fieldDict := Dictionary newFromPairs: {'clientId'. aUser. 'password'. aPassword}.		
+	
+	resp := [WebClient htmlSubmit: (self url,'/createCart') fields: fieldDict] on: Error do:[:anerror| ].
+		
+	resp isSuccess 
+		ifTrue:[^(WebUtils jsonDecode: ((resp content) readStream))] 
+		ifFalse:[^self error: resp content]! !
+!TusLibrosClientRestInterface methodsFor: 'requests' stamp: 'NB 6/20/2023 16:37:34' prior: 50666387!
+createCartFor: aUser password: aPassword
+
+	| fieldDict resp |
+	
+	fieldDict := Dictionary newFromPairs: {'clientId'. aUser. 'password'. aPassword}.		
+	
+	resp := WebClient htmlSubmit: (self url,'/createCart') fields: fieldDict.
+		
+	resp isSuccess 
+		ifTrue:[^(WebUtils jsonDecode: ((resp content) readStream))] 
+		ifFalse:[^self error: resp content]! !
+!TusLibrosServerRestInterface methodsFor: 'rest interface' stamp: 'NB 6/20/2023 16:37:57' prior: 50666246!
+createCart: aRequest
+
+	| clientId password |
+
+	(Delay forSeconds: 1) wait.
+	
+	self withFieldsOf: aRequest do: [ :requestFields |
+		clientId := self clientIdFrom: requestFields.
+		password := self passwordFrom: requestFields ].
+	
+	^self error: 'un error'.
+	
+	"self 
+		answer: [ | cartId | 
+			cartId := systemFacade createCartFor: clientId authenticatedWith: password.
+			cartId printString ]
+		to: aRequest "! !
+!TusLibrosServerRestInterface methodsFor: 'rest interface' stamp: 'NB 6/20/2023 16:38:38' prior: 50666417!
+createCart: aRequest
+
+	| clientId password |
+
+	(Delay forSeconds: 1) wait.
+	
+	self withFieldsOf: aRequest do: [ :requestFields |
+		clientId := self clientIdFrom: requestFields.
+		password := self passwordFrom: requestFields ].
+	
+	self 
+		answer: [ | cartId | 
+			cartId := systemFacade createCartFor: clientId authenticatedWith: password.
+			cartId printString ]
+		to: aRequest ! !
+!TusLibrosServerRestInterface methodsFor: 'rest interface' stamp: 'NB 6/20/2023 16:39:00' prior: 50666434!
+createCart: aRequest
+
+	| clientId password |
+
+	(Delay forSeconds: 1) wait.
+	
+	self withFieldsOf: aRequest do: [ :requestFields |
+		clientId := self clientIdFrom: requestFields.
+		password := self passwordFrom: requestFields ].
+	
+	self 
+		answer: [ | cartId | 
+			cartId := systemFacade createCartFor: clientId authenticatedWith: password.
+			cartId printString ]
+		to: aRequest ! !
+!TusLibrosServerRestInterface methodsFor: 'rest interface' stamp: 'NB 6/20/2023 16:41:01' prior: 50666450!
+createCart: aRequest
+
+	| clientId password |
+
+	(Delay forSeconds: 1) wait.
+	
+	self withFieldsOf: aRequest do: [ :requestFields |
+		clientId := self clientIdFrom: requestFields.
+		password := self passwordFrom: requestFields ].
+	
+	self 
+		answer: [ | cartId | 
+			self error: 'un error'.
+			cartId := systemFacade createCartFor: clientId authenticatedWith: password.
+			cartId printString ]
+		to: aRequest ! !
+!Promise methodsFor: 'execution' stamp: 'NB 6/20/2023 16:43:42' prior: 50666378!
+then: aClosure onError: anErrorClosure
+
+	[closure on: Error do: [:error| anErrorClosure value: error. self halt ]] fork.
+	[
+		semaphore wait.
+		aClosure value: response.
+	] fork.! !
+!Promise methodsFor: 'execution' stamp: 'NB 6/20/2023 16:44:32' prior: 50666482!
+then: aClosure onError: anErrorClosure
+
+	[closure on: Error do: [:error| anErrorClosure value: error ]] fork.
+	[
+		semaphore wait.
+		aClosure value: response.
+	] fork.! !
+!TusLibrosClientTestWindowModel methodsFor: 'buttonSelectors' stamp: 'NB 6/20/2023 16:44:48' prior: 50666321!
+createCart
+
+	
+	(restInterface asyncCreateCartFor: 'hernan' password: 'smalltalk') 
+	  then: [:newCartId | 
+		cartIds add: newCartId.
+		self triggerEvent: #newCartIdArrived]
+	  onError: [:anError | self triggerEvent: #serverError with: anError. self halt ].! !
+!TusLibrosClientTestWindow methodsFor: 'events' stamp: 'NB 6/20/2023 16:46:43' prior: 50666303!
+informServerError: anError
+
+	self halt. self inform: anError.
+	
+! !
+!TusLibrosClientTestWindowModel methodsFor: 'buttonSelectors' stamp: 'NB 6/20/2023 16:46:50' prior: 50666500!
+createCart
+
+	
+	(restInterface asyncCreateCartFor: 'hernan' password: 'smalltalk') 
+	  then: [:newCartId | 
+		cartIds add: newCartId.
+		self triggerEvent: #newCartIdArrived]
+	  onError: [:anError | self triggerEvent: #serverError with: anError].! !
+
+a:= TusLibrosClientRestInterface new.!
+
+TusLibrosClientTestWindow open!
+!TusLibrosClientTestWindow methodsFor: 'events' stamp: 'NB 6/20/2023 16:48:39' prior: 50666512!
+informServerError: anError
+
+	self inform: anError asString.
+	
+! !
+!TusLibrosServerRestInterface methodsFor: 'rest interface' stamp: 'NB 6/20/2023 16:50:36' prior: 50666466!
+createCart: aRequest
+
+	| clientId password |
+
+	(Delay forSeconds: 1) wait.
+	
+	self withFieldsOf: aRequest do: [ :requestFields |
+		clientId := self clientIdFrom: requestFields.
+		password := self passwordFrom: requestFields ].
+	
+	self 
+		answer: [ | cartId | 
+			cartId := systemFacade createCartFor: clientId authenticatedWith: password.
+			cartId printString ]
+		to: aRequest ! !
+!TusLibrosServerRestInterface methodsFor: 'rest interface' stamp: 'NB 6/20/2023 16:51:29' prior: 50663782!
+listCart: aRequest
+
+	| cartId |
+
+	(Delay forSeconds: 10) wait.
+	
+	self withFieldsOf: aRequest do: [ :requestFields |
+		cartId := self cartIdFrom: requestFields ].
+	
+	self 
+		answer: [self error: 'otro error'. (systemFacade listCartIdentifiedAs: cartId) asArray]
+		to: aRequest 
+! !
+!TusLibrosServerRestInterface methodsFor: 'rest interface' stamp: 'NB 6/20/2023 16:51:36' prior: 50666554!
+listCart: aRequest
+
+	| cartId |
+
+	(Delay forSeconds: 10) wait.
+	
+	self withFieldsOf: aRequest do: [ :requestFields |
+		cartId := self cartIdFrom: requestFields ].
+	
+	self 
+		answer: [(systemFacade listCartIdentifiedAs: cartId) asArray]
+		to: aRequest 
+! !
+!TusLibrosServerRestInterface methodsFor: 'rest interface' stamp: 'NB 6/20/2023 16:51:42' prior: 50663722!
+addToCart: aRequest
+
+	| bookIsbn cartId quantity |
+
+	(Delay forSeconds: 3) wait.
+	
+	self withFieldsOf: aRequest do: [ :requestFields |
+		cartId := self cartIdFrom: requestFields.
+		bookIsbn := self bookIsbnFrom: requestFields.
+		quantity := self bookQuantityFrom: requestFields].
+		
+	self 
+		answer: [
+			self error: 'otro error'. 
+			systemFacade add: quantity of: bookIsbn toCartIdentifiedAs: cartId.
+			'OK' ]
+		to: aRequest 
+	! !
+!TusLibrosServerRestInterface methodsFor: 'rest interface' stamp: 'NB 6/20/2023 16:52:04' prior: 50666579!
+addToCart: aRequest
+
+	| bookIsbn cartId quantity |
+
+	(Delay forSeconds: 3) wait.
+	
+	self withFieldsOf: aRequest do: [ :requestFields |
+		cartId := self cartIdFrom: requestFields.
+		bookIsbn := self bookIsbnFrom: requestFields.
+		quantity := self bookQuantityFrom: requestFields].
+		
+	self 
+		answer: [
+			systemFacade add: quantity of: bookIsbn toCartIdentifiedAs: cartId.
+			'OK' ]
+		to: aRequest 
+	! !
+
+TusLibrosClientTestWindow open!
+
+TusLibrosClientTestWindow open!
+!TusLibrosServerRestInterface methodsFor: 'rest interface' stamp: 'NB 6/20/2023 16:54:18' prior: 50666596!
+addToCart: aRequest
+
+	| bookIsbn cartId quantity |
+
+	(Delay forSeconds: 3) wait.
+	
+	self withFieldsOf: aRequest do: [ :requestFields |
+		cartId := self cartIdFrom: requestFields.
+		bookIsbn := self bookIsbnFrom: requestFields.
+		quantity := self bookQuantityFrom: requestFields].
+		
+	self 
+		answer: [
+			self error: 'otro error'.
+			systemFacade add: quantity of: bookIsbn toCartIdentifiedAs: cartId.
+			'OK' ]
+		to: aRequest 
+	! !
+!TusLibrosClientTestWindowModel methodsFor: 'buttonSelectors' stamp: 'NB 6/20/2023 16:54:49' prior: 50666043!
+addToCart
+
+	| cartId bookIsbn |
+
+	(self areCartIdAndBookSelected) ifTrue:[
+		cartId := self selectedCartId.
+		bookIsbn := self selectedBook.
+		(restInterface asyncAdd: 1 of: bookIsbn toCartIdentifiedAs: cartId) 
+			 then: [:response| self triggerEvent: #bookAddedToCart withArguments: (Array with: bookIsbn with: cartId)  ]  onError: [:anError | self triggerEvent: #serverError with: anError].
+		]! !
+!TusLibrosServerRestInterface methodsFor: 'rest interface' stamp: 'NB 6/20/2023 16:55:17' prior: 50666615!
+addToCart: aRequest
+
+	| bookIsbn cartId quantity |
+
+	(Delay forSeconds: 3) wait.
+	
+	self withFieldsOf: aRequest do: [ :requestFields |
+		cartId := self cartIdFrom: requestFields.
+		bookIsbn := self bookIsbnFrom: requestFields.
+		quantity := self bookQuantityFrom: requestFields].
+		
+	self 
+		answer: [
+			systemFacade add: quantity of: bookIsbn toCartIdentifiedAs: cartId.
+			'OK' ]
+		to: aRequest 
+	! !
+!TusLibrosServerRestInterface methodsFor: 'rest interface' stamp: 'NB 6/20/2023 16:55:43' prior: 50666567!
+listCart: aRequest
+
+	| cartId |
+
+	(Delay forSeconds: 10) wait.
+	
+	self withFieldsOf: aRequest do: [ :requestFields |
+		cartId := self cartIdFrom: requestFields ].
+	
+	self 
+		answer: [self error: 'mas errores'.(systemFacade listCartIdentifiedAs: cartId) asArray]
+		to: aRequest 
+! !
+!TusLibrosClientTestWindowModel methodsFor: 'buttonSelectors' stamp: 'NB 6/20/2023 16:56:33' prior: 50666075!
+listCart
+
+	| cartId |
+	
+	(self isCartIdSelected) ifTrue:[
+		cartId := self selectedCartId.
+		(restInterface asyncListCart: cartId) 
+		      then: [:cartContent | 
+					currentSelectedCartContent :=cartContent.
+					self triggerEvent: #newCurrentSelectedCartContentArrived with: cartId. ]
+		      onError: [:anError | self triggerEvent: #serverError with: anError]
+		 ].! !
+!TusLibrosServerRestInterface methodsFor: 'rest interface' stamp: 'NB 6/20/2023 16:57:00' prior: 50666664!
+listCart: aRequest
+
+	| cartId |
+
+	(Delay forSeconds: 10) wait.
+	
+	self withFieldsOf: aRequest do: [ :requestFields |
+		cartId := self cartIdFrom: requestFields ].
+	
+	self 
+		answer: [(systemFacade listCartIdentifiedAs: cartId) asArray]
+		to: aRequest 
+! !
+
+----SNAPSHOT----(20 June 2023 16:57:30) CuisUniversity-5832.image priorSource: 10709784!
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'NB 6/20/2023 16:57:54'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'NB 6/20/2023 16:57:54'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'NB 6/20/2023 16:57:54'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'NB 6/20/2023 16:57:54'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'NB 6/20/2023 16:57:54'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'NB 6/20/2023 16:57:54'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'NB 6/20/2023 16:57:54'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'NB 6/20/2023 16:57:54'!
+PASSED!
+
+!testRun: #CashierTest #test01CanNotCheckoutAnEmptyCart stamp: 'NB 6/20/2023 16:57:54'!
+PASSED!
+
+!testRun: #CashierTest #test02CalculatedTotalIsCorrect stamp: 'NB 6/20/2023 16:57:54'!
+PASSED!
+
+!testRun: #CashierTest #test03CanNotCheckoutWithAnExpiredCreditCart stamp: 'NB 6/20/2023 16:57:54'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutRegistersASale stamp: 'NB 6/20/2023 16:57:54'!
+PASSED!
+
+!testRun: #CashierTest #test05CashierChargesCreditCardUsingMerchantProcessor stamp: 'NB 6/20/2023 16:57:54'!
+PASSED!
+
+!testRun: #CashierTest #test06CashierDoesNotSaleWhenTheCreditCardHasNoCredit stamp: 'NB 6/20/2023 16:57:54'!
+PASSED!
+
+!testRun: #CreditCardTest #test01CreditCardNumberWithLessThan16DigitsIsNotValid stamp: 'NB 6/20/2023 16:57:54'!
+PASSED!
+
+!testRun: #CreditCardTest #test02CreditCardNumberWithMoreThan16DigitsIsNotValid stamp: 'NB 6/20/2023 16:57:54'!
+PASSED!
+
+!testRun: #CreditCardTest #test03CreditCardNumberShouldBeDigitsOnly stamp: 'NB 6/20/2023 16:57:54'!
+PASSED!
+
+!testRun: #CreditCardTest #test04NameCanNotBeEmpty stamp: 'NB 6/20/2023 16:57:54'!
+PASSED!
+
+!testRun: #CreditCardTest #test05IsExpiredOnNextExpirationMonth stamp: 'NB 6/20/2023 16:57:54'!
+PASSED!
+
+!testRun: #CreditCardTest #test06IsNotExpiredOnExpirationMonth stamp: 'NB 6/20/2023 16:57:54'!
+PASSED!
+
+!testRun: #CreditCardTest #test07CanGetCreditCardInfoFromIt stamp: 'NB 6/20/2023 16:57:54'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test01CanCreateCartWithValidUserAndPassword stamp: 'NB 6/20/2023 16:57:54'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test02CanNotCreateCartWithInvalidUser stamp: 'NB 6/20/2023 16:57:54'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test03CanNotCreateCartWithInvalidPassword stamp: 'NB 6/20/2023 16:57:54'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test04CanAddItemsToACreatedCart stamp: 'NB 6/20/2023 16:57:54'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test05CanNotAddItemToNotCreatedCart stamp: 'NB 6/20/2023 16:57:54'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test06CanNotAddItemNotSellByTheStore stamp: 'NB 6/20/2023 16:57:54'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test08CanNotListCartOfInvalidCartId stamp: 'NB 6/20/2023 16:57:54'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test09ListCartReturnsTheRightNumberOfItems stamp: 'NB 6/20/2023 16:57:54'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test10CheckOutReturnsTransactionIdAndImpactsCustomerPurchases stamp: 'NB 6/20/2023 16:57:54'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test10_1_CanNotCheckoutAnAlreadyCheckedOutCart stamp: 'NB 6/20/2023 16:57:54'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test11CanNotCheckoutANotCreatedCart stamp: 'NB 6/20/2023 16:57:54'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test12CanNotCheckoutAnEmptyCart stamp: 'NB 6/20/2023 16:57:54'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test13CanNotCheckoutWithAnExpiredCreditCard stamp: 'NB 6/20/2023 16:57:54'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test14ListPurchasesIncludesBoughtItems stamp: 'NB 6/20/2023 16:57:54'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test15CanNotListPurchasesOfInvalidCustomer stamp: 'NB 6/20/2023 16:57:54'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test16CanNotListPurchasesOfValidCustomerWithInvalidPassword stamp: 'NB 6/20/2023 16:57:54'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test17CanNotAddToCartWhenSessionIsExpired stamp: 'NB 6/20/2023 16:57:54'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test18CanNotListCartWhenSessionIsExpired stamp: 'NB 6/20/2023 16:57:54'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test19CanNotCheckOutCartWhenSessionIsExpired stamp: 'NB 6/20/2023 16:57:54'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test20BookPerformanceShouldNotTakeTooLong stamp: 'NB 6/20/2023 16:57:55'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test21StorePerformanceShouldNotTakeTooLong stamp: 'NB 6/20/2023 16:57:56'!
+PASSED!
+
+----SNAPSHOT----(20 June 2023 16:58:04) CuisUniversity-5832.image priorSource: 10721663!
