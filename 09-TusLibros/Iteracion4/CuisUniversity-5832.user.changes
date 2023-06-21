@@ -2600,3 +2600,361 @@ PASSED!
 PASSED!
 
 ----SNAPSHOT----(20 June 2023 16:58:04) CuisUniversity-5832.image priorSource: 10721663!
+
+----STARTUP---- (20 June 2023 20:47:26) as /Users/nico/Documents/inge1/cuis-images/macos64 7/CuisUniversity-5832.image!
+
+!TusLibrosServerRestInterface methodsFor: 'rest interface' stamp: 'NB 6/20/2023 20:52:29' prior: 50666538!
+createCart: aRequest
+
+	| clientId password |
+
+	(Delay forSeconds: 1) wait.
+	
+	self withFieldsOf: aRequest do: [ :requestFields |
+		clientId := self clientIdFrom: requestFields.
+		password := self passwordFrom: requestFields ].
+	
+	self 
+		answer: [ | cartId | 
+			self error: 'asd'.
+			cartId := systemFacade createCartFor: clientId authenticatedWith: password.
+			cartId printString ]
+		to: aRequest ! !
+!Promise methodsFor: 'initialization' stamp: 'NB 6/20/2023 20:56:10' prior: 50666342!
+initializeOf: aClosure
+
+	semaphore:= Semaphore new.
+	closure:= 
+	[
+		response:= aClosure value.	
+	] ensure: [semaphore signal].! !
+!Promise methodsFor: 'execution' stamp: 'NB 6/20/2023 20:57:55' prior: 50666491!
+then: aClosure onError: anErrorClosure
+
+	|error|
+	error:= false.
+	[closure on: Error do: [:anError| error:= true. anErrorClosure value: anError ]] fork.
+	[
+		semaphore wait.
+		error ifFalse: [aClosure value: response].
+	] fork.! !
+!Promise methodsFor: 'execution' stamp: 'NB 6/20/2023 21:05:04' prior: 50666884!
+then: aClosure onError: anErrorClosure
+
+	|error|
+	error:= false.
+	[[closure 
+			on: Error 
+			do: [:anError| error:= true. anErrorClosure value: anError ]] 
+			ensure: []] fork.
+	[
+		semaphore wait.
+		error ifFalse: [aClosure value: response].
+	] fork.! !
+!Promise methodsFor: 'execution' stamp: 'NB 6/20/2023 21:05:15' prior: 50666894!
+then: aClosure onError: anErrorClosure
+
+	|error|
+	error:= false.
+	[[closure 
+			on: Error 
+			do: [:anError| error:= true. anErrorClosure value: anError ]] 
+			ensure: [semaphore signal]] fork.
+	[
+		semaphore wait.
+		error ifFalse: [aClosure value: response].
+	] fork.! !
+!Promise methodsFor: 'execution' stamp: 'NB 6/20/2023 21:05:39' prior: 50666349!
+then: aClosure
+
+	[closure ensure: [semaphore signal] ]fork.
+	[
+		semaphore wait.
+		aClosure value: response.
+	] fork.! !
+!Promise methodsFor: 'initialization' stamp: 'NB 6/20/2023 21:05:48' prior: 50666877!
+initializeOf: aClosure
+
+	semaphore:= Semaphore new.
+	closure:= 
+	[
+		response:= aClosure value.	
+	].! !
+
+!classDefinition: #Promise category: 'TusLibrosREST' stamp: 'NB 6/20/2023 21:07:33'!
+Object subclass: #Promise
+	instanceVariableNames: 'semaphore response closure error1'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibrosREST'!
+!Promise methodsFor: 'initialization' stamp: 'NB 6/20/2023 21:07:31' prior: 50666924!
+initializeOf: aClosure
+
+	semaphore:= Semaphore new.
+	closure:= 
+	[
+		response:= aClosure value.	
+	] on: Error do: [:anError | error1:= anError].! !
+!Promise methodsFor: 'initialization' stamp: 'NB 6/20/2023 21:09:02' prior: 50666938!
+initializeOf: aClosure
+
+	semaphore:= Semaphore new.
+	closure:= 
+	([
+		response:= aClosure value.	
+	] on: Error do: [:anError | error1:= anError]) ensure: [semaphore signal].! !
+!Promise methodsFor: 'execution' stamp: 'NB 6/20/2023 21:10:52' prior: 50666905!
+then: aClosure onError: anErrorClosure
+
+	[closure] fork.
+	[
+		semaphore wait.
+		error1 ifNil: [aClosure value: response] ifNotNil: [anErrorClosure value: error1].
+	] fork.! !
+!Promise methodsFor: 'initialization' stamp: 'NB 6/20/2023 21:12:07' prior: 50666946!
+initializeOf: aClosure
+
+	semaphore:= Semaphore new.
+	closure:= 
+	[[
+		response:= aClosure value.	
+	] on: Error do: [:anError | error1:= anError]] ensure: [semaphore signal].! !
+!Promise methodsFor: 'execution' stamp: 'NB 6/20/2023 21:12:16' prior: 50666917!
+then: aClosure
+
+	[closure ]fork.
+	[
+		semaphore wait.
+		aClosure value: response.
+	] fork.! !
+!Promise methodsFor: 'initialization' stamp: 'NB 6/20/2023 21:18:37' prior: 50666964!
+initializeOf: aClosure
+
+	semaphore:= Semaphore new.
+	closure:= 
+	[[
+		response:= aClosure value.	
+	] on: Error do: [:anError | error1:= anError]].! !
+!Promise methodsFor: 'execution' stamp: 'NB 6/20/2023 21:18:59' prior: 50666973!
+then: aClosure
+
+	[closure ensure: [semaphore signal]] fork.
+	[
+		semaphore wait.
+		aClosure value: response.
+	] fork.! !
+!Promise methodsFor: 'execution' stamp: 'NB 6/20/2023 21:19:09' prior: 50666955!
+then: aClosure onError: anErrorClosure
+
+	[closure ensure: [semaphore signal]] fork.
+	[
+		semaphore wait.
+		error1 ifNil: [aClosure value: response] ifNotNil: [anErrorClosure value: error1].
+	] fork.! !
+!Promise methodsFor: 'execution' stamp: 'NB 6/20/2023 21:21:21' prior: 50666987!
+then: aClosure
+
+	[closure ensure: [semaphore signal]] fork.
+	[
+		semaphore wait.
+		error1 ifNil: [aClosure value: response] ifNotNil: [^self error: error1].
+	] fork.! !
+!Promise methodsFor: 'execution - private' stamp: 'NB 6/20/2023 21:23:43'!
+value: aClosure whenErrorDo: anErrorClosure
+
+	[closure ensure: [semaphore signal]] fork.
+	[
+		semaphore wait.
+		error1 ifNil: [aClosure value: response] ifNotNil: [anErrorClosure value].
+	] fork.! !
+!Promise methodsFor: 'execution' stamp: 'NB 6/20/2023 21:24:55' prior: 50667003!
+then: aClosure
+
+	self value: aClosure whenErrorDo: [^self error: error1].
+! !
+!Promise methodsFor: 'execution' stamp: 'NB 6/20/2023 21:25:18' prior: 50666994!
+then: aClosure onError: anErrorClosure
+
+	self value: aClosure whenErrorDo: [anErrorClosure value: error1].! !
+
+!classDefinition: #Promise category: 'TusLibrosREST' stamp: 'NB 6/20/2023 21:26:16'!
+Object subclass: #Promise
+	instanceVariableNames: 'semaphore response closure error'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibrosREST'!
+!Promise methodsFor: 'as yet unclassified' stamp: 'NB 6/20/2023 21:26:16' prior: 50667011!
+value: aClosure whenErrorDo: anErrorClosure
+
+	[closure ensure: [semaphore signal]] fork.
+	[
+		semaphore wait.
+		error ifNil: [aClosure value: response] ifNotNil: [anErrorClosure value].
+	] fork.! !
+!Promise methodsFor: 'as yet unclassified' stamp: 'NB 6/20/2023 21:26:16' prior: 50666979!
+initializeOf: aClosure
+
+	semaphore:= Semaphore new.
+	closure:= 
+	[[
+		response:= aClosure value.	
+	] on: Error do: [:anError | error:= anError]].! !
+!Promise methodsFor: 'as yet unclassified' stamp: 'NB 6/20/2023 21:26:16' prior: 50667025!
+then: aClosure onError: anErrorClosure
+
+	self value: aClosure whenErrorDo: [anErrorClosure value: error].! !
+!Promise methodsFor: 'as yet unclassified' stamp: 'NB 6/20/2023 21:26:16' prior: 50667020!
+then: aClosure
+
+	self value: aClosure whenErrorDo: [^self error: error].
+! !
+!TusLibrosServerRestInterface methodsFor: 'rest interface' stamp: 'NB 6/20/2023 21:27:52' prior: 50666861!
+createCart: aRequest
+
+	| clientId password |
+
+	(Delay forSeconds: 1) wait.
+	
+	self withFieldsOf: aRequest do: [ :requestFields |
+		clientId := self clientIdFrom: requestFields.
+		password := self passwordFrom: requestFields ].
+	
+	self 
+		answer: [ | cartId | 
+			cartId := systemFacade createCartFor: clientId authenticatedWith: password.
+			cartId printString ]
+		to: aRequest ! !
+
+----SNAPSHOT----(20 June 2023 21:29:22) CuisUniversity-5832.image priorSource: 10726492!
+
+----SNAPSHOT----(20 June 2023 21:29:25) CuisUniversity-5832.image priorSource: 10733885!
+
+----SNAPSHOT----(20 June 2023 21:30:14) CuisUniversity-5832.image priorSource: 10733975!
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'NB 6/20/2023 21:30:34'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'NB 6/20/2023 21:30:34'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'NB 6/20/2023 21:30:34'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'NB 6/20/2023 21:30:34'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'NB 6/20/2023 21:30:34'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'NB 6/20/2023 21:30:34'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'NB 6/20/2023 21:30:34'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'NB 6/20/2023 21:30:34'!
+PASSED!
+
+!testRun: #CashierTest #test01CanNotCheckoutAnEmptyCart stamp: 'NB 6/20/2023 21:30:34'!
+PASSED!
+
+!testRun: #CashierTest #test02CalculatedTotalIsCorrect stamp: 'NB 6/20/2023 21:30:34'!
+PASSED!
+
+!testRun: #CashierTest #test03CanNotCheckoutWithAnExpiredCreditCart stamp: 'NB 6/20/2023 21:30:34'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutRegistersASale stamp: 'NB 6/20/2023 21:30:34'!
+PASSED!
+
+!testRun: #CashierTest #test05CashierChargesCreditCardUsingMerchantProcessor stamp: 'NB 6/20/2023 21:30:34'!
+PASSED!
+
+!testRun: #CashierTest #test06CashierDoesNotSaleWhenTheCreditCardHasNoCredit stamp: 'NB 6/20/2023 21:30:34'!
+PASSED!
+
+!testRun: #CreditCardTest #test01CreditCardNumberWithLessThan16DigitsIsNotValid stamp: 'NB 6/20/2023 21:30:34'!
+PASSED!
+
+!testRun: #CreditCardTest #test02CreditCardNumberWithMoreThan16DigitsIsNotValid stamp: 'NB 6/20/2023 21:30:34'!
+PASSED!
+
+!testRun: #CreditCardTest #test03CreditCardNumberShouldBeDigitsOnly stamp: 'NB 6/20/2023 21:30:34'!
+PASSED!
+
+!testRun: #CreditCardTest #test04NameCanNotBeEmpty stamp: 'NB 6/20/2023 21:30:34'!
+PASSED!
+
+!testRun: #CreditCardTest #test05IsExpiredOnNextExpirationMonth stamp: 'NB 6/20/2023 21:30:34'!
+PASSED!
+
+!testRun: #CreditCardTest #test06IsNotExpiredOnExpirationMonth stamp: 'NB 6/20/2023 21:30:34'!
+PASSED!
+
+!testRun: #CreditCardTest #test07CanGetCreditCardInfoFromIt stamp: 'NB 6/20/2023 21:30:34'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test01CanCreateCartWithValidUserAndPassword stamp: 'NB 6/20/2023 21:30:34'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test02CanNotCreateCartWithInvalidUser stamp: 'NB 6/20/2023 21:30:34'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test03CanNotCreateCartWithInvalidPassword stamp: 'NB 6/20/2023 21:30:34'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test04CanAddItemsToACreatedCart stamp: 'NB 6/20/2023 21:30:34'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test05CanNotAddItemToNotCreatedCart stamp: 'NB 6/20/2023 21:30:34'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test06CanNotAddItemNotSellByTheStore stamp: 'NB 6/20/2023 21:30:34'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test08CanNotListCartOfInvalidCartId stamp: 'NB 6/20/2023 21:30:34'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test09ListCartReturnsTheRightNumberOfItems stamp: 'NB 6/20/2023 21:30:34'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test10CheckOutReturnsTransactionIdAndImpactsCustomerPurchases stamp: 'NB 6/20/2023 21:30:34'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test10_1_CanNotCheckoutAnAlreadyCheckedOutCart stamp: 'NB 6/20/2023 21:30:34'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test11CanNotCheckoutANotCreatedCart stamp: 'NB 6/20/2023 21:30:34'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test12CanNotCheckoutAnEmptyCart stamp: 'NB 6/20/2023 21:30:34'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test13CanNotCheckoutWithAnExpiredCreditCard stamp: 'NB 6/20/2023 21:30:34'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test14ListPurchasesIncludesBoughtItems stamp: 'NB 6/20/2023 21:30:34'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test15CanNotListPurchasesOfInvalidCustomer stamp: 'NB 6/20/2023 21:30:34'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test16CanNotListPurchasesOfValidCustomerWithInvalidPassword stamp: 'NB 6/20/2023 21:30:34'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test17CanNotAddToCartWhenSessionIsExpired stamp: 'NB 6/20/2023 21:30:34'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test18CanNotListCartWhenSessionIsExpired stamp: 'NB 6/20/2023 21:30:34'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test19CanNotCheckOutCartWhenSessionIsExpired stamp: 'NB 6/20/2023 21:30:34'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test20BookPerformanceShouldNotTakeTooLong stamp: 'NB 6/20/2023 21:30:35'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test21StorePerformanceShouldNotTakeTooLong stamp: 'NB 6/20/2023 21:30:36'!
+PASSED!
+
+----SNAPSHOT----(20 June 2023 21:30:42) CuisUniversity-5832.image priorSource: 10734065!

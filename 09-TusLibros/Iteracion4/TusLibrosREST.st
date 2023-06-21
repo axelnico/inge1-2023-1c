@@ -244,39 +244,41 @@ initialize
 
 !classDefinition: #Promise category: 'TusLibrosREST'!
 Object subclass: #Promise
-	instanceVariableNames: 'semaphore response closure'
+	instanceVariableNames: 'semaphore response closure error'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'TusLibrosREST'!
 
-!Promise methodsFor: 'execution' stamp: 'NB 6/20/2023 16:24:08'!
+!Promise methodsFor: 'execution - private' stamp: 'NB 6/20/2023 21:26:16'!
+value: aClosure whenErrorDo: anErrorClosure
+
+	[closure ensure: [semaphore signal]] fork.
+	[
+		semaphore wait.
+		error ifNil: [aClosure value: response] ifNotNil: [anErrorClosure value].
+	] fork.! !
+
+
+!Promise methodsFor: 'execution' stamp: 'NB 6/20/2023 21:26:16'!
 then: aClosure
 
-	closure fork.
-	[
-		semaphore wait.
-		aClosure value: response.
-	] fork.! !
+	self value: aClosure whenErrorDo: [^self error: error].
+! !
 
-!Promise methodsFor: 'execution' stamp: 'NB 6/20/2023 16:44:32'!
+!Promise methodsFor: 'execution' stamp: 'NB 6/20/2023 21:26:16'!
 then: aClosure onError: anErrorClosure
 
-	[closure on: Error do: [:error| anErrorClosure value: error ]] fork.
-	[
-		semaphore wait.
-		aClosure value: response.
-	] fork.! !
+	self value: aClosure whenErrorDo: [anErrorClosure value: error].! !
 
 
-!Promise methodsFor: 'initialization' stamp: 'NB 6/20/2023 16:23:22'!
+!Promise methodsFor: 'initialization' stamp: 'NB 6/20/2023 21:26:16'!
 initializeOf: aClosure
 
 	semaphore:= Semaphore new.
 	closure:= 
-	[
+	[[
 		response:= aClosure value.	
-		semaphore signal.
-	].! !
+	] on: Error do: [:anError | error:= anError]].! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
@@ -590,7 +592,7 @@ checkOutCart: aRequest
 			transactionId printString ]
 		to: aRequest ! !
 
-!TusLibrosServerRestInterface methodsFor: 'rest interface' stamp: 'NB 6/20/2023 16:50:36'!
+!TusLibrosServerRestInterface methodsFor: 'rest interface' stamp: 'NB 6/20/2023 21:27:52'!
 createCart: aRequest
 
 	| clientId password |
