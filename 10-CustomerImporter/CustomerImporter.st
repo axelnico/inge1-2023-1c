@@ -89,12 +89,12 @@ assertAmountOfCustomersImportedIsCorrect
 
 	^ self assert: 2 equals: (session selectAllOfType: Customer) size! !
 
-!ImportTest methodsFor: 'assertions' stamp: 'NB 6/25/2023 16:05:06'!
-assertCustomer: customerPepe hasFirstName: aFirstName lastName: aLastName 
+!ImportTest methodsFor: 'assertions' stamp: 'NB 6/25/2023 16:54:59'!
+assertCustomer: aCustomer hasFirstName: aFirstName lastName: aLastName 
 
-	self assert: aLastName equals: customerPepe lastName.
+	self assert: aLastName equals: aCustomer lastName.
 	
-	self assert: aFirstName equals: customerPepe firstName! !
+	self assert: aFirstName equals: aCustomer firstName! !
 
 !ImportTest methodsFor: 'assertions' stamp: 'NB 6/25/2023 16:11:18'!
 assertCustomerJuanAndHisAddressesWereImportedCorrectly

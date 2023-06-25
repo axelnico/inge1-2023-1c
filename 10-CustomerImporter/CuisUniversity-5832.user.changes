@@ -4935,3 +4935,22 @@ PASSED!
 PASSED!
 
 ----SNAPSHOT----(25 June 2023 16:33:46) CuisUniversity-5832.image priorSource: 9536788!
+
+----STARTUP---- (25 June 2023 16:54:25) as /Users/nico/Documents/inge1/cuis-images/macos64 8/CuisUniversity-5832.image!
+
+!ImportTest methodsFor: 'assertions' stamp: 'NB 6/25/2023 16:54:59' prior: 50629211!
+assertCustomer: aCustomer hasFirstName: aFirstName lastName: aLastName 
+
+	self assert: aLastName equals: aCustomer lastName.
+	
+	self assert: aFirstName equals: aCustomer firstName! !
+
+!testRun: #ImportTest #test01Import stamp: 'NB 6/25/2023 16:55:22'!
+PASSED!
+
+----SNAPSHOT----(25 June 2023 16:55:25) CuisUniversity-5832.image priorSource: 9536954!
+
+----SNAPSHOT----(25 June 2023 16:55:27) CuisUniversity-5832.image priorSource: 9537539!
+
+!testRun: #ImportTest #test01Import stamp: 'NB 6/25/2023 16:55:34'!
+PASSED!
