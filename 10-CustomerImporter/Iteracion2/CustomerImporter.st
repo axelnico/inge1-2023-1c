@@ -5,8 +5,8 @@ TestCase subclass: #ImportTest
 	poolDictionaries: ''
 	category: 'CustomerImporter'!
 
-!ImportTest methodsFor: 'tests' stamp: 'am 6/26/2023 21:05:05'!
-test01ImportValidInputWithTwoCustomers
+!ImportTest methodsFor: 'tests' stamp: 'NB 6/27/2023 22:56:04'!
+test01CanImportCorrectlyAValidInputWithTwoCustomers
 
 	CustomerImporter valueFrom: self validImportData into: session.
 
@@ -14,55 +14,86 @@ test01ImportValidInputWithTwoCustomers
 	self assertPepeSanchezWasImportedCorrecty.
 	self assertJuanPerezWasImportedCorrectly ! !
 
-!ImportTest methodsFor: 'tests' stamp: 'am 6/26/2023 21:35:10'!
+!ImportTest methodsFor: 'tests' stamp: 'NB 6/28/2023 00:00:30'!
 test02CannotImportAnEmptyInput
 	
 	
-	self should: 
-	[CustomerImporter valueFrom: (ReadStream on: '
-') into: session.] 
-	raise: Error - MessageNotUnderstood 
-	withExceptionDo: [:anError| 
-		self assert: 0 equals: (session selectAllOfType: Customer) size.
-		self assert: CustomerImporter cannotImportEmptyStream equals: anError messageText ].
+	self shouldRaiseErrorWhenImporting: self emptyInput  withErrorMessageText: CustomerImporter cannotImportEmptyStream  assertingThat: [self assertNoCustomerWasImported.].
+	! !
+
+!ImportTest methodsFor: 'tests' stamp: 'NB 6/28/2023 00:09:30'!
+test03CannotImportAnInputThatHasWrongCustomerRecordIdentificationStartingWithC
+	
+	
+	self shouldRaiseErrorWhenImporting: self invalidInputWithWrongCustomerRecordIdentification
+		 withErrorMessageText: CustomerImporter cannotImportStreamWithInvalidRecordIdentification 
+		assertingThat: [self assertNoCustomerWasImported.].
+	
+	
 ! !
 
-!ImportTest methodsFor: 'tests' stamp: 'am 6/26/2023 21:38:13'!
-test03CannotImportAnInputWithWrongRecordIdentification
+!ImportTest methodsFor: 'tests' stamp: 'NB 6/28/2023 00:02:09'!
+test04CannotImportAnInputWithACustomerRecordWithLessThanFiveFields
 	
 	
-	self should: 
-	[CustomerImporter valueFrom: (ReadStream on: 'X,Pepe,Sanchez,D,22333444') into: session.] 
-	raise: Error - MessageNotUnderstood 
-	withExceptionDo: [:anError| 
-		self assert: 0 equals: (session selectAllOfType: Customer) size.
-		self assert: CustomerImporter cannotImportStreamWithInvalidRecorIdentification equals: anError messageText ].
+	self shouldRaiseErrorWhenImporting: self invalidInputWithACustomerRecordWithLessThanFiveFields
+		 withErrorMessageText: CustomerImporter cannotImportStreamWithWrongCustomerRecordLength
+		assertingThat: [self assertNoCustomerWasImported.].
+		
+	
 ! !
 
-!ImportTest methodsFor: 'tests' stamp: 'am 6/26/2023 21:43:51'!
-test04CannotImportAnInputWithWrongCustomerRecordLength
+!ImportTest methodsFor: 'tests' stamp: 'NB 6/28/2023 00:02:53'!
+test05CannotImportAnInputWithAnAddressRecordWithLessThanSixFields
 	
 	
-	self should: 
-	[CustomerImporter valueFrom: (ReadStream on: 'C,Pepe') into: session.] 
-	raise: Error - MessageNotUnderstood 
-	withExceptionDo: [:anError| 
-		self assert: 0 equals: (session selectAllOfType: Customer) size.
-		self assert: CustomerImporter cannotImportStreamWithWrongCustomerRecordLength equals: anError messageText ].
+	self shouldRaiseErrorWhenImporting: self invalidInputWithAnAddressRecordWithLessThanSixFields
+		 withErrorMessageText: CustomerImporter cannotImportAnInputWithWrongAddressRecordLength
+		assertingThat: [self assertOnlyOneCustomerWasImportedWithoutAddresses].
+		
+	
 ! !
 
-!ImportTest methodsFor: 'tests' stamp: 'am 6/26/2023 21:49:41'!
-test05CannotImportAnInputWithWrongAddressRecordLength
+!ImportTest methodsFor: 'tests' stamp: 'NB 6/28/2023 00:09:30'!
+test06CannotImportAnInputThatHasWrongAddressRecordIdentificationStartingWithA
 	
 	
-	self should: 
-	[CustomerImporter valueFrom: (ReadStream on: 'C,Pepe,Sanchez,D,22333444
-A,San Martin') into: session.] 
-	raise: Error - MessageNotUnderstood 
-	withExceptionDo: [:anError| 
-		self assert: 1 equals: (session selectAllOfType: Customer) size.
-		self assert: 0 equals: (session selectAllOfType: Address ) size.
-		self assert: CustomerImporter cannotImportAnInputWithWrongAddressRecordLength equals: anError messageText ].
+	self shouldRaiseErrorWhenImporting: self invalidInputWithWrongAddressRecordIdentification
+		 withErrorMessageText: CustomerImporter cannotImportStreamWithInvalidRecordIdentification
+		assertingThat: [self assertOnlyOneCustomerWasImportedWithoutAddresses.].
+		
+	
+! !
+
+!ImportTest methodsFor: 'tests' stamp: 'NB 6/28/2023 00:04:00'!
+test07CannotImportAnInputWithACustomerRecordWithMoreThanFiveFields
+	
+	
+	self shouldRaiseErrorWhenImporting: self invalidInputWithACustomerRecordWithMoreThanFiveFields
+		 withErrorMessageText: CustomerImporter cannotImportStreamWithWrongCustomerRecordLength
+		assertingThat: [self assertNoCustomerWasImported.].
+		
+
+! !
+
+!ImportTest methodsFor: 'tests' stamp: 'NB 6/28/2023 00:04:34'!
+test08CannotImportAnInputWithAnAddressRecordWithMoreThanSixFields
+	
+	
+	self shouldRaiseErrorWhenImporting: self invalidInputWithAnAddressRecordWithMoreThanSixFields
+		 withErrorMessageText: CustomerImporter cannotImportAnInputWithWrongAddressRecordLength
+		assertingThat: [self assertOnlyOneCustomerWasImportedWithoutAddresses.].
+		
+	
+! !
+
+!ImportTest methodsFor: 'tests' stamp: 'NB 6/28/2023 00:06:29'!
+test09CannotImportAnInputWithAnAddressRecordWithoutACustomer
+	
+	
+	self shouldRaiseErrorWhenImporting: self invalidInputWithOnlyAnAddressRecord
+		 withErrorMessageText: CustomerImporter cannotImportAnAddressRecordWithoutACustomer
+		assertingThat: [self assertNoAddressWasImported].
 ! !
 
 
@@ -110,6 +141,22 @@ assertJuanPerezWasImportedCorrectly
 	self assertAddressOf: importedCustomer at: 'Alem' hasNumber: 1122 town: 'CABA' zipCode: 1001 province: 'CABA'
 	! !
 
+!ImportTest methodsFor: 'assertions' stamp: 'NB 6/28/2023 00:06:16'!
+assertNoAddressWasImported
+
+	^ self assert: 0 equals: (session selectAllOfType: Address) size! !
+
+!ImportTest methodsFor: 'assertions' stamp: 'NB 6/27/2023 22:54:54'!
+assertNoCustomerWasImported
+
+	^ self assert: 0 equals: (session selectAllOfType: Customer) size! !
+
+!ImportTest methodsFor: 'assertions' stamp: 'NB 6/27/2023 23:04:17'!
+assertOnlyOneCustomerWasImportedWithoutAddresses
+
+	self assert: 1 equals: (session selectAllOfType: Customer) size.
+		self assert: 0 equals: (session selectAllOfType: Address ) size! !
+
 !ImportTest methodsFor: 'assertions' stamp: 'HAW 5/22/2022 18:28:05'!
 assertPepeSanchezWasImportedCorrecty
 
@@ -121,6 +168,18 @@ assertPepeSanchezWasImportedCorrecty
 
 
 	! !
+
+!ImportTest methodsFor: 'assertions' stamp: 'NB 6/27/2023 23:59:21'!
+shouldRaiseErrorWhenImporting: aReadStream withErrorMessageText: anErrorMessageText assertingThat: anAssertionBlock
+	
+	
+	self should: 
+		[CustomerImporter valueFrom: aReadStream into: session.] 
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [:anError| 
+		self assert: anErrorMessageText equals: anError messageText. 
+		anAssertionBlock value].
+! !
 
 
 !ImportTest methodsFor: 'setUp/tearDown' stamp: 'HAW 5/22/2022 00:27:50'!
@@ -146,6 +205,52 @@ customerWithIdentificationType: anIdType number: anIdNumber
 		ofType: Customer) anyOne! !
 
 
+!ImportTest methodsFor: 'test data' stamp: 'NB 6/27/2023 23:43:36'!
+emptyInput
+
+
+	^ReadStream on: '
+'
+! !
+
+!ImportTest methodsFor: 'test data' stamp: 'NB 6/27/2023 23:46:09'!
+invalidInputWithACustomerRecordWithLessThanFiveFields
+
+	^ ReadStream on: 'C,Pepe'! !
+
+!ImportTest methodsFor: 'test data' stamp: 'NB 6/27/2023 23:47:54'!
+invalidInputWithACustomerRecordWithMoreThanFiveFields
+
+	^ ReadStream on: 'C,Pepe,Sanchez,D,22333444,aaa'! !
+
+!ImportTest methodsFor: 'test data' stamp: 'NB 6/27/2023 23:48:04'!
+invalidInputWithAnAddressRecordWithLessThanSixFields
+
+	^ ReadStream on: 'C,Pepe,Sanchez,D,22333444
+A,San Martin'! !
+
+!ImportTest methodsFor: 'test data' stamp: 'NB 6/27/2023 23:49:13'!
+invalidInputWithAnAddressRecordWithMoreThanSixFields
+
+	^ ReadStream on: 'C,Pepe,Sanchez,D,22333444
+A,San Martin,3322,Olivos,1636,BsAs,aaa'! !
+
+!ImportTest methodsFor: 'test data' stamp: 'NB 6/27/2023 23:49:41'!
+invalidInputWithOnlyAnAddressRecord
+
+	^ ReadStream on: 'A,San Martin,3322,Olivos,1636,BsAs'! !
+
+!ImportTest methodsFor: 'test data' stamp: 'NB 6/27/2023 23:47:12'!
+invalidInputWithWrongAddressRecordIdentification
+
+	^ ReadStream on: 'C,Pepe,Sanchez,D,22333444
+AAA,San Martin,3322,Olivos,1636,BsAs'! !
+
+!ImportTest methodsFor: 'test data' stamp: 'NB 6/27/2023 23:45:22'!
+invalidInputWithWrongCustomerRecordIdentification
+
+	^ ReadStream on: 'CCC,Pepe,Sanchez,D,22333444'! !
+
 !ImportTest methodsFor: 'test data' stamp: 'HAW 5/22/2022 18:08:08'!
 validImportData
 
@@ -169,12 +274,6 @@ province
 
 	^province! !
 
-!Address methodsFor: 'province' stamp: 'HAW 5/22/2022 00:19:29'!
-province: aProvince
-
-	province := aProvince
-	! !
-
 
 !Address methodsFor: 'street' stamp: 'HAW 5/22/2022 17:55:46'!
 isAt: aStreetName
@@ -187,41 +286,21 @@ streetName
 	^streetName ! !
 
 !Address methodsFor: 'street' stamp: 'HAW 5/22/2022 00:19:29'!
-streetName: aStreetName
-
-	streetName := aStreetName ! !
-
-!Address methodsFor: 'street' stamp: 'HAW 5/22/2022 00:19:29'!
 streetNumber
 
 	^streetNumber ! !
 
-!Address methodsFor: 'street' stamp: 'HAW 5/22/2022 00:19:29'!
-streetNumber: aStreetNumber
 
-	streetNumber := aStreetNumber ! !
-
-
-!Address methodsFor: 'twon' stamp: 'HAW 5/22/2022 00:19:29'!
+!Address methodsFor: 'town' stamp: 'HAW 5/22/2022 00:19:29'!
 town
 
 	^town! !
-
-!Address methodsFor: 'twon' stamp: 'HAW 5/22/2022 00:19:29'!
-town: aTown
-
-	town := aTown! !
 
 
 !Address methodsFor: 'zip code' stamp: 'HAW 5/22/2022 00:19:29'!
 zipCode
 
 	^zipCode! !
-
-!Address methodsFor: 'zip code' stamp: 'HAW 5/22/2022 00:19:29'!
-zipCode: aZipCode
-
-	zipCode := aZipCode! !
 
 
 !Address methodsFor: 'initialization' stamp: 'am 6/26/2023 19:36:43'!
@@ -273,20 +352,9 @@ firstName
 	^firstName ! !
 
 !Customer methodsFor: 'name' stamp: 'HAW 5/22/2022 00:19:29'!
-firstName: aName
-
-	firstName := aName! !
-
-!Customer methodsFor: 'name' stamp: 'HAW 5/22/2022 00:19:29'!
 lastName
 
 	^lastName ! !
-
-!Customer methodsFor: 'name' stamp: 'HAW 5/22/2022 00:19:29'!
-lastName: aLastName
-
-	lastName := aLastName
-! !
 
 
 !Customer methodsFor: 'identification' stamp: 'HAW 5/22/2022 00:19:29'!
@@ -295,19 +363,9 @@ identificationNumber
 	^identificationNumber ! !
 
 !Customer methodsFor: 'identification' stamp: 'HAW 5/22/2022 00:19:29'!
-identificationNumber: anIdentificationNumber
-
-	identificationNumber := anIdentificationNumber! !
-
-!Customer methodsFor: 'identification' stamp: 'HAW 5/22/2022 00:19:29'!
 identificationType
 
 	^identificationType ! !
-
-!Customer methodsFor: 'identification' stamp: 'HAW 5/22/2022 00:19:29'!
-identificationType: anIdentificationType
-
-	identificationType := anIdentificationType! !
 
 
 !Customer methodsFor: 'initialization' stamp: 'HAW 5/22/2022 00:19:29'!
@@ -348,22 +406,81 @@ initializeFrom: aReadStream into: aSession
 	readStream := aReadStream.! !
 
 
-!CustomerImporter methodsFor: 'evaluating' stamp: 'am 6/26/2023 21:01:57'!
-createRecord
+!CustomerImporter methodsFor: 'assertions' stamp: 'NB 6/27/2023 23:30:29'!
+assertAddressRecordSizeIsValid
 
-	^record := line findTokens: $,.! !
+	^ (record size = 6) ifFalse: [self error: self class cannotImportAnInputWithWrongAddressRecordLength ]! !
 
-!CustomerImporter methodsFor: 'evaluating' stamp: 'am 6/26/2023 21:02:16'!
+!CustomerImporter methodsFor: 'assertions' stamp: 'NB 6/27/2023 23:27:35'!
+assertCustomerRecordSizeIsValid
+
+	^ (record size = 5) ifFalse: [self error: self class cannotImportStreamWithWrongCustomerRecordLength]! !
+
+!CustomerImporter methodsFor: 'assertions' stamp: 'NB 6/27/2023 23:31:01'!
+assertCustomerWasImported
+
+	^ customer ifNil: [self error: self class cannotImportAnAddressRecordWithoutACustomer]! !
+
+!CustomerImporter methodsFor: 'assertions' stamp: 'NB 6/27/2023 23:34:27'!
+assertRecordIsNotEmpty
+
+	^ record isEmpty ifTrue: [self error: self class cannotImportEmptyStream]! !
+
+
+!CustomerImporter methodsFor: 'testing' stamp: 'am 6/26/2023 21:02:16'!
 hasLinesLeft
 
 	line := readStream nextLine.
 	^line notNil.! !
 
-!CustomerImporter methodsFor: 'evaluating' stamp: 'am 6/26/2023 21:50:25'!
+!CustomerImporter methodsFor: 'testing' stamp: 'NB 6/27/2023 23:08:12'!
+isAddress
+
+	^ record first = 'A'! !
+
+!CustomerImporter methodsFor: 'testing' stamp: 'NB 6/27/2023 23:07:32'!
+isCustomer
+
+	^ record first = 'C'! !
+
+
+!CustomerImporter methodsFor: 'evaluating - private' stamp: 'am 6/26/2023 21:01:57'!
+createRecord
+
+	^record := line findTokens: $,.! !
+
+!CustomerImporter methodsFor: 'evaluating - private' stamp: 'NB 6/28/2023 00:09:30'!
+importRecord
+
+	self assertRecordIsNotEmpty.
+	
+	(self isCustomer) ifTrue: [ ^self importCustomer].
+	(self isAddress) ifTrue: [ ^self importAddress].
+	
+	self error: self class cannotImportStreamWithInvalidRecordIdentification. ! !
+
+
+!CustomerImporter methodsFor: 'customer' stamp: 'NB 6/27/2023 23:27:35'!
+importCustomer
+
+			self assertCustomerRecordSizeIsValid.
+			
+			customer := Customer 
+				firstName: record second 
+				lastName: record third 
+				identificationType: record fourth 
+				identificationNumber: record fifth.
+			session persist: customer.! !
+
+
+!CustomerImporter methodsFor: 'address' stamp: 'NB 6/27/2023 23:31:01'!
 importAddress
 	
 	| newAddress |
-			(record size < 6) ifTrue: [self error: self class cannotImportAnInputWithWrongAddressRecordLength ].
+			self assertAddressRecordSizeIsValid.
+			
+			self assertCustomerWasImported.
+			
 			newAddress := Address 
 				streetName: record second 
 				streetNumber: record third asNumber 
@@ -372,32 +489,6 @@ importAddress
 				province: record sixth. 
 			customer addAddress: newAddress.! !
 
-!CustomerImporter methodsFor: 'evaluating' stamp: 'am 6/26/2023 21:46:21'!
-importCustomer
-			(record size < 4) ifTrue: [self error: self class cannotImportStreamWithWrongCustomerRecordLength].
-			customer := Customer 
-				firstName: record second 
-				lastName: record third 
-				identificationType: record fourth 
-				identificationNumber: record fifth.
-			session persist: customer.! !
-
-!CustomerImporter methodsFor: 'evaluating' stamp: 'am 6/26/2023 21:40:39'!
-importRecord
-	record isEmpty ifTrue: [self error: self class cannotImportEmptyStream].
-	(self isCustomer) ifTrue: [ ^self importCustomer].
-	(self isAddress) ifTrue: [ ^self importAddress].
-	self error: self class cannotImportStreamWithInvalidRecorIdentification. ! !
-
-!CustomerImporter methodsFor: 'evaluating' stamp: 'am 6/26/2023 21:03:08'!
-isAddress
-
-	^ record first beginsWith: 'A'! !
-
-!CustomerImporter methodsFor: 'evaluating' stamp: 'am 6/26/2023 21:03:00'!
-isCustomer
-
-	^ record first beginsWith: 'C'! !
 
 !CustomerImporter methodsFor: 'evaluating' stamp: 'am 6/26/2023 20:40:26'!
 value
@@ -426,6 +517,11 @@ aReadStream isEmpty ifTrue: [self error: self cannotImportEmptyStream].
 	^(self from: aReadStream into: aSession) value! !
 
 
+!CustomerImporter class methodsFor: 'error description' stamp: 'NB 6/27/2023 23:25:19'!
+cannotImportAnAddressRecordWithoutACustomer
+	
+	^'Cannot import an address without a customer'.! !
+
 !CustomerImporter class methodsFor: 'error description' stamp: 'am 6/26/2023 21:49:07'!
 cannotImportAnInputWithWrongAddressRecordLength
 	^'cannot import an input with wrong address record length'.! !
@@ -434,8 +530,8 @@ cannotImportAnInputWithWrongAddressRecordLength
 cannotImportEmptyStream
 	^'cannot import an empty stream'.! !
 
-!CustomerImporter class methodsFor: 'error description' stamp: 'am 6/26/2023 21:39:19'!
-cannotImportStreamWithInvalidRecorIdentification
+!CustomerImporter class methodsFor: 'error description' stamp: 'NB 6/28/2023 00:09:30'!
+cannotImportStreamWithInvalidRecordIdentification
 	^'cannot import stream with invalid record identification'.! !
 
 !CustomerImporter class methodsFor: 'error description' stamp: 'am 6/26/2023 21:44:56'!
