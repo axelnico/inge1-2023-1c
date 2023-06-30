@@ -1,0 +1,2878 @@
+
+
+----QUIT----(30 May 2023 00:05:32) CuisUniversity-5832.image priorSource: 4928100!
+
+----STARTUP---- (30 May 2023 00:05:33) as /Users/hernan/Documents/Cuis/5.0-64Bits/Cuis-University-Installer/CuisUniversity-5832.image!
+
+
+----QUIT----(30 May 2023 00:05:33) CuisUniversity-5832.image priorSource: 9366537!
+
+----STARTUP---- (27 June 2023 22:42:29) as /Users/nico/Documents/inge1/cuis-images/macos64 9/CuisUniversity-5832.image!
+
+
+----End fileIn of /Users/nico/Documents/inge1/inge1-2023-1c/10-CustomerImporter/Iteracion2/CustomerImporter.st----!
+!ImportTest methodsFor: 'tests' stamp: 'NB 6/27/2023 22:54:54'!
+assertNoCustomerWasImported
+
+	^ self assert: 0 equals: (session selectAllOfType: Customer) size! !
+!ImportTest methodsFor: 'tests' stamp: 'NB 6/27/2023 22:54:54' prior: 50624419!
+test04CannotImportAnInputWithWrongCustomerRecordLength
+	
+	
+	self should: 
+	[CustomerImporter valueFrom: (ReadStream on: 'C,Pepe') into: session.] 
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [:anError| 
+		self assertNoCustomerWasImported.
+		self assert: CustomerImporter cannotImportStreamWithWrongCustomerRecordLength equals: anError messageText ].
+! !
+!ImportTest methodsFor: 'tests' stamp: 'NB 6/27/2023 22:54:54' prior: 50624403!
+test03CannotImportAnInputWithWrongRecordIdentification
+	
+	
+	self should: 
+	[CustomerImporter valueFrom: (ReadStream on: 'X,Pepe,Sanchez,D,22333444') into: session.] 
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [:anError| 
+		self assertNoCustomerWasImported.
+		self assert: CustomerImporter cannotImportStreamWithInvalidRecorIdentification equals: anError messageText ].
+! !
+!ImportTest methodsFor: 'tests' stamp: 'NB 6/27/2023 22:54:54' prior: 50624390!
+test02CannotImportAnEmptyInput
+	
+	
+	self should: 
+	[CustomerImporter valueFrom: (ReadStream on: '
+') into: session.] 
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [:anError| 
+		self assertNoCustomerWasImported.
+		self assert: CustomerImporter cannotImportEmptyStream equals: anError messageText ].
+! !
+!ImportTest methodsFor: 'tests' stamp: 'NB 6/27/2023 22:56:04'!
+test01CanImportCorrectlyAValidInputWithTwoCustomers
+
+	CustomerImporter valueFrom: self validImportData into: session.
+
+	self assertImportedRightNumberOfCustomers.
+	self assertPepeSanchezWasImportedCorrecty.
+	self assertJuanPerezWasImportedCorrectly ! !
+
+!methodRemoval: ImportTest #test01ImportValidInputWithTwoCustomers stamp: 'NB 6/27/2023 22:56:04'!
+test01ImportValidInputWithTwoCustomers
+
+	CustomerImporter valueFrom: self validImportData into: session.
+
+	self assertImportedRightNumberOfCustomers.
+	self assertPepeSanchezWasImportedCorrecty.
+	self assertJuanPerezWasImportedCorrectly !
+!ImportTest methodsFor: 'tests' stamp: 'NB 6/27/2023 22:58:10' prior: 50624984!
+test03CannotImportAnInputWithWrongRecordIdentification
+	
+	
+	self should: 
+	[CustomerImporter valueFrom: (ReadStream on: 'CCC,Pepe,Sanchez,D,22333444') into: session.] 
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [:anError| 
+		self assertNoCustomerWasImported.
+		self assert: CustomerImporter cannotImportStreamWithInvalidRecorIdentification equals: anError messageText ].
+! !
+!ImportTest methodsFor: 'tests' stamp: 'NB 6/27/2023 22:59:13'!
+test03CannotImportAnInputThatHasWrongRecordIdentificationStartingWithC
+	
+	
+	self should: 
+	[CustomerImporter valueFrom: (ReadStream on: 'CCC,Pepe,Sanchez,D,22333444') into: session.] 
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [:anError| 
+		self assertNoCustomerWasImported.
+		self assert: CustomerImporter cannotImportStreamWithInvalidRecorIdentification equals: anError messageText ].
+! !
+
+!methodRemoval: ImportTest #test03CannotImportAnInputWithWrongRecordIdentification stamp: 'NB 6/27/2023 22:59:13'!
+test03CannotImportAnInputWithWrongRecordIdentification
+	
+	
+	self should: 
+	[CustomerImporter valueFrom: (ReadStream on: 'CCC,Pepe,Sanchez,D,22333444') into: session.] 
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [:anError| 
+		self assertNoCustomerWasImported.
+		self assert: CustomerImporter cannotImportStreamWithInvalidRecorIdentification equals: anError messageText ].
+!
+!ImportTest methodsFor: 'tests' stamp: 'NB 6/27/2023 23:00:17'!
+test04CannotImportAnInputWithACustomerRecordWithLessThanFiveFields
+	
+	
+	self should: 
+	[CustomerImporter valueFrom: (ReadStream on: 'C,Pepe') into: session.] 
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [:anError| 
+		self assertNoCustomerWasImported.
+		self assert: CustomerImporter cannotImportStreamWithWrongCustomerRecordLength equals: anError messageText ].
+! !
+
+!methodRemoval: ImportTest #test04CannotImportAnInputWithWrongCustomerRecordLength stamp: 'NB 6/27/2023 23:00:17'!
+test04CannotImportAnInputWithWrongCustomerRecordLength
+	
+	
+	self should: 
+	[CustomerImporter valueFrom: (ReadStream on: 'C,Pepe') into: session.] 
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [:anError| 
+		self assertNoCustomerWasImported.
+		self assert: CustomerImporter cannotImportStreamWithWrongCustomerRecordLength equals: anError messageText ].
+!
+!ImportTest methodsFor: 'tests' stamp: 'NB 6/27/2023 23:03:07'!
+test05CannotImportAnInputWithAnAddressRecordWithLessThanSixFields
+	
+	
+	self should: 
+	[CustomerImporter valueFrom: (ReadStream on: 'C,Pepe,Sanchez,D,22333444
+A,San Martin') into: session.] 
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [:anError| 
+		self assert: 1 equals: (session selectAllOfType: Customer) size.
+		self assert: 0 equals: (session selectAllOfType: Address ) size.
+		self assert: CustomerImporter cannotImportAnInputWithWrongAddressRecordLength equals: anError messageText ].
+! !
+
+!methodRemoval: ImportTest #test05CannotImportAnInputWithWrongAddressRecordLength stamp: 'NB 6/27/2023 23:03:07'!
+test05CannotImportAnInputWithWrongAddressRecordLength
+	
+	
+	self should: 
+	[CustomerImporter valueFrom: (ReadStream on: 'C,Pepe,Sanchez,D,22333444
+A,San Martin') into: session.] 
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [:anError| 
+		self assert: 1 equals: (session selectAllOfType: Customer) size.
+		self assert: 0 equals: (session selectAllOfType: Address ) size.
+		self assert: CustomerImporter cannotImportAnInputWithWrongAddressRecordLength equals: anError messageText ].
+!
+!ImportTest methodsFor: 'tests' stamp: 'NB 6/27/2023 23:04:17'!
+assertOnlyOneCustomerWasImportedWithoutAddresses
+
+	self assert: 1 equals: (session selectAllOfType: Customer) size.
+		self assert: 0 equals: (session selectAllOfType: Address ) size! !
+!ImportTest methodsFor: 'tests' stamp: 'NB 6/27/2023 23:04:17' prior: 50625107!
+test05CannotImportAnInputWithAnAddressRecordWithLessThanSixFields
+	
+	
+	self should: 
+	[CustomerImporter valueFrom: (ReadStream on: 'C,Pepe,Sanchez,D,22333444
+A,San Martin') into: session.] 
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [:anError| 
+		self assertOnlyOneCustomerWasImportedWithoutAddresses.
+		self assert: CustomerImporter cannotImportAnInputWithWrongAddressRecordLength equals: anError messageText ].
+! !
+!ImportTest methodsFor: 'tests' stamp: 'NB 6/27/2023 23:05:41'!
+test06CannotImportAnInputThatHasWrongRecordIdentificationStartingWithA
+	
+	
+	self should: 
+	[CustomerImporter valueFrom: (ReadStream on: 'CCC,Pepe,Sanchez,D,22333444') into: session.] 
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [:anError| 
+		self assertNoCustomerWasImported.
+		self assert: CustomerImporter cannotImportStreamWithInvalidRecorIdentification equals: anError messageText ].
+! !
+!ImportTest methodsFor: 'tests' stamp: 'NB 6/27/2023 23:06:18' prior: 50625169!
+test06CannotImportAnInputThatHasWrongRecordIdentificationStartingWithA
+	
+	
+	self should: 
+	[CustomerImporter valueFrom: (ReadStream on: 'C,Pepe,Sanchez,D,22333444
+AAA,San Martin,3322,Olivos,1636,BsAs') into: session.] 
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [:anError| 
+		self assertNoCustomerWasImported.
+		self assert: CustomerImporter cannotImportStreamWithInvalidRecorIdentification equals: anError messageText ].
+! !
+
+!testRun: #ImportTest #test06CannotImportAnInputThatHasWrongRecordIdentificationStartingWithA stamp: 'NB 6/27/2023 23:06:20'!
+FAILURE!
+
+!testRun: #ImportTest #test01CanImportCorrectlyAValidInputWithTwoCustomers stamp: 'NB 6/27/2023 23:06:24'!
+PASSED!
+
+!testRun: #ImportTest #test02CannotImportAnEmptyInput stamp: 'NB 6/27/2023 23:06:27'!
+PASSED!
+
+!testRun: #ImportTest #test03CannotImportAnInputThatHasWrongRecordIdentificationStartingWithC stamp: 'NB 6/27/2023 23:06:29'!
+FAILURE!
+
+!testRun: #ImportTest #test03CannotImportAnInputThatHasWrongRecordIdentificationStartingWithC stamp: 'NB 6/27/2023 23:06:29'!
+FAILURE!
+
+!testRun: #ImportTest #test04CannotImportAnInputWithACustomerRecordWithLessThanFiveFields stamp: 'NB 6/27/2023 23:06:35'!
+PASSED!
+
+!testRun: #ImportTest #test05CannotImportAnInputWithAnAddressRecordWithLessThanSixFields stamp: 'NB 6/27/2023 23:06:42'!
+PASSED!
+
+!testRun: #ImportTest #test06CannotImportAnInputThatHasWrongRecordIdentificationStartingWithA stamp: 'NB 6/27/2023 23:06:44'!
+FAILURE!
+
+!testRun: #ImportTest #test06CannotImportAnInputThatHasWrongRecordIdentificationStartingWithA stamp: 'NB 6/27/2023 23:06:45'!
+FAILURE!
+
+!testRun: #ImportTest #test03CannotImportAnInputThatHasWrongRecordIdentificationStartingWithC stamp: 'NB 6/27/2023 23:06:50'!
+FAILURE!
+
+!testRun: #ImportTest #test03CannotImportAnInputThatHasWrongRecordIdentificationStartingWithC stamp: 'NB 6/27/2023 23:06:50'!
+FAILURE!
+!CustomerImporter methodsFor: 'evaluating' stamp: 'NB 6/27/2023 23:07:32' prior: 50624806!
+isCustomer
+
+	^ record first = 'C'! !
+
+!testRun: #ImportTest #test03CannotImportAnInputThatHasWrongRecordIdentificationStartingWithC stamp: 'NB 6/27/2023 23:07:44'!
+PASSED!
+
+!testRun: #ImportTest #test06CannotImportAnInputThatHasWrongRecordIdentificationStartingWithA stamp: 'NB 6/27/2023 23:07:47'!
+FAILURE!
+
+!testRun: #ImportTest #test06CannotImportAnInputThatHasWrongRecordIdentificationStartingWithA stamp: 'NB 6/27/2023 23:07:47'!
+FAILURE!
+!CustomerImporter methodsFor: 'evaluating' stamp: 'NB 6/27/2023 23:08:12' prior: 50624802!
+isAddress
+
+	^ record first = 'A'! !
+
+!testRun: #ImportTest #test01CanImportCorrectlyAValidInputWithTwoCustomers stamp: 'NB 6/27/2023 23:08:14'!
+PASSED!
+
+!testRun: #ImportTest #test02CannotImportAnEmptyInput stamp: 'NB 6/27/2023 23:08:15'!
+PASSED!
+
+!testRun: #ImportTest #test03CannotImportAnInputThatHasWrongRecordIdentificationStartingWithC stamp: 'NB 6/27/2023 23:08:15'!
+PASSED!
+
+!testRun: #ImportTest #test04CannotImportAnInputWithACustomerRecordWithLessThanFiveFields stamp: 'NB 6/27/2023 23:08:15'!
+PASSED!
+
+!testRun: #ImportTest #test05CannotImportAnInputWithAnAddressRecordWithLessThanSixFields stamp: 'NB 6/27/2023 23:08:15'!
+PASSED!
+
+!testRun: #ImportTest #test06CannotImportAnInputThatHasWrongRecordIdentificationStartingWithA stamp: 'NB 6/27/2023 23:08:16'!
+FAILURE!
+
+!testRun: #ImportTest #test06CannotImportAnInputThatHasWrongRecordIdentificationStartingWithA stamp: 'NB 6/27/2023 23:08:16'!
+FAILURE!
+!ImportTest methodsFor: 'tests' stamp: 'NB 6/27/2023 23:08:33' prior: 50625185!
+test06CannotImportAnInputThatHasWrongRecordIdentificationStartingWithA
+	
+	
+	self should: 
+	[CustomerImporter valueFrom: (ReadStream on: 'C,Pepe,Sanchez,D,22333444
+AAA,San Martin,3322,Olivos,1636,BsAs') into: session.] 
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [:anError| 
+		self assertOnlyOneCustomerWasImportedWithoutAddresses.
+		self assert: CustomerImporter cannotImportStreamWithInvalidRecorIdentification equals: anError messageText ].
+! !
+
+!testRun: #ImportTest #test06CannotImportAnInputThatHasWrongRecordIdentificationStartingWithA stamp: 'NB 6/27/2023 23:08:34'!
+PASSED!
+
+!testRun: #ImportTest #test01CanImportCorrectlyAValidInputWithTwoCustomers stamp: 'NB 6/27/2023 23:08:34'!
+PASSED!
+
+!testRun: #ImportTest #test02CannotImportAnEmptyInput stamp: 'NB 6/27/2023 23:08:35'!
+PASSED!
+
+!testRun: #ImportTest #test03CannotImportAnInputThatHasWrongRecordIdentificationStartingWithC stamp: 'NB 6/27/2023 23:08:35'!
+PASSED!
+
+!testRun: #ImportTest #test04CannotImportAnInputWithACustomerRecordWithLessThanFiveFields stamp: 'NB 6/27/2023 23:08:35'!
+PASSED!
+
+!testRun: #ImportTest #test05CannotImportAnInputWithAnAddressRecordWithLessThanSixFields stamp: 'NB 6/27/2023 23:08:35'!
+PASSED!
+
+!testRun: #ImportTest #test06CannotImportAnInputThatHasWrongRecordIdentificationStartingWithA stamp: 'NB 6/27/2023 23:08:36'!
+PASSED!
+
+----SNAPSHOT----(27 June 2023 23:08:39) CuisUniversity-5832.image priorSource: 9366758!
+!ImportTest methodsFor: 'tests' stamp: 'NB 6/27/2023 23:09:10'!
+test03CannotImportAnInputThatHasWrongCustomerRecordIdentificationStartingWithC
+	
+	
+	self should: 
+	[CustomerImporter valueFrom: (ReadStream on: 'CCC,Pepe,Sanchez,D,22333444') into: session.] 
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [:anError| 
+		self assertNoCustomerWasImported.
+		self assert: CustomerImporter cannotImportStreamWithInvalidRecorIdentification equals: anError messageText ].
+! !
+
+!methodRemoval: ImportTest #test03CannotImportAnInputThatHasWrongRecordIdentificationStartingWithC stamp: 'NB 6/27/2023 23:09:10'!
+test03CannotImportAnInputThatHasWrongRecordIdentificationStartingWithC
+	
+	
+	self should: 
+	[CustomerImporter valueFrom: (ReadStream on: 'CCC,Pepe,Sanchez,D,22333444') into: session.] 
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [:anError| 
+		self assertNoCustomerWasImported.
+		self assert: CustomerImporter cannotImportStreamWithInvalidRecorIdentification equals: anError messageText ].
+!
+!ImportTest methodsFor: 'tests' stamp: 'NB 6/27/2023 23:09:21'!
+test06CannotImportAnInputThatHasWrongAddressRecordIdentificationStartingWithA
+	
+	
+	self should: 
+	[CustomerImporter valueFrom: (ReadStream on: 'C,Pepe,Sanchez,D,22333444
+AAA,San Martin,3322,Olivos,1636,BsAs') into: session.] 
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [:anError| 
+		self assertOnlyOneCustomerWasImportedWithoutAddresses.
+		self assert: CustomerImporter cannotImportStreamWithInvalidRecorIdentification equals: anError messageText ].
+! !
+
+!methodRemoval: ImportTest #test06CannotImportAnInputThatHasWrongRecordIdentificationStartingWithA stamp: 'NB 6/27/2023 23:09:21'!
+test06CannotImportAnInputThatHasWrongRecordIdentificationStartingWithA
+	
+	
+	self should: 
+	[CustomerImporter valueFrom: (ReadStream on: 'C,Pepe,Sanchez,D,22333444
+AAA,San Martin,3322,Olivos,1636,BsAs') into: session.] 
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [:anError| 
+		self assertOnlyOneCustomerWasImportedWithoutAddresses.
+		self assert: CustomerImporter cannotImportStreamWithInvalidRecorIdentification equals: anError messageText ].
+!
+!ImportTest methodsFor: 'tests' stamp: 'NB 6/27/2023 23:10:39'!
+test07CannotImportAnInputWithACustomerRecordWithMoreThanFiveFields
+	
+	
+	self should: 
+	[CustomerImporter valueFrom: (ReadStream on: 'C,Pepe') into: session.] 
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [:anError| 
+		self assertNoCustomerWasImported.
+		self assert: CustomerImporter cannotImportStreamWithWrongCustomerRecordLength equals: anError messageText ].
+! !
+!ImportTest methodsFor: 'tests' stamp: 'NB 6/27/2023 23:11:14' prior: 50625411!
+test07CannotImportAnInputWithACustomerRecordWithMoreThanFiveFields
+	
+	
+	self should: 
+	[CustomerImporter valueFrom: (ReadStream on: 'C,Pepe,Sanchez,D,22333444,aaa') into: session.] 
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [:anError| 
+		self assertNoCustomerWasImported.
+		self assert: CustomerImporter cannotImportStreamWithWrongCustomerRecordLength equals: anError messageText ].
+! !
+
+!testRun: #ImportTest #test07CannotImportAnInputWithACustomerRecordWithMoreThanFiveFields stamp: 'NB 6/27/2023 23:11:25'!
+FAILURE!
+!CustomerImporter methodsFor: 'evaluating' stamp: 'NB 6/27/2023 23:12:27' prior: 50624778!
+importCustomer
+
+			(record size = 4) ifFalse: [self error: self class cannotImportStreamWithWrongCustomerRecordLength].
+			
+			customer := Customer 
+				firstName: record second 
+				lastName: record third 
+				identificationType: record fourth 
+				identificationNumber: record fifth.
+			session persist: customer.! !
+
+!testRun: #ImportTest #test01CanImportCorrectlyAValidInputWithTwoCustomers stamp: 'NB 6/27/2023 23:12:28'!
+ERROR!
+
+!testRun: #ImportTest #test02CannotImportAnEmptyInput stamp: 'NB 6/27/2023 23:12:28'!
+PASSED!
+
+!testRun: #ImportTest #test03CannotImportAnInputThatHasWrongCustomerRecordIdentificationStartingWithC stamp: 'NB 6/27/2023 23:12:28'!
+PASSED!
+
+!testRun: #ImportTest #test04CannotImportAnInputWithACustomerRecordWithLessThanFiveFields stamp: 'NB 6/27/2023 23:12:28'!
+PASSED!
+
+!testRun: #ImportTest #test05CannotImportAnInputWithAnAddressRecordWithLessThanSixFields stamp: 'NB 6/27/2023 23:12:28'!
+FAILURE!
+
+!testRun: #ImportTest #test06CannotImportAnInputThatHasWrongAddressRecordIdentificationStartingWithA stamp: 'NB 6/27/2023 23:12:28'!
+FAILURE!
+
+!testRun: #ImportTest #test07CannotImportAnInputWithACustomerRecordWithMoreThanFiveFields stamp: 'NB 6/27/2023 23:12:29'!
+PASSED!
+
+!testRun: #ImportTest #test01CanImportCorrectlyAValidInputWithTwoCustomers stamp: 'NB 6/27/2023 23:12:31'!
+ERROR!
+!CustomerImporter methodsFor: 'evaluating' stamp: 'NB 6/27/2023 23:12:48' prior: 50625446!
+importCustomer
+
+			(record size = 5) ifFalse: [self error: self class cannotImportStreamWithWrongCustomerRecordLength].
+			
+			customer := Customer 
+				firstName: record second 
+				lastName: record third 
+				identificationType: record fourth 
+				identificationNumber: record fifth.
+			session persist: customer.! !
+
+!testRun: #ImportTest #test01CanImportCorrectlyAValidInputWithTwoCustomers stamp: 'NB 6/27/2023 23:12:50'!
+PASSED!
+
+!testRun: #ImportTest #test02CannotImportAnEmptyInput stamp: 'NB 6/27/2023 23:12:51'!
+PASSED!
+
+!testRun: #ImportTest #test03CannotImportAnInputThatHasWrongCustomerRecordIdentificationStartingWithC stamp: 'NB 6/27/2023 23:12:51'!
+PASSED!
+
+!testRun: #ImportTest #test04CannotImportAnInputWithACustomerRecordWithLessThanFiveFields stamp: 'NB 6/27/2023 23:12:51'!
+PASSED!
+
+!testRun: #ImportTest #test05CannotImportAnInputWithAnAddressRecordWithLessThanSixFields stamp: 'NB 6/27/2023 23:12:51'!
+PASSED!
+
+!testRun: #ImportTest #test06CannotImportAnInputThatHasWrongAddressRecordIdentificationStartingWithA stamp: 'NB 6/27/2023 23:12:51'!
+PASSED!
+
+!testRun: #ImportTest #test07CannotImportAnInputWithACustomerRecordWithMoreThanFiveFields stamp: 'NB 6/27/2023 23:12:51'!
+PASSED!
+!ImportTest methodsFor: 'tests' stamp: 'NB 6/27/2023 23:17:27'!
+test08CannotImportAnInputWithAnAddressRecordWithMoreThanSixFields
+	
+	
+	self should: 
+	[CustomerImporter valueFrom: (ReadStream on: 'C,Pepe,Sanchez,D,22333444
+A,San Martin') into: session.] 
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [:anError| 
+		self assertOnlyOneCustomerWasImportedWithoutAddresses.
+		self assert: CustomerImporter cannotImportAnInputWithWrongAddressRecordLength equals: anError messageText ].
+! !
+!ImportTest methodsFor: 'tests' stamp: 'NB 6/27/2023 23:17:54' prior: 50625531!
+test08CannotImportAnInputWithAnAddressRecordWithMoreThanSixFields
+	
+	
+	self should: 
+	[CustomerImporter valueFrom: (ReadStream on: 'C,Pepe,Sanchez,D,22333444
+A,San Martin,3322,Olivos,1636,BsAs,aaa') into: session.] 
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [:anError| 
+		self assertOnlyOneCustomerWasImportedWithoutAddresses.
+		self assert: CustomerImporter cannotImportAnInputWithWrongAddressRecordLength equals: anError messageText ].
+! !
+
+!testRun: #ImportTest #test08CannotImportAnInputWithAnAddressRecordWithMoreThanSixFields stamp: 'NB 6/27/2023 23:18:10'!
+FAILURE!
+
+!testRun: #ImportTest #test08CannotImportAnInputWithAnAddressRecordWithMoreThanSixFields stamp: 'NB 6/27/2023 23:18:10'!
+FAILURE!
+!CustomerImporter methodsFor: 'evaluating' stamp: 'NB 6/27/2023 23:18:26' prior: 50624764!
+importAddress
+	
+	| newAddress |
+			(record size = 6) ifFalse: [self error: self class cannotImportAnInputWithWrongAddressRecordLength ].
+			
+			newAddress := Address 
+				streetName: record second 
+				streetNumber: record third asNumber 
+				town: record fourth 
+				zipCode: record fifth asNumber	 
+				province: record sixth. 
+			customer addAddress: newAddress.! !
+
+!testRun: #ImportTest #test01CanImportCorrectlyAValidInputWithTwoCustomers stamp: 'NB 6/27/2023 23:18:28'!
+PASSED!
+
+!testRun: #ImportTest #test02CannotImportAnEmptyInput stamp: 'NB 6/27/2023 23:18:28'!
+PASSED!
+
+!testRun: #ImportTest #test03CannotImportAnInputThatHasWrongCustomerRecordIdentificationStartingWithC stamp: 'NB 6/27/2023 23:18:28'!
+PASSED!
+
+!testRun: #ImportTest #test04CannotImportAnInputWithACustomerRecordWithLessThanFiveFields stamp: 'NB 6/27/2023 23:18:28'!
+PASSED!
+
+!testRun: #ImportTest #test05CannotImportAnInputWithAnAddressRecordWithLessThanSixFields stamp: 'NB 6/27/2023 23:18:29'!
+PASSED!
+
+!testRun: #ImportTest #test06CannotImportAnInputThatHasWrongAddressRecordIdentificationStartingWithA stamp: 'NB 6/27/2023 23:18:29'!
+PASSED!
+
+!testRun: #ImportTest #test07CannotImportAnInputWithACustomerRecordWithMoreThanFiveFields stamp: 'NB 6/27/2023 23:18:29'!
+PASSED!
+
+!testRun: #ImportTest #test08CannotImportAnInputWithAnAddressRecordWithMoreThanSixFields stamp: 'NB 6/27/2023 23:18:29'!
+PASSED!
+
+----SNAPSHOT----(27 June 2023 23:18:34) CuisUniversity-5832.image priorSource: 9398072!
+!ImportTest methodsFor: 'tests' stamp: 'NB 6/27/2023 23:21:01'!
+test09CannotImportAnInputWithAnAddressRecordWithoutACustomer
+	
+	
+	self should: 
+	[CustomerImporter valueFrom: (ReadStream on: 'C,Pepe,Sanchez,D,22333444
+A,San Martin,3322,Olivos,1636,BsAs,aaa') into: session.] 
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [:anError| 
+		self assertOnlyOneCustomerWasImportedWithoutAddresses.
+		self assert: CustomerImporter cannotImportAnInputWithWrongAddressRecordLength equals: anError messageText ].
+! !
+!ImportTest methodsFor: 'tests' stamp: 'NB 6/27/2023 23:21:35' prior: 50625622!
+test09CannotImportAnInputWithAnAddressRecordWithoutACustomer
+	
+	
+	self should: 
+	[CustomerImporter valueFrom: (ReadStream on: 'A,San Martin,3322,Olivos,1636,BsAs,aaa') into: session.] 
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [:anError| 
+		self assert: CustomerImporter cannotImportAnInputWithWrongAddressRecordLength equals: anError messageText ].
+! !
+!ImportTest methodsFor: 'tests' stamp: 'NB 6/27/2023 23:21:48' prior: 50625639!
+test09CannotImportAnInputWithAnAddressRecordWithoutACustomer
+	
+	
+	self should: 
+	[CustomerImporter valueFrom: (ReadStream on: 'A,San Martin,3322,Olivos,1636,BsAs') into: session.] 
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [:anError| 
+		self assert: CustomerImporter cannotImportAnInputWithWrongAddressRecordLength equals: anError messageText ].
+! !
+!ImportTest methodsFor: 'tests' stamp: 'NB 6/27/2023 23:22:27' prior: 50625653!
+test09CannotImportAnInputWithAnAddressRecordWithoutACustomer
+	
+	
+	self should: 
+	[CustomerImporter valueFrom: (ReadStream on: 'A,San Martin,3322,Olivos,1636,BsAs') into: session.] 
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [:anError| 
+		self assert: CustomerImporter cannotImportAnAddressRecordWithoutACustomer equals: anError messageText ].
+! !
+
+!testRun: #ImportTest #test09CannotImportAnInputWithAnAddressRecordWithoutACustomer stamp: 'NB 6/27/2023 23:22:29'!
+ERROR!
+!CustomerImporter methodsFor: 'evaluating' stamp: 'NB 6/27/2023 23:24:41' prior: 50625573!
+importAddress
+	
+	| newAddress |
+			(record size = 6) ifFalse: [self error: self class cannotImportAnInputWithWrongAddressRecordLength ].
+			
+			customer ifNil: [self error: self class].
+			
+			newAddress := Address 
+				streetName: record second 
+				streetNumber: record third asNumber 
+				town: record fourth 
+				zipCode: record fifth asNumber	 
+				province: record sixth. 
+			customer addAddress: newAddress.! !
+!CustomerImporter methodsFor: 'evaluating' stamp: 'NB 6/27/2023 23:24:56' prior: 50625685!
+importAddress
+	
+	| newAddress |
+			(record size = 6) ifFalse: [self error: self class cannotImportAnInputWithWrongAddressRecordLength ].
+			
+			customer ifNil: [self error: self class cannotImportAnAddressRecordWithoutACustomer].
+			
+			newAddress := Address 
+				streetName: record second 
+				streetNumber: record third asNumber 
+				town: record fourth 
+				zipCode: record fifth asNumber	 
+				province: record sixth. 
+			customer addAddress: newAddress.! !
+
+!testRun: #ImportTest #test01CanImportCorrectlyAValidInputWithTwoCustomers stamp: 'NB 6/27/2023 23:24:57'!
+PASSED!
+
+!testRun: #ImportTest #test02CannotImportAnEmptyInput stamp: 'NB 6/27/2023 23:24:58'!
+PASSED!
+
+!testRun: #ImportTest #test03CannotImportAnInputThatHasWrongCustomerRecordIdentificationStartingWithC stamp: 'NB 6/27/2023 23:24:58'!
+PASSED!
+
+!testRun: #ImportTest #test04CannotImportAnInputWithACustomerRecordWithLessThanFiveFields stamp: 'NB 6/27/2023 23:24:58'!
+PASSED!
+
+!testRun: #ImportTest #test05CannotImportAnInputWithAnAddressRecordWithLessThanSixFields stamp: 'NB 6/27/2023 23:24:58'!
+PASSED!
+
+!testRun: #ImportTest #test06CannotImportAnInputThatHasWrongAddressRecordIdentificationStartingWithA stamp: 'NB 6/27/2023 23:24:59'!
+PASSED!
+
+!testRun: #ImportTest #test07CannotImportAnInputWithACustomerRecordWithMoreThanFiveFields stamp: 'NB 6/27/2023 23:24:59'!
+PASSED!
+
+!testRun: #ImportTest #test08CannotImportAnInputWithAnAddressRecordWithMoreThanSixFields stamp: 'NB 6/27/2023 23:24:59'!
+PASSED!
+
+!testRun: #ImportTest #test09CannotImportAnInputWithAnAddressRecordWithoutACustomer stamp: 'NB 6/27/2023 23:24:59'!
+ERROR!
+
+!testRun: #ImportTest #test09CannotImportAnInputWithAnAddressRecordWithoutACustomer stamp: 'NB 6/27/2023 23:24:59'!
+ERROR!
+!CustomerImporter class methodsFor: 'error description' stamp: 'NB 6/27/2023 23:25:05'!
+cannotImportAnAddressRecordWithoutACustomer
+	self shouldBeImplemented.! !
+!CustomerImporter class methodsFor: 'error description' stamp: 'NB 6/27/2023 23:25:19' prior: 50625758!
+cannotImportAnAddressRecordWithoutACustomer
+	
+	^'Cannot import an address without a customer'.! !
+
+!testRun: #ImportTest #test09CannotImportAnInputWithAnAddressRecordWithoutACustomer stamp: 'NB 6/27/2023 23:25:20'!
+PASSED!
+
+!testRun: #ImportTest #test01CanImportCorrectlyAValidInputWithTwoCustomers stamp: 'NB 6/27/2023 23:25:25'!
+PASSED!
+
+!testRun: #ImportTest #test02CannotImportAnEmptyInput stamp: 'NB 6/27/2023 23:25:25'!
+PASSED!
+
+!testRun: #ImportTest #test03CannotImportAnInputThatHasWrongCustomerRecordIdentificationStartingWithC stamp: 'NB 6/27/2023 23:25:26'!
+PASSED!
+
+!testRun: #ImportTest #test04CannotImportAnInputWithACustomerRecordWithLessThanFiveFields stamp: 'NB 6/27/2023 23:25:26'!
+PASSED!
+
+!testRun: #ImportTest #test05CannotImportAnInputWithAnAddressRecordWithLessThanSixFields stamp: 'NB 6/27/2023 23:25:26'!
+PASSED!
+
+!testRun: #ImportTest #test06CannotImportAnInputThatHasWrongAddressRecordIdentificationStartingWithA stamp: 'NB 6/27/2023 23:25:26'!
+PASSED!
+
+!testRun: #ImportTest #test07CannotImportAnInputWithACustomerRecordWithMoreThanFiveFields stamp: 'NB 6/27/2023 23:25:26'!
+PASSED!
+
+!testRun: #ImportTest #test08CannotImportAnInputWithAnAddressRecordWithMoreThanSixFields stamp: 'NB 6/27/2023 23:25:27'!
+PASSED!
+
+!testRun: #ImportTest #test09CannotImportAnInputWithAnAddressRecordWithoutACustomer stamp: 'NB 6/27/2023 23:25:27'!
+PASSED!
+
+----SNAPSHOT----(27 June 2023 23:25:37) CuisUniversity-5832.image priorSource: 9406986!
+
+----SNAPSHOT----(27 June 2023 23:26:14) CuisUniversity-5832.image priorSource: 9413077!
+!CustomerImporter methodsFor: 'evaluating' stamp: 'NB 6/27/2023 23:27:35'!
+assertCustomerRecordSizeIsValid
+
+	^ (record size = 5) ifFalse: [self error: self class cannotImportStreamWithWrongCustomerRecordLength]! !
+!CustomerImporter methodsFor: 'evaluating' stamp: 'NB 6/27/2023 23:27:35' prior: 50625491!
+importCustomer
+
+			self assertCustomerRecordSizeIsValid.
+			
+			customer := Customer 
+				firstName: record second 
+				lastName: record third 
+				identificationType: record fourth 
+				identificationNumber: record fifth.
+			session persist: customer.! !
+!CustomerImporter methodsFor: 'evaluating' stamp: 'NB 6/27/2023 23:30:29'!
+assertAddressRecordSizeIsValid
+
+	^ (record size = 6) ifFalse: [self error: self class cannotImportAnInputWithWrongAddressRecordLength ]! !
+!CustomerImporter methodsFor: 'evaluating' stamp: 'NB 6/27/2023 23:30:29' prior: 50625701!
+importAddress
+	
+	| newAddress |
+			self assertAddressRecordSizeIsValid.
+			
+			customer ifNil: [self error: self class cannotImportAnAddressRecordWithoutACustomer].
+			
+			newAddress := Address 
+				streetName: record second 
+				streetNumber: record third asNumber 
+				town: record fourth 
+				zipCode: record fifth asNumber	 
+				province: record sixth. 
+			customer addAddress: newAddress.! !
+!CustomerImporter methodsFor: 'evaluating' stamp: 'NB 6/27/2023 23:31:01'!
+assertCustomerWasImported
+
+	^ customer ifNil: [self error: self class cannotImportAnAddressRecordWithoutACustomer]! !
+!CustomerImporter methodsFor: 'evaluating' stamp: 'NB 6/27/2023 23:31:01' prior: 50625842!
+importAddress
+	
+	| newAddress |
+			self assertAddressRecordSizeIsValid.
+			
+			self assertCustomerWasImported.
+			
+			newAddress := Address 
+				streetName: record second 
+				streetNumber: record third asNumber 
+				town: record fourth 
+				zipCode: record fifth asNumber	 
+				province: record sixth. 
+			customer addAddress: newAddress.! !
+!CustomerImporter methodsFor: 'evaluating - private' stamp: 'NB 6/27/2023 23:33:15' prior: 50624791!
+importRecord
+
+	record isEmpty ifTrue: [self error: self class cannotImportEmptyStream].
+	
+	(self isCustomer) ifTrue: [ ^self importCustomer].
+	(self isAddress) ifTrue: [ ^self importAddress].
+	
+	self error: self class cannotImportStreamWithInvalidRecorIdentification. ! !
+!CustomerImporter methodsFor: 'evaluating - private' stamp: 'NB 6/27/2023 23:34:27'!
+assertRecordIsNotEmpty
+
+	^ record isEmpty ifTrue: [self error: self class cannotImportEmptyStream]! !
+!CustomerImporter methodsFor: 'evaluating - private' stamp: 'NB 6/27/2023 23:34:27' prior: 50625878!
+importRecord
+
+	self assertRecordIsNotEmpty.
+	
+	(self isCustomer) ifTrue: [ ^self importCustomer].
+	(self isAddress) ifTrue: [ ^self importAddress].
+	
+	self error: self class cannotImportStreamWithInvalidRecorIdentification. ! !
+!ImportTest methodsFor: 'tests' stamp: 'NB 6/27/2023 23:42:59'!
+emptyInput
+
+
+	^ (ReadStream on: '
+') into: session.
+! !
+!ImportTest methodsFor: 'test data' stamp: 'NB 6/27/2023 23:43:36' prior: 50625907!
+emptyInput
+
+
+	^ReadStream on: '
+'
+! !
+!ImportTest methodsFor: 'tests' stamp: 'NB 6/27/2023 23:43:49' prior: 50624999!
+test02CannotImportAnEmptyInput
+	
+	
+	self should: 
+	[CustomerImporter valueFrom: self emptyInput into: session.] 
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [:anError| 
+		self assertNoCustomerWasImported.
+		self assert: CustomerImporter cannotImportEmptyStream equals: anError messageText ].
+! !
+
+!testRun: #ImportTest #test02CannotImportAnEmptyInput stamp: 'NB 6/27/2023 23:43:50'!
+PASSED!
+
+!testRun: #ImportTest #test01CanImportCorrectlyAValidInputWithTwoCustomers stamp: 'NB 6/27/2023 23:43:51'!
+PASSED!
+
+!testRun: #ImportTest #test02CannotImportAnEmptyInput stamp: 'NB 6/27/2023 23:43:51'!
+PASSED!
+
+!testRun: #ImportTest #test03CannotImportAnInputThatHasWrongCustomerRecordIdentificationStartingWithC stamp: 'NB 6/27/2023 23:43:51'!
+PASSED!
+
+!testRun: #ImportTest #test04CannotImportAnInputWithACustomerRecordWithLessThanFiveFields stamp: 'NB 6/27/2023 23:43:51'!
+PASSED!
+
+!testRun: #ImportTest #test05CannotImportAnInputWithAnAddressRecordWithLessThanSixFields stamp: 'NB 6/27/2023 23:43:52'!
+PASSED!
+
+!testRun: #ImportTest #test06CannotImportAnInputThatHasWrongAddressRecordIdentificationStartingWithA stamp: 'NB 6/27/2023 23:43:52'!
+PASSED!
+
+!testRun: #ImportTest #test07CannotImportAnInputWithACustomerRecordWithMoreThanFiveFields stamp: 'NB 6/27/2023 23:43:52'!
+PASSED!
+
+!testRun: #ImportTest #test08CannotImportAnInputWithAnAddressRecordWithMoreThanSixFields stamp: 'NB 6/27/2023 23:43:52'!
+PASSED!
+
+!testRun: #ImportTest #test09CannotImportAnInputWithAnAddressRecordWithoutACustomer stamp: 'NB 6/27/2023 23:43:52'!
+PASSED!
+!ImportTest methodsFor: 'tests' stamp: 'NB 6/27/2023 23:45:22'!
+invalidInputWithWrongCustomerRecordIdentification
+
+	^ ReadStream on: 'CCC,Pepe,Sanchez,D,22333444'! !
+!ImportTest methodsFor: 'tests' stamp: 'NB 6/27/2023 23:45:22' prior: 50625343!
+test03CannotImportAnInputThatHasWrongCustomerRecordIdentificationStartingWithC
+	
+	
+	self should: 
+	[CustomerImporter valueFrom: (self invalidInputWithWrongCustomerRecordIdentification) into: session.] 
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [:anError| 
+		self assertNoCustomerWasImported.
+		self assert: CustomerImporter cannotImportStreamWithInvalidRecorIdentification equals: anError messageText ].
+! !
+
+!testRun: #ImportTest #test03CannotImportAnInputThatHasWrongCustomerRecordIdentificationStartingWithC stamp: 'NB 6/27/2023 23:45:28'!
+PASSED!
+!ImportTest methodsFor: 'tests' stamp: 'NB 6/27/2023 23:46:09'!
+invalidInputWithACustomerRecordWithLessThanFiveFields
+
+	^ ReadStream on: 'C,Pepe'! !
+!ImportTest methodsFor: 'tests' stamp: 'NB 6/27/2023 23:46:09' prior: 50625078!
+test04CannotImportAnInputWithACustomerRecordWithLessThanFiveFields
+	
+	
+	self should: 
+	[CustomerImporter valueFrom: (self invalidInputWithACustomerRecordWithLessThanFiveFields) into: session.] 
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [:anError| 
+		self assertNoCustomerWasImported.
+		self assert: CustomerImporter cannotImportStreamWithWrongCustomerRecordLength equals: anError messageText ].
+! !
+!ImportTest methodsFor: 'tests' stamp: 'NB 6/27/2023 23:46:43'!
+invalidInputWithanAddressRecordWithLessThanSixFields
+
+	^ ReadStream on: 'C,Pepe,Sanchez,D,22333444
+A,San Martin'! !
+!ImportTest methodsFor: 'tests' stamp: 'NB 6/27/2023 23:46:43' prior: 50625153!
+test05CannotImportAnInputWithAnAddressRecordWithLessThanSixFields
+	
+	
+	self should: 
+	[CustomerImporter valueFrom: (self invalidInputWithanAddressRecordWithLessThanSixFields) into: session.] 
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [:anError| 
+		self assertOnlyOneCustomerWasImportedWithoutAddresses.
+		self assert: CustomerImporter cannotImportAnInputWithWrongAddressRecordLength equals: anError messageText ].
+! !
+!ImportTest methodsFor: 'tests' stamp: 'NB 6/27/2023 23:47:12'!
+invalidInputWithWrongAddressRecordIdentification
+
+	^ ReadStream on: 'C,Pepe,Sanchez,D,22333444
+AAA,San Martin,3322,Olivos,1636,BsAs'! !
+!ImportTest methodsFor: 'tests' stamp: 'NB 6/27/2023 23:47:12' prior: 50625375!
+test06CannotImportAnInputThatHasWrongAddressRecordIdentificationStartingWithA
+	
+	
+	self should: 
+	[CustomerImporter valueFrom: (self invalidInputWithWrongAddressRecordIdentification) into: session.] 
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [:anError| 
+		self assertOnlyOneCustomerWasImportedWithoutAddresses.
+		self assert: CustomerImporter cannotImportStreamWithInvalidRecorIdentification equals: anError messageText ].
+! !
+!ImportTest methodsFor: 'tests' stamp: 'NB 6/27/2023 23:47:54'!
+invalidInputWithACustomerRecordWithMoreThanFiveFields
+
+	^ ReadStream on: 'C,Pepe,Sanchez,D,22333444,aaa'! !
+!ImportTest methodsFor: 'tests' stamp: 'NB 6/27/2023 23:47:54' prior: 50625426!
+test07CannotImportAnInputWithACustomerRecordWithMoreThanFiveFields
+	
+	
+	self should: 
+	[CustomerImporter valueFrom: (self invalidInputWithACustomerRecordWithMoreThanFiveFields) into: session.] 
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [:anError| 
+		self assertNoCustomerWasImported.
+		self assert: CustomerImporter cannotImportStreamWithWrongCustomerRecordLength equals: anError messageText ].
+! !
+!ImportTest methodsFor: 'tests' stamp: 'NB 6/27/2023 23:48:04'!
+invalidInputWithAnAddressRecordWithLessThanSixFields
+
+	^ ReadStream on: 'C,Pepe,Sanchez,D,22333444
+A,San Martin'! !
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'NB 6/27/2023 23:48:04' prior: 50626021!
+test05CannotImportAnInputWithAnAddressRecordWithLessThanSixFields
+	
+	
+	self should: 
+	[CustomerImporter valueFrom: (self invalidInputWithAnAddressRecordWithLessThanSixFields) into: session.] 
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [:anError| 
+		self assertOnlyOneCustomerWasImportedWithoutAddresses.
+		self assert: CustomerImporter cannotImportAnInputWithWrongAddressRecordLength equals: anError messageText ].
+! !
+
+!methodRemoval: ImportTest #invalidInputWithanAddressRecordWithLessThanSixFields stamp: 'NB 6/27/2023 23:48:04'!
+invalidInputWithanAddressRecordWithLessThanSixFields
+
+	^ ReadStream on: 'C,Pepe,Sanchez,D,22333444
+A,San Martin'!
+!ImportTest methodsFor: 'tests' stamp: 'NB 6/27/2023 23:49:13'!
+invalidInputWithAnAddressRecordWithMoreThanSixFields
+
+	^ ReadStream on: 'C,Pepe,Sanchez,D,22333444
+A,San Martin,3322,Olivos,1636,BsAs,aaa'! !
+!ImportTest methodsFor: 'tests' stamp: 'NB 6/27/2023 23:49:13' prior: 50625547!
+test08CannotImportAnInputWithAnAddressRecordWithMoreThanSixFields
+	
+	
+	self should: 
+	[CustomerImporter valueFrom: (self invalidInputWithAnAddressRecordWithMoreThanSixFields) into: session.] 
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [:anError| 
+		self assertOnlyOneCustomerWasImportedWithoutAddresses.
+		self assert: CustomerImporter cannotImportAnInputWithWrongAddressRecordLength equals: anError messageText ].
+! !
+!ImportTest methodsFor: 'tests' stamp: 'NB 6/27/2023 23:49:41'!
+invalidInputWithOnlyAnAddressRecord
+
+	^ ReadStream on: 'A,San Martin,3322,Olivos,1636,BsAs'! !
+!ImportTest methodsFor: 'tests' stamp: 'NB 6/27/2023 23:49:41' prior: 50625667!
+test09CannotImportAnInputWithAnAddressRecordWithoutACustomer
+	
+	
+	self should: 
+	[CustomerImporter valueFrom: (self invalidInputWithOnlyAnAddressRecord) into: session.] 
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [:anError| 
+		self assert: CustomerImporter cannotImportAnAddressRecordWithoutACustomer equals: anError messageText ].
+! !
+!ImportTest methodsFor: 'tests' stamp: 'NB 6/27/2023 23:59:21'!
+shouldRaiseErrorWhenImporting: aReadStream withErrorMessageText: anErrorMessageText assertingThat: anAssertionBlock
+	
+	
+	self should: 
+		[CustomerImporter valueFrom: aReadStream into: session.] 
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [:anError| 
+		self assert: anErrorMessageText equals: anError messageText. 
+		anAssertionBlock value].
+! !
+!ImportTest methodsFor: 'tests' stamp: 'NB 6/28/2023 00:00:30' prior: 50625916!
+test02CannotImportAnEmptyInput
+	
+	
+	self shouldRaiseErrorWhenImporting: self emptyInput  withErrorMessageText: CustomerImporter cannotImportEmptyStream  assertingThat: [self assertNoCustomerWasImported.].
+	! !
+
+!testRun: #ImportTest #test02CannotImportAnEmptyInput stamp: 'NB 6/28/2023 00:00:31'!
+PASSED!
+
+!testRun: #ImportTest #test01CanImportCorrectlyAValidInputWithTwoCustomers stamp: 'NB 6/28/2023 00:00:32'!
+PASSED!
+
+!testRun: #ImportTest #test02CannotImportAnEmptyInput stamp: 'NB 6/28/2023 00:00:32'!
+PASSED!
+
+!testRun: #ImportTest #test03CannotImportAnInputThatHasWrongCustomerRecordIdentificationStartingWithC stamp: 'NB 6/28/2023 00:00:32'!
+PASSED!
+
+!testRun: #ImportTest #test04CannotImportAnInputWithACustomerRecordWithLessThanFiveFields stamp: 'NB 6/28/2023 00:00:32'!
+PASSED!
+
+!testRun: #ImportTest #test05CannotImportAnInputWithAnAddressRecordWithLessThanSixFields stamp: 'NB 6/28/2023 00:00:33'!
+PASSED!
+
+!testRun: #ImportTest #test06CannotImportAnInputThatHasWrongAddressRecordIdentificationStartingWithA stamp: 'NB 6/28/2023 00:00:33'!
+PASSED!
+
+!testRun: #ImportTest #test07CannotImportAnInputWithACustomerRecordWithMoreThanFiveFields stamp: 'NB 6/28/2023 00:00:33'!
+PASSED!
+
+!testRun: #ImportTest #test08CannotImportAnInputWithAnAddressRecordWithMoreThanSixFields stamp: 'NB 6/28/2023 00:00:33'!
+PASSED!
+
+!testRun: #ImportTest #test09CannotImportAnInputWithAnAddressRecordWithoutACustomer stamp: 'NB 6/28/2023 00:00:33'!
+PASSED!
+!ImportTest methodsFor: 'tests' stamp: 'NB 6/28/2023 00:01:28' prior: 50625973!
+test03CannotImportAnInputThatHasWrongCustomerRecordIdentificationStartingWithC
+	
+	
+	self shouldRaiseErrorWhenImporting: self invalidInputWithWrongCustomerRecordIdentification
+		 withErrorMessageText: CustomerImporter cannotImportStreamWithInvalidRecorIdentification 
+		assertingThat: [self assertNoCustomerWasImported.].
+	
+	
+! !
+
+!testRun: #ImportTest #test03CannotImportAnInputThatHasWrongCustomerRecordIdentificationStartingWithC stamp: 'NB 6/28/2023 00:01:30'!
+PASSED!
+
+!testRun: #ImportTest #test01CanImportCorrectlyAValidInputWithTwoCustomers stamp: 'NB 6/28/2023 00:01:30'!
+PASSED!
+
+!testRun: #ImportTest #test02CannotImportAnEmptyInput stamp: 'NB 6/28/2023 00:01:31'!
+PASSED!
+
+!testRun: #ImportTest #test03CannotImportAnInputThatHasWrongCustomerRecordIdentificationStartingWithC stamp: 'NB 6/28/2023 00:01:31'!
+PASSED!
+
+!testRun: #ImportTest #test04CannotImportAnInputWithACustomerRecordWithLessThanFiveFields stamp: 'NB 6/28/2023 00:01:31'!
+PASSED!
+
+!testRun: #ImportTest #test05CannotImportAnInputWithAnAddressRecordWithLessThanSixFields stamp: 'NB 6/28/2023 00:01:31'!
+PASSED!
+
+!testRun: #ImportTest #test06CannotImportAnInputThatHasWrongAddressRecordIdentificationStartingWithA stamp: 'NB 6/28/2023 00:01:31'!
+PASSED!
+
+!testRun: #ImportTest #test07CannotImportAnInputWithACustomerRecordWithMoreThanFiveFields stamp: 'NB 6/28/2023 00:01:32'!
+PASSED!
+
+!testRun: #ImportTest #test08CannotImportAnInputWithAnAddressRecordWithMoreThanSixFields stamp: 'NB 6/28/2023 00:01:32'!
+PASSED!
+
+!testRun: #ImportTest #test09CannotImportAnInputWithAnAddressRecordWithoutACustomer stamp: 'NB 6/28/2023 00:01:32'!
+PASSED!
+
+----SNAPSHOT----(28 June 2023 00:01:35) CuisUniversity-5832.image priorSource: 9413166!
+!ImportTest methodsFor: 'tests' stamp: 'NB 6/28/2023 00:02:09' prior: 50625999!
+test04CannotImportAnInputWithACustomerRecordWithLessThanFiveFields
+	
+	
+	self shouldRaiseErrorWhenImporting: self invalidInputWithACustomerRecordWithLessThanFiveFields
+		 withErrorMessageText: CustomerImporter cannotImportStreamWithWrongCustomerRecordLength
+		assertingThat: [self assertNoCustomerWasImported.].
+		
+	
+! !
+!ImportTest methodsFor: 'tests' stamp: 'NB 6/28/2023 00:02:53' prior: 50626088!
+test05CannotImportAnInputWithAnAddressRecordWithLessThanSixFields
+	
+	
+	self shouldRaiseErrorWhenImporting: self invalidInputWithAnAddressRecordWithLessThanSixFields
+		 withErrorMessageText: CustomerImporter cannotImportAnInputWithWrongAddressRecordLength
+		assertingThat: [self assertOnlyOneCustomerWasImportedWithoutAddresses].
+		
+	
+! !
+!ImportTest methodsFor: 'tests' stamp: 'NB 6/28/2023 00:03:26' prior: 50626044!
+test06CannotImportAnInputThatHasWrongAddressRecordIdentificationStartingWithA
+	
+	
+	self shouldRaiseErrorWhenImporting: self invalidInputWithWrongAddressRecordIdentification
+		 withErrorMessageText: CustomerImporter cannotImportStreamWithInvalidRecorIdentification
+		assertingThat: [self assertOnlyOneCustomerWasImportedWithoutAddresses.].
+		
+	
+	self should: 
+	[CustomerImporter valueFrom: (self invalidInputWithWrongAddressRecordIdentification) into: session.] 
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [:anError| 
+		self assertOnlyOneCustomerWasImportedWithoutAddresses.
+		self assert: CustomerImporter cannotImportStreamWithInvalidRecorIdentification equals: anError messageText ].
+! !
+!ImportTest methodsFor: 'tests' stamp: 'NB 6/28/2023 00:03:30' prior: 50626298!
+test06CannotImportAnInputThatHasWrongAddressRecordIdentificationStartingWithA
+	
+	
+	self shouldRaiseErrorWhenImporting: self invalidInputWithWrongAddressRecordIdentification
+		 withErrorMessageText: CustomerImporter cannotImportStreamWithInvalidRecorIdentification
+		assertingThat: [self assertOnlyOneCustomerWasImportedWithoutAddresses.].
+		
+	
+! !
+!ImportTest methodsFor: 'tests' stamp: 'NB 6/28/2023 00:04:00' prior: 50626066!
+test07CannotImportAnInputWithACustomerRecordWithMoreThanFiveFields
+	
+	
+	self shouldRaiseErrorWhenImporting: self invalidInputWithACustomerRecordWithMoreThanFiveFields
+		 withErrorMessageText: CustomerImporter cannotImportStreamWithWrongCustomerRecordLength
+		assertingThat: [self assertNoCustomerWasImported.].
+		
+
+! !
+!ImportTest methodsFor: 'tests' stamp: 'NB 6/28/2023 00:04:34' prior: 50626118!
+test08CannotImportAnInputWithAnAddressRecordWithMoreThanSixFields
+	
+	
+	self shouldRaiseErrorWhenImporting: self invalidInputWithAnAddressRecordWithMoreThanSixFields
+		 withErrorMessageText: CustomerImporter cannotImportAnInputWithWrongAddressRecordLength
+		assertingThat: [self assertOnlyOneCustomerWasImportedWithoutAddresses.].
+		
+	
+! !
+!ImportTest methodsFor: 'tests' stamp: 'NB 6/28/2023 00:05:27' prior: 50626140!
+test09CannotImportAnInputWithAnAddressRecordWithoutACustomer
+	
+	
+	self shouldRaiseErrorWhenImporting: self invalidInputWithOnlyAnAddressRecord
+		 withErrorMessageText: CustomerImporter cannotImportAnAddressRecordWithoutACustomer
+		assertingThat: [].
+! !
+!ImportTest methodsFor: 'assertions' stamp: 'NB 6/28/2023 00:06:16'!
+assertNoAddressWasImported
+
+	^ self assert: 0 equals: (session selectAllOfType: Address) size! !
+!ImportTest methodsFor: 'tests' stamp: 'NB 6/28/2023 00:06:29' prior: 50626364!
+test09CannotImportAnInputWithAnAddressRecordWithoutACustomer
+	
+	
+	self shouldRaiseErrorWhenImporting: self invalidInputWithOnlyAnAddressRecord
+		 withErrorMessageText: CustomerImporter cannotImportAnAddressRecordWithoutACustomer
+		assertingThat: [self assertNoAddressWasImported].
+! !
+
+!testRun: #ImportTest #test01CanImportCorrectlyAValidInputWithTwoCustomers stamp: 'NB 6/28/2023 00:06:33'!
+PASSED!
+
+!testRun: #ImportTest #test02CannotImportAnEmptyInput stamp: 'NB 6/28/2023 00:06:34'!
+PASSED!
+
+!testRun: #ImportTest #test03CannotImportAnInputThatHasWrongCustomerRecordIdentificationStartingWithC stamp: 'NB 6/28/2023 00:06:34'!
+PASSED!
+
+!testRun: #ImportTest #test04CannotImportAnInputWithACustomerRecordWithLessThanFiveFields stamp: 'NB 6/28/2023 00:06:34'!
+PASSED!
+
+!testRun: #ImportTest #test05CannotImportAnInputWithAnAddressRecordWithLessThanSixFields stamp: 'NB 6/28/2023 00:06:34'!
+PASSED!
+
+!testRun: #ImportTest #test06CannotImportAnInputThatHasWrongAddressRecordIdentificationStartingWithA stamp: 'NB 6/28/2023 00:06:35'!
+PASSED!
+
+!testRun: #ImportTest #test07CannotImportAnInputWithACustomerRecordWithMoreThanFiveFields stamp: 'NB 6/28/2023 00:06:35'!
+PASSED!
+
+!testRun: #ImportTest #test08CannotImportAnInputWithAnAddressRecordWithMoreThanSixFields stamp: 'NB 6/28/2023 00:06:35'!
+PASSED!
+
+!testRun: #ImportTest #test09CannotImportAnInputWithAnAddressRecordWithoutACustomer stamp: 'NB 6/28/2023 00:06:35'!
+PASSED!
+
+----SNAPSHOT----(28 June 2023 00:06:39) CuisUniversity-5832.image priorSource: 9427758!
+
+----SNAPSHOT----(28 June 2023 00:06:41) CuisUniversity-5832.image priorSource: 9432883!
+!CustomerImporter class methodsFor: 'error description' stamp: 'NB 6/28/2023 00:09:30'!
+cannotImportStreamWithInvalidRecordIdentification
+	^'cannot import stream with invalid record identification'.! !
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'NB 6/28/2023 00:09:30' prior: 50626215!
+test03CannotImportAnInputThatHasWrongCustomerRecordIdentificationStartingWithC
+	
+	
+	self shouldRaiseErrorWhenImporting: self invalidInputWithWrongCustomerRecordIdentification
+		 withErrorMessageText: CustomerImporter cannotImportStreamWithInvalidRecordIdentification 
+		assertingThat: [self assertNoCustomerWasImported.].
+	
+	
+! !
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'NB 6/28/2023 00:09:30' prior: 50626323!
+test06CannotImportAnInputThatHasWrongAddressRecordIdentificationStartingWithA
+	
+	
+	self shouldRaiseErrorWhenImporting: self invalidInputWithWrongAddressRecordIdentification
+		 withErrorMessageText: CustomerImporter cannotImportStreamWithInvalidRecordIdentification
+		assertingThat: [self assertOnlyOneCustomerWasImportedWithoutAddresses.].
+		
+	
+! !
+!CustomerImporter methodsFor: 'as yet unclassified' stamp: 'NB 6/28/2023 00:09:30' prior: 50625897!
+importRecord
+
+	self assertRecordIsNotEmpty.
+	
+	(self isCustomer) ifTrue: [ ^self importCustomer].
+	(self isAddress) ifTrue: [ ^self importAddress].
+	
+	self error: self class cannotImportStreamWithInvalidRecordIdentification. ! !
+
+!methodRemoval: CustomerImporter class #cannotImportStreamWithInvalidRecorIdentification stamp: 'NB 6/28/2023 00:09:30'!
+cannotImportStreamWithInvalidRecorIdentification
+	^'cannot import stream with invalid record identification'.!
+
+!methodRemoval: Customer #firstName: stamp: 'NB 6/28/2023 00:09:57'!
+firstName: aName
+
+	firstName := aName!
+
+!methodRemoval: Customer #identificationNumber: stamp: 'NB 6/28/2023 00:10:02'!
+identificationNumber: anIdentificationNumber
+
+	identificationNumber := anIdentificationNumber!
+
+!methodRemoval: Customer #identificationType: stamp: 'NB 6/28/2023 00:10:06'!
+identificationType: anIdentificationType
+
+	identificationType := anIdentificationType!
+
+!methodRemoval: Customer #lastName: stamp: 'NB 6/28/2023 00:10:11'!
+lastName: aLastName
+
+	lastName := aLastName
+!
+
+!methodRemoval: Address #province: stamp: 'NB 6/28/2023 00:10:34'!
+province: aProvince
+
+	province := aProvince
+	!
+
+!methodRemoval: Address #streetName: stamp: 'NB 6/28/2023 00:10:35'!
+streetName: aStreetName
+
+	streetName := aStreetName !
+
+!methodRemoval: Address #streetNumber: stamp: 'NB 6/28/2023 00:10:37'!
+streetNumber: aStreetNumber
+
+	streetNumber := aStreetNumber !
+
+!methodRemoval: Address #town: stamp: 'NB 6/28/2023 00:10:38'!
+town: aTown
+
+	town := aTown!
+
+!methodRemoval: Address #zipCode: stamp: 'NB 6/28/2023 00:10:40'!
+zipCode: aZipCode
+
+	zipCode := aZipCode!
+
+----SNAPSHOT----(28 June 2023 00:11:23) CuisUniversity-5832.image priorSource: 9432972!
+
+----SNAPSHOT----(28 June 2023 00:11:26) CuisUniversity-5832.image priorSource: 9435905!
+
+!testRun: #ImportTest #test01CanImportCorrectlyAValidInputWithTwoCustomers stamp: 'NB 6/28/2023 00:11:29'!
+PASSED!
+
+!testRun: #ImportTest #test02CannotImportAnEmptyInput stamp: 'NB 6/28/2023 00:11:30'!
+PASSED!
+
+!testRun: #ImportTest #test03CannotImportAnInputThatHasWrongCustomerRecordIdentificationStartingWithC stamp: 'NB 6/28/2023 00:11:30'!
+PASSED!
+
+!testRun: #ImportTest #test04CannotImportAnInputWithACustomerRecordWithLessThanFiveFields stamp: 'NB 6/28/2023 00:11:30'!
+PASSED!
+
+!testRun: #ImportTest #test05CannotImportAnInputWithAnAddressRecordWithLessThanSixFields stamp: 'NB 6/28/2023 00:11:30'!
+PASSED!
+
+!testRun: #ImportTest #test06CannotImportAnInputThatHasWrongAddressRecordIdentificationStartingWithA stamp: 'NB 6/28/2023 00:11:30'!
+PASSED!
+
+!testRun: #ImportTest #test07CannotImportAnInputWithACustomerRecordWithMoreThanFiveFields stamp: 'NB 6/28/2023 00:11:31'!
+PASSED!
+
+!testRun: #ImportTest #test08CannotImportAnInputWithAnAddressRecordWithMoreThanSixFields stamp: 'NB 6/28/2023 00:11:31'!
+PASSED!
+
+!testRun: #ImportTest #test09CannotImportAnInputWithAnAddressRecordWithoutACustomer stamp: 'NB 6/28/2023 00:11:31'!
+PASSED!
+
+----SNAPSHOT----(28 June 2023 00:11:41) CuisUniversity-5832.image priorSource: 9435994!
+
+----STARTUP---- (29 June 2023 20:16:41) as /Users/nico/Documents/inge1/cuis-images/macos64 9/CuisUniversity-5832.image!
+
+
+!classDefinition: #ImportTest category: 'CustomerImporter' stamp: 'NB 6/29/2023 20:17:36'!
+TestCase subclass: #ImportTest
+	instanceVariableNames: 'session customerSystem'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classDefinition: #PersistentCustomerSystem category: 'CustomerImporter' stamp: 'NB 6/29/2023 20:17:44'!
+Object subclass: #PersistentCustomerSystem
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+!ImportTest methodsFor: 'setUp/tearDown' stamp: 'NB 6/29/2023 20:17:34' prior: 50624525 overrides: 16961394!
+setUp
+
+	customerSystem:= PersistentCustomerSystem new.
+	session := DataBaseSession for: (Array with: Address with: Customer).
+	session beginTransaction.
+! !
+
+!testRun: #ImportTest #test01CanImportCorrectlyAValidInputWithTwoCustomers stamp: 'NB 6/29/2023 20:17:46'!
+PASSED!
+
+!testRun: #ImportTest #test02CannotImportAnEmptyInput stamp: 'NB 6/29/2023 20:17:46'!
+PASSED!
+
+!testRun: #ImportTest #test03CannotImportAnInputThatHasWrongCustomerRecordIdentificationStartingWithC stamp: 'NB 6/29/2023 20:17:46'!
+PASSED!
+
+!testRun: #ImportTest #test04CannotImportAnInputWithACustomerRecordWithLessThanFiveFields stamp: 'NB 6/29/2023 20:17:46'!
+PASSED!
+
+!testRun: #ImportTest #test05CannotImportAnInputWithAnAddressRecordWithLessThanSixFields stamp: 'NB 6/29/2023 20:17:47'!
+PASSED!
+
+!testRun: #ImportTest #test06CannotImportAnInputThatHasWrongAddressRecordIdentificationStartingWithA stamp: 'NB 6/29/2023 20:17:47'!
+PASSED!
+
+!testRun: #ImportTest #test07CannotImportAnInputWithACustomerRecordWithMoreThanFiveFields stamp: 'NB 6/29/2023 20:17:47'!
+PASSED!
+
+!testRun: #ImportTest #test08CannotImportAnInputWithAnAddressRecordWithMoreThanSixFields stamp: 'NB 6/29/2023 20:17:48'!
+PASSED!
+
+!testRun: #ImportTest #test09CannotImportAnInputWithAnAddressRecordWithoutACustomer stamp: 'NB 6/29/2023 20:17:48'!
+PASSED!
+!ImportTest methodsFor: 'assertions' stamp: 'NB 6/29/2023 20:18:15' prior: 50624490!
+assertImportedRightNumberOfCustomers
+
+	^ self assert: 2 equals: (self session selectAllOfType: Customer) size! !
+!ImportTest methodsFor: 'assertions' stamp: 'NB 6/29/2023 20:18:29' prior: 50626375!
+assertNoAddressWasImported
+
+	^ self assert: 0 equals: (self session selectAllOfType: Address) size! !
+!ImportTest methodsFor: 'assertions' stamp: 'NB 6/29/2023 20:18:34' prior: 50624964!
+assertNoCustomerWasImported
+
+	^ self assert: 0 equals: (self session selectAllOfType: Customer) size! !
+!ImportTest methodsFor: 'assertions' stamp: 'NB 6/29/2023 20:18:41' prior: 50625144!
+assertOnlyOneCustomerWasImportedWithoutAddresses
+
+	self assert: 1 equals: (self session selectAllOfType: Customer) size.
+		self assert: 0 equals: (self session selectAllOfType: Address ) size! !
+
+!testRun: #ImportTest #test01CanImportCorrectlyAValidInputWithTwoCustomers stamp: 'NB 6/29/2023 20:18:43'!
+ERROR!
+
+!testRun: #ImportTest #test02CannotImportAnEmptyInput stamp: 'NB 6/29/2023 20:18:43'!
+ERROR!
+
+!testRun: #ImportTest #test03CannotImportAnInputThatHasWrongCustomerRecordIdentificationStartingWithC stamp: 'NB 6/29/2023 20:18:43'!
+ERROR!
+
+!testRun: #ImportTest #test04CannotImportAnInputWithACustomerRecordWithLessThanFiveFields stamp: 'NB 6/29/2023 20:18:43'!
+ERROR!
+
+!testRun: #ImportTest #test05CannotImportAnInputWithAnAddressRecordWithLessThanSixFields stamp: 'NB 6/29/2023 20:18:43'!
+ERROR!
+
+!testRun: #ImportTest #test06CannotImportAnInputThatHasWrongAddressRecordIdentificationStartingWithA stamp: 'NB 6/29/2023 20:18:43'!
+ERROR!
+
+!testRun: #ImportTest #test07CannotImportAnInputWithACustomerRecordWithMoreThanFiveFields stamp: 'NB 6/29/2023 20:18:43'!
+ERROR!
+
+!testRun: #ImportTest #test08CannotImportAnInputWithAnAddressRecordWithMoreThanSixFields stamp: 'NB 6/29/2023 20:18:43'!
+ERROR!
+
+!testRun: #ImportTest #test09CannotImportAnInputWithAnAddressRecordWithoutACustomer stamp: 'NB 6/29/2023 20:18:43'!
+ERROR!
+
+!testRun: #ImportTest #test01CanImportCorrectlyAValidInputWithTwoCustomers stamp: 'NB 6/29/2023 20:18:46'!
+ERROR!
+!ImportTest methodsFor: 'tests' stamp: 'NB 6/29/2023 20:18:53'!
+session
+	self shouldBeImplemented.
+	^session! !
+!ImportTest methodsFor: 'tests' stamp: 'NB 6/29/2023 20:18:57' prior: 50626699!
+session
+	^session! !
+
+!testRun: #ImportTest #test01CanImportCorrectlyAValidInputWithTwoCustomers stamp: 'NB 6/29/2023 20:18:59'!
+PASSED!
+
+!testRun: #ImportTest #test01CanImportCorrectlyAValidInputWithTwoCustomers stamp: 'NB 6/29/2023 20:19:02'!
+PASSED!
+
+!testRun: #ImportTest #test02CannotImportAnEmptyInput stamp: 'NB 6/29/2023 20:19:02'!
+PASSED!
+
+!testRun: #ImportTest #test03CannotImportAnInputThatHasWrongCustomerRecordIdentificationStartingWithC stamp: 'NB 6/29/2023 20:19:02'!
+PASSED!
+
+!testRun: #ImportTest #test04CannotImportAnInputWithACustomerRecordWithLessThanFiveFields stamp: 'NB 6/29/2023 20:19:02'!
+PASSED!
+
+!testRun: #ImportTest #test05CannotImportAnInputWithAnAddressRecordWithLessThanSixFields stamp: 'NB 6/29/2023 20:19:03'!
+PASSED!
+
+!testRun: #ImportTest #test06CannotImportAnInputThatHasWrongAddressRecordIdentificationStartingWithA stamp: 'NB 6/29/2023 20:19:03'!
+PASSED!
+
+!testRun: #ImportTest #test07CannotImportAnInputWithACustomerRecordWithMoreThanFiveFields stamp: 'NB 6/29/2023 20:19:03'!
+PASSED!
+
+!testRun: #ImportTest #test08CannotImportAnInputWithAnAddressRecordWithMoreThanSixFields stamp: 'NB 6/29/2023 20:19:03'!
+PASSED!
+
+!testRun: #ImportTest #test09CannotImportAnInputWithAnAddressRecordWithoutACustomer stamp: 'NB 6/29/2023 20:19:03'!
+PASSED!
+!ImportTest methodsFor: 'customer' stamp: 'NB 6/29/2023 20:19:10' prior: 50624536!
+customerWithIdentificationType: anIdType number: anIdNumber
+
+	^ (self session
+		select: [ :aCustomer | aCustomer identificationType = anIdType and: [ aCustomer identificationNumber = anIdNumber ]]
+		ofType: Customer) anyOne! !
+!ImportTest methodsFor: 'assertions' stamp: 'NB 6/29/2023 20:19:15' prior: 50626153!
+shouldRaiseErrorWhenImporting: aReadStream withErrorMessageText: anErrorMessageText assertingThat: anAssertionBlock
+	
+	
+	self should: 
+		[CustomerImporter valueFrom: aReadStream into: self session.] 
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [:anError| 
+		self assert: anErrorMessageText equals: anError messageText. 
+		anAssertionBlock value].
+! !
+
+!testRun: #ImportTest #test01CanImportCorrectlyAValidInputWithTwoCustomers stamp: 'NB 6/29/2023 20:19:16'!
+PASSED!
+
+!testRun: #ImportTest #test02CannotImportAnEmptyInput stamp: 'NB 6/29/2023 20:19:16'!
+PASSED!
+
+!testRun: #ImportTest #test03CannotImportAnInputThatHasWrongCustomerRecordIdentificationStartingWithC stamp: 'NB 6/29/2023 20:19:16'!
+PASSED!
+
+!testRun: #ImportTest #test04CannotImportAnInputWithACustomerRecordWithLessThanFiveFields stamp: 'NB 6/29/2023 20:19:17'!
+PASSED!
+
+!testRun: #ImportTest #test05CannotImportAnInputWithAnAddressRecordWithLessThanSixFields stamp: 'NB 6/29/2023 20:19:17'!
+PASSED!
+
+!testRun: #ImportTest #test06CannotImportAnInputThatHasWrongAddressRecordIdentificationStartingWithA stamp: 'NB 6/29/2023 20:19:17'!
+PASSED!
+
+!testRun: #ImportTest #test07CannotImportAnInputWithACustomerRecordWithMoreThanFiveFields stamp: 'NB 6/29/2023 20:19:17'!
+PASSED!
+
+!testRun: #ImportTest #test08CannotImportAnInputWithAnAddressRecordWithMoreThanSixFields stamp: 'NB 6/29/2023 20:19:18'!
+PASSED!
+
+!testRun: #ImportTest #test09CannotImportAnInputWithAnAddressRecordWithoutACustomer stamp: 'NB 6/29/2023 20:19:18'!
+PASSED!
+!ImportTest methodsFor: 'setUp/tearDown' stamp: 'NB 6/29/2023 20:19:26' prior: 50624532 overrides: 16961402!
+tearDown
+
+	self session commit.
+	self session close.
+	! !
+!ImportTest methodsFor: 'tests' stamp: 'NB 6/29/2023 20:19:31' prior: 50625011!
+test01CanImportCorrectlyAValidInputWithTwoCustomers
+
+	CustomerImporter valueFrom: self validImportData into: self session.
+
+	self assertImportedRightNumberOfCustomers.
+	self assertPepeSanchezWasImportedCorrecty.
+	self assertJuanPerezWasImportedCorrectly ! !
+!ImportTest methodsFor: 'setUp/tearDown' stamp: 'NB 6/29/2023 20:19:36' prior: 50626588 overrides: 16961394!
+setUp
+
+	customerSystem:= PersistentCustomerSystem new.
+	session := DataBaseSession for: (Array with: Address with: Customer).
+	self session beginTransaction.
+! !
+
+!testRun: #ImportTest #test01CanImportCorrectlyAValidInputWithTwoCustomers stamp: 'NB 6/29/2023 20:19:47'!
+PASSED!
+
+!testRun: #ImportTest #test02CannotImportAnEmptyInput stamp: 'NB 6/29/2023 20:19:47'!
+PASSED!
+
+!testRun: #ImportTest #test03CannotImportAnInputThatHasWrongCustomerRecordIdentificationStartingWithC stamp: 'NB 6/29/2023 20:19:47'!
+PASSED!
+
+!testRun: #ImportTest #test04CannotImportAnInputWithACustomerRecordWithLessThanFiveFields stamp: 'NB 6/29/2023 20:19:47'!
+PASSED!
+
+!testRun: #ImportTest #test05CannotImportAnInputWithAnAddressRecordWithLessThanSixFields stamp: 'NB 6/29/2023 20:19:48'!
+PASSED!
+
+!testRun: #ImportTest #test06CannotImportAnInputThatHasWrongAddressRecordIdentificationStartingWithA stamp: 'NB 6/29/2023 20:19:48'!
+PASSED!
+
+!testRun: #ImportTest #test07CannotImportAnInputWithACustomerRecordWithMoreThanFiveFields stamp: 'NB 6/29/2023 20:19:48'!
+PASSED!
+
+!testRun: #ImportTest #test08CannotImportAnInputWithAnAddressRecordWithMoreThanSixFields stamp: 'NB 6/29/2023 20:19:48'!
+PASSED!
+
+!testRun: #ImportTest #test09CannotImportAnInputWithAnAddressRecordWithoutACustomer stamp: 'NB 6/29/2023 20:19:48'!
+PASSED!
+
+----SNAPSHOT----(29 June 2023 20:19:52) CuisUniversity-5832.image priorSource: 9437226!
+
+!classDefinition: #PersistentCustomerSystem category: 'CustomerImporter' stamp: 'NB 6/29/2023 20:21:33'!
+Object subclass: #PersistentCustomerSystem
+	instanceVariableNames: 'session'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+!PersistentCustomerSystem methodsFor: 'no messages' stamp: 'NB 6/29/2023 20:21:31'!
+start
+
+	session := DataBaseSession for: (Array with: Address with: Customer).
+	self session beginTransaction.! !
+!ImportTest methodsFor: 'setUp/tearDown' stamp: 'NB 6/29/2023 20:22:16' prior: 50626824 overrides: 16961394!
+setUp
+
+	customerSystem:= PersistentCustomerSystem new.
+	self session start.
+! !
+!ImportTest methodsFor: 'setUp/tearDown' stamp: 'NB 6/29/2023 20:22:26' prior: 50626886 overrides: 16961394!
+setUp
+
+	customerSystem:= PersistentCustomerSystem new.
+	self session beginTransaction.
+! !
+!ImportTest methodsFor: 'setUp/tearDown' stamp: 'NB 6/29/2023 20:23:10' prior: 50626892 overrides: 16961394!
+setUp
+
+	customerSystem:= PersistentCustomerSystem new.
+	customerSystem start.
+	self session beginTransaction.
+! !
+!ImportTest methodsFor: 'setUp/tearDown' stamp: 'NB 6/29/2023 20:23:37' prior: 50626899 overrides: 16961394!
+setUp
+
+	customerSystem:= PersistentCustomerSystem new.
+	customerSystem start.
+	self session beginTransaction.
+! !
+!ImportTest methodsFor: 'tests' stamp: 'NB 6/29/2023 20:23:50' prior: 50626703!
+session
+	^customerSystem session.! !
+!ImportTest methodsFor: 'setUp/tearDown' stamp: 'NB 6/29/2023 20:23:59' prior: 50626906 overrides: 16961394!
+setUp
+
+	customerSystem:= PersistentCustomerSystem new.
+	customerSystem start.
+! !
+!PersistentCustomerSystem methodsFor: 'as yet unclassified' stamp: 'NB 6/29/2023 20:24:06'!
+session
+	self shouldBeImplemented.
+	^session! !
+!PersistentCustomerSystem methodsFor: 'as yet unclassified' stamp: 'NB 6/29/2023 20:24:10' prior: 50626924!
+session
+	
+	^session! !
+
+!testRun: #ImportTest #test01CanImportCorrectlyAValidInputWithTwoCustomers stamp: 'NB 6/29/2023 20:24:11'!
+PASSED!
+
+!testRun: #ImportTest #test01CanImportCorrectlyAValidInputWithTwoCustomers stamp: 'NB 6/29/2023 20:24:14'!
+PASSED!
+
+!testRun: #ImportTest #test01CanImportCorrectlyAValidInputWithTwoCustomers stamp: 'NB 6/29/2023 20:24:15'!
+PASSED!
+
+!testRun: #ImportTest #test02CannotImportAnEmptyInput stamp: 'NB 6/29/2023 20:24:15'!
+PASSED!
+
+!testRun: #ImportTest #test02CannotImportAnEmptyInput stamp: 'NB 6/29/2023 20:24:15'!
+PASSED!
+
+!testRun: #ImportTest #test03CannotImportAnInputThatHasWrongCustomerRecordIdentificationStartingWithC stamp: 'NB 6/29/2023 20:24:15'!
+PASSED!
+
+!testRun: #ImportTest #test03CannotImportAnInputThatHasWrongCustomerRecordIdentificationStartingWithC stamp: 'NB 6/29/2023 20:24:16'!
+PASSED!
+
+!testRun: #ImportTest #test04CannotImportAnInputWithACustomerRecordWithLessThanFiveFields stamp: 'NB 6/29/2023 20:24:16'!
+PASSED!
+
+!testRun: #ImportTest #test04CannotImportAnInputWithACustomerRecordWithLessThanFiveFields stamp: 'NB 6/29/2023 20:24:16'!
+PASSED!
+
+!testRun: #ImportTest #test05CannotImportAnInputWithAnAddressRecordWithLessThanSixFields stamp: 'NB 6/29/2023 20:24:16'!
+PASSED!
+
+!testRun: #ImportTest #test05CannotImportAnInputWithAnAddressRecordWithLessThanSixFields stamp: 'NB 6/29/2023 20:24:16'!
+PASSED!
+
+!testRun: #ImportTest #test06CannotImportAnInputThatHasWrongAddressRecordIdentificationStartingWithA stamp: 'NB 6/29/2023 20:24:17'!
+PASSED!
+
+!testRun: #ImportTest #test06CannotImportAnInputThatHasWrongAddressRecordIdentificationStartingWithA stamp: 'NB 6/29/2023 20:24:17'!
+PASSED!
+
+!testRun: #ImportTest #test07CannotImportAnInputWithACustomerRecordWithMoreThanFiveFields stamp: 'NB 6/29/2023 20:24:17'!
+PASSED!
+
+!testRun: #ImportTest #test07CannotImportAnInputWithACustomerRecordWithMoreThanFiveFields stamp: 'NB 6/29/2023 20:24:17'!
+PASSED!
+
+!testRun: #ImportTest #test08CannotImportAnInputWithAnAddressRecordWithMoreThanSixFields stamp: 'NB 6/29/2023 20:24:18'!
+PASSED!
+
+!testRun: #ImportTest #test08CannotImportAnInputWithAnAddressRecordWithMoreThanSixFields stamp: 'NB 6/29/2023 20:24:18'!
+PASSED!
+
+!testRun: #ImportTest #test09CannotImportAnInputWithAnAddressRecordWithoutACustomer stamp: 'NB 6/29/2023 20:24:18'!
+PASSED!
+
+!testRun: #ImportTest #test09CannotImportAnInputWithAnAddressRecordWithoutACustomer stamp: 'NB 6/29/2023 20:24:18'!
+PASSED!
+
+!testRun: #ImportTest #test01CanImportCorrectlyAValidInputWithTwoCustomers stamp: 'NB 6/29/2023 20:24:24'!
+PASSED!
+
+!testRun: #ImportTest #test02CannotImportAnEmptyInput stamp: 'NB 6/29/2023 20:24:24'!
+PASSED!
+
+!testRun: #ImportTest #test03CannotImportAnInputThatHasWrongCustomerRecordIdentificationStartingWithC stamp: 'NB 6/29/2023 20:24:24'!
+PASSED!
+
+!testRun: #ImportTest #test04CannotImportAnInputWithACustomerRecordWithLessThanFiveFields stamp: 'NB 6/29/2023 20:24:24'!
+PASSED!
+
+!testRun: #ImportTest #test05CannotImportAnInputWithAnAddressRecordWithLessThanSixFields stamp: 'NB 6/29/2023 20:24:25'!
+PASSED!
+
+!testRun: #ImportTest #test06CannotImportAnInputThatHasWrongAddressRecordIdentificationStartingWithA stamp: 'NB 6/29/2023 20:24:25'!
+PASSED!
+
+!testRun: #ImportTest #test07CannotImportAnInputWithACustomerRecordWithMoreThanFiveFields stamp: 'NB 6/29/2023 20:24:25'!
+PASSED!
+
+!testRun: #ImportTest #test08CannotImportAnInputWithAnAddressRecordWithMoreThanSixFields stamp: 'NB 6/29/2023 20:24:25'!
+PASSED!
+
+!testRun: #ImportTest #test09CannotImportAnInputWithAnAddressRecordWithoutACustomer stamp: 'NB 6/29/2023 20:24:25'!
+PASSED!
+
+----SNAPSHOT----(29 June 2023 20:24:29) CuisUniversity-5832.image priorSource: 9446936!
+!ImportTest methodsFor: 'customer' stamp: 'NB 6/29/2023 20:27:42'!
+numberOfCustomers
+	^(self session selectAllOfType: Customer) size! !
+!ImportTest methodsFor: 'customer' stamp: 'NB 6/29/2023 20:27:44' prior: 50627046!
+numberOfCustomers
+
+	^(self session selectAllOfType: Customer) size! !
+!ImportTest methodsFor: 'assertions' stamp: 'NB 6/29/2023 20:28:08' prior: 50626632!
+assertImportedRightNumberOfCustomers
+
+	^ self assert: 2 equals: self numberOfCustomers! !
+
+!testRun: #ImportTest #test01CanImportCorrectlyAValidInputWithTwoCustomers stamp: 'NB 6/29/2023 20:28:10'!
+PASSED!
+
+!testRun: #ImportTest #test02CannotImportAnEmptyInput stamp: 'NB 6/29/2023 20:28:10'!
+PASSED!
+
+!testRun: #ImportTest #test03CannotImportAnInputThatHasWrongCustomerRecordIdentificationStartingWithC stamp: 'NB 6/29/2023 20:28:10'!
+PASSED!
+
+!testRun: #ImportTest #test04CannotImportAnInputWithACustomerRecordWithLessThanFiveFields stamp: 'NB 6/29/2023 20:28:11'!
+PASSED!
+
+!testRun: #ImportTest #test05CannotImportAnInputWithAnAddressRecordWithLessThanSixFields stamp: 'NB 6/29/2023 20:28:11'!
+PASSED!
+
+!testRun: #ImportTest #test06CannotImportAnInputThatHasWrongAddressRecordIdentificationStartingWithA stamp: 'NB 6/29/2023 20:28:11'!
+PASSED!
+
+!testRun: #ImportTest #test07CannotImportAnInputWithACustomerRecordWithMoreThanFiveFields stamp: 'NB 6/29/2023 20:28:11'!
+PASSED!
+
+!testRun: #ImportTest #test08CannotImportAnInputWithAnAddressRecordWithMoreThanSixFields stamp: 'NB 6/29/2023 20:28:12'!
+PASSED!
+
+!testRun: #ImportTest #test09CannotImportAnInputWithAnAddressRecordWithoutACustomer stamp: 'NB 6/29/2023 20:28:12'!
+PASSED!
+
+----SNAPSHOT----(29 June 2023 20:28:15) CuisUniversity-5832.image priorSource: 9452559!
+!ImportTest methodsFor: 'assertions' stamp: 'NB 6/29/2023 20:28:56' prior: 50626645!
+assertNoCustomerWasImported
+
+	^ self assert: 0 equals: self numberOfCustomers ! !
+
+!testRun: #ImportTest #test01CanImportCorrectlyAValidInputWithTwoCustomers stamp: 'NB 6/29/2023 20:28:59'!
+PASSED!
+
+!testRun: #ImportTest #test02CannotImportAnEmptyInput stamp: 'NB 6/29/2023 20:28:59'!
+PASSED!
+
+!testRun: #ImportTest #test03CannotImportAnInputThatHasWrongCustomerRecordIdentificationStartingWithC stamp: 'NB 6/29/2023 20:28:59'!
+PASSED!
+
+!testRun: #ImportTest #test04CannotImportAnInputWithACustomerRecordWithLessThanFiveFields stamp: 'NB 6/29/2023 20:28:59'!
+PASSED!
+
+!testRun: #ImportTest #test05CannotImportAnInputWithAnAddressRecordWithLessThanSixFields stamp: 'NB 6/29/2023 20:29:00'!
+PASSED!
+
+!testRun: #ImportTest #test06CannotImportAnInputThatHasWrongAddressRecordIdentificationStartingWithA stamp: 'NB 6/29/2023 20:29:00'!
+PASSED!
+
+!testRun: #ImportTest #test07CannotImportAnInputWithACustomerRecordWithMoreThanFiveFields stamp: 'NB 6/29/2023 20:29:00'!
+PASSED!
+
+!testRun: #ImportTest #test08CannotImportAnInputWithAnAddressRecordWithMoreThanSixFields stamp: 'NB 6/29/2023 20:29:00'!
+PASSED!
+
+!testRun: #ImportTest #test09CannotImportAnInputWithAnAddressRecordWithoutACustomer stamp: 'NB 6/29/2023 20:29:00'!
+PASSED!
+!ImportTest methodsFor: 'assertions' stamp: 'NB 6/29/2023 20:29:15' prior: 50626651!
+assertOnlyOneCustomerWasImportedWithoutAddresses
+
+	self assert: 1 equals: self numberOfCustomers.
+		self assert: 0 equals: (self session selectAllOfType: Address ) size! !
+
+!testRun: #ImportTest #test01CanImportCorrectlyAValidInputWithTwoCustomers stamp: 'NB 6/29/2023 20:29:16'!
+PASSED!
+
+!testRun: #ImportTest #test02CannotImportAnEmptyInput stamp: 'NB 6/29/2023 20:29:17'!
+PASSED!
+
+!testRun: #ImportTest #test03CannotImportAnInputThatHasWrongCustomerRecordIdentificationStartingWithC stamp: 'NB 6/29/2023 20:29:17'!
+PASSED!
+
+!testRun: #ImportTest #test04CannotImportAnInputWithACustomerRecordWithLessThanFiveFields stamp: 'NB 6/29/2023 20:29:17'!
+PASSED!
+
+!testRun: #ImportTest #test05CannotImportAnInputWithAnAddressRecordWithLessThanSixFields stamp: 'NB 6/29/2023 20:29:17'!
+PASSED!
+
+!testRun: #ImportTest #test06CannotImportAnInputThatHasWrongAddressRecordIdentificationStartingWithA stamp: 'NB 6/29/2023 20:29:18'!
+PASSED!
+
+!testRun: #ImportTest #test07CannotImportAnInputWithACustomerRecordWithMoreThanFiveFields stamp: 'NB 6/29/2023 20:29:18'!
+PASSED!
+
+!testRun: #ImportTest #test08CannotImportAnInputWithAnAddressRecordWithMoreThanSixFields stamp: 'NB 6/29/2023 20:29:18'!
+PASSED!
+
+!testRun: #ImportTest #test09CannotImportAnInputWithAnAddressRecordWithoutACustomer stamp: 'NB 6/29/2023 20:29:18'!
+PASSED!
+!ImportTest methodsFor: 'address' stamp: 'NB 6/29/2023 20:29:46' prior: 50627051!
+numberOfCustomers
+
+	^(self session selectAllOfType: Address) size! !
+!ImportTest methodsFor: 'address' stamp: 'NB 6/29/2023 20:29:57'!
+numberOfAdresses
+
+	^(self session selectAllOfType: Address) size! !
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'NB 6/29/2023 20:29:57' prior: 50627141!
+assertOnlyOneCustomerWasImportedWithoutAddresses
+
+	self assert: 1 equals: self numberOfAdresses.
+		self assert: 0 equals: (self session selectAllOfType: Address ) size! !
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'NB 6/29/2023 20:29:57' prior: 50627056!
+assertImportedRightNumberOfCustomers
+
+	^ self assert: 2 equals: self numberOfAdresses! !
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'NB 6/29/2023 20:29:57' prior: 50627100!
+assertNoCustomerWasImported
+
+	^ self assert: 0 equals: self numberOfAdresses ! !
+
+!methodRemoval: ImportTest #numberOfCustomers stamp: 'NB 6/29/2023 20:29:57'!
+numberOfCustomers
+
+	^(self session selectAllOfType: Address) size!
+!ImportTest methodsFor: 'customer' stamp: 'NB 6/29/2023 20:30:31'!
+numberOfCustomers
+
+	^(self session selectAllOfType: Customer) size! !
+!ImportTest methodsFor: 'assertions' stamp: 'NB 6/29/2023 20:30:41' prior: 50627205!
+assertImportedRightNumberOfCustomers
+
+	^ self assert: 2 equals: self numberOfCustomers ! !
+!ImportTest methodsFor: 'assertions' stamp: 'NB 6/29/2023 20:30:53' prior: 50626639!
+assertNoAddressWasImported
+
+	^ self assert: 0 equals: self numberOfAdresses ! !
+!ImportTest methodsFor: 'assertions' stamp: 'NB 6/29/2023 20:31:00' prior: 50627211!
+assertNoCustomerWasImported
+
+	^ self assert: 0 equals: self numberOfCustomers ! !
+!ImportTest methodsFor: 'assertions' stamp: 'NB 6/29/2023 20:31:14' prior: 50627196!
+assertOnlyOneCustomerWasImportedWithoutAddresses
+
+	self assert: 1 equals: self numberOfCustomers .
+		self assert: 0 equals: self numberOfAdresses ! !
+
+!testRun: #ImportTest #test01CanImportCorrectlyAValidInputWithTwoCustomers stamp: 'NB 6/29/2023 20:31:17'!
+PASSED!
+
+!testRun: #ImportTest #test02CannotImportAnEmptyInput stamp: 'NB 6/29/2023 20:31:18'!
+PASSED!
+
+!testRun: #ImportTest #test03CannotImportAnInputThatHasWrongCustomerRecordIdentificationStartingWithC stamp: 'NB 6/29/2023 20:31:18'!
+PASSED!
+
+!testRun: #ImportTest #test04CannotImportAnInputWithACustomerRecordWithLessThanFiveFields stamp: 'NB 6/29/2023 20:31:18'!
+PASSED!
+
+!testRun: #ImportTest #test05CannotImportAnInputWithAnAddressRecordWithLessThanSixFields stamp: 'NB 6/29/2023 20:31:18'!
+PASSED!
+
+!testRun: #ImportTest #test06CannotImportAnInputThatHasWrongAddressRecordIdentificationStartingWithA stamp: 'NB 6/29/2023 20:31:19'!
+PASSED!
+
+!testRun: #ImportTest #test07CannotImportAnInputWithACustomerRecordWithMoreThanFiveFields stamp: 'NB 6/29/2023 20:31:19'!
+PASSED!
+
+!testRun: #ImportTest #test08CannotImportAnInputWithAnAddressRecordWithMoreThanSixFields stamp: 'NB 6/29/2023 20:31:19'!
+PASSED!
+
+!testRun: #ImportTest #test09CannotImportAnInputWithAnAddressRecordWithoutACustomer stamp: 'NB 6/29/2023 20:31:19'!
+PASSED!
+
+----SNAPSHOT----(29 June 2023 20:31:24) CuisUniversity-5832.image priorSource: 9454288!
+!PersistentCustomerSystem methodsFor: 'as yet unclassified' stamp: 'NB 6/29/2023 20:31:52'!
+numberOfAdresses
+
+	^(self session selectAllOfType: Address) size! !
+!PersistentCustomerSystem methodsFor: 'as yet unclassified' stamp: 'NB 6/29/2023 20:32:08'!
+numberOfCustomers
+
+	^(self session selectAllOfType: Customer) size! !
+!PersistentCustomerSystem methodsFor: 'as yet unclassified' stamp: 'NB 6/29/2023 20:32:23'!
+customerWithIdentificationType: anIdType number: anIdNumber
+
+	^ (self session
+		select: [ :aCustomer | aCustomer identificationType = anIdType and: [ aCustomer identificationNumber = anIdNumber ]]
+		ofType: Customer) anyOne! !
+
+!testRun: #ImportTest #test01CanImportCorrectlyAValidInputWithTwoCustomers stamp: 'NB 6/29/2023 20:32:27'!
+PASSED!
+
+!testRun: #ImportTest #test02CannotImportAnEmptyInput stamp: 'NB 6/29/2023 20:32:28'!
+PASSED!
+
+!testRun: #ImportTest #test03CannotImportAnInputThatHasWrongCustomerRecordIdentificationStartingWithC stamp: 'NB 6/29/2023 20:32:28'!
+PASSED!
+
+!testRun: #ImportTest #test04CannotImportAnInputWithACustomerRecordWithLessThanFiveFields stamp: 'NB 6/29/2023 20:32:28'!
+PASSED!
+
+!testRun: #ImportTest #test05CannotImportAnInputWithAnAddressRecordWithLessThanSixFields stamp: 'NB 6/29/2023 20:32:28'!
+PASSED!
+
+!testRun: #ImportTest #test06CannotImportAnInputThatHasWrongAddressRecordIdentificationStartingWithA stamp: 'NB 6/29/2023 20:32:29'!
+PASSED!
+
+!testRun: #ImportTest #test07CannotImportAnInputWithACustomerRecordWithMoreThanFiveFields stamp: 'NB 6/29/2023 20:32:29'!
+PASSED!
+
+!testRun: #ImportTest #test08CannotImportAnInputWithAnAddressRecordWithMoreThanSixFields stamp: 'NB 6/29/2023 20:32:29'!
+PASSED!
+
+!testRun: #ImportTest #test09CannotImportAnInputWithAnAddressRecordWithoutACustomer stamp: 'NB 6/29/2023 20:32:29'!
+PASSED!
+!ImportTest methodsFor: 'tests' stamp: 'NB 6/29/2023 20:32:40' prior: 50626913!
+session
+	^customerSystem.! !
+
+!testRun: #ImportTest #test01CanImportCorrectlyAValidInputWithTwoCustomers stamp: 'NB 6/29/2023 20:32:41'!
+ERROR!
+
+!testRun: #ImportTest #test02CannotImportAnEmptyInput stamp: 'NB 6/29/2023 20:32:41'!
+ERROR!
+
+!testRun: #ImportTest #test03CannotImportAnInputThatHasWrongCustomerRecordIdentificationStartingWithC stamp: 'NB 6/29/2023 20:32:41'!
+ERROR!
+
+!testRun: #ImportTest #test04CannotImportAnInputWithACustomerRecordWithLessThanFiveFields stamp: 'NB 6/29/2023 20:32:41'!
+ERROR!
+
+!testRun: #ImportTest #test05CannotImportAnInputWithAnAddressRecordWithLessThanSixFields stamp: 'NB 6/29/2023 20:32:41'!
+ERROR!
+
+!testRun: #ImportTest #test06CannotImportAnInputThatHasWrongAddressRecordIdentificationStartingWithA stamp: 'NB 6/29/2023 20:32:41'!
+ERROR!
+
+!testRun: #ImportTest #test07CannotImportAnInputWithACustomerRecordWithMoreThanFiveFields stamp: 'NB 6/29/2023 20:32:41'!
+ERROR!
+
+!testRun: #ImportTest #test08CannotImportAnInputWithAnAddressRecordWithMoreThanSixFields stamp: 'NB 6/29/2023 20:32:41'!
+ERROR!
+
+!testRun: #ImportTest #test09CannotImportAnInputWithAnAddressRecordWithoutACustomer stamp: 'NB 6/29/2023 20:32:41'!
+ERROR!
+
+!testRun: #ImportTest #test01CanImportCorrectlyAValidInputWithTwoCustomers stamp: 'NB 6/29/2023 20:32:51'!
+ERROR!
+
+!testRun: #ImportTest #test02CannotImportAnEmptyInput stamp: 'NB 6/29/2023 20:32:51'!
+ERROR!
+
+!testRun: #ImportTest #test03CannotImportAnInputThatHasWrongCustomerRecordIdentificationStartingWithC stamp: 'NB 6/29/2023 20:32:51'!
+ERROR!
+
+!testRun: #ImportTest #test04CannotImportAnInputWithACustomerRecordWithLessThanFiveFields stamp: 'NB 6/29/2023 20:32:51'!
+ERROR!
+
+!testRun: #ImportTest #test05CannotImportAnInputWithAnAddressRecordWithLessThanSixFields stamp: 'NB 6/29/2023 20:32:51'!
+ERROR!
+
+!testRun: #ImportTest #test06CannotImportAnInputThatHasWrongAddressRecordIdentificationStartingWithA stamp: 'NB 6/29/2023 20:32:51'!
+ERROR!
+
+!testRun: #ImportTest #test07CannotImportAnInputWithACustomerRecordWithMoreThanFiveFields stamp: 'NB 6/29/2023 20:32:51'!
+ERROR!
+
+!testRun: #ImportTest #test08CannotImportAnInputWithAnAddressRecordWithMoreThanSixFields stamp: 'NB 6/29/2023 20:32:51'!
+ERROR!
+
+!testRun: #ImportTest #test09CannotImportAnInputWithAnAddressRecordWithoutACustomer stamp: 'NB 6/29/2023 20:32:51'!
+ERROR!
+
+!testRun: #ImportTest #test01CanImportCorrectlyAValidInputWithTwoCustomers stamp: 'NB 6/29/2023 20:32:53'!
+ERROR!
+!PersistentCustomerSystem methodsFor: 'as yet unclassified' stamp: 'NB 6/29/2023 20:33:41'!
+commit
+
+	self session commit.! !
+!PersistentCustomerSystem methodsFor: 'as yet unclassified' stamp: 'NB 6/29/2023 20:33:49'!
+close
+
+	self session close.! !
+
+!testRun: #ImportTest #test01CanImportCorrectlyAValidInputWithTwoCustomers stamp: 'NB 6/29/2023 20:33:52'!
+ERROR!
+
+!testRun: #ImportTest #test02CannotImportAnEmptyInput stamp: 'NB 6/29/2023 20:33:52'!
+ERROR!
+
+!testRun: #ImportTest #test03CannotImportAnInputThatHasWrongCustomerRecordIdentificationStartingWithC stamp: 'NB 6/29/2023 20:33:52'!
+ERROR!
+
+!testRun: #ImportTest #test04CannotImportAnInputWithACustomerRecordWithLessThanFiveFields stamp: 'NB 6/29/2023 20:33:52'!
+ERROR!
+
+!testRun: #ImportTest #test05CannotImportAnInputWithAnAddressRecordWithLessThanSixFields stamp: 'NB 6/29/2023 20:33:52'!
+ERROR!
+
+!testRun: #ImportTest #test06CannotImportAnInputThatHasWrongAddressRecordIdentificationStartingWithA stamp: 'NB 6/29/2023 20:33:52'!
+ERROR!
+
+!testRun: #ImportTest #test07CannotImportAnInputWithACustomerRecordWithMoreThanFiveFields stamp: 'NB 6/29/2023 20:33:52'!
+ERROR!
+
+!testRun: #ImportTest #test08CannotImportAnInputWithAnAddressRecordWithMoreThanSixFields stamp: 'NB 6/29/2023 20:33:52'!
+ERROR!
+
+!testRun: #ImportTest #test09CannotImportAnInputWithAnAddressRecordWithoutACustomer stamp: 'NB 6/29/2023 20:33:52'!
+ERROR!
+
+!testRun: #ImportTest #test01CanImportCorrectlyAValidInputWithTwoCustomers stamp: 'NB 6/29/2023 20:33:54'!
+ERROR!
+!PersistentCustomerSystem methodsFor: 'as yet unclassified' stamp: 'NB 6/29/2023 20:35:01'!
+stop
+
+	self session commit.
+	self session close.! !
+
+!methodRemoval: PersistentCustomerSystem #close stamp: 'NB 6/29/2023 20:35:08'!
+close
+
+	self session close.!
+
+!methodRemoval: PersistentCustomerSystem #commit stamp: 'NB 6/29/2023 20:35:12'!
+commit
+
+	self session commit.!
+!ImportTest methodsFor: 'setUp/tearDown' stamp: 'NB 6/29/2023 20:35:29' prior: 50626807 overrides: 16961402!
+tearDown
+
+	self session stop.
+	! !
+!CustomerImporter methodsFor: 'customer' stamp: 'NB 6/29/2023 20:36:03' prior: 50625823!
+importCustomer
+
+			self assertCustomerRecordSizeIsValid.
+			
+			customer := Customer 
+				firstName: record second 
+				lastName: record third 
+				identificationType: record fourth 
+				identificationNumber: record fifth.
+			session add: customer.! !
+!PersistentCustomerSystem methodsFor: 'as yet unclassified' stamp: 'NB 6/29/2023 20:36:20'!
+add: aCustomer
+	
+	session persist: aCustomer.! !
+
+!testRun: #ImportTest #test01CanImportCorrectlyAValidInputWithTwoCustomers stamp: 'NB 6/29/2023 20:36:21'!
+ERROR!
+
+!testRun: #ImportTest #test02CannotImportAnEmptyInput stamp: 'NB 6/29/2023 20:36:21'!
+ERROR!
+
+!testRun: #ImportTest #test03CannotImportAnInputThatHasWrongCustomerRecordIdentificationStartingWithC stamp: 'NB 6/29/2023 20:36:21'!
+ERROR!
+
+!testRun: #ImportTest #test04CannotImportAnInputWithACustomerRecordWithLessThanFiveFields stamp: 'NB 6/29/2023 20:36:21'!
+ERROR!
+
+!testRun: #ImportTest #test05CannotImportAnInputWithAnAddressRecordWithLessThanSixFields stamp: 'NB 6/29/2023 20:36:21'!
+ERROR!
+
+!testRun: #ImportTest #test06CannotImportAnInputThatHasWrongAddressRecordIdentificationStartingWithA stamp: 'NB 6/29/2023 20:36:22'!
+ERROR!
+
+!testRun: #ImportTest #test07CannotImportAnInputWithACustomerRecordWithMoreThanFiveFields stamp: 'NB 6/29/2023 20:36:22'!
+ERROR!
+
+!testRun: #ImportTest #test08CannotImportAnInputWithAnAddressRecordWithMoreThanSixFields stamp: 'NB 6/29/2023 20:36:22'!
+ERROR!
+
+!testRun: #ImportTest #test09CannotImportAnInputWithAnAddressRecordWithoutACustomer stamp: 'NB 6/29/2023 20:36:22'!
+ERROR!
+
+!testRun: #ImportTest #test01CanImportCorrectlyAValidInputWithTwoCustomers stamp: 'NB 6/29/2023 20:36:24'!
+ERROR!
+
+!testRun: #ImportTest #test01CanImportCorrectlyAValidInputWithTwoCustomers stamp: 'NB 6/29/2023 20:37:08'!
+ERROR!
+
+!testRun: #ImportTest #test02CannotImportAnEmptyInput stamp: 'NB 6/29/2023 20:37:08'!
+ERROR!
+
+!testRun: #ImportTest #test03CannotImportAnInputThatHasWrongCustomerRecordIdentificationStartingWithC stamp: 'NB 6/29/2023 20:37:08'!
+ERROR!
+
+!testRun: #ImportTest #test04CannotImportAnInputWithACustomerRecordWithLessThanFiveFields stamp: 'NB 6/29/2023 20:37:08'!
+ERROR!
+
+!testRun: #ImportTest #test05CannotImportAnInputWithAnAddressRecordWithLessThanSixFields stamp: 'NB 6/29/2023 20:37:08'!
+ERROR!
+
+!testRun: #ImportTest #test06CannotImportAnInputThatHasWrongAddressRecordIdentificationStartingWithA stamp: 'NB 6/29/2023 20:37:08'!
+ERROR!
+
+!testRun: #ImportTest #test07CannotImportAnInputWithACustomerRecordWithMoreThanFiveFields stamp: 'NB 6/29/2023 20:37:09'!
+ERROR!
+
+!testRun: #ImportTest #test08CannotImportAnInputWithAnAddressRecordWithMoreThanSixFields stamp: 'NB 6/29/2023 20:37:09'!
+ERROR!
+
+!testRun: #ImportTest #test09CannotImportAnInputWithAnAddressRecordWithoutACustomer stamp: 'NB 6/29/2023 20:37:09'!
+ERROR!
+
+!testRun: #ImportTest #test01CanImportCorrectlyAValidInputWithTwoCustomers stamp: 'NB 6/29/2023 20:37:11'!
+ERROR!
+!ImportTest methodsFor: 'customer' stamp: 'NB 6/29/2023 20:37:36' prior: 50627221!
+numberOfCustomers
+
+	^self session numberOfCustomers ! !
+!ImportTest methodsFor: 'customer' stamp: 'NB 6/29/2023 20:37:52' prior: 50626746!
+customerWithIdentificationType: anIdType number: anIdNumber
+
+	^ self session customerWithIdentificationType: anIdType number: anIdNumber.! !
+!ImportTest methodsFor: 'address' stamp: 'NB 6/29/2023 20:38:02' prior: 50627190!
+numberOfAdresses
+
+	^self session numberOfAdresses ! !
+
+!testRun: #ImportTest #test01CanImportCorrectlyAValidInputWithTwoCustomers stamp: 'NB 6/29/2023 20:38:04'!
+PASSED!
+
+!testRun: #ImportTest #test02CannotImportAnEmptyInput stamp: 'NB 6/29/2023 20:38:04'!
+PASSED!
+
+!testRun: #ImportTest #test03CannotImportAnInputThatHasWrongCustomerRecordIdentificationStartingWithC stamp: 'NB 6/29/2023 20:38:04'!
+PASSED!
+
+!testRun: #ImportTest #test04CannotImportAnInputWithACustomerRecordWithLessThanFiveFields stamp: 'NB 6/29/2023 20:38:04'!
+PASSED!
+
+!testRun: #ImportTest #test05CannotImportAnInputWithAnAddressRecordWithLessThanSixFields stamp: 'NB 6/29/2023 20:38:05'!
+PASSED!
+
+!testRun: #ImportTest #test06CannotImportAnInputThatHasWrongAddressRecordIdentificationStartingWithA stamp: 'NB 6/29/2023 20:38:05'!
+PASSED!
+
+!testRun: #ImportTest #test07CannotImportAnInputWithACustomerRecordWithMoreThanFiveFields stamp: 'NB 6/29/2023 20:38:05'!
+PASSED!
+
+!testRun: #ImportTest #test08CannotImportAnInputWithAnAddressRecordWithMoreThanSixFields stamp: 'NB 6/29/2023 20:38:05'!
+PASSED!
+
+!testRun: #ImportTest #test09CannotImportAnInputWithAnAddressRecordWithoutACustomer stamp: 'NB 6/29/2023 20:38:05'!
+PASSED!
+
+----SNAPSHOT----(29 June 2023 20:38:10) CuisUniversity-5832.image priorSource: 9460364!
+
+!methodRemoval: ImportTest #session stamp: 'NB 6/29/2023 20:38:29'!
+session
+	^customerSystem.!
+!ImportTest methodsFor: 'assertions' stamp: 'NB 6/29/2023 20:38:29' prior: 50626756!
+shouldRaiseErrorWhenImporting: aReadStream withErrorMessageText: anErrorMessageText assertingThat: anAssertionBlock
+	
+	
+	self should: 
+		[CustomerImporter valueFrom: aReadStream into: customerSystem.] 
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [:anError| 
+		self assert: anErrorMessageText equals: anError messageText. 
+		anAssertionBlock value].
+! !
+!ImportTest methodsFor: 'tests' stamp: 'NB 6/29/2023 20:38:29' prior: 50626812!
+test01CanImportCorrectlyAValidInputWithTwoCustomers
+
+	CustomerImporter valueFrom: self validImportData into: customerSystem.
+
+	self assertImportedRightNumberOfCustomers.
+	self assertPepeSanchezWasImportedCorrecty.
+	self assertJuanPerezWasImportedCorrectly ! !
+!ImportTest methodsFor: 'customer' stamp: 'NB 6/29/2023 20:38:29' prior: 50627584!
+numberOfCustomers
+
+	^customerSystem numberOfCustomers ! !
+!ImportTest methodsFor: 'setUp/tearDown' stamp: 'NB 6/29/2023 20:38:29' prior: 50627486 overrides: 16961402!
+tearDown
+
+	customerSystem stop.
+	! !
+!ImportTest methodsFor: 'customer' stamp: 'NB 6/29/2023 20:38:29' prior: 50627589!
+customerWithIdentificationType: anIdType number: anIdNumber
+
+	^ customerSystem customerWithIdentificationType: anIdType number: anIdNumber.! !
+!ImportTest methodsFor: 'address' stamp: 'NB 6/29/2023 20:38:29' prior: 50627596!
+numberOfAdresses
+
+	^customerSystem numberOfAdresses ! !
+
+!testRun: #ImportTest #test01CanImportCorrectlyAValidInputWithTwoCustomers stamp: 'NB 6/29/2023 20:38:32'!
+PASSED!
+
+!testRun: #ImportTest #test02CannotImportAnEmptyInput stamp: 'NB 6/29/2023 20:38:32'!
+PASSED!
+
+!testRun: #ImportTest #test03CannotImportAnInputThatHasWrongCustomerRecordIdentificationStartingWithC stamp: 'NB 6/29/2023 20:38:32'!
+PASSED!
+
+!testRun: #ImportTest #test04CannotImportAnInputWithACustomerRecordWithLessThanFiveFields stamp: 'NB 6/29/2023 20:38:32'!
+PASSED!
+
+!testRun: #ImportTest #test05CannotImportAnInputWithAnAddressRecordWithLessThanSixFields stamp: 'NB 6/29/2023 20:38:33'!
+PASSED!
+
+!testRun: #ImportTest #test06CannotImportAnInputThatHasWrongAddressRecordIdentificationStartingWithA stamp: 'NB 6/29/2023 20:38:33'!
+PASSED!
+
+!testRun: #ImportTest #test07CannotImportAnInputWithACustomerRecordWithMoreThanFiveFields stamp: 'NB 6/29/2023 20:38:33'!
+PASSED!
+
+!testRun: #ImportTest #test08CannotImportAnInputWithAnAddressRecordWithMoreThanSixFields stamp: 'NB 6/29/2023 20:38:33'!
+PASSED!
+
+!testRun: #ImportTest #test09CannotImportAnInputWithAnAddressRecordWithoutACustomer stamp: 'NB 6/29/2023 20:38:34'!
+PASSED!
+
+!methodRemoval: ImportTest #numberOfAdresses stamp: 'NB 6/29/2023 20:38:46'!
+numberOfAdresses
+
+	^customerSystem numberOfAdresses !
+!ImportTest methodsFor: 'assertions' stamp: 'NB 6/29/2023 20:38:46' prior: 50627244!
+assertOnlyOneCustomerWasImportedWithoutAddresses
+
+	self assert: 1 equals: self numberOfCustomers .
+		self assert: 0 equals: (customerSystem numberOfAdresses ) ! !
+!ImportTest methodsFor: 'assertions' stamp: 'NB 6/29/2023 20:38:46' prior: 50627232!
+assertNoAddressWasImported
+
+	^ self assert: 0 equals: (customerSystem numberOfAdresses ) ! !
+
+!testRun: #ImportTest #test01CanImportCorrectlyAValidInputWithTwoCustomers stamp: 'NB 6/29/2023 20:38:48'!
+PASSED!
+
+!testRun: #ImportTest #test02CannotImportAnEmptyInput stamp: 'NB 6/29/2023 20:38:48'!
+PASSED!
+
+!testRun: #ImportTest #test03CannotImportAnInputThatHasWrongCustomerRecordIdentificationStartingWithC stamp: 'NB 6/29/2023 20:38:48'!
+PASSED!
+
+!testRun: #ImportTest #test04CannotImportAnInputWithACustomerRecordWithLessThanFiveFields stamp: 'NB 6/29/2023 20:38:49'!
+PASSED!
+
+!testRun: #ImportTest #test05CannotImportAnInputWithAnAddressRecordWithLessThanSixFields stamp: 'NB 6/29/2023 20:38:49'!
+PASSED!
+
+!testRun: #ImportTest #test06CannotImportAnInputThatHasWrongAddressRecordIdentificationStartingWithA stamp: 'NB 6/29/2023 20:38:49'!
+PASSED!
+
+!testRun: #ImportTest #test07CannotImportAnInputWithACustomerRecordWithMoreThanFiveFields stamp: 'NB 6/29/2023 20:38:49'!
+PASSED!
+
+!testRun: #ImportTest #test08CannotImportAnInputWithAnAddressRecordWithMoreThanSixFields stamp: 'NB 6/29/2023 20:38:50'!
+PASSED!
+
+!testRun: #ImportTest #test09CannotImportAnInputWithAnAddressRecordWithoutACustomer stamp: 'NB 6/29/2023 20:38:50'!
+PASSED!
+
+!methodRemoval: ImportTest #numberOfCustomers stamp: 'NB 6/29/2023 20:38:59'!
+numberOfCustomers
+
+	^customerSystem numberOfCustomers !
+!ImportTest methodsFor: 'assertions' stamp: 'NB 6/29/2023 20:38:59' prior: 50627730!
+assertOnlyOneCustomerWasImportedWithoutAddresses
+
+	self assert: 1 equals: (customerSystem numberOfCustomers ) .
+		self assert: 0 equals: (customerSystem numberOfAdresses ) ! !
+!ImportTest methodsFor: 'assertions' stamp: 'NB 6/29/2023 20:38:59' prior: 50627226!
+assertImportedRightNumberOfCustomers
+
+	^ self assert: 2 equals: (customerSystem numberOfCustomers ) ! !
+!ImportTest methodsFor: 'assertions' stamp: 'NB 6/29/2023 20:38:59' prior: 50627238!
+assertNoCustomerWasImported
+
+	^ self assert: 0 equals: (customerSystem numberOfCustomers ) ! !
+
+!testRun: #ImportTest #test01CanImportCorrectlyAValidInputWithTwoCustomers stamp: 'NB 6/29/2023 20:39:01'!
+PASSED!
+
+!testRun: #ImportTest #test02CannotImportAnEmptyInput stamp: 'NB 6/29/2023 20:39:01'!
+PASSED!
+
+!testRun: #ImportTest #test03CannotImportAnInputThatHasWrongCustomerRecordIdentificationStartingWithC stamp: 'NB 6/29/2023 20:39:02'!
+PASSED!
+
+!testRun: #ImportTest #test04CannotImportAnInputWithACustomerRecordWithLessThanFiveFields stamp: 'NB 6/29/2023 20:39:02'!
+PASSED!
+
+!testRun: #ImportTest #test05CannotImportAnInputWithAnAddressRecordWithLessThanSixFields stamp: 'NB 6/29/2023 20:39:02'!
+PASSED!
+
+!testRun: #ImportTest #test06CannotImportAnInputThatHasWrongAddressRecordIdentificationStartingWithA stamp: 'NB 6/29/2023 20:39:02'!
+PASSED!
+
+!testRun: #ImportTest #test07CannotImportAnInputWithACustomerRecordWithMoreThanFiveFields stamp: 'NB 6/29/2023 20:39:02'!
+PASSED!
+
+!testRun: #ImportTest #test08CannotImportAnInputWithAnAddressRecordWithMoreThanSixFields stamp: 'NB 6/29/2023 20:39:03'!
+PASSED!
+
+!testRun: #ImportTest #test09CannotImportAnInputWithAnAddressRecordWithoutACustomer stamp: 'NB 6/29/2023 20:39:03'!
+PASSED!
+
+!methodRemoval: ImportTest #customerWithIdentificationType:number: stamp: 'NB 6/29/2023 20:39:12'!
+customerWithIdentificationType: anIdType number: anIdNumber
+
+	^ customerSystem customerWithIdentificationType: anIdType number: anIdNumber.!
+!ImportTest methodsFor: 'assertions' stamp: 'NB 6/29/2023 20:39:12' prior: 50624471!
+assertCustomerWithIdentificationType: anIdType number: anIdNumber hasFirstName: aFirstName lastName: aLastName
+
+	| importedCustomer |
+
+	importedCustomer :=  customerSystem customerWithIdentificationType: anIdType number: anIdNumber.
+
+	self assert: aFirstName equals: importedCustomer firstName.
+	self assert: aLastName equals: importedCustomer lastName.
+	self assert: anIdType equals: importedCustomer identificationType.
+	self assert: anIdNumber equals: importedCustomer identificationNumber.
+
+	^importedCustomer
+
+	! !
+
+!testRun: #ImportTest #test01CanImportCorrectlyAValidInputWithTwoCustomers stamp: 'NB 6/29/2023 20:39:14'!
+PASSED!
+
+!testRun: #ImportTest #test02CannotImportAnEmptyInput stamp: 'NB 6/29/2023 20:39:14'!
+PASSED!
+
+!testRun: #ImportTest #test03CannotImportAnInputThatHasWrongCustomerRecordIdentificationStartingWithC stamp: 'NB 6/29/2023 20:39:14'!
+PASSED!
+
+!testRun: #ImportTest #test04CannotImportAnInputWithACustomerRecordWithLessThanFiveFields stamp: 'NB 6/29/2023 20:39:14'!
+PASSED!
+
+!testRun: #ImportTest #test05CannotImportAnInputWithAnAddressRecordWithLessThanSixFields stamp: 'NB 6/29/2023 20:39:15'!
+PASSED!
+
+!testRun: #ImportTest #test06CannotImportAnInputThatHasWrongAddressRecordIdentificationStartingWithA stamp: 'NB 6/29/2023 20:39:15'!
+PASSED!
+
+!testRun: #ImportTest #test07CannotImportAnInputWithACustomerRecordWithMoreThanFiveFields stamp: 'NB 6/29/2023 20:39:15'!
+PASSED!
+
+!testRun: #ImportTest #test08CannotImportAnInputWithAnAddressRecordWithMoreThanSixFields stamp: 'NB 6/29/2023 20:39:16'!
+PASSED!
+
+!testRun: #ImportTest #test09CannotImportAnInputWithAnAddressRecordWithoutACustomer stamp: 'NB 6/29/2023 20:39:16'!
+PASSED!
+
+!classDefinition: #ImportTest category: 'CustomerImporter' stamp: 'NB 6/29/2023 20:39:46'!
+TestCase subclass: #ImportTest
+	instanceVariableNames: 'customerSystem'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!testRun: #ImportTest #test01CanImportCorrectlyAValidInputWithTwoCustomers stamp: 'NB 6/29/2023 20:39:51'!
+PASSED!
+
+!testRun: #ImportTest #test02CannotImportAnEmptyInput stamp: 'NB 6/29/2023 20:39:51'!
+PASSED!
+
+!testRun: #ImportTest #test03CannotImportAnInputThatHasWrongCustomerRecordIdentificationStartingWithC stamp: 'NB 6/29/2023 20:39:51'!
+PASSED!
+
+!testRun: #ImportTest #test04CannotImportAnInputWithACustomerRecordWithLessThanFiveFields stamp: 'NB 6/29/2023 20:39:51'!
+PASSED!
+
+!testRun: #ImportTest #test05CannotImportAnInputWithAnAddressRecordWithLessThanSixFields stamp: 'NB 6/29/2023 20:39:52'!
+PASSED!
+
+!testRun: #ImportTest #test06CannotImportAnInputThatHasWrongAddressRecordIdentificationStartingWithA stamp: 'NB 6/29/2023 20:39:52'!
+PASSED!
+
+!testRun: #ImportTest #test07CannotImportAnInputWithACustomerRecordWithMoreThanFiveFields stamp: 'NB 6/29/2023 20:39:52'!
+PASSED!
+
+!testRun: #ImportTest #test08CannotImportAnInputWithAnAddressRecordWithMoreThanSixFields stamp: 'NB 6/29/2023 20:39:52'!
+PASSED!
+
+!testRun: #ImportTest #test09CannotImportAnInputWithAnAddressRecordWithoutACustomer stamp: 'NB 6/29/2023 20:39:52'!
+PASSED!
+
+!classDefinition: #CustomerImporter category: 'CustomerImporter' stamp: 'NB 6/29/2023 20:40:14'!
+Object subclass: #CustomerImporter
+	instanceVariableNames: 'customerSystem readStream customer line record'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+!CustomerImporter methodsFor: 'as yet unclassified' stamp: 'NB 6/29/2023 20:40:14' prior: 50624749!
+initializeFrom: aReadStream into: aSession
+	customerSystem := aSession.
+	readStream := aReadStream.! !
+!CustomerImporter methodsFor: 'as yet unclassified' stamp: 'NB 6/29/2023 20:40:14' prior: 50627490!
+importCustomer
+
+			self assertCustomerRecordSizeIsValid.
+			
+			customer := Customer 
+				firstName: record second 
+				lastName: record third 
+				identificationType: record fourth 
+				identificationNumber: record fifth.
+			customerSystem add: customer.! !
+!CustomerImporter methodsFor: 'initialization' stamp: 'NB 6/29/2023 20:40:25' prior: 50627956!
+initializeFrom: aReadStream into: aCustomerSystem
+	customerSystem := aCustomerSystem.
+	readStream := aReadStream.! !
+!CustomerImporter class methodsFor: 'instance creation' stamp: 'NB 6/29/2023 20:40:36' prior: 50624826!
+from: aReadStream into: aCustomerSystem
+	
+	^self new initializeFrom: aReadStream into: aCustomerSystem! !
+!CustomerImporter class methodsFor: 'importing' stamp: 'NB 6/29/2023 20:40:47' prior: 50624832!
+valueFrom: aReadStream into: aCustomerSystem
+aReadStream isEmpty ifTrue: [self error: self cannotImportEmptyStream].
+	^(self from: aReadStream into: aCustomerSystem) value! !
+
+!testRun: #ImportTest #test01CanImportCorrectlyAValidInputWithTwoCustomers stamp: 'NB 6/29/2023 20:40:50'!
+PASSED!
+
+!testRun: #ImportTest #test02CannotImportAnEmptyInput stamp: 'NB 6/29/2023 20:40:50'!
+PASSED!
+
+!testRun: #ImportTest #test03CannotImportAnInputThatHasWrongCustomerRecordIdentificationStartingWithC stamp: 'NB 6/29/2023 20:40:50'!
+PASSED!
+
+!testRun: #ImportTest #test04CannotImportAnInputWithACustomerRecordWithLessThanFiveFields stamp: 'NB 6/29/2023 20:40:50'!
+PASSED!
+
+!testRun: #ImportTest #test05CannotImportAnInputWithAnAddressRecordWithLessThanSixFields stamp: 'NB 6/29/2023 20:40:51'!
+PASSED!
+
+!testRun: #ImportTest #test06CannotImportAnInputThatHasWrongAddressRecordIdentificationStartingWithA stamp: 'NB 6/29/2023 20:40:51'!
+PASSED!
+
+!testRun: #ImportTest #test07CannotImportAnInputWithACustomerRecordWithMoreThanFiveFields stamp: 'NB 6/29/2023 20:40:51'!
+PASSED!
+
+!testRun: #ImportTest #test08CannotImportAnInputWithAnAddressRecordWithMoreThanSixFields stamp: 'NB 6/29/2023 20:40:51'!
+PASSED!
+
+!testRun: #ImportTest #test09CannotImportAnInputWithAnAddressRecordWithoutACustomer stamp: 'NB 6/29/2023 20:40:52'!
+PASSED!
+
+!classDefinition: #CustomerSystem category: 'CustomerImporter' stamp: 'NB 6/29/2023 20:41:05'!
+Object subclass: #CustomerSystem
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classDefinition: #PersistentCustomerSystem category: 'CustomerImporter' stamp: 'NB 6/29/2023 20:41:05'!
+CustomerSystem subclass: #PersistentCustomerSystem
+	instanceVariableNames: 'session'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!methodRemoval: PersistentCustomerSystem #session stamp: 'NB 6/29/2023 20:41:44'!
+session
+	
+	^session!
+!PersistentCustomerSystem methodsFor: 'as yet unclassified' stamp: 'NB 6/29/2023 20:41:44' prior: 50627296!
+numberOfCustomers
+
+	^(session selectAllOfType: Customer) size! !
+!PersistentCustomerSystem methodsFor: 'as yet unclassified' stamp: 'NB 6/29/2023 20:41:44' prior: 50627291!
+numberOfAdresses
+
+	^(session selectAllOfType: Address) size! !
+!PersistentCustomerSystem methodsFor: 'as yet unclassified' stamp: 'NB 6/29/2023 20:41:44' prior: 50627302!
+customerWithIdentificationType: anIdType number: anIdNumber
+
+	^ (session
+		select: [ :aCustomer | aCustomer identificationType = anIdType and: [ aCustomer identificationNumber = anIdNumber ]]
+		ofType: Customer) anyOne! !
+!PersistentCustomerSystem methodsFor: 'as yet unclassified' stamp: 'NB 6/29/2023 20:41:44' prior: 50627474!
+stop
+
+	session commit.
+	session close.! !
+!PersistentCustomerSystem methodsFor: 'as yet unclassified' stamp: 'NB 6/29/2023 20:41:44' prior: 50626879!
+start
+
+	session := DataBaseSession for: (Array with: Address with: Customer).
+	session beginTransaction.! !
+
+!testRun: #ImportTest #test01CanImportCorrectlyAValidInputWithTwoCustomers stamp: 'NB 6/29/2023 20:41:51'!
+PASSED!
+
+!testRun: #ImportTest #test02CannotImportAnEmptyInput stamp: 'NB 6/29/2023 20:41:51'!
+PASSED!
+
+!testRun: #ImportTest #test03CannotImportAnInputThatHasWrongCustomerRecordIdentificationStartingWithC stamp: 'NB 6/29/2023 20:41:51'!
+PASSED!
+
+!testRun: #ImportTest #test04CannotImportAnInputWithACustomerRecordWithLessThanFiveFields stamp: 'NB 6/29/2023 20:41:51'!
+PASSED!
+
+!testRun: #ImportTest #test05CannotImportAnInputWithAnAddressRecordWithLessThanSixFields stamp: 'NB 6/29/2023 20:41:51'!
+PASSED!
+
+!testRun: #ImportTest #test06CannotImportAnInputThatHasWrongAddressRecordIdentificationStartingWithA stamp: 'NB 6/29/2023 20:41:52'!
+PASSED!
+
+!testRun: #ImportTest #test07CannotImportAnInputWithACustomerRecordWithMoreThanFiveFields stamp: 'NB 6/29/2023 20:41:52'!
+PASSED!
+
+!testRun: #ImportTest #test08CannotImportAnInputWithAnAddressRecordWithMoreThanSixFields stamp: 'NB 6/29/2023 20:41:52'!
+PASSED!
+
+!testRun: #ImportTest #test09CannotImportAnInputWithAnAddressRecordWithoutACustomer stamp: 'NB 6/29/2023 20:41:52'!
+PASSED!
+
+----SNAPSHOT----(29 June 2023 20:41:56) CuisUniversity-5832.image priorSource: 9471532!
+!CustomerSystem methodsFor: 'no messages' stamp: 'NB 6/29/2023 20:42:32'!
+add: aCustomer
+	
+	self subclassResponsibility ! !
+!CustomerSystem methodsFor: 'as yet unclassified' stamp: 'NB 6/29/2023 20:42:54'!
+customerWithIdentificationType: anIdType number: anIdNumber
+
+	self subclassResponsibility ! !
+!CustomerSystem methodsFor: 'as yet unclassified' stamp: 'NB 6/29/2023 20:43:08'!
+numberOfAdresses
+
+	self subclassResponsibility ! !
+!CustomerSystem methodsFor: 'as yet unclassified' stamp: 'NB 6/29/2023 20:43:26'!
+numberOfCustomers
+
+	self subclassResponsibility ! !
+!CustomerSystem methodsFor: 'nil' stamp: 'NB 6/29/2023 20:43:47'!
+start
+
+	self subclassResponsibility .! !
+!CustomerSystem methodsFor: 'as yet unclassified' stamp: 'NB 6/29/2023 20:43:58'!
+stop
+
+	self subclassResponsibility .! !
+
+CustomerSystem subclass: #TransientCustomerSystem
+	instanceVariableNames: 'customers'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classDefinition: #TransientCustomerSystem category: 'CustomerImporter' stamp: 'NB 6/29/2023 20:44:16'!
+CustomerSystem subclass: #TransientCustomerSystem
+	instanceVariableNames: 'customers'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+!TransientCustomerSystem methodsFor: 'no messages' stamp: 'NB 6/29/2023 20:44:49' overrides: 50628146!
+start
+
+	customers:= OrderedCollection new.! !
+!TransientCustomerSystem methodsFor: 'as yet unclassified' stamp: 'NB 6/29/2023 20:45:41' overrides: 50628131!
+customerWithIdentificationType: anIdType number: anIdNumber
+
+	^customers detect: [:aCustomer | aCustomer identificationType = anIdType and: [aCustomer identificationNumber = anIdNumber]].! !
+
+CustomerSystem subclass: #TransientCustomerSystem
+	instanceVariableNames: 'customers addresses'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classDefinition: #TransientCustomerSystem category: 'CustomerImporter' stamp: 'NB 6/29/2023 20:45:53'!
+CustomerSystem subclass: #TransientCustomerSystem
+	instanceVariableNames: 'customers addresses'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+!TransientCustomerSystem methodsFor: 'as yet unclassified' stamp: 'NB 6/29/2023 20:46:01' prior: 50628168 overrides: 50628146!
+start
+
+	customers:= OrderedCollection new.
+	addresses := OrderedCollection new.! !
+!TransientCustomerSystem methodsFor: 'as yet unclassified' stamp: 'NB 6/29/2023 20:46:28' overrides: 50628137!
+numberOfAdresses
+
+	^addresses size.! !
+!TransientCustomerSystem methodsFor: 'as yet unclassified' stamp: 'NB 6/29/2023 20:46:43' overrides: 50628142!
+numberOfCustomers
+
+	^customers size! !
+!TransientCustomerSystem methodsFor: 'as yet unclassified' stamp: 'NB 6/29/2023 20:47:20' overrides: 50628126!
+add: aCustomer
+	
+	customers add: aCustomer .
+	addresses addAll: aCustomer addresses .! !
+!TransientCustomerSystem methodsFor: 'as yet unclassified' stamp: 'NB 6/29/2023 20:47:37' overrides: 50628150!
+stop
+! !
+
+!testRun: #ImportTest #test01CanImportCorrectlyAValidInputWithTwoCustomers stamp: 'NB 6/29/2023 20:47:44'!
+PASSED!
+
+!testRun: #ImportTest #test02CannotImportAnEmptyInput stamp: 'NB 6/29/2023 20:47:44'!
+PASSED!
+
+!testRun: #ImportTest #test03CannotImportAnInputThatHasWrongCustomerRecordIdentificationStartingWithC stamp: 'NB 6/29/2023 20:47:44'!
+PASSED!
+
+!testRun: #ImportTest #test04CannotImportAnInputWithACustomerRecordWithLessThanFiveFields stamp: 'NB 6/29/2023 20:47:44'!
+PASSED!
+
+!testRun: #ImportTest #test05CannotImportAnInputWithAnAddressRecordWithLessThanSixFields stamp: 'NB 6/29/2023 20:47:44'!
+PASSED!
+
+!testRun: #ImportTest #test06CannotImportAnInputThatHasWrongAddressRecordIdentificationStartingWithA stamp: 'NB 6/29/2023 20:47:45'!
+PASSED!
+
+!testRun: #ImportTest #test07CannotImportAnInputWithACustomerRecordWithMoreThanFiveFields stamp: 'NB 6/29/2023 20:47:45'!
+PASSED!
+
+!testRun: #ImportTest #test08CannotImportAnInputWithAnAddressRecordWithMoreThanSixFields stamp: 'NB 6/29/2023 20:47:45'!
+PASSED!
+
+!testRun: #ImportTest #test09CannotImportAnInputWithAnAddressRecordWithoutACustomer stamp: 'NB 6/29/2023 20:47:45'!
+PASSED!
+!ImportTest methodsFor: 'setUp/tearDown' stamp: 'NB 6/29/2023 20:47:59' prior: 50626918 overrides: 16961394!
+setUp
+
+	customerSystem:= TransientCustomerSystem new.
+	customerSystem start.
+! !
+
+!testRun: #ImportTest #test01CanImportCorrectlyAValidInputWithTwoCustomers stamp: 'NB 6/29/2023 20:48:00'!
+PASSED!
+
+!testRun: #ImportTest #test02CannotImportAnEmptyInput stamp: 'NB 6/29/2023 20:48:00'!
+PASSED!
+
+!testRun: #ImportTest #test03CannotImportAnInputThatHasWrongCustomerRecordIdentificationStartingWithC stamp: 'NB 6/29/2023 20:48:00'!
+PASSED!
+
+!testRun: #ImportTest #test04CannotImportAnInputWithACustomerRecordWithLessThanFiveFields stamp: 'NB 6/29/2023 20:48:00'!
+PASSED!
+
+!testRun: #ImportTest #test05CannotImportAnInputWithAnAddressRecordWithLessThanSixFields stamp: 'NB 6/29/2023 20:48:00'!
+PASSED!
+
+!testRun: #ImportTest #test06CannotImportAnInputThatHasWrongAddressRecordIdentificationStartingWithA stamp: 'NB 6/29/2023 20:48:00'!
+PASSED!
+
+!testRun: #ImportTest #test07CannotImportAnInputWithACustomerRecordWithMoreThanFiveFields stamp: 'NB 6/29/2023 20:48:00'!
+PASSED!
+
+!testRun: #ImportTest #test08CannotImportAnInputWithAnAddressRecordWithMoreThanSixFields stamp: 'NB 6/29/2023 20:48:00'!
+PASSED!
+
+!testRun: #ImportTest #test09CannotImportAnInputWithAnAddressRecordWithoutACustomer stamp: 'NB 6/29/2023 20:48:00'!
+PASSED!
+
+!testRun: #ImportTest #test01CanImportCorrectlyAValidInputWithTwoCustomers stamp: 'NB 6/29/2023 20:48:10'!
+PASSED!
+
+!testRun: #ImportTest #test02CannotImportAnEmptyInput stamp: 'NB 6/29/2023 20:48:10'!
+PASSED!
+
+!testRun: #ImportTest #test03CannotImportAnInputThatHasWrongCustomerRecordIdentificationStartingWithC stamp: 'NB 6/29/2023 20:48:10'!
+PASSED!
+
+!testRun: #ImportTest #test04CannotImportAnInputWithACustomerRecordWithLessThanFiveFields stamp: 'NB 6/29/2023 20:48:10'!
+PASSED!
+
+!testRun: #ImportTest #test05CannotImportAnInputWithAnAddressRecordWithLessThanSixFields stamp: 'NB 6/29/2023 20:48:10'!
+PASSED!
+
+!testRun: #ImportTest #test06CannotImportAnInputThatHasWrongAddressRecordIdentificationStartingWithA stamp: 'NB 6/29/2023 20:48:10'!
+PASSED!
+
+!testRun: #ImportTest #test07CannotImportAnInputWithACustomerRecordWithMoreThanFiveFields stamp: 'NB 6/29/2023 20:48:10'!
+PASSED!
+
+!testRun: #ImportTest #test08CannotImportAnInputWithAnAddressRecordWithMoreThanSixFields stamp: 'NB 6/29/2023 20:48:10'!
+PASSED!
+
+!testRun: #ImportTest #test09CannotImportAnInputWithAnAddressRecordWithoutACustomer stamp: 'NB 6/29/2023 20:48:10'!
+PASSED!
+
+!testRun: #ImportTest #test01CanImportCorrectlyAValidInputWithTwoCustomers stamp: 'NB 6/29/2023 20:48:12'!
+PASSED!
+
+!testRun: #ImportTest #test02CannotImportAnEmptyInput stamp: 'NB 6/29/2023 20:48:12'!
+PASSED!
+
+!testRun: #ImportTest #test03CannotImportAnInputThatHasWrongCustomerRecordIdentificationStartingWithC stamp: 'NB 6/29/2023 20:48:12'!
+PASSED!
+
+!testRun: #ImportTest #test04CannotImportAnInputWithACustomerRecordWithLessThanFiveFields stamp: 'NB 6/29/2023 20:48:12'!
+PASSED!
+
+!testRun: #ImportTest #test05CannotImportAnInputWithAnAddressRecordWithLessThanSixFields stamp: 'NB 6/29/2023 20:48:12'!
+PASSED!
+
+!testRun: #ImportTest #test06CannotImportAnInputThatHasWrongAddressRecordIdentificationStartingWithA stamp: 'NB 6/29/2023 20:48:12'!
+PASSED!
+
+!testRun: #ImportTest #test07CannotImportAnInputWithACustomerRecordWithMoreThanFiveFields stamp: 'NB 6/29/2023 20:48:12'!
+PASSED!
+
+!testRun: #ImportTest #test08CannotImportAnInputWithAnAddressRecordWithMoreThanSixFields stamp: 'NB 6/29/2023 20:48:12'!
+PASSED!
+
+!testRun: #ImportTest #test09CannotImportAnInputWithAnAddressRecordWithoutACustomer stamp: 'NB 6/29/2023 20:48:12'!
+PASSED!
+
+----SNAPSHOT----(29 June 2023 20:48:20) CuisUniversity-5832.image priorSource: 9487106!
+
+!testRun: #ImportTest #test01CanImportCorrectlyAValidInputWithTwoCustomers stamp: 'NB 6/29/2023 20:48:23'!
+PASSED!
+
+!testRun: #ImportTest #test02CannotImportAnEmptyInput stamp: 'NB 6/29/2023 20:48:23'!
+PASSED!
+
+!testRun: #ImportTest #test03CannotImportAnInputThatHasWrongCustomerRecordIdentificationStartingWithC stamp: 'NB 6/29/2023 20:48:23'!
+PASSED!
+
+!testRun: #ImportTest #test04CannotImportAnInputWithACustomerRecordWithLessThanFiveFields stamp: 'NB 6/29/2023 20:48:23'!
+PASSED!
+
+!testRun: #ImportTest #test05CannotImportAnInputWithAnAddressRecordWithLessThanSixFields stamp: 'NB 6/29/2023 20:48:23'!
+PASSED!
+
+!testRun: #ImportTest #test06CannotImportAnInputThatHasWrongAddressRecordIdentificationStartingWithA stamp: 'NB 6/29/2023 20:48:23'!
+PASSED!
+
+!testRun: #ImportTest #test07CannotImportAnInputWithACustomerRecordWithMoreThanFiveFields stamp: 'NB 6/29/2023 20:48:23'!
+PASSED!
+
+!testRun: #ImportTest #test08CannotImportAnInputWithAnAddressRecordWithMoreThanSixFields stamp: 'NB 6/29/2023 20:48:23'!
+PASSED!
+
+!testRun: #ImportTest #test09CannotImportAnInputWithAnAddressRecordWithoutACustomer stamp: 'NB 6/29/2023 20:48:23'!
+PASSED!
+
+!classDefinition: #Environment category: 'CustomerImporter' stamp: 'NB 6/29/2023 20:49:14'!
+Object subclass: #Environment
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+!ImportTest methodsFor: 'setUp/tearDown' stamp: 'NB 6/29/2023 20:49:08' prior: 50628262 overrides: 16961394!
+setUp
+
+	customerSystem:= Environment current createCustomerSystem.
+	customerSystem start.
+! !
+!Environment class methodsFor: 'instance creation' stamp: 'NB 6/29/2023 20:49:47'!
+current
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+	self shouldBeImplemented.
+	^self new initializeCurrent! !
+!Environment class methodsFor: 'instance creation' stamp: 'NB 6/29/2023 20:50:30' prior: 50628427!
+current
+	
+	^(self subclasses detect: [:anEnvironmentSubclass | anEnvironmentSubclass isCurrent]) new! !
+
+----SNAPSHOT----(29 June 2023 20:50:51) CuisUniversity-5832.image priorSource: 9495157!
+
+Environment subclass: #DevelopmentEnvironment
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classDefinition: #DevelopmentEnvironment category: 'CustomerImporter' stamp: 'NB 6/29/2023 20:51:04'!
+Environment subclass: #DevelopmentEnvironment
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+Environment subclass: #IntegrationEnvironment
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classDefinition: #IntegrationEnvironment category: 'CustomerImporter' stamp: 'NB 6/29/2023 20:51:13'!
+Environment subclass: #IntegrationEnvironment
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+!DevelopmentEnvironment class methodsFor: 'nil' stamp: 'NB 6/29/2023 20:51:26'!
+isCurrent
+
+	! !
+!DevelopmentEnvironment class methodsFor: 'as yet unclassified' stamp: 'NB 6/29/2023 20:52:19' prior: 50628469!
+isCurrent
+
+	^(Smalltalk getSystemAttribute: 'ENV') = 'DEV'.! !
+!IntegrationEnvironment class methodsFor: 'no messages' stamp: 'NB 6/29/2023 20:52:34'!
+isCurrent
+
+	^(Smalltalk getSystemAttribute: 'ENV') = 'INTEGRATION'.! !
+!Environment class methodsFor: 'instance creation' stamp: 'NB 6/29/2023 20:52:59'!
+isCurrent
+
+	self subclassResponsibility .! !
+
+----SNAPSHOT----(29 June 2023 20:53:28) CuisUniversity-5832.image priorSource: 9497287!
+
+----SNAPSHOT----(29 June 2023 20:54:55) CuisUniversity-5832.image priorSource: 9498764!
+
+----STARTUP---- (29 June 2023 20:55:19) as /Users/nico/Documents/inge1/cuis-images/macos64 9/CuisUniversity-5832.image!
+
+
+(Smalltalk getSystemAttribute: 'ENV')!
+
+----STARTUP---- (29 June 2023 20:58:12) as /Users/nico/Documents/inge1/cuis-images/macos64 9/CuisUniversity-5832.image!
+
+
+Smalltalk getSystemAttribute: 'ENV'!
+
+----SNAPSHOT----(29 June 2023 21:00:38) CuisUniversity-5832.image priorSource: 9498853!
+!DevelopmentEnvironment class methodsFor: 'testing' stamp: 'NB 6/29/2023 21:00:47' prior: 50628473 overrides: 50628483!
+isCurrent
+
+	^true.! !
+!IntegrationEnvironment class methodsFor: 'testing' stamp: 'NB 6/29/2023 21:00:55' prior: 50628478 overrides: 50628483!
+isCurrent
+
+	^false.! !
+!DevelopmentEnvironment methodsFor: 'customerSystem' stamp: 'NB 6/29/2023 21:01:26'!
+createCustomerSystem
+	self shouldBeImplemented.! !
+!DevelopmentEnvironment methodsFor: 'customerSystem' stamp: 'NB 6/29/2023 21:01:35' prior: 50628511!
+createCustomerSystem
+	
+	^TransientCustomerSystem new.! !
+
+!testRun: #ImportTest #test01CanImportCorrectlyAValidInputWithTwoCustomers stamp: 'NB 6/29/2023 21:01:36'!
+PASSED!
+
+!testRun: #ImportTest #test01CanImportCorrectlyAValidInputWithTwoCustomers stamp: 'NB 6/29/2023 21:01:38'!
+PASSED!
+
+!testRun: #ImportTest #test01CanImportCorrectlyAValidInputWithTwoCustomers stamp: 'NB 6/29/2023 21:01:38'!
+PASSED!
+
+!testRun: #ImportTest #test02CannotImportAnEmptyInput stamp: 'NB 6/29/2023 21:01:38'!
+PASSED!
+
+!testRun: #ImportTest #test02CannotImportAnEmptyInput stamp: 'NB 6/29/2023 21:01:38'!
+PASSED!
+
+!testRun: #ImportTest #test03CannotImportAnInputThatHasWrongCustomerRecordIdentificationStartingWithC stamp: 'NB 6/29/2023 21:01:38'!
+PASSED!
+
+!testRun: #ImportTest #test03CannotImportAnInputThatHasWrongCustomerRecordIdentificationStartingWithC stamp: 'NB 6/29/2023 21:01:38'!
+PASSED!
+
+!testRun: #ImportTest #test04CannotImportAnInputWithACustomerRecordWithLessThanFiveFields stamp: 'NB 6/29/2023 21:01:38'!
+PASSED!
+
+!testRun: #ImportTest #test04CannotImportAnInputWithACustomerRecordWithLessThanFiveFields stamp: 'NB 6/29/2023 21:01:38'!
+PASSED!
+
+!testRun: #ImportTest #test05CannotImportAnInputWithAnAddressRecordWithLessThanSixFields stamp: 'NB 6/29/2023 21:01:38'!
+PASSED!
+
+!testRun: #ImportTest #test05CannotImportAnInputWithAnAddressRecordWithLessThanSixFields stamp: 'NB 6/29/2023 21:01:38'!
+PASSED!
+
+!testRun: #ImportTest #test06CannotImportAnInputThatHasWrongAddressRecordIdentificationStartingWithA stamp: 'NB 6/29/2023 21:01:38'!
+PASSED!
+
+!testRun: #ImportTest #test06CannotImportAnInputThatHasWrongAddressRecordIdentificationStartingWithA stamp: 'NB 6/29/2023 21:01:38'!
+PASSED!
+
+!testRun: #ImportTest #test07CannotImportAnInputWithACustomerRecordWithMoreThanFiveFields stamp: 'NB 6/29/2023 21:01:38'!
+PASSED!
+
+!testRun: #ImportTest #test07CannotImportAnInputWithACustomerRecordWithMoreThanFiveFields stamp: 'NB 6/29/2023 21:01:38'!
+PASSED!
+
+!testRun: #ImportTest #test08CannotImportAnInputWithAnAddressRecordWithMoreThanSixFields stamp: 'NB 6/29/2023 21:01:38'!
+PASSED!
+
+!testRun: #ImportTest #test08CannotImportAnInputWithAnAddressRecordWithMoreThanSixFields stamp: 'NB 6/29/2023 21:01:38'!
+PASSED!
+
+!testRun: #ImportTest #test09CannotImportAnInputWithAnAddressRecordWithoutACustomer stamp: 'NB 6/29/2023 21:01:38'!
+PASSED!
+
+!testRun: #ImportTest #test09CannotImportAnInputWithAnAddressRecordWithoutACustomer stamp: 'NB 6/29/2023 21:01:38'!
+PASSED!
+
+!testRun: #ImportTest #test01CanImportCorrectlyAValidInputWithTwoCustomers stamp: 'NB 6/29/2023 21:01:43'!
+PASSED!
+
+!testRun: #ImportTest #test02CannotImportAnEmptyInput stamp: 'NB 6/29/2023 21:01:43'!
+PASSED!
+
+!testRun: #ImportTest #test03CannotImportAnInputThatHasWrongCustomerRecordIdentificationStartingWithC stamp: 'NB 6/29/2023 21:01:43'!
+PASSED!
+
+!testRun: #ImportTest #test04CannotImportAnInputWithACustomerRecordWithLessThanFiveFields stamp: 'NB 6/29/2023 21:01:43'!
+PASSED!
+
+!testRun: #ImportTest #test05CannotImportAnInputWithAnAddressRecordWithLessThanSixFields stamp: 'NB 6/29/2023 21:01:43'!
+PASSED!
+
+!testRun: #ImportTest #test06CannotImportAnInputThatHasWrongAddressRecordIdentificationStartingWithA stamp: 'NB 6/29/2023 21:01:43'!
+PASSED!
+
+!testRun: #ImportTest #test07CannotImportAnInputWithACustomerRecordWithMoreThanFiveFields stamp: 'NB 6/29/2023 21:01:43'!
+PASSED!
+
+!testRun: #ImportTest #test08CannotImportAnInputWithAnAddressRecordWithMoreThanSixFields stamp: 'NB 6/29/2023 21:01:43'!
+PASSED!
+
+!testRun: #ImportTest #test09CannotImportAnInputWithAnAddressRecordWithoutACustomer stamp: 'NB 6/29/2023 21:01:43'!
+PASSED!
+
+----SNAPSHOT----(29 June 2023 21:01:46) CuisUniversity-5832.image priorSource: 9499102!
+
+!testRun: #ImportTest #test01CanImportCorrectlyAValidInputWithTwoCustomers stamp: 'NB 6/29/2023 21:01:51'!
+PASSED!
+
+!testRun: #ImportTest #test02CannotImportAnEmptyInput stamp: 'NB 6/29/2023 21:01:51'!
+PASSED!
+
+!testRun: #ImportTest #test03CannotImportAnInputThatHasWrongCustomerRecordIdentificationStartingWithC stamp: 'NB 6/29/2023 21:01:51'!
+PASSED!
+
+!testRun: #ImportTest #test04CannotImportAnInputWithACustomerRecordWithLessThanFiveFields stamp: 'NB 6/29/2023 21:01:51'!
+PASSED!
+
+!testRun: #ImportTest #test05CannotImportAnInputWithAnAddressRecordWithLessThanSixFields stamp: 'NB 6/29/2023 21:01:51'!
+PASSED!
+
+!testRun: #ImportTest #test06CannotImportAnInputThatHasWrongAddressRecordIdentificationStartingWithA stamp: 'NB 6/29/2023 21:01:51'!
+PASSED!
+
+!testRun: #ImportTest #test07CannotImportAnInputWithACustomerRecordWithMoreThanFiveFields stamp: 'NB 6/29/2023 21:01:51'!
+PASSED!
+
+!testRun: #ImportTest #test08CannotImportAnInputWithAnAddressRecordWithMoreThanSixFields stamp: 'NB 6/29/2023 21:01:51'!
+PASSED!
+
+!testRun: #ImportTest #test09CannotImportAnInputWithAnAddressRecordWithoutACustomer stamp: 'NB 6/29/2023 21:01:51'!
+PASSED!
+
+----SNAPSHOT----(29 June 2023 21:01:58) CuisUniversity-5832.image priorSource: 9503377!
+!Environment methodsFor: 'no messages' stamp: 'NB 6/29/2023 21:03:27'!
+createCustomerSystem
+	
+	self subclassResponsibility .! !
+!IntegrationEnvironment methodsFor: 'nil' stamp: 'NB 6/29/2023 21:04:04' overrides: 50628673!
+createCustomerSystem
+	
+	^PersistentCustomerSystem new.! !
+
+----SNAPSHOT----(29 June 2023 21:04:28) CuisUniversity-5832.image priorSource: 9504609!
+
+----SNAPSHOT----(29 June 2023 21:08:36) CuisUniversity-5832.image priorSource: 9505017!
+
+----SNAPSHOT----(29 June 2023 21:08:41) CuisUniversity-5832.image priorSource: 9505106!
+
+----SNAPSHOT----(29 June 2023 21:08:50) CuisUniversity-5832.image priorSource: 9505195!
