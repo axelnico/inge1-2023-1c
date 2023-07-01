@@ -127,10 +127,10 @@ assertCustomerWithIdentificationType: anIdType number: anIdNumber hasFirstName: 
 
 	! !
 
-!ImportTest methodsFor: 'assertions' stamp: 'NB 6/29/2023 20:38:59'!
+!ImportTest methodsFor: 'assertions' stamp: 'NB 7/1/2023 15:11:49'!
 assertImportedRightNumberOfCustomers
 
-	^ self assert: 2 equals: (customerSystem numberOfCustomers ) ! !
+	^ self assert: 2 equals: customerSystem numberOfCustomers ! !
 
 !ImportTest methodsFor: 'assertions' stamp: 'HAW 5/22/2022 18:28:45'!
 assertJuanPerezWasImportedCorrectly
@@ -141,21 +141,21 @@ assertJuanPerezWasImportedCorrectly
 	self assertAddressOf: importedCustomer at: 'Alem' hasNumber: 1122 town: 'CABA' zipCode: 1001 province: 'CABA'
 	! !
 
-!ImportTest methodsFor: 'assertions' stamp: 'NB 6/29/2023 20:38:46'!
+!ImportTest methodsFor: 'assertions' stamp: 'NB 7/1/2023 15:11:55'!
 assertNoAddressWasImported
 
-	^ self assert: 0 equals: (customerSystem numberOfAdresses ) ! !
+	^ self assert: 0 equals: customerSystem numberOfAdresses ! !
 
-!ImportTest methodsFor: 'assertions' stamp: 'NB 6/29/2023 20:38:59'!
+!ImportTest methodsFor: 'assertions' stamp: 'NB 7/1/2023 15:12:00'!
 assertNoCustomerWasImported
 
-	^ self assert: 0 equals: (customerSystem numberOfCustomers ) ! !
+	^ self assert: 0 equals: customerSystem numberOfCustomers ! !
 
-!ImportTest methodsFor: 'assertions' stamp: 'NB 6/29/2023 20:38:59'!
+!ImportTest methodsFor: 'assertions' stamp: 'NB 7/1/2023 15:12:09'!
 assertOnlyOneCustomerWasImportedWithoutAddresses
 
-	self assert: 1 equals: (customerSystem numberOfCustomers ) .
-		self assert: 0 equals: (customerSystem numberOfAdresses ) ! !
+	self assert: 1 equals: customerSystem numberOfCustomers .
+	self assert: 0 equals: customerSystem numberOfAdresses ! !
 
 !ImportTest methodsFor: 'assertions' stamp: 'HAW 5/22/2022 18:28:05'!
 assertPepeSanchezWasImportedCorrecty
@@ -618,16 +618,15 @@ stop
 
 !classDefinition: #TransientCustomerSystem category: 'CustomerImporter'!
 CustomerSystem subclass: #TransientCustomerSystem
-	instanceVariableNames: 'customers addresses'
+	instanceVariableNames: 'customers'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'CustomerImporter'!
 
-!TransientCustomerSystem methodsFor: 'adding' stamp: 'NB 6/29/2023 20:47:20'!
+!TransientCustomerSystem methodsFor: 'adding' stamp: 'NB 7/1/2023 15:07:34'!
 add: aCustomer
 	
-	customers add: aCustomer .
-	addresses addAll: aCustomer addresses .! !
+	customers add: aCustomer .! !
 
 
 !TransientCustomerSystem methodsFor: 'customer' stamp: 'NB 6/29/2023 20:45:41'!
@@ -641,17 +640,16 @@ numberOfCustomers
 	^customers size! !
 
 
-!TransientCustomerSystem methodsFor: 'address' stamp: 'NB 6/29/2023 20:46:28'!
+!TransientCustomerSystem methodsFor: 'address' stamp: 'NB 7/1/2023 15:10:15'!
 numberOfAdresses
 
-	^addresses size.! !
+	^(customers inject: OrderedCollection new addingAll: [:aCustomer | aCustomer addresses ]) size! !
 
 
-!TransientCustomerSystem methodsFor: 'starting / stoping' stamp: 'NB 6/29/2023 20:46:01'!
+!TransientCustomerSystem methodsFor: 'starting / stoping' stamp: 'NB 7/1/2023 15:10:47'!
 start
 
-	customers:= OrderedCollection new.
-	addresses := OrderedCollection new.! !
+	customers:= OrderedCollection new.! !
 
 !TransientCustomerSystem methodsFor: 'starting / stoping' stamp: 'NB 6/29/2023 20:47:37'!
 stop
